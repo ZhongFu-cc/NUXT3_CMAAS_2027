@@ -41,14 +41,16 @@
                     </el-icon>
                     <div class="gallery-sub-menu" :class="openedSubMenu == 'abstract' ? 'is-open' : ''"
                         v-if="openedSubMenu == 'abstract'">
-                        <nuxt-link class="sub-menu-item" to="/" @click="setActiveItem('abstractGuideline')"
-                            :class="activeClass('abstractGuideline')">投稿指南</nuxt-link>
+                        <nuxt-link class="sub-menu-item" to="/submission-guidelines"
+                            @click="setActiveItem('abstractGuideline')"
+                            :class="activeClass('abstractGuideline')">投稿規範</nuxt-link>
                         <nuxt-link class="sub-menu-item" to="/" @click="setActiveItem('abstractSubmission')"
                             :class="activeClass('abstractSubmission')">摘要提交</nuxt-link>
-                        <nuxt-link class="sub-menu-item" to="/" @click="setActiveItem('abstractAwards')"
+                        <nuxt-link class="sub-menu-item" to="/award" @click="setActiveItem('abstractAwards')"
                             :class="activeClass('abstractAwards')">投稿獎項</nuxt-link>
-                        <nuxt-link class="sub-menu-item" to="/" @click="setActiveItem('abstractPresentation')"
-                            :class="activeClass('abstractPresentation')">發表指南</nuxt-link>
+                        <nuxt-link class="sub-menu-item" to="/presentation-guidelines"
+                            @click="setActiveItem('abstractPresentation')"
+                            :class="activeClass('abstractPresentation')">發表規範</nuxt-link>
                     </div>
                 </div>
 

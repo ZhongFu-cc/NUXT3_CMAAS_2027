@@ -42,10 +42,10 @@ const menu = reactive([
     { title: '註冊資訊', path: '/seminar-registration', isActive: false },
     {
         title: '投稿資訊', path: '/', isActive: false, submenu: [
-            { title: '投稿指南', path: '/' },
-            { title: '摘要', path: '/' },
-            { title: '投稿獎項', path: '/' },
-            { title: '發表指南', path: '/' },
+            { title: '投稿規範', path: '/submission-guidelines' },
+            { title: '摘要提交', path: '/abstract-submission' },
+            { title: '投稿獎項', path: '/award' },
+            { title: '發表規範', path: '/presentation-guidelines' },
         ]
     },
     { title: '交通資訊', path: '/transportation', isActive: false },
