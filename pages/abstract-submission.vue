@@ -57,7 +57,6 @@
                 </div>
             </div>
 
-
             <div class="file-upload">
                 <el-form-item label="Pdf File" prop="fileList">
                     <el-upload ref="uploadRef" class="upload-demo" :limit="1" :on-change="handlePdfUpload"
@@ -79,11 +78,10 @@
 import Banner from '@/components/layout/Banner.vue';
 import Title from '@/components/layout/Title.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
-const { t, locale, setLocale } = useLang()
-const { isLogin, checkLoginState, memberInfo } = useAuth();
-
 import type { FormInstance, FormRules, UploadProps, UploadUserFile, UploadFile, UploadFiles, UploadInstance } from 'element-plus';
-import { isLowSurrogateHalf } from 'ckeditor5';
+
+const { t, locale, setLocale } = useLang();
+const { isLogin, checkLoginState, memberInfo } = useAuth();
 
 useSeoMeta({
     title: 'Abstract Submission - 9th IOPBS & TOPBS 2025 International Conference on Oncoplastic Breast Surgery',
@@ -91,40 +89,27 @@ useSeoMeta({
     keywords: 'Abstract Submission, 9th IOPBS, IOPBS 2025, TOPBS 2025, 2025 IOPBS, 2025 TOPBS '
 })
 
-
-
 const router = useRouter();
-/**-------------- Member info --------------- */
-// const memberInfo = reactive<any>({});
 
-// const getMemberInfo = async () => {
-//     let res = await CSRrequest.get('/member/getMemberInfo');
-//     console.log(res);
-
-//     if (res.code != 200) {
-//         localStorage.removeItem("Authorization-member");
-//         router.push("/login");
-//     } else if (res.code === 200) {
-//         Object.assign(memberInfo, res.data);
-//         data.memberId = memberInfo.memberId;
-
-
-//         let orderRes = await CSRrequest.get(`/orders/owner`);
-//         if (orderRes.code === 200) {
-//             let registration = orderRes.data.filter((item: any) => item.itemsSummary === 'Registration Fee' || item.itemsSummary === "Group Registration Fee");
-//             if (registration.length > 0 && registration[0].status !== 2) {
-//                 router.push('/payment');
-//                 ElMessage.error('Please pay registration fee first');
-//             } else {
-//             }
-//         }
-//     }
-// }
-
-/**------------------------------------------ */
 const checkFileSize = (size: number) => {
     return size < 1024 * 1024 * 20;
 }
+
+const formRef = ref<FormInstance>();
+const data = reactive<any>({
+    absType: 'Poster Presentation',
+    absTitle: '',
+    firstAuthor: '',
+    firstAuthorBirthday: '',
+    speaker: '',
+    speakerAffiliation: '',
+    correspondingAuthor: '',
+    correspondingAuthorEmail: '',
+    correspondingAuthorPhone: '',
+    allAuthor: '',
+    allAuthorAffiliation: '',
+    fileList: [],
+})
 
 const handleRemove = (file: UploadUserFile, fileList: UploadUserFile[]) => {
     console.log(data.fileList);
@@ -139,13 +124,10 @@ const handleExceed: UploadProps['onExceed'] = (files: UploadUserFile[], fileList
     ElMessage.error(`You can only upload 1 file, please upload again`);
     if (files.length > 0) {
         fileList.splice(0, fileList.length);
-
         data.fileList = [];
         console.log(data.fileList);
         console.log(fileList);
     }
-
-
 }
 
 const handlePdfUpload: UploadProps['onChange'] = (file: UploadUserFile, uploadFiles) => {
@@ -154,7 +136,6 @@ const handlePdfUpload: UploadProps['onChange'] = (file: UploadUserFile, uploadFi
         ElMessage.error('File is empty');
         return false;
     }
-
 
     if (file.status === 'ready' && file.size) {
         if (!checkFileSize(file.size)) {
@@ -172,29 +153,6 @@ const handlePdfUpload: UploadProps['onChange'] = (file: UploadUserFile, uploadFi
             formRef.value.validateField('fileList');
         }
     }
-
-}
-const handleDocxUpload: UploadProps['onChange'] = (file: UploadUserFile, uploadFiles) => {
-    if (file.size == 0) {
-        ElMessage.error('File is empty');
-        return false;
-    }
-
-
-    if (file.status === 'ready' && file.size) {
-        if (!checkFileSize(file.size)) {
-            ElMessage.error('File size must be less than 20mb');
-            uploadFiles.pop();
-            return;
-        }
-        if (file.name.split('.').pop() !== 'docx') {
-            ElMessage.error('File must be docx');
-            uploadFiles.pop();
-            return;
-        }
-        data.fileList.push(file);
-    }
-
 }
 
 const checkAge = (rule: any, value: any, callback: any) => {
@@ -220,24 +178,6 @@ const transformDate = (date: string) => {
     return `${year}-${month}-${day}`;
 }
 
-
-const formRef = ref<FormInstance>();
-const data = reactive<any>({
-    absType: 'Poster Presentation',
-    absTitle: '',
-    firstAuthor: '',
-    firstAuthorBirthday: '',
-    speaker: '',
-    speakerAffiliation: '',
-    correspondingAuthor: '',
-    correspondingAuthorEmail: '',
-    correspondingAuthorPhone: '',
-    allAuthor: '',
-    allAuthorAffiliation: '',
-    fileList: [],
-})
-
-
 const formRules = ref<FormRules>({
     absType: [{ required: true, message: 'Please select type', trigger: 'blur' }],
     absTitle: [{ required: true, message: 'Please input title', trigger: 'blur' }],
@@ -253,11 +193,9 @@ const formRules = ref<FormRules>({
     fileList: [{ required: true, message: 'Please upload file', trigger: 'change' }],
 })
 
-
-
-
 const loading = ref(false);
 const submitData = new FormData();
+
 const submit = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     console.log(data);
@@ -275,23 +213,17 @@ const submit = async (formEl: FormInstance | undefined) => {
                 body: submitData
             });
             if (res.code === 200) {
-                ElMessage.success('Submit success!');
+                ElMessage.success('提交成功!');
                 loading.value = false;
                 router.push('/member-center');
             } else if (res.code === 400) {
-                ElMessage.error('Submit failed!');
+                ElMessage.error(`提交失敗!${res.msg}`);
             } else if (res.code === 500) {
-                ElMessage.error('Server error!');
-            } else if (res.code === 401) {
-                localStorage.removeItem("Authorization-member");
-                router.push("/login");
+                ElMessage.error(`提交失敗!${res.msg}`);
             } else {
-                ElMessage.error('Unknown error!');
+                ElMessage.error('未知錯誤!');
             }
             loading.value = false;
-
-
-
         } else {
             console.log('error submit!!');
             return false;
@@ -300,6 +232,7 @@ const submit = async (formEl: FormInstance | undefined) => {
 }
 
 const setting = reactive<any>({});
+
 const findSetting = async () => {
     try {
         let res = await CSRrequest.get('/setting');
@@ -311,13 +244,11 @@ const findSetting = async () => {
     }
 }
 
-
 const checkAvailable = (paper: any) => {
     // 獲取今日時間
     const currentDate = new Date();
     // 將截止時間字串轉換為 Date 物件
     const endDate = new Date(setting.abstractSubmissionEndTime);
-
 
     // if (currentDate >= endDate) {
     //     router.push("/member-center");
@@ -325,11 +256,8 @@ const checkAvailable = (paper: any) => {
     // }
 }
 
-
-
 onMounted(() => {
-    // getMemberInfo();
-    checkLoginState();
+    // checkLoginState();
     findSetting();
 
     if (!isLogin.value) {
@@ -337,7 +265,6 @@ onMounted(() => {
         ElMessage.error('請先登入');
     }
 })
-
 </script>
 
 <style lang="scss" scoped>
@@ -364,9 +291,7 @@ onMounted(() => {
         @media screen and (max-width: 768px) {
             flex-direction: column;
             gap: 2rem;
-
         }
-
 
         .left-seciton {
             flex: 1;
@@ -379,15 +304,12 @@ onMounted(() => {
             display: flex;
             flex-direction: column;
 
-
             .category {
-
                 :deep(.el-radio-group) {
                     flex-direction: column;
                     display: flex;
                     justify-content: flex-start;
                     align-items: flex-start;
-
                 }
 
                 :deep(.el-form-item__error) {
@@ -403,25 +325,7 @@ onMounted(() => {
                 :deep(.el-select) {
                     width: 150px;
                 }
-
             }
-
-            // .allAuthors {
-            //     :deep(.el-form-item__label) {
-            //         // background-color: $accent-color;
-            //         position: relative;
-            //         &::after {
-            //             content: 'Use commas to separate authors and affiliations';
-            //             font-size: 0.8rem;
-            //             font-weight: 400;
-            //             color: red;
-            //             position: absolute;
-            //             left: 0;
-            //             top: 0.9rem;
-            //         }
-            //     }
-            // }
-
         }
     }
 
