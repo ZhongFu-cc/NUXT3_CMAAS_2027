@@ -1,3 +1,5 @@
+import { first } from "ckeditor5"
+
 export const label = {
     zh: {
         title: "稱謂",
@@ -46,6 +48,22 @@ export const label = {
         captcha: '驗證碼',
         remitAccountLast5Validate: '請輸入匯款帳號末五碼',
         remitAccountLast5Validate2: '匯款帳號末五碼必須為數字且為五碼',
+        abstractType: '摘要類別',
+        abstractTitle: '摘要標題',
+        firstAuthor: '第一作者',
+        firstAuthorBirthday: '第一作者生日',
+        speaker: '發表人',
+        speakerAffiliation: '發表人所屬機構',
+        correspondingAuthor: '通訊作者',
+        correspondingAuthorMail: '通訊作者電子信箱',
+        correspondingAuthorPhone: '通訊作者聯絡電話',
+        allAuthors: '所有作者(請以分號分隔)',
+        allAuthorsAffiliation: '所有作者所屬機構(請以分號分隔)',
+        youngInvestigator: '年輕研究者',
+        posterPresentation: '海報發表',
+        videoPresentation: '影片發表',
+        upload: '上傳',
+        uploadLimit: '請上傳PDF檔，且檔案大小不可超過20MB'
     },
     en: {
         title: "Title",
@@ -94,6 +112,22 @@ export const label = {
         category3: 'Non-Member',
         captcha: 'Captcha',
         remitAccountLast5Validate2: 'The last 5 digits of the remittance account must be numeric and exactly 5 digits long',
+        abstractType: 'Abstract Type',
+        abstractTitle: 'Abstract Title',
+        firstAuthor: 'First Author',
+        firstAuthorBirthday: 'First Author Birthday',
+        speaker: 'Speaker',
+        speakerAffiliation: 'Speaker Affiliation',
+        correspondingAuthor: 'Corresponding Author',
+        correspondingAuthorMail: 'Corresponding Author Email',
+        correspondingAuthorPhone: 'Corresponding Author Phone',
+        allAuthors: 'All Authors (Use semicolon to separate authors)',
+        allAuthorsAffiliation: 'All Authors Affiliation (Use semicolon to separate affiliations)',
+        youngInvestigator: 'Young Investigator',
+        posterPresentation: 'Poster Presentation',
+        videoPresentation: 'Video Presentation',
+        upload: 'Upload',
+        uploadLimit: 'only upload pdf file with size less than 20mb'
     }
 } as const
 

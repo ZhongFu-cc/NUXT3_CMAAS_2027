@@ -44,7 +44,8 @@
                         <nuxt-link class="sub-menu-item" to="/submission-guidelines"
                             @click="setActiveItem('abstractGuideline')"
                             :class="activeClass('abstractGuideline')">投稿規範</nuxt-link>
-                        <nuxt-link class="sub-menu-item" to="/" @click="setActiveItem('abstractSubmission')"
+                        <nuxt-link class="sub-menu-item" to="/abstract-submission"
+                            @click="setActiveItem('abstractSubmission')"
                             :class="activeClass('abstractSubmission')">摘要提交</nuxt-link>
                         <nuxt-link class="sub-menu-item" to="/award" @click="setActiveItem('abstractAwards')"
                             :class="activeClass('abstractAwards')">投稿獎項</nuxt-link>
@@ -113,6 +114,10 @@
                         </div>
                     </div>
                 </div>
+
+                <nuxt-link v-if="!isLogin" class="menu-item" to="/login" :class="activeClass('login')">會員登入</nuxt-link>
+                <nuxt-link v-if="isLogin" class="menu-item" @click="logout"
+                    :class="activeClass('registrationFee')">登出</nuxt-link>
 
             </div>
 
@@ -187,16 +192,13 @@ const closeMenu = () => {
 
 const emits = defineEmits(['openMenu']);
 
-
-
-
-
-
-
 /**================================================================ */
+const { isLogin, checkLoginState, logout } = useAuth();
+
 onMounted(() => {
     handleScroll() // 初始化時檢查滾輪位置
     window.addEventListener('scroll', handleScroll)
+    checkLoginState();
 })
 
 onUnmounted(() => {

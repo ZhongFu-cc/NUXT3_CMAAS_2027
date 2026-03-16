@@ -19,6 +19,12 @@
                         </ul>
                     </li>
                 </div>
+                <div class="auth-box">
+                    <nuxt-link v-if="!isLogin" class="menu-item" @click="mobileLogin()"
+                        :class="activeClass('login')">會員登入</nuxt-link>
+                    <nuxt-link v-if="isLogin" class="menu-item" @click="mobileLogout()"
+                        :class="activeClass('registrationFee')">登出</nuxt-link>
+                </div>
             </ol>
         </div>
         <div class="gray-section" @click="closeMenu"></div>
@@ -27,7 +33,7 @@
 </template>
 <script lang="ts" setup>
 
-
+const { isLogin, checkLoginState, logout } = useAuth();
 
 const emits = defineEmits(['closeMenu']);
 
@@ -59,7 +65,6 @@ const menu = reactive([
             { title: '2025 Gallery', path: '/gallery/2025' },
         ]
     }
-
 ])
 
 
@@ -82,35 +87,24 @@ const handleClick = (path: string) => {
     closeMenu()
 }
 
-
-
-const headToLogin = () => {
-    closeMenu();
-    let url = isLogin.value ? '/member-center' : '/login';
-    router.push(url);
-}
-
-const isLogin = ref(false);
-const validateLogin = () => {
-    let res = localStorage.getItem('Authorization-member');
-    if (res) {
-        isLogin.value = true;
-    }
-}
-
 router.beforeEach(async (to, from, next) => {
-    validateLogin();
     next();
 });
 
-const logout = async () => {
-    let res = await CSRrequest.post('/member/logout');
-    if (res.code === 200) {
-        localStorage.removeItem('Authorization-member');
-        isLogin.value = false;
-        router.push('/login');
-    }
+const mobileLogin = () => {
+    router.push('/login')
+    closeMenu()
 }
+
+const mobileLogout = () => {
+    logout();
+    closeMenu();
+}
+
+onMounted(() => {
+    checkLoginState();
+})
+
 
 
 </script>
@@ -174,6 +168,18 @@ const logout = async () => {
 
 
         }
+    }
+
+    .auth-box {
+        margin-top: 1rem;
+    }
+
+    .menu-item {
+        color: white;
+        font-size: 1.3rem;
+        font-weight: bold;
+        padding: 1rem;
+        margin-top: 1rem;
     }
 }
 

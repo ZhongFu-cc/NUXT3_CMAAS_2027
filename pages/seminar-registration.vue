@@ -136,7 +136,7 @@
                         </div>
                     </el-form-item>
                     <el-form-item class="submit-btn">
-                        <el-button type="primary" disabled @click="submit(form)">Submit</el-button>
+                        <el-button type="primary" @click="submit(form)">Submit</el-button>
                     </el-form-item>
                 </el-form>
             </div>
