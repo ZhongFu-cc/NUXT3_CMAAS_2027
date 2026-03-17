@@ -11,13 +11,19 @@
                         <el-icon class="arrow" :class="{ 'is-active': item.isActive }">
                             <ElIconArrowDown />
                         </el-icon>
-                        <ul class="submenu" :class="{ 'is-open': item.isActive }">
+                        <ul v-if="item.isActive" class="submenu" :class="{ 'is-open': item.isActive }">
                             <li v-for="subItem in item.submenu" :key="subItem.path">
                                 <nuxt-link class="sub-menu-item" :to="subItem.path" @click="handleClick(subItem.path)"
                                     :class="activeClass(subItem.path)">{{ subItem.title }}</nuxt-link>
                             </li>
                         </ul>
                     </li>
+                </div>
+                <div class="auth-box">
+                    <nuxt-link v-if="!isLogin" class="menu-item" @click="mobileLogin()"
+                        :class="activeClass('login')">會員登入</nuxt-link>
+                    <nuxt-link v-if="isLogin" class="menu-item" @click="mobileLogout()"
+                        :class="activeClass('registrationFee')">登出</nuxt-link>
                 </div>
             </ol>
         </div>
@@ -27,7 +33,7 @@
 </template>
 <script lang="ts" setup>
 
-
+const { isLogin, checkLoginState, logout } = useAuth();
 
 const emits = defineEmits(['closeMenu']);
 
@@ -40,7 +46,14 @@ const menu = reactive([
     { title: '關於我們', path: '/about-us', isActive: false },
     { title: '會議資訊', path: '/conference-information', isActive: false },
     { title: '註冊資訊', path: '/seminar-registration', isActive: false },
-    { title: '投稿資訊', path: '/', isActive: false },
+    {
+        title: '投稿資訊', path: '/', isActive: false, submenu: [
+            { title: '投稿規範', path: '/submission-guidelines' },
+            { title: '摘要提交', path: '/abstract-submission' },
+            { title: '投稿獎項', path: '/award' },
+            { title: '發表規範', path: '/presentation-guidelines' },
+        ]
+    },
     { title: '交通資訊', path: '/transportation', isActive: false },
     // { title: '旅遊資訊', path: '/travel',isActive: false },
     { title: '贊助廠商', path: '/sponsor-list', isActive: false },
@@ -52,7 +65,6 @@ const menu = reactive([
             { title: '2025 Gallery', path: '/gallery/2025' },
         ]
     }
-
 ])
 
 
@@ -60,6 +72,7 @@ const activeItem = ref('')
 const setActiveItem = (item: any) => {
     item.isActive = !item.isActive
     activeItem.value = item.title
+    console.log('activeItem', activeItem.value);
 }
 
 const activeClass = (item: string) => {
@@ -74,35 +87,24 @@ const handleClick = (path: string) => {
     closeMenu()
 }
 
-
-
-const headToLogin = () => {
-    closeMenu();
-    let url = isLogin.value ? '/member-center' : '/login';
-    router.push(url);
-}
-
-const isLogin = ref(false);
-const validateLogin = () => {
-    let res = localStorage.getItem('Authorization-member');
-    if (res) {
-        isLogin.value = true;
-    }
-}
-
 router.beforeEach(async (to, from, next) => {
-    validateLogin();
     next();
 });
 
-const logout = async () => {
-    let res = await CSRrequest.post('/member/logout');
-    if (res.code === 200) {
-        localStorage.removeItem('Authorization-member');
-        isLogin.value = false;
-        router.push('/login');
-    }
+const mobileLogin = () => {
+    router.push('/login')
+    closeMenu()
 }
+
+const mobileLogout = () => {
+    logout();
+    closeMenu();
+}
+
+onMounted(() => {
+    checkLoginState();
+})
+
 
 
 </script>
@@ -164,26 +166,20 @@ const logout = async () => {
                 list-style: none;
             }
 
-            // overflow: hidden;
-            // max-height: 0px;
-            // transition: 0.5s;
-            // font-size: 16px;
 
-            // a {
-            //     font-size: 1.2rem;
-            //     font-weight: bold;
-            //     display: block;
-            //     color: $main-content-color;
-            //     padding: 0.5rem 0;
-            // }
-
-            &.is-open {
-                // overflow: auto !important;
-                // max-height: none !important;
-                // margin-left: 15vw;
-                // font-size: 16px;
-            }
         }
+    }
+
+    .auth-box {
+        margin-top: 1rem;
+    }
+
+    .menu-item {
+        color: white;
+        font-size: 1.3rem;
+        font-weight: bold;
+        padding: 1rem;
+        margin-top: 1rem;
     }
 }
 

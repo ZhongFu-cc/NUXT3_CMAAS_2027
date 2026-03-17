@@ -2,7 +2,7 @@
     <div class="breadcrumbs">
         <div class="temp-box"></div>
         <el-breadcrumb class="breadcrumb" :separator-icon="ArrowRight">
-            <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '/' }">首頁</el-breadcrumb-item>
             <el-breadcrumb-item>{{ props.firstRoute }}</el-breadcrumb-item>
             <el-breadcrumb-item>{{ props.secoundRoute }}</el-breadcrumb-item>
         </el-breadcrumb>

@@ -84,7 +84,8 @@ export default defineNuxtConfig({
   },
   //使用模塊,Element Plus
   modules: [
-    '@element-plus/nuxt'
+    '@element-plus/nuxt',
+    '@nuxt/image'
   ],
   //這是一個配置項,如果有報錯是暫時的,安裝完依賴,重開Vscode, 以及npm run dev跑一次
   elementPlus: {

@@ -1,10 +1,11 @@
 <template>
     <main class="common-section">
         <Banner />
-        <Breadcrumbs :first-route="'Member'" :secound-route="'Member login'" />
-        <Title :title="'Member Login'" />
-        <!-- <div class="main-section">
-            <el-form class="login-form" ref="formRef" :model="loginInfo" :rules="formRule">
+        <Breadcrumbs first-route="會員" secound-route="登入" />
+        <Title title="會員登入" />
+        <div class="main-section">
+            <el-form class="login-form" ref="formRef" :model="loginInfo" :rules="formRule"
+                :label-position="formatLabelPosition">
                 <el-form-item class="login-input" prop="email">
                     <el-input v-model="loginInfo.email" placeholder="Email">
                         <template #prefix>
@@ -35,11 +36,11 @@
                 </el-form-item>
                 <div class="btn-section">
                     <nuxt-link :to="'retrieve-password'">Retrieve password</nuxt-link>
-                    <span>/</span>
+                    <span>&nbsp /</span>
                     <nuxt-link :to="'registration-fee'">Sign up</nuxt-link>
                 </div>
             </el-form>
-        </div> -->
+        </div>
     </main>
 </template>
 <script lang="ts" setup>
@@ -47,6 +48,13 @@ import type { FormInstance, FormRules } from 'element-plus'
 import Banner from '@/components/layout/Banner.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 import Title from '@/components/layout/Title.vue';
+
+useSeoMeta({
+    title: 'Member Login - 9th IOPBS & TOPBS 2025 International Conference on Oncoplastic Breast Surgery',
+    description: 'Member login page for the 9th IOPBS & TOPBS 2025 International Conference on Oncoplastic Breast Surgery. Sign in to access your account, retrieve your password, or register for the conference.',
+    keywords: 'Login, Sign In, 9th IOPBS, IOPBS 2025, TOPBS 2025, 2025 IOPBS, 2025 TOPBS '
+})
+
 
 const router = useRouter();
 
@@ -82,6 +90,16 @@ const formRule = reactive<FormRules>({
 });
 
 
+const formatLabelPosition = ref<'top' | 'left' | 'right'>('top'); // 預設為 'top'
+const setFormLabelPosotion = () => {
+    if (window.innerWidth < 1024) {
+        formatLabelPosition.value = 'top'; // 當視窗寬度小於 1024px 時，設置為 'top'
+    } else {
+        formatLabelPosition.value = 'left'; // 否則設置為 'left'
+    }
+}
+
+
 const login = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     formEl.validate(async (valid) => {
@@ -94,20 +112,35 @@ const login = async (formEl: FormInstance | undefined) => {
                 getCaptcha();
             }
             if (res.data.isLogin) {
-                localStorage.setItem(res.data.tokenName, 'Bearer ' + res.data.tokenValue);
                 router.push('/member-center')
+                localStorage.setItem(res.data.tokenName, 'Bearer ' + res.data.tokenValue);
                 formEl.resetFields();
+                useAuth().checkLoginState();
             }
         } else {
             ElMessage.error('Please input correct information');
-            return false;
         }
     });
 
 }
 
+const memberInfo = reactive<any>({});
+
+const getMemberInfo = async () => {
+    let res = await CSRrequest.get('/member/getMemberInfo');
+    if (res.code === 10002 || res.code === 401) {
+        localStorage.removeItem('Authorization-member');
+        router.push('/login');
+    } else {
+        router.push('/member-center');
+    }
+}
+
 onMounted(() => {
+    getMemberInfo();
     getCaptcha();
+    setFormLabelPosotion();
+    window.addEventListener('resize', setFormLabelPosotion);
 });
 
 
@@ -124,7 +157,6 @@ onMounted(() => {
         padding: 1rem 0;
 
         .login-form {
-            width: 30%;
             padding: 1rem 3rem;
             display: flex;
             flex-direction: column;
@@ -154,7 +186,7 @@ onMounted(() => {
                 }
 
                 :deep(.el-input__prefix) {
-                    width: 8%;
+                    width: 2rem;
 
                     img {
                         width: 100%;
@@ -168,6 +200,7 @@ onMounted(() => {
                 justify-content: center;
                 align-items: center;
                 margin: 1rem 0;
+
 
                 @media screen and (max-width: 1024px) {
                     flex-direction: column;
@@ -198,6 +231,9 @@ onMounted(() => {
                         &:hover {
                             background-color: white;
                             color: #D86C7C;
+                            cursor: pointer;
+                            scale: 1.05;
+                            transition: all 0.3s ease-in-out;
                         }
                     }
 
@@ -225,6 +261,12 @@ onMounted(() => {
                     border: none;
                     border-radius: 10px;
                     width: 40%;
+
+                    &:hover {
+                        cursor: pointer;
+                        scale: 1.05;
+                        transition: all 0.3s ease-in-out;
+                    }
                 }
             }
 
@@ -234,8 +276,12 @@ onMounted(() => {
                 margin-top: 1rem;
 
                 a {
+                    filter: brightness(1);
+                    transition: filter 0.3s ease-in-out;
+
                     &:hover {
-                      cursor: pointer;
+                        cursor: pointer;
+                        filter: brightness(1.8);
                     }
                 }
             }
