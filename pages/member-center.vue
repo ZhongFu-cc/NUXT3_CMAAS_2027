@@ -77,7 +77,7 @@ onMounted(() => {
     }
 
     .select-section {
-        background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
+        // background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
         display: flex;
         justify-content: center;
         align-items: center;
