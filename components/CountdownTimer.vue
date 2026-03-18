@@ -1,13 +1,25 @@
 <template>
-    <div class="countdown-timer">
-        <div class="note">距離活動</div>
-        <div class="timeer">
-            <span>{{ timeLeft.days }}天</span>
-            <span>{{ timeLeft.hours }}時</span>
-            <span>{{ timeLeft.minutes }}分</span>
-            <span>{{ timeLeft.seconds }}秒</span>
+    <div class="main-box">
+        <!-- <div class="test"></div> -->
+        <img class="background-image" src="../assets/img/countdown-bg.jpg" alt="Countdown Background" />
+        <div class="countdown-timer">
+            <div class="note">Coming soon</div>
+            <div class="timeer">
+                <span class="time-item"><span class="time-number">{{ timeLeft.days }}</span><span
+                        class="time-label">days</span></span>:
+                <span class="time-item"><span class="time-number">{{ timeLeft.hours }}</span><span
+                        class="time-label">hours</span></span>:
+                <span class="time-item"><span class="time-number">{{ timeLeft.minutes }}</span><span
+                        class="time-label">minutes</span></span>:
+                <span class="time-item"><span class="time-number">{{ timeLeft.seconds }}</span><span
+                        class="time-label">seconds</span></span>
+            </div>
+            <div class="add-calendar-img-box">
+                <img src="../assets/img/add-calendar.png" alt="Add to Calendar">
+            </div>
         </div>
     </div>
+
 </template>
 <script setup lang="ts">
 
@@ -55,31 +67,199 @@ onUnmounted(() => {
 
 </script>
 <style lang="scss" scoped>
+.main-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-image {
+    vertical-align: middle; // 或者 top, bottom
+    width: 100%;
+
+    @media screen and (max-width: 1280px) {
+        height: 10rem;
+    }
+
+    @media screen and (max-width: 1024px) {
+        height: 8rem;
+    }
+}
+
 .countdown-timer {
     color: white;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: self-start;
-    padding: 1rem 0;
-    // border-radius: 0.5rem;
+    align-items: center;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.278);
+    position: absolute;
+    top: 1rem;
+    left: 0;
+    // border: 1px solid red;
+    gap: 10rem;
+
+    @media screen and (max-width: 1536px) {
+        top: 1rem;
+        gap: 9rem;
+    }
+
+    @media screen and (max-width: 1280px) {
+        gap: 9rem;
+    }
+
+    @media screen and (max-width: 1024px) {
+        gap: 4rem;
+    }
+
+    @media screen and (max-width: 768px) {
+        gap: 0rem;
+    }
+
+
+
+
+
 
     .note {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-        padding: 0.5rem 1rem;
+        font-size: 2.5rem;
+        font-family: 'ArphicNewArtist';
+
+        @media screen and (max-width: 1536px) {
+            font-size: 2.5rem;
+        }
+
+        @media screen and (max-width: 1280px) {
+            font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 1024px) {
+            font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
+
     }
 
     .timeer {
         font-size: 3.5rem;
         display: flex;
-        width: 60%;
-        margin-inline: auto;
-        gap: 1rem;
-        justify-content: space-between;
-        text-align: center;
+        gap: 4rem;
+        font-family: 'ArphicNewArtist';
+        align-self: flex-end;
+
+        @media screen and (max-width: 1536px) {
+            font-size: 3rem;
+            gap: 3rem;
+        }
+
+        @media screen and (max-width: 1280px) {
+            font-size: 2.5rem;
+            gap: 1rem;
+        }
+
+        @media screen and (max-width: 1024px) {
+            font-size: 2rem;
+        }
+
+        @media screen and (max-width: 768px) {
+            font-size: 3.5rem;
+            gap: 2rem;
+
+        }
+
+        @media screen and (max-width: 640px) {
+            font-size: 3rem;
+
+        }
+
+        @media screen and (max-width: 575px) {
+            font-size: 2.5rem;
+            gap: 1.5rem;
+        }
+
+        .time-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .time-number {
+                font-size: 4rem;
+                font-weight: bold;
+                font-family: 'ArphicNewArtist';
+                text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+
+                @media screen and (max-width: 1536px) {
+                    font-size: 3.5rem;
+                }
+
+                @media screen and (max-width: 1280px) {
+                    font-size: 3rem;
+                    padding-bottom: 0.4rem;
+                }
+
+                @media screen and (max-width: 1024px) {
+                    font-size: 2rem;
+                    padding-bottom: 0.3rem;
+                }
+
+                @media screen and (max-width: 768px) {
+                    font-size: 3.5rem;
+                    gap: 2rem;
+
+                }
+
+                @media screen and (max-width: 640px) {
+                    font-size: 3rem;
+                    gap: 2rem;
+
+                }
+
+                @media screen and (max-width: 575px) {
+                    gap: 2rem;
+                }
+            }
+
+            .time-label {
+                font-size: 1.5rem;
+                font-family: 'ArphicNewArtist'
+
+            }
+        }
+
+
+
+    }
+
+    .add-calendar-img-box {
+        padding-bottom: 1rem;
+
+        img {
+            width: 11rem;
+            height: auto;
+
+            &:hover {
+                transform: scale(1.05);
+                transition: transform 0.3s ease;
+                cursor: pointer;
+            }
+
+            @media screen and (max-width: 1280px) {
+                width: 11rem;
+            }
+
+            @media screen and (max-width: 1024px) {
+                width: 9rem;
+            }
+
+            @media screen and (max-width: 768px) {
+                display: none;
+            }
+        }
     }
 }
 </style>

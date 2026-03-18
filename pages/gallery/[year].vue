@@ -1,5 +1,6 @@
 <template>
     <div class="common-section">
+        <Banner></Banner>
         <Title :title="`Gallery ${year}`"></Title>
 
         <div class="gallary-box">
@@ -10,6 +11,7 @@
 </template>
 <script setup lang="ts">
 import Title from '@/components/layout/Title.vue';
+import Banner from '~/components/layout/Banner.vue';
 
 
 const route = useRoute();
@@ -32,7 +34,7 @@ const images = computed(() => {
 </script>
 <style lang="scss" scoped>
 .common-section {
-    padding: 2rem;
+    // padding: 2rem;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -43,6 +45,7 @@ const images = computed(() => {
         display: grid;
         gap: 1rem;
         justify-content: center;
+        margin: 1rem 0 3rem 0;
 
         grid-template-columns: repeat(1, 1fr);
 

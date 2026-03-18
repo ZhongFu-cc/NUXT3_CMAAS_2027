@@ -44,7 +44,6 @@ const next = () => {
 
 
 onMounted(() => {
-    console.log(carousel.value);
 });
 
 </script>

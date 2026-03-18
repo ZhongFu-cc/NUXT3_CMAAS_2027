@@ -2,13 +2,14 @@
     <section class="about-us-section">
         <Banner />
         <div class="main-section">
+            <Breadcrumbs first-route="關於我們" secound-route=""></Breadcrumbs>
             <h1 class="title">Welcome Message</h1>
             <div class="welcome-box">
                 <div class="image-box">
                     <img src="../assets/img/YeHsiangTang.jpg" alt="">
                 </div>
                 <div class="welcome-content">
-                    <p>各位會員與醫界先進您好：&nbsp;:</p>
+                    <p>各位會員與醫界先進您好：&nbsp;</p>
                     <p>歡迎蒞臨台灣乳房腫瘤手術暨重建醫學會年會。整形乳房外科的發展，一直致力於在腫瘤治療安全與術後外觀重建之間取得平衡，使患者在抗癌過程中，不僅能獲得有效的治療，也能維持自信與良好的生活品質。隨著醫療科技進步與跨專科合作日益成熟，透過持續的學術交流與臨床經驗分享，已成為推動醫療品質精進的重要力量。&nbsp;
                     </p>
                     <p>本次年會以 “Escalation With Wellness; De-Escalation In Precision”
@@ -63,6 +64,7 @@
 </template>
 <script lang="ts" setup>
 import Banner from '@/components/layout/Banner.vue';
+import Breadcrumbs from '~/components/layout/Breadcrumbs.vue';
 </script>
 <style lang="scss" scoped>
 .about-us-section {
@@ -85,6 +87,7 @@ import Banner from '@/components/layout/Banner.vue';
 
     .welcome-box {
         display: flex;
+
         gap: 2rem;
         margin: 3.5rem 0;
 

@@ -10,7 +10,7 @@
                 <div class="title-image-box">
                     <img class="home-banner-bak" src="../../assets/img/EmojiObjectsOutlined.svg">
                 </div>
-                <h1 class="title">News</h1>
+                <h1 class="title">最新消息</h1>
             </div>
             <nuxt-link class="more-link" to="/news">
                 more<el-icon>
@@ -159,6 +159,8 @@ let currentPage = ref(1)
 
         .title-text-box {
             display: flex;
+            align-items: center;
+
 
             .title-image-box {
                 img {

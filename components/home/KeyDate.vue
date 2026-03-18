@@ -5,7 +5,7 @@
                 <div class="title-image-box">
                     <img class="home-banner-bak" src="../../assets/img/CalendarHeatMap.svg">
                 </div>
-                <h1 class="title">Key Date</h1>
+                <h1 class="title">重要日期</h1>
             </div>
         </div>
 
@@ -16,7 +16,7 @@
                     </p>
                     <p class="info">摘要投稿開放</p>
                 </div>
-                <a class="key-date-link" href="https://evt.to/eiiouhhhw" target="_blank">
+                <a class="key-date-link" href="" target="_blank">
                     <img class="home-banner-bak" src="../../assets/img/save date-01.svg">
                 </a>
             </li>
@@ -26,7 +26,7 @@
                     <p class="date-box"><span>21</span><span class="month">8月<span class="year">2026</span></span></p>
                     <p class="info">摘要提交截止</p>
                 </div>
-                <a class="key-date-link" href="https://evt.to/eiiouhhdw" target="_blank">
+                <a class="key-date-link" href="" target="_blank">
                     <img class="home-banner-bak" src="../../assets/img/save date-01.svg">
                 </a>
             </li>
@@ -49,7 +49,7 @@
                     </p>
                     <p class="info">摘要入選通知</p>
                 </div>
-                <a class="key-date-link" href="https://evt.to/eiiouhsmw" target="_blank">
+                <a class="key-date-link" href="" target="_blank">
                     <img class="home-banner-bak" src="../../assets/img/save date-01.svg">
                 </a>
             </li>
@@ -70,7 +70,7 @@
                     </p>
                     <p class="info">TOPBS2026</p>
                 </div>
-                <a class="key-date-link" href="https://evt.to/eiiiuaoow" target="_blank">
+                <a class="key-date-link" href="" target="_blank">
                     <img class="home-banner-bak" src="../../assets/img/save date-01.svg">
                 </a>
             </li>
@@ -102,6 +102,7 @@
 
         .title-text-box {
             display: flex;
+            align-items: center;
 
             .title-image-box {
                 justify-content: flex-start;

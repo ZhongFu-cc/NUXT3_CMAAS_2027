@@ -63,7 +63,8 @@ export const label = {
         posterPresentation: '海報發表',
         videoPresentation: '影片發表',
         upload: '上傳',
-        uploadLimit: '請上傳PDF檔，且檔案大小不可超過20MB'
+        uploadLimit: '請上傳PDF檔，且檔案大小不可超過20MB',
+        alreadyLogin: '您已經登入了'
     },
     en: {
         title: "Title",
@@ -127,7 +128,8 @@ export const label = {
         posterPresentation: 'Poster Presentation',
         videoPresentation: 'Video Presentation',
         upload: 'Upload',
-        uploadLimit: 'only upload pdf file with size less than 20mb'
+        uploadLimit: 'only upload pdf file with size less than 20mb',
+        alreadyLogin: 'You are already logged in'
     }
 } as const
 

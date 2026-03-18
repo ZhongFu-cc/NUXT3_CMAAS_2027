@@ -4,14 +4,14 @@
             <div class="title-image-box">
                 <img class="home-banner-bak" src="../../assets/img/Link.svg">
             </div>
-            <h1 class="title">Quick Links</h1>
+            <h1 class="title">快速連結</h1>
         </div>
         <div class="link-item-box">
             <nuxt-link to="/conference-information" class="link-item item1">
                 <div class="item-image-box">
                     <img class="link-item" src="../../assets/img/AuditOutlined.svg">
                 </div>
-                <div class="link-item-text">Program</div>
+                <div class="link-item-text">會議資訊</div>
             </nuxt-link>
             <!-- <nuxt-link v-if="new Date() > new Date('2025-10-15')" to="/news-item/1976099371456970753"
                 class="link-item item2">
@@ -24,7 +24,7 @@
                 <div class="item-image-box">
                     <img class="link-item" src="../../assets/img/Online registration-01.svg">
                 </div>
-                <div class="link-item-text">Online Registration</div>
+                <div class="link-item-text">線上報名</div>
             </nuxt-link>
         </div>
     </div>

@@ -2,6 +2,7 @@
     <div>
         <main class="common-section">
             <Banner></Banner>
+            <Breadcrumbs first-route="交通資訊" secound-route=""></Breadcrumbs>
             <div class="title-section">
                 <p class="title">
                     交通資訊
