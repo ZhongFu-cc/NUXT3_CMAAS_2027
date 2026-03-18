@@ -2,6 +2,7 @@
     <div class="common-section">
         <Banner />
         <div class="main-section">
+            <Breadcrumbs first-route="會議資訊" secound-route=""></Breadcrumbs>
             <div class="meeting-info">
                 <Title title="研討會資訊"></Title>
                 <div class="meeting-info-box">
@@ -50,6 +51,7 @@
 <script setup lang="ts">
 import Title from '@/components/layout/Title.vue';
 import Banner from '@/components/layout/Banner.vue';
+import Breadcrumbs from '~/components/layout/Breadcrumbs.vue';
 
 </script>
 <style lang="scss" scoped>
@@ -71,6 +73,10 @@ import Banner from '@/components/layout/Banner.vue';
     .main-section {
         width: 60%;
         margin: 0 auto;
+
+        @media screen and (max-width: 1024px) {
+            width: 80%;
+        }
     }
 
 

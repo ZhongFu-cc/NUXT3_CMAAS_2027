@@ -154,7 +154,7 @@ onMounted(() => {
             }
 
             &.active {
-                color: #FF5529;
+                color: $main-color;
                 border-radius: 10px;
             }
         }

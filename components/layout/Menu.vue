@@ -1,16 +1,28 @@
 <template>
     <section class="top-section">
         <div class="menu-container" :class="[{ 'menu-section-scroll': isScroll }, { 'is-active': isActive }]">
-
-            <div class="hamburger-icon">
-                <div class="container">
-                    <div class="hamburger" :class="{ 'is-active': isActive }" id="hamburger-1" @click="openMenu">
-                        <span class="line" :class="{ 'is-scroll': isScroll }"></span>
-                        <span class="line" :class="{ 'is-scroll': isScroll }"></span>
-                        <span class="line" :class="{ 'is-scroll': isScroll }"></span>
+            <div class="mobile-menu">
+                <div class="hamburger-icon">
+                    <div class="container">
+                        <div class="hamburger" :class="{ 'is-active': isActive }" id="hamburger-1" @click="openMenu">
+                            <span class="line" :class="{ 'is-scroll': isScroll }"></span>
+                            <span class="line" :class="{ 'is-scroll': isScroll }"></span>
+                            <span class="line" :class="{ 'is-scroll': isScroll }"></span>
+                        </div>
                     </div>
                 </div>
+
+                <div class="mobile-member-center">
+                    <nuxt-link v-if="!isLogin" class="menu-item" to="/login" :class="activeClass('login')">
+                        <img src="/img/user.svg" alt="">
+                    </nuxt-link>
+                    <nuxt-link v-if="isLogin" class="menu-item" to="/member-center"
+                        :class="activeClass('registrationFee')">
+                        <img src="/img/user.svg" alt="">
+                    </nuxt-link>
+                </div>
             </div>
+
 
             <div class="logo-container" v-if="!isActive">
                 <nuxt-link class="logo-link" to="/" @click="setActiveItem('')">
@@ -88,12 +100,12 @@
                             <ElIconArrowDown />
                         </el-icon></div>
                     <div class="sub-menu-item-box" v-if="isOpen">
-                        <nuxt-link class="sub-menu-item" to="/travel" @click="setActiveItem('travel')"
-                            :class="activeClass('travel')">旅遊資訊</nuxt-link>
+                        <!-- <nuxt-link class="sub-menu-item" to="/travel" @click="setActiveItem('travel')"
+                            :class="activeClass('travel')">旅遊資訊</nuxt-link> -->
                         <nuxt-link class="sub-menu-item" to="/sponsor-list" @click="setActiveItem('sponsorList')"
                             :class="activeClass('sponsorList')">贊助廠商</nuxt-link>
-                        <nuxt-link class="sub-menu-item" to="/mascot" @click="setActiveItem('mascot')"
-                            :class="activeClass('mascot')">吉祥物專區</nuxt-link>
+                        <!-- <nuxt-link class="sub-menu-item" to="/mascot" @click="setActiveItem('mascot')"
+                            :class="activeClass('mascot')">吉祥物專區</nuxt-link> -->
 
                         <div class="gallery-box sub-menu-item" @click="openSubMenuFunc('gallery')"
                             :class="activeClass('gallery')">
@@ -115,9 +127,20 @@
                     </div>
                 </div>
 
+                <div class="submenu-box menu-item" v-if="isLogin" @click="openSubMenuFunc('member')">
+                    會員
+                    <el-icon>
+                        <ElIconArrowDown />
+                    </el-icon>
+                    <div class="gallery-sub-menu" :class="openedSubMenu == 'member' ? 'is-open' : ''"
+                        v-if="openedSubMenu == 'member'">
+                        <nuxt-link class="sub-menu-item" to="/member-center"
+                            @click="setActiveItem('memberCenter')">會員中心</nuxt-link>
+                        <nuxt-link class="sub-menu-item" @click="logout">登出</nuxt-link>
+
+                    </div>
+                </div>
                 <nuxt-link v-if="!isLogin" class="menu-item" to="/login" :class="activeClass('login')">會員登入</nuxt-link>
-                <nuxt-link v-if="isLogin" class="menu-item" @click="logout"
-                    :class="activeClass('registrationFee')">登出</nuxt-link>
 
             </div>
 
@@ -377,14 +400,14 @@ onUnmounted(() => {
                     z-index: 1000;
 
                     .active {
-                        color: #FF5529;
+                        color: $main-color;
                     }
 
                     .sub-menu-item {
                         color: white;
 
                         &:active {
-                            color: #FF5529;
+                            color: $main-color;
                         }
                     }
                 }
@@ -423,18 +446,18 @@ onUnmounted(() => {
 
 
                     .active {
-                        color: #FF5529;
+                        color: $main-color;
                     }
 
                     .sub-menu-item {
                         color: white;
 
                         &:active {
-                            color: #FF5529;
+                            color: $main-color;
                         }
 
                         &:hover {
-                            color: #FF5529;
+                            color: $main-color;
                         }
                     }
                 }
@@ -485,18 +508,18 @@ onUnmounted(() => {
 
 
                     .active {
-                        color: #FF5529;
+                        color: $main-color;
                     }
 
                     .sub-menu-item {
                         color: white;
 
                         &:active {
-                            color: #FF5529;
+                            color: $main-color;
                         }
 
                         &:hover {
-                            color: #FF5529;
+                            color: $main-color;
                         }
                     }
                 }
@@ -525,13 +548,13 @@ onUnmounted(() => {
 
                 &:hover {
                     cursor: pointer;
-                    color: #FF5529;
+                    color: $main-color;
                     background-color: black
                 }
             }
 
             .active {
-                color: #FF5529;
+                color: $main-color;
             }
 
             .sub-menu-box {
@@ -541,7 +564,7 @@ onUnmounted(() => {
 
                 .sub-menu-item-box {
                     .active {
-                        color: #FF5529 !important;
+                        color: $main-color !important;
                     }
                 }
 
@@ -609,6 +632,44 @@ onUnmounted(() => {
             display: block;
         }
 
+    }
+}
+
+.mobile-menu {
+
+    width: 100%;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+
+    @media screen and (max-width: 524px) {
+        display: flex;
+        gap: 1rem;
+        // margin-left: auto;
+    }
+}
+
+.mobile-member-center {
+    display: none;
+
+    @media screen and (max-width: 524px) {
+        display: flex;
+        gap: 1rem;
+        // margin-left: auto;
+    }
+
+    .menu-item {
+        color: white;
+        margin-top: 5px;
+
+        img {
+            width: 1.5rem;
+        }
+
+        &:hover {
+            color: $main-color;
+        }
     }
 }
 </style>

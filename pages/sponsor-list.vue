@@ -1,7 +1,7 @@
 <template>
+    <Banner></Banner>
     <div class="common-section">
         <!-- <Title title="贊助廠商"></Title> -->
-        <Banner></Banner>
         <h1 class="title">感謝下列廠商熱情贊助!!</h1>
         <!-- <img src="../assets/img/sponsor_list.png" alt=""> -->
         <!-- <div class="image-section">
@@ -18,6 +18,7 @@
 </template>
 <script lang="ts" setup>
 import Title from '@/components/layout/Title.vue';
+import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 import Banner from '@/components/layout/Banner.vue';
 
 const modules = import.meta.glob('../assets/img/ticbcs_sponsor_logo/*.{png,jpg,jpeg,svg}', { eager: true, as: 'url' });

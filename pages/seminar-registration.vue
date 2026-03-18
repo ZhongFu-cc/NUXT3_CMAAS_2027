@@ -166,6 +166,8 @@ const attendeeType = '2';
 
 const { t, locale, setLocale } = useLang()
 
+const { isLogin } = useAuth()
+
 /**-------------------------------匯款帳號末5碼校驗----------------------------- */
 
 
@@ -443,6 +445,11 @@ const submit = async (formEl: FormInstance | undefined) => {
 onMounted(() => {
     // router.push('/demo-register')
     getCaptcha()
+
+    if (isLogin.value) {
+        ElMessage.info(t.value.alreadyLogin)
+        router.push('/')
+    }
 })
 </script>
 <style lang="scss" scoped>

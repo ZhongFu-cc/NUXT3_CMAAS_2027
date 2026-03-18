@@ -35,7 +35,7 @@
                         <tr>
                             <td rowspan="4">
                                 決審 </td>
-                            <td>O9/7 </td>
+                            <td>9/7 </td>
                             <td>摘要入選通知 </td>
                         </tr>
 
