@@ -20,10 +20,10 @@
                     </li>
                 </div>
                 <div class="auth-box">
-                    <nuxt-link v-if="!isLogin" class="menu-item" @click="mobileLogin()"
-                        :class="activeClass('login')">會員登入</nuxt-link>
+                    <nuxt-link v-if="!isLogin" class="menu-item" @click="mobileLogin()" :class="activeClass('login')">{{
+                        $t('login') }}</nuxt-link>
                     <nuxt-link v-if="isLogin" class="menu-item" @click="mobileLogout()"
-                        :class="activeClass('registrationFee')">登出</nuxt-link>
+                        :class="activeClass('registrationFee')">{{ $t('logout') }}</nuxt-link>
                 </div>
             </ol>
         </div>
@@ -34,6 +34,7 @@
 <script lang="ts" setup>
 
 const { isLogin, checkLoginState, logout } = useAuth();
+const { t } = useI18n();
 
 const emits = defineEmits(['closeMenu']);
 
@@ -42,22 +43,22 @@ const closeMenu = () => {
 }
 
 const menu = reactive([
-    { title: '首頁', path: '/', isActive: false },
-    { title: '關於我們', path: '/about-us', isActive: false },
-    { title: '會議資訊', path: '/conference-information', isActive: false },
-    { title: '註冊資訊', path: '/seminar-registration', isActive: false },
+    { title: t('home'), path: '/', isActive: false },
+    { title: t('aboutUs'), path: '/about-us', isActive: false },
+    { title: t('conferenceInformation'), path: '/conference-information', isActive: false },
+    { title: t('registration'), path: '/seminar-registration', isActive: false },
     {
-        title: '投稿資訊', path: '/', isActive: false, submenu: [
-            { title: '投稿規範', path: '/submission-guidelines' },
-            { title: '摘要提交', path: '/abstract-submission' },
-            { title: '投稿獎項', path: '/award' },
-            { title: '發表規範', path: '/presentation-guidelines' },
+        title: t('abstract'), path: '/', isActive: false, submenu: [
+            { title: t('submissionGuidelines'), path: '/submission-guidelines' },
+            { title: t('abstractSubmission'), path: '/abstract-submission' },
+            { title: t('award'), path: '/award' },
+            { title: t('presentationGuidelines'), path: '/presentation-guidelines' },
         ]
     },
-    { title: '交通資訊', path: '/transportation', isActive: false },
-    // { title: '旅遊資訊', path: '/travel',isActive: false },
-    { title: '贊助廠商', path: '/sponsor-list', isActive: false },
-    // { title: '吉祥物專區', path: '/mascot',isActive: false },
+    { title: t('transportation'), path: '/transportation', isActive: false },
+    // { title: t('travel'), path: '/travel',isActive: false },
+    { title: t('sponsorList'), path: '/sponsor-list', isActive: false },
+    // { title: t('mascot'), path: '/mascot',isActive: false },
     {
         title: 'Gallery', path: '/gallery', isActive: false, submenu: [
             { title: '2023 Gallery', path: '/gallery/2023' },
@@ -112,7 +113,7 @@ onMounted(() => {
 .mobile-menu {
     background-color: black;
     height: 100vh;
-    width: 60%;
+    width: 80%;
     position: fixed;
     top: 0rem;
     left: 0rem;
@@ -187,7 +188,7 @@ onMounted(() => {
     background-color: #F0F0F0;
     opacity: 0.5;
     height: 100vh;
-    width: 40%;
+    width: 20%;
     position: fixed;
     top: 0rem;
     right: 0rem;

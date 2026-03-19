@@ -4,27 +4,20 @@
             <div class="title-image-box">
                 <img class="home-banner-bak" src="../../assets/img/Link.svg">
             </div>
-            <h1 class="title">快速連結</h1>
+            <h1 class="title">{{ $t('quickLinks') }}</h1>
         </div>
         <div class="link-item-box">
             <nuxt-link to="/conference-information" class="link-item item1">
                 <div class="item-image-box">
                     <img class="link-item" src="../../assets/img/AuditOutlined.svg">
                 </div>
-                <div class="link-item-text">會議資訊</div>
+                <div class="link-item-text">{{ $t('conferenceInformation') }}</div>
             </nuxt-link>
-            <!-- <nuxt-link v-if="new Date() > new Date('2025-10-15')" to="/news-item/1976099371456970753"
-                class="link-item item2">
-                <div class="item-image-box">
-                    <img class="link-item" src="../../assets/img/Online submission-01.svg">
-                </div>
-                <div class="link-item-text">Meet Professor - Expert Video Show</div>
-            </nuxt-link> -->
             <nuxt-link to="/seminar-registration" class="link-item item3">
                 <div class="item-image-box">
                     <img class="link-item" src="../../assets/img/Online registration-01.svg">
                 </div>
-                <div class="link-item-text">線上報名</div>
+                <div class="link-item-text">{{ $t('registration') }}</div>
             </nuxt-link>
         </div>
     </div>

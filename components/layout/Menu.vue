@@ -34,50 +34,47 @@
 
             <div class="menu-box">
                 <nuxt-link class="menu-item" to="/about-us" @click="setActiveItem('aboutUs')"
-                    :class="activeClass('aboutUs')">關於我們</nuxt-link>
+                    :class="activeClass('aboutUs')">{{ $t('aboutUs') }}</nuxt-link>
 
                 <nuxt-link class="menu-item" to="/conference-information"
-                    @click="setActiveItem('conferenceInformation')"
-                    :class="activeClass('conferenceInformation')">會議資訊</nuxt-link>
+                    @click="setActiveItem('conferenceInformation')" :class="activeClass('conferenceInformation')">{{
+                        $t('conferenceInformation') }}</nuxt-link>
 
                 <!-- <nuxt-link class="menu-item" to="/" @click="setActiveItem('invitedSpeaker')"
                     :class="activeClass('invitedSpeaker')">受邀講者</nuxt-link> -->
 
                 <nuxt-link class="menu-item" to="/seminar-registration" @click="setActiveItem('seminarRegistration')"
-                    :class="activeClass('seminarRegistration')">註冊資訊</nuxt-link>
+                    :class="activeClass('seminarRegistration')">{{ $t('registration') }}</nuxt-link>
 
                 <div class="submenu-box menu-item" @click="openSubMenuFunc('abstract')">
-                    投稿資訊
+                    {{ $t('abstract') }}
                     <el-icon>
                         <ElIconArrowDown />
                     </el-icon>
                     <div class="gallery-sub-menu" :class="openedSubMenu == 'abstract' ? 'is-open' : ''"
                         v-if="openedSubMenu == 'abstract'">
                         <nuxt-link class="sub-menu-item" to="/submission-guidelines"
-                            @click="setActiveItem('abstractGuideline')"
-                            :class="activeClass('abstractGuideline')">投稿規範</nuxt-link>
+                            @click="setActiveItem('abstractGuideline')" :class="activeClass('abstractGuideline')">{{
+                                $t('submissionGuidelines') }}</nuxt-link>
                         <nuxt-link class="sub-menu-item" to="/abstract-submission"
-                            @click="setActiveItem('abstractSubmission')"
-                            :class="activeClass('abstractSubmission')">摘要提交</nuxt-link>
+                            @click="setActiveItem('abstractSubmission')" :class="activeClass('abstractSubmission')">{{
+                                $t('abstractSubmission') }}</nuxt-link>
                         <nuxt-link class="sub-menu-item" to="/award" @click="setActiveItem('abstractAwards')"
-                            :class="activeClass('abstractAwards')">投稿獎項</nuxt-link>
+                            :class="activeClass('abstractAwards')">{{ $t('award') }}</nuxt-link>
                         <nuxt-link class="sub-menu-item" to="/presentation-guidelines"
                             @click="setActiveItem('abstractPresentation')"
-                            :class="activeClass('abstractPresentation')">發表規範</nuxt-link>
+                            :class="activeClass('abstractPresentation')">{{ $t('presentationGuidelines') }}</nuxt-link>
                     </div>
                 </div>
 
-                <nuxt-link class="menu-item" to="/transportation" @click="setActiveItem('transportation')"
-                    :class="activeClass('transportation')">交通資訊</nuxt-link>
+
 
 
                 <div class="item-box">
-                    <!-- <nuxt-link class="menu-item" to="/travel" @click="setActiveItem('travel')"
-                        :class="activeClass('travel')">旅遊資訊</nuxt-link> -->
+                    <nuxt-link class="menu-item" to="/transportation" @click="setActiveItem('transportation')"
+                        :class="activeClass('transportation')">{{ $t('transportation') }}</nuxt-link>
                     <nuxt-link class="menu-item" to="/sponsor-list" @click="setActiveItem('sponsorList')"
-                        :class="activeClass('sponsorList')">贊助廠商</nuxt-link>
-                    <!-- <nuxt-link class="menu-item" to="/mascot" @click="setActiveItem('mascot')"
-                        :class="activeClass('mascot')">吉祥物專區</nuxt-link> -->
+                        :class="activeClass('sponsorList')">{{ $t('sponsorList') }}</nuxt-link>
                     <div class="gallery-box menu-item" @click="openSubMenuFunc('gallery')">
                         Gallery
                         <el-icon>
@@ -96,17 +93,14 @@
                 </div>
 
                 <div class="sub-menu-box">
-                    <div class="sub-menu-title" @click="toggleMenu">查看更多<el-icon>
+                    <div class="sub-menu-title" @click="toggleMenu">{{ $t('seeMore') }}<el-icon>
                             <ElIconArrowDown />
                         </el-icon></div>
                     <div class="sub-menu-item-box" v-if="isOpen">
-                        <!-- <nuxt-link class="sub-menu-item" to="/travel" @click="setActiveItem('travel')"
-                            :class="activeClass('travel')">旅遊資訊</nuxt-link> -->
+                        <nuxt-link class="sub-menu-item" to="/transportation" @click="setActiveItem('transportation')"
+                            :class="activeClass('transportation')">{{ $t('transportation') }}</nuxt-link>
                         <nuxt-link class="sub-menu-item" to="/sponsor-list" @click="setActiveItem('sponsorList')"
-                            :class="activeClass('sponsorList')">贊助廠商</nuxt-link>
-                        <!-- <nuxt-link class="sub-menu-item" to="/mascot" @click="setActiveItem('mascot')"
-                            :class="activeClass('mascot')">吉祥物專區</nuxt-link> -->
-
+                            :class="activeClass('sponsorList')">{{ $t('sponsorList') }}</nuxt-link>
                         <div class="gallery-box sub-menu-item" @click="openSubMenuFunc('gallery')"
                             :class="activeClass('gallery')">
                             Gallery
@@ -128,19 +122,20 @@
                 </div>
 
                 <div class="submenu-box menu-item" v-if="isLogin" @click="openSubMenuFunc('member')">
-                    會員
+                    {{ $t('member') }}
                     <el-icon>
                         <ElIconArrowDown />
                     </el-icon>
                     <div class="gallery-sub-menu" :class="openedSubMenu == 'member' ? 'is-open' : ''"
                         v-if="openedSubMenu == 'member'">
-                        <nuxt-link class="sub-menu-item" to="/member-center"
-                            @click="setActiveItem('memberCenter')">會員中心</nuxt-link>
-                        <nuxt-link class="sub-menu-item" @click="logout">登出</nuxt-link>
+                        <nuxt-link class="sub-menu-item" to="/member-center" @click="setActiveItem('memberCenter')">{{
+                            $t('memberCenter') }}</nuxt-link>
+                        <nuxt-link class="sub-menu-item" @click="logout">{{ $t('logout') }}</nuxt-link>
 
                     </div>
                 </div>
-                <nuxt-link v-if="!isLogin" class="menu-item" to="/login" :class="activeClass('login')">會員登入</nuxt-link>
+                <nuxt-link v-if="!isLogin" class="menu-item" to="/login" :class="activeClass('login')">{{ $t('login')
+                    }}</nuxt-link>
 
             </div>
 
@@ -151,8 +146,13 @@
 
 <script lang="ts" setup>
 
+import { useI18n } from 'vue-i18n'
+
+
+
 // 偵測滾輪位置，更換 menu 背景色
 const isScroll = ref(false)
+const { locale, setLocale } = useI18n()
 
 function handleScroll() {
     let scrollPositionY = window.scrollY
@@ -251,7 +251,10 @@ onUnmounted(() => {
             height: 4.5rem;
         }
 
-        @media screen and (max-width: 1024px) {}
+        @media screen and (max-width: 1536px) {
+            gap: 2rem;
+            // justify-content: center;
+        }
 
         @media screen and (max-width: 469px) {
             padding-left: 2rem;
@@ -281,11 +284,15 @@ onUnmounted(() => {
                         object-position: center center;
                     }
 
+                    @media screen and (max-width: 1536px) {
+                        width: 80%;
+                    }
+
                     @media screen and (max-width: 1024px) {
                         width: 70%;
                     }
 
-                    @media screen and (max-width: 524px) {
+                    @media screen and (max-width: 768px) {
                         display: none;
                     }
                 }
@@ -308,7 +315,7 @@ onUnmounted(() => {
                 gap: 0.5rem;
             }
 
-            @media screen and (max-width: 524px) {
+            @media screen and (max-width: 768px) {
                 display: none;
             }
 
@@ -346,12 +353,14 @@ onUnmounted(() => {
                     padding: 0.1rem;
                 }
 
-                @media screen and (max-width: 1439px) {
+                @media screen and (max-width: 1560px) {
                     font-size: 1rem;
                 }
 
                 @media screen and (max-width: 1024px) {
-                    justify-items: flex-end;
+                    // justify-items: flex-end;
+                    padding: 0;
+                    gap: 0.2rem;
                 }
 
                 @media screen and (max-width: 870px) {
@@ -628,7 +637,7 @@ onUnmounted(() => {
             border-radius: 3px;
         }
 
-        @media screen and (max-width: 524px) {
+        @media screen and (max-width: 768px) {
             display: block;
         }
 
@@ -643,7 +652,7 @@ onUnmounted(() => {
     align-items: center;
     padding: 1rem;
 
-    @media screen and (max-width: 524px) {
+    @media screen and (max-width: 768px) {
         display: flex;
         gap: 1rem;
         // margin-left: auto;
@@ -653,7 +662,7 @@ onUnmounted(() => {
 .mobile-member-center {
     display: none;
 
-    @media screen and (max-width: 524px) {
+    @media screen and (max-width: 768px) {
         display: flex;
         gap: 1rem;
         // margin-left: auto;
