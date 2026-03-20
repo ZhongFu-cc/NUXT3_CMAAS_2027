@@ -1,58 +1,59 @@
 <template>
     <main class="common-section" v-loading="loading">
         <Banner></Banner>
-        <Breadcrumbs firstRoute="投稿資訊" secoundRoute="摘要投稿"></Breadcrumbs>
-        <Title title="摘要投稿"></Title>
+        <Breadcrumbs firstRoute="Abstract" secoundRoute="Abstract Submission"></Breadcrumbs>
+        <Title title="Abstract Submission"></Title>
 
         <el-form class="form" ref="formRef" :model="data" :rules="formRules" labelPosition="top">
 
             <div class="main-form">
                 <div class="left-seciton">
-                    <el-form-item :label="t.abstractType" prop="absType">
+                    <el-form-item :label="$t('abstractType')" prop="absType">
                         <el-select v-model="data.absType" placeholder="Type">
-                            <el-option :label="t.posterPresentation" value="Poster Presentation"></el-option>
-                            <el-option :label="t.videoPresentation" value="Video Presentation"></el-option>
-                            <el-option :label="t.youngInvestigator" value="Young Investigator"></el-option>
+                            <el-option :label="$t('posterPresentation')" value="Poster Presentation"></el-option>
+                            <el-option :label="$t('videoPresentation')" value="Video Presentation"></el-option>
+                            <el-option :label="$t('youngInvestigator')" value="Young Investigator"></el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item :label="t.abstractTitle" prop="absTitle">
-                        <el-input v-model="data.absTitle" :placeholder="t.abstractTitle"></el-input>
+                    <el-form-item :label="$t('abstractTitle')" prop="absTitle">
+                        <el-input v-model="data.absTitle" :placeholder="$t('abstractTitle')"></el-input>
                     </el-form-item>
-                    <el-form-item :label="t.firstAuthor" prop="firstAuthor">
-                        <el-input v-model="data.firstAuthor" :placeholder="t.firstAuthor"></el-input>
+                    <el-form-item :label="$t('firstAuthor')" prop="firstAuthor">
+                        <el-input v-model="data.firstAuthor" :placeholder="$t('firstAuthor')"></el-input>
                     </el-form-item>
 
-                    <el-form-item v-if="data.absType === 'Young Investigator'" :label="t.firstAuthorBirthday"
+                    <el-form-item v-if="data.absType === 'Young Investigator'" :label="$t('firstAuthorBirthday')"
                         prop="firstAuthorBirthday">
-                        <el-date-picker v-model="data.firstAuthorBirthday" :placeholder="t.firstAuthorBirthday"
+                        <el-date-picker v-model="data.firstAuthorBirthday" :placeholder="$t('firstAuthorBirthday')"
                             value-format="YYYY-MM-DD"></el-date-picker>
                     </el-form-item>
 
-                    <el-form-item :label="t.speaker" prop="speaker">
-                        <el-input v-model="data.speaker" :placeholder="t.speaker"></el-input>
+                    <el-form-item :label="$t('speaker')" prop="speaker">
+                        <el-input v-model="data.speaker" :placeholder="$t('speaker')"></el-input>
                     </el-form-item>
-                    <el-form-item :label="t.speakerAffiliation" prop="speakerAffiliation">
-                        <el-input v-model="data.speakerAffiliation" :placeholder="t.speakerAffiliation"></el-input>
+                    <el-form-item :label="$t('speakerAffiliation')" prop="speakerAffiliation">
+                        <el-input v-model="data.speakerAffiliation" :placeholder="$t('speakerAffiliation')"></el-input>
                     </el-form-item>
                 </div>
                 <div class="right-section">
-                    <el-form-item :label="t.correspondingAuthor" prop="correspondingAuthor">
-                        <el-input v-model="data.correspondingAuthor" :placeholder="t.correspondingAuthor"></el-input>
+                    <el-form-item :label="$t('correspondingAuthor')" prop="correspondingAuthor">
+                        <el-input v-model="data.correspondingAuthor"
+                            :placeholder="$t('correspondingAuthor')"></el-input>
                     </el-form-item>
-                    <el-form-item :label="t.correspondingAuthorMail" prop="correspondingAuthorEmail">
+                    <el-form-item :label="$t('correspondingAuthorMail')" prop="correspondingAuthorEmail">
                         <el-input v-model="data.correspondingAuthorEmail"
-                            :placeholder="t.correspondingAuthorMail"></el-input>
+                            :placeholder="$t('correspondingAuthorMail')"></el-input>
                     </el-form-item>
-                    <el-form-item :label="t.correspondingAuthorPhone" prop="correspondingAuthorPhone">
+                    <el-form-item :label="$t('correspondingAuthorPhone')" prop="correspondingAuthorPhone">
                         <el-input v-model="data.correspondingAuthorPhone"
-                            :placeholder="t.correspondingAuthorPhone"></el-input>
+                            :placeholder="$t('correspondingAuthorPhone')"></el-input>
                     </el-form-item>
-                    <el-form-item class="allAuthors" :label="t.allAuthors" prop="allAuthor">
-                        <el-input type="textarea" v-model="data.allAuthor" :placeholder="t.allAuthors"></el-input>
+                    <el-form-item class="allAuthors" :label="$t('allAuthors')" prop="allAuthor">
+                        <el-input type="textarea" v-model="data.allAuthor" :placeholder="$t('allAuthors')"></el-input>
                     </el-form-item>
-                    <el-form-item class="allAuthors" :label="t.allAuthorsAffiliation" prop="allAuthorAffiliation">
+                    <el-form-item class="allAuthors" :label="$t('allAuthorsAffiliation')" prop="allAuthorAffiliation">
                         <el-input type="textarea" v-model="data.allAuthorAffiliation"
-                            :placeholder="t.allAuthorsAffiliation"></el-input>
+                            :placeholder="$t('allAuthorsAffiliation')"></el-input>
                     </el-form-item>
                 </div>
             </div>
@@ -61,14 +62,14 @@
                 <el-form-item label="Pdf File" prop="fileList">
                     <el-upload ref="uploadRef" class="upload-demo" :limit="1" :on-change="handlePdfUpload"
                         :auto-upload="false" :on-remove="handleRemove" :on-exceed="handleExceed">
-                        <el-button size="small" type="primary">{{ t.upload }}</el-button>
-                        <div slot="tip" class="el-upload__tip">{{ t.uploadLimit }}</div>
+                        <el-button size="small" type="primary">{{ $t('upload') }}</el-button>
+                        <div slot="tip" class="el-upload__tip">{{ $t('uploadLimit') }}</div>
                     </el-upload>
                 </el-form-item>
             </div>
 
             <el-form-item label="" prop="submit">
-                <el-button class="submit-btn" type="primary" @click="submit(formRef)">Submit</el-button>
+                <el-button class="submit-btn" type="primary" @click="submit(formRef)">{{ $t('submit') }}</el-button>
             </el-form-item>
         </el-form>
     </main>
@@ -84,9 +85,9 @@ const { t, locale, setLocale } = useLang();
 const { isLogin, checkLoginState, memberInfo } = useAuth();
 
 useSeoMeta({
-    title: 'Abstract Submission - 9th IOPBS & TOPBS 2025 International Conference on Oncoplastic Breast Surgery',
-    description: 'Welcome to the abstract submission page for the 9th IOPBS (International Oncoplastic Breast Surgery Society) & TOPBS (Taiwan Oncoplastic Breast Surgery Society) Conference 2025. Submit your abstracts for poster, video, or young investigator presentations and be part of this prestigious event in Taipei.',
-    keywords: 'Abstract Submission, 9th IOPBS, IOPBS 2025, TOPBS 2025, 2025 IOPBS, 2025 TOPBS '
+    title: 'Abstract Submission - TOPBS 2026 International Conference on Oncoplastic Breast Surgery',
+    description: 'Welcome to the abstract submission page for the 9th IOPBS (International Oncoplastic Breast Surgery Society) & TOPBS (Taiwan Oncoplastic Breast Surgery Society) Conference 2026. Submit your abstracts for poster, video, or young investigator presentations and be part of this prestigious event in Taipei.',
+    keywords: 'Abstract Submission, TOPBS 2026 '
 })
 
 const router = useRouter();
@@ -262,7 +263,7 @@ onMounted(() => {
 
     if (!isLogin.value) {
         router.push("/login");
-        ElMessage.error('請先登入');
+        ElMessage.error('Please log in first');
     }
 })
 </script>

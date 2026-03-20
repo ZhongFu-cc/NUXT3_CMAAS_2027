@@ -2,38 +2,41 @@
     <div>
         <main class="common-section">
             <Banner />
-            <Breadcrumbs firstRoute="投稿資訊" secoundRoute="發表規範" />
-            <Title title="發表規範"></Title>
+            <Breadcrumbs firstRoute="Abstracts" secoundRoute="Presentation Guidelines" />
+            <Title title="Presentation Guidelines"></Title>
 
             <div class="content">
                 <!-- <h1 class="sub-title">
                     Presentation Guidelines -->
                 <!-- </h1> -->
                 <div class="poster">
-                    <h1 class="submission-title">[電子海報提交 ]</h1>
+                    <h1 class="submission-title">[E-Poster Submission]</h1>
 
-                    <p class="list-text">針對被接受的摘要，作者必須透過TOPBS 2026官方網站提交電子海報。電子海報將展示於TOPBS 2026活動會場。 </p>
+                    <p class="list-text">For accepted abstracts, authors must submit an e-poster via the official
+                        website of the TOPBS 2026. E-posters will be displayed at the event venue. </p>
                     <ul class="disc-list">
-                        <li class="note-text">電子海報提交截止日：2026年8月21日（星期五）23:59
+                        <li class="note-text">E-poster Submission Deadline: Friday, September 21, 2026, 23:59 (local
+                            time)
                         </li>
-                        <li><b>提交方式：</b> 請 <nuxt-link class="link" to="/login">登入</nuxt-link> to
-                            TOPBS 2026官方網站上傳電子海報。 </li>
+                        <li><b>Submission Method:</b> Please <nuxt-link class="link" to="/login">log in</nuxt-link> to
+                            the official website of the
+                            TOPBS 2026 to upload your e-poster. </li>
                     </ul>
-                    <p class="list-text"><b>電子海報製作規範： </b> </p>
+                    <p class="list-text"><b>E-Poster Preparation Guidelines:</b> </p>
                     <ul class="disc-list">
-                        <li>所有電子海報必須以英文撰寫。 </li>
-                        <li>主題與第一作者需與所接受之摘要內容一致。 </li>
-                        <li>請下載並使用官方提供的電子海報模板編輯海報，並上傳PPT檔。 </li>
+                        <li>All e-posters must be written in English. </li>
+                        <li>The topic and first author must be consistent with the accepted abstract. </li>
+                        <li>Please download and use the official e-poster template, and upload the PPT file. </li>
                     </ul>
 
-                    <p class="list-text"><b>電子海報格式要求： </b> </p>
+                    <p class="list-text"><b>E-Poster Format Requirements: </b> </p>
                     <ul class="disc-list">
-                        <li>直式版面，寬度1920像素以下。 </li>
-                        <li>僅限單頁。 </li>
-                        <li>檔案大小建議5MB以下。 </li>
-                        <li>檔案命名方式：摘要編號 + 第一作者姓名，
+                        <li>Portrait orientation, width must not exceed 1920 pixels. </li>
+                        <li>Single-page only. </li>
+                        <li>File size is recommended to be under 5MB. </li>
+                        <li>File naming format: Abstract Number + First Author’s Name
                             <ul>
-                                <li>例如：001-Da-Ming Lee </li>
+                                <li>Example: 001-Da-Ming Lee </li>
                             </ul>
                         </li>
                     </ul>
@@ -41,48 +44,50 @@
                 </div>
 
                 <div class="video">
-                    <h1 class="submission-title">[影片提交 ]</h1>
-                    <p class="list-text">針對被接受的摘要，作者必須透過TOPBS 2026官方網站提交影片檔。影片檔將展示於TOPBS 2026活動會場
+                    <h1 class="submission-title">[Video Submission]</h1>
+                    <p class="list-text"><b>For accepted abstracts, authors must submit a video file via the official
+                            website of the TOPBS 2026. Videos will be displayed at the event venue. </b>
                     </p>
                     <ul class="disc-list">
-                        <li class="note-text"><b>影片檔提交截止日：</b> 2026年9月21日（星期一）23:59 </li>
-                        <li><b>提交方式：</b> 請 <nuxt-link class="link" to="/login">登入</nuxt-link> TOPBS 2026官方網站上傳影片檔。 </li>
+                        <li class="note-text"><b>Video Submission Deadline:</b> Monday, September 21, 2026, 23:59 (local
+                            time) </li>
+                        <li><b>Submission Method: </b>Please log in to the official website of the TOPBS 2026 to upload
+                            the video. </li>
                     </ul>
-                    <p class="list-text"><b>影片檔格式要求： </b> </p>
+                    <p class="list-text"><b>Video Format Requirements: </b> </p>
                     <ul class="disc-list">
-                        <li>主題與第一作者需與所接受之摘要內容一致。 </li>
-                        <li>語言：英文旁白 </li>
-                        <li>時長：不超過7分鐘 </li>
-                        <li>檔案大小：不超過500MB </li>
-                        <li>直式版面：寬度1920像素以下。 </li>
-                        <li>僅限單頁。 </li>
-                        <li>檔案大小建議5MB以下。 </li>
-                        <li>檔案命名方式：摘要編號 + 第一作者姓名
+                        <li>The topic and first author must be consistent with the accepted abstract.</li>
+                        <li>Language: English narration </li>
+                        <li>Duration: No more than 7 minutes </li>
+                        <li>File size: Not exceeding 500MB </li>
+                        <li>Format: MP4 </li>
+                        <li>Resolution: 1920x1080</li>
+                        <li>Aspect Ratio: Landscape 16:9 </li>
+                        <li>File naming format: Abstract Number + First Author’s Name
                             <ul>
-                                <li>例如：001-Da-Ming Lee </li>
+                                <li>Example: 001-Da-Ming Lee </li>
                             </ul>
-                        </li>
-                        <li>
-                            備註：摘要編號，請於個人會員頁面 → 稿件 → 已接受稿件內查詢。
                         </li>
                     </ul>
                 </div>
 
                 <div class="oral">
-                    <h1 class="submission-title">[獲獎人口頭報告]</h1>
-                    <p class="list-text">針對獲獎的海報及影片，作者必須於TOPBS 2026進行口頭報告。 </p>
+                    <h1 class="submission-title">[Oral Presentation for Award Winners]</h1>
+                    <p class="list-text">Authors of awarded posters and videos are required to give an oral presentation
+                        at the TOPBS 2026. </p>
                     <ul>
-                        <li class="note-text"><b>日期：</b> 2026年11月14日（星期六） </li>
-                        <li><b>時間：</b>*具體發表時間將於入選名單公告時另行通知。*
+                        <li class="note-text"><b>Date:</b> Saturday, November 14, 2026 </li>
+                        <li><b>Time:</b>Specific presentation times will be announced along with the list of awardees.
                         </li>
-                        <li><b>地點：</b>台北國際會議中心1樓
+                        <li><b>Venue:</b>1st Floor, Taipei International Convention Center
                             <ul>
-                                <li>地址：110台北市信義區信義路五段1號1樓</li>
+                                <li>Address: 1st Floor, No. 1, Section 5, Xinyi Road, Xinyi District, Taipei City 110,
+                                    Taiwan </li>
                             </ul>
                         </li>
-                        <li><b>報告語言：</b>英文</li>
-                        <li><b>報告時間：</b>8分鐘</li>
-                        <li><b>發表順序資訊： </b>將另行通知發表者。</li>
+                        <li><b>Language:</b>English</li>
+                        <li><b>Presentation Duration:</b>8 minutes</li>
+                        <li><b>Presentation Order:</b> To be announced to selected presenters</li>
                     </ul>
                 </div>
             </div>

@@ -1,28 +1,28 @@
 <template>
     <main class="common-section">
         <Banner />
-        <Breadcrumbs :first-route="'會員'" :secound-route="'會員中心'" />
+        <Breadcrumbs :first-route="'Member'" :secound-route="'Member Center'" />
         <div class="title-section">
-            <h1 class="title">會員中心</h1>
+            <h1 class="title">Member Center</h1>
         </div>
 
         <div class="select-section">
             <nuxt-link class="select-box" to="/abstract">
                 <img src="../assets/img/abstract-icon.png" alt="">
                 <div class="label-box">
-                    <span>摘要投稿</span>
+                    <span>Abstract</span>
                 </div>
             </nuxt-link>
             <nuxt-link class="select-box" :to="'/payment'">
                 <img src="../assets/img/payment-icon.png" alt="">
                 <div class="label-box">
-                    <span>付款資訊</span>
+                    <span>Payment</span>
                 </div>
             </nuxt-link>
             <nuxt-link class="select-box" :to="'/accommodation'">
                 <img src="../assets/img/accommodation-icon.png" alt="">
                 <div class="label-box">
-                    <p>住宿資訊</p>
+                    <p>Accommodation</p>
                     <!-- <p>Offers</p> -->
                 </div>
             </nuxt-link>
@@ -77,7 +77,7 @@ onMounted(() => {
     }
 
     .select-section {
-        // background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
+        background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
         display: flex;
         justify-content: center;
         align-items: center;

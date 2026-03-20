@@ -14,7 +14,8 @@ export default defineNuxtConfig({
     //可被客戶端公開訪問
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE,
-      domain: process.env.NUXT_PUBLIC_DOMAIN
+      domain: process.env.NUXT_PUBLIC_DOMAIN,
+      minio: process.env.NUXT_PUBLIC_MINIO_BASE
     }
   },
 
