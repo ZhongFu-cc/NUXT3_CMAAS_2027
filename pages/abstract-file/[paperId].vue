@@ -4,9 +4,9 @@
         <table class="file-list-table">
             <thead>
                 <tr>
-                    <th>File Name</th>
-                    <th class="type">File Type</th>
-                    <th>operate</th>
+                    <th>{{ $t('fileName') }}</th>
+                    <th class="type">{{ $t('fileType') }}</th>
+                    <th>{{ $t('operate') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -15,9 +15,10 @@
                     <td class="first-col">{{ file.fileName }}</td>
                     <td class="type">{{ file.type }}</td>
                     <td class="last-col">
-                        <a class="preview-link" :href="envMinio + file.path" target="_blank">Download</a>
-                        <el-button link @click="openUploadDialog(file.paperFileUploadId)">Update</el-button>
-                        <el-button link @click="deleteFile(file.paperId, file.paperFileUploadId)">Delete</el-button>
+                        <a class="preview-link" :href="envMinio + file.path" target="_blank">{{ $t('download') }}</a>
+                        <el-button link @click="openUploadDialog(file.paperFileUploadId)">{{ $t('update') }}</el-button>
+                        <el-button link @click="deleteFile(file.paperId, file.paperFileUploadId)">{{ $t('delete')
+                        }}</el-button>
                     </td>
                 </tr>
             </tbody>
@@ -29,7 +30,7 @@
                 :on-change="handleUpload" :auto-upload="false" :on-exceed="handleExceed">
                 <el-icon class="el-icon--upload"><ElIcon-upload-filled /></el-icon>
                 <div class="el-upload__text">
-                    Drop file here or <em>click to upload</em>
+                    {{ $t('dropFile') }} <em>{{ $t('clickToUpload') }}</em>
                 </div>
             </el-upload>
 
@@ -43,7 +44,7 @@
                 :on-exceed="handleExceed">
                 <el-icon class="el-icon--upload"><ElIcon-upload-filled /></el-icon>
                 <div class="el-upload__text">
-                    Drop file here or <em>click to upload</em>
+                    {{ $t('dropFile') }} <em>{{ $t('clickToUpload') }}</em>
                 </div>
             </el-upload>
 

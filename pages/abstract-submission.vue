@@ -48,10 +48,10 @@
                         <el-input v-model="data.correspondingAuthorPhone"
                             :placeholder="$t('correspondingAuthorPhone')"></el-input>
                     </el-form-item>
-                    <el-form-item class="allAuthors" :label="$t('allAuthors')" prop="allAuthor">
+                    <el-form-item class="allAuthors" :label="$t('allAuthors1')" prop="allAuthor">
                         <el-input type="textarea" v-model="data.allAuthor" :placeholder="$t('allAuthors')"></el-input>
                     </el-form-item>
-                    <el-form-item class="allAuthors" :label="$t('allAuthorsAffiliation')" prop="allAuthorAffiliation">
+                    <el-form-item class="allAuthors" :label="$t('allAuthorsAffiliation1')" prop="allAuthorAffiliation">
                         <el-input type="textarea" v-model="data.allAuthorAffiliation"
                             :placeholder="$t('allAuthorsAffiliation')"></el-input>
                     </el-form-item>

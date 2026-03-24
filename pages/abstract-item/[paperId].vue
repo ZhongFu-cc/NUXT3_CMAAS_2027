@@ -8,50 +8,47 @@
 
             <div class="main-form">
                 <div class="left-seciton">
-                    <el-form-item label="Type" prop="absType">
+                    <el-form-item :label="$t('type')" prop="absType">
                         <el-select disabled v-model="data.absType" placeholder="Type"></el-select>
                     </el-form-item>
-                    <el-form-item label="Abstract Title" prop="absTitle">
+                    <el-form-item :label="$t('abstractTitle')" prop="absTitle">
                         <el-input v-model="data.absTitle" placeholder="Titile"></el-input>
                     </el-form-item>
-                    <el-form-item label="First Author" prop="firstAuthor">
+                    <el-form-item :label="$t('firstAuthor')" prop="firstAuthor">
                         <el-input v-model="data.firstAuthor" placeholder="First Author"></el-input>
                     </el-form-item>
 
-                    <el-form-item v-if="data.absType === 'Young Investigator'" label="First Author Birthday"
+                    <el-form-item v-if="data.absType === 'Young Investigator'" :label="$t('firstAuthorBirthday')"
                         prop="firstAuthorBirthday">
                         <el-date-picker v-model="data.firstAuthorBirthday" placeholder="First Author Affiliation"
                             value-format="YYYY-MM-DD"></el-date-picker>
                     </el-form-item>
 
-                    <el-form-item label="Speaker" prop="speaker">
+                    <el-form-item :label="$t('speaker')" prop="speaker">
                         <el-input v-model="data.speaker" placeholder="Speaker"></el-input>
                     </el-form-item>
-                    <el-form-item label="Speaker Affiliation" prop="speakerAffiliation">
+                    <el-form-item :label="$t('speakerAffiliation')" prop="speakerAffiliation">
                         <el-input v-model="data.speakerAffiliation" placeholder="Speaker Affiliation"></el-input>
                     </el-form-item>
                 </div>
                 <div class="right-section">
-                    <el-form-item label="Corresponding Author" prop="correspondingAuthor">
+                    <el-form-item :label="$t('correspondingAuthor')" prop="correspondingAuthor">
                         <el-input v-model="data.correspondingAuthor" placeholder="Corresponding Author"></el-input>
                     </el-form-item>
-                    <el-form-item label="Corresponding Author Mail" prop="correspondingAuthorEmail">
+                    <el-form-item :label="$t('correspondingAuthorMail')" prop="correspondingAuthorEmail">
                         <el-input v-model="data.correspondingAuthorEmail"
                             placeholder="Corresponding Author Email"></el-input>
                     </el-form-item>
-                    <el-form-item label="Corresponding Author Phone" prop="correspondingAuthorPhone">
+                    <el-form-item :label="$t('correspondingAuthorPhone')" prop="correspondingAuthorPhone">
                         <el-input v-model="data.correspondingAuthorPhone"
                             placeholder="Corresponding Author Phone"></el-input>
                     </el-form-item>
-                    <el-form-item class="allAuthors" label="All Authors(Use semicolon to separate authors)"
-                        prop="allAuthor">
-                        <el-input type="textarea" v-model="data.allAuthor" placeholder="All Authors"></el-input>
+                    <el-form-item class="allAuthors" :label="$t('allAuthors')" prop="allAuthor">
+                        <el-input type="textarea" v-model="data.allAuthor" :placeholder="$t('allAuthors1')"></el-input>
                     </el-form-item>
-                    <el-form-item class="allAuthors"
-                        label="All Authors Affiliation(Use semicolon to separate authors affilication)"
-                        prop="allAuthorAffiliation">
+                    <el-form-item class="allAuthors" :label="$t('allAuthorsAffiliation1')" prop="allAuthorAffiliation">
                         <el-input type="textarea" v-model="data.allAuthorAffiliation"
-                            placeholder="All Authors Affiliation"></el-input>
+                            :placeholder="$t('allAuthorsAffiliation')"></el-input>
                     </el-form-item>
                 </div>
             </div>
@@ -61,10 +58,10 @@
                 <el-form-item label="Pdf File" prop="fileList">
                     <el-upload ref="uploadRef" class="upload-demo" :limit="1" :on-change="handlePdfUpload"
                         :auto-upload="false" :on-remove="handleRemove" :on-exceed="handleExceed">
-                        <el-button size="small" type="primary">Upload</el-button>
+                        <el-button size="small" type="primary">{{ $t('upload') }}</el-button>
                         <div slot="tip" class="el-upload__tip">
-                            <span>Only upload pdf file with size less than 20mb</span>
-                            <span class="warning">Updating the paper requires re-uploading.</span>
+                            <span>{{ $t('onlyPdf') }}</span>
+                            <span class="warning">{{ $t('fileSizeLimit') }}</span>
                         </div>
                     </el-upload>
                 </el-form-item>
@@ -78,7 +75,7 @@
             </div>
 
             <el-form-item label="" prop="submit">
-                <el-button class="submit-btn" type="primary" @click="submit(formRef)">Submit</el-button>
+                <el-button class="submit-btn" type="primary" @click="submit(formRef)">{{ $t('submit') }}</el-button>
             </el-form-item>
         </el-form>
     </main>
@@ -135,14 +132,14 @@ const handleRemove = (file: UploadUserFile, fileList: UploadUserFile[]) => {
 const handleExceed: UploadProps['onExceed'] = (files: UploadUserFile[], fileList: UploadUserFile[]) => {
     console.log(files);
     ElMessage.error(`You can only upload 1 file, please upload again`);
-    if (files.length > 0 ) {
+    if (files.length > 0) {
         fileList.splice(0, fileList.length);
-    
+
         data.fileList = [];
         console.log(data.fileList);
         console.log(fileList);
     }
-}   
+}
 
 const handlePdfUpload: UploadProps['onChange'] = (file: UploadUserFile, uploadFiles) => {
     console.log(file);
@@ -237,8 +234,8 @@ const data = reactive<any>({
 const getPaperById = async () => {
     let res = await CSRrequest.get(`/paper/owner/${paperId}`);
     console.log(res)
-    const {status, publicationNumber, publicationGroup, reportLocation, reportTime, paperFileUpload, availablePaperReviewers, assignedPaperReviewers, tagList ,...resdata} = res.data;
-    console.log(resdata);   
+    const { status, publicationNumber, publicationGroup, reportLocation, reportTime, paperFileUpload, availablePaperReviewers, assignedPaperReviewers, tagList, ...resdata } = res.data;
+    console.log(resdata);
 
     if (res.code === 200) {
         Object.assign(data, resdata);
@@ -394,6 +391,7 @@ onMounted(() => {
                 .el-upload__tip {
                     display: flex;
                     flex-direction: column;
+
                     .warning {
                         color: red;
                         font-size: 0.8rem;

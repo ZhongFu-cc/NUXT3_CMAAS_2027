@@ -1,29 +1,28 @@
 <template>
     <main class="common-section">
         <Banner />
-        <Breadcrumbs :first-route="'Member'" :secound-route="'Member Center'" />
+        <Breadcrumbs :first-route="'Member'" :secound-route="$t('memberCenter')" />
         <div class="title-section">
-            <h1 class="title">Member Center</h1>
+            <h1 class="title">{{ $t('memberCenter') }}</h1>
         </div>
 
         <div class="select-section">
             <nuxt-link class="select-box" to="/abstract">
                 <img src="../assets/img/abstract-icon.png" alt="">
                 <div class="label-box">
-                    <span>Abstract</span>
+                    <span>{{ $t('abstract') }}</span>
                 </div>
             </nuxt-link>
             <nuxt-link class="select-box" :to="'/payment'">
                 <img src="../assets/img/payment-icon.png" alt="">
                 <div class="label-box">
-                    <span>Payment</span>
+                    <span>{{ $t('payment') }}</span>
                 </div>
             </nuxt-link>
             <nuxt-link class="select-box" :to="'/accommodation'">
                 <img src="../assets/img/accommodation-icon.png" alt="">
                 <div class="label-box">
-                    <p>Accommodation</p>
-                    <!-- <p>Offers</p> -->
+                    <p>{{ $t('accommodation') }}</p>
                 </div>
             </nuxt-link>
         </div>

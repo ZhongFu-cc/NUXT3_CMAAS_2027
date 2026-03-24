@@ -9,11 +9,11 @@
                 <table class="paper-table">
                     <thead>
                         <tr class="table-header">
-                            <th v-if="isShowAll">Type</th>
-                            <th>Title</th>
-                            <th v-if="isShowAll">First Author</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th v-if="isShowAll">{{ $t('type') }}</th>
+                            <th>{{ $t('abstractTitle') }}</th>
+                            <th v-if="isShowAll">{{ $t('firstAuthor') }}</th>
+                            <th>{{ $t('status') }}</th>
+                            <th>{{ $t('action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,25 +23,26 @@
                             <td class="paper-title" :class="!isShowAll ? 'first-col' : ''">{{ paper.absTitle }}</td>
                             <td v-if="isShowAll">{{ paper.firstAuthor }}</td>
                             <td>
-                                <span v-if="paper.status === 1" class="status-accepted">Accepted</span>
-                                <span v-else-if="paper.status === 2" class="status-rejected">Rejected</span>
+                                <span v-if="paper.status === 1" class="status-accepted">{{ $t('accepted') }}</span>
+                                <span v-else-if="paper.status === 2" class="status-rejected">{{ $t('rejected') }}</span>
                             </td>
                             <td class="last-col">
-                                <el-button v-if="!isDisabled" link class="edit-btn"
-                                    @click='headToEditPaper(paper)'>Edit</el-button>
-                                <el-button link class="see-more-btn" @click='toggleSeeMore(paper)'>View</el-button>
-                                <el-button v-if="!isDisabled" link class="see-more-btn"
-                                    @click='deletePaper(paper)'>Delete</el-button>
-                                <!-- <el-button v-if="isDisabled" link class="see-more-btn" @click='isClosed'>Delete</el-button> -->
+                                <el-button v-if="!isDisabled" link class="edit-btn" @click='headToEditPaper(paper)'>{{
+                                    $t('edit') }}</el-button>
+                                <el-button link class="see-more-btn" @click='toggleSeeMore(paper)'>{{ $t('view')
+                                }}</el-button>
+                                <el-button v-if="!isDisabled" link class="see-more-btn" @click='deletePaper(paper)'>{{
+                                    $t('delete') }}</el-button>
+                                <!-- <el-button v-if="isDisabled" link class="see-more-btn" @click='isClosed'>{{ $t('delete') }}</el-button> -->
                                 <el-button v-if="paper.status === 1" link class="see-more-btn"
-                                    @click="headToUploadFile(paper)">Upload</el-button>
+                                    @click="headToUploadFile(paper)">{{ $t('upload') }}</el-button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <el-button class="go-submit-btn" :disabled="isDisabled" @click="headToSubmit">
-                Abstract Submission
+                {{ $t('abstractSubmission') }}
             </el-button>
         </div>
 
@@ -50,84 +51,84 @@
             <table class="paper-info-table">
                 <thead>
                     <tr>
-                        <td colspan="2" class="column-name title">Abstract</td>
+                        <td colspan="2" class="column-name title">{{ $t('abstract') }}</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-if="paperInfo.publicationNumber">
-                        <td class="column-name">Abstract Number</td>
+                        <td class="column-name">{{ $t('abstractNumber') }}</td>
                         <td>{{ paperInfo.publicationNumber }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">Type</td>
+                        <td class="column-name">{{ $t('abstractType') }}</td>
                         <td>{{ paperInfo.absType }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">Abstract Title</td>
+                        <td class="column-name">{{ $t('abstractTitle') }}</td>
                         <td>{{ paperInfo.absTitle }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">First Author</td>
+                        <td class="column-name">{{ $t('firstAuthor') }}</td>
                         <td>{{ paperInfo.firstAuthor }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr v-if="paperInfo.absType === 'Young Investigator'">
-                        <td class="column-name">First Author Birthday</td>
+                        <td class="column-name">{{ $t('firstAuthorBirthday') }}</td>
                         <td>{{ paperInfo.firstAuthorBirthday }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">Speaker</td>
+                        <td class="column-name">{{ $t('speaker') }}</td>
                         <td>{{ paperInfo.speaker }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">Speaker Affillication</td>
+                        <td class="column-name">{{ $t('speakerAffiliation') }}</td>
                         <td>{{ paperInfo.speakerAffiliation }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">CorrespondingAuthor</td>
+                        <td class="column-name">{{ $t('correspondingAuthor') }}</td>
                         <td>{{ paperInfo.correspondingAuthor }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">CorrespondingAuthor Email</td>
+                        <td class="column-name">{{ $t('correspondingAuthorMail') }}</td>
                         <td>{{ paperInfo.correspondingAuthorEmail }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">CorrespondingAuthor Phone</td>
+                        <td class="column-name">{{ $t('correspondingAuthorPhone') }}</td>
                         <td>{{ paperInfo.correspondingAuthorPhone }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">All Authors</td>
+                        <td class="column-name">{{ $t('allAuthors') }}</td>
                         <td>{{ paperInfo.allAuthor }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">All Authors Affiliation</td>
+                        <td class="column-name">{{ $t('allAuthorsAffiliation') }}</td>
                         <td>{{ paperInfo.allAuthorAffiliation }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">Abstract File</td>
+                        <td class="column-name">{{ $t('abstractFile') }}</td>
                         <td v-if="envMinio + paperInfo.FileUpload">
                             <a class="preview-link" :href="envMinio + paperInfo.paperFileUpload[0].path"
                                 target="_blank">Preview</a>
@@ -136,10 +137,10 @@
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">Abstract Status</td>
+                        <td class="column-name">{{ $t('abstractStatus') }}</td>
                         <td v-if="paperInfo.status">
-                            <span v-if="paperInfo.status === 1" class="status-accepted">Accepted</span>
-                            <span v-else-if="paperInfo.status === 2" class="status-rejected">Rejected</span>
+                            <span v-if="paperInfo.status === 1" class="status-accepted">{{ $t('accepted') }}</span>
+                            <span v-else-if="paperInfo.status === 2" class="stat s-rejected">{{ $t('rejected') }}</span>
                         </td>
                     </tr>
                 </tbody>

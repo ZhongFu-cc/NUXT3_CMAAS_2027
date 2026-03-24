@@ -184,14 +184,6 @@
                             <td>NTD $160</td>
                         </tr>
                     </tbody>
-                    <tbody>
-                        <tr>
-                        </tr>
-                    </tbody>
-                    <tbody>
-                        <tr>
-                        </tr>
-                    </tbody>
                 </table>
                 <div class="shadow-divider"></div>
                 <p class="transport-title">Taipei Songshan Airport MRT</p>
@@ -225,10 +217,6 @@
                             <td>NTD $25</td>
                         </tr>
                     </tbody>
-                    <tr>
-                    </tr>
-                    <tr>
-                    </tr>
                 </table>
                 <div class="shadow-divider"></div>
                 <p class="transport-title">MRT</p>
@@ -382,6 +370,7 @@ const backToTop = () => {
 .common-section {
     // width: $common-section-width;
     // margin: $common-section-margin;
+    margin-top: 6rem;
     font-family: $common-section-font-family;
 
     .content {
