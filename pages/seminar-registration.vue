@@ -426,6 +426,7 @@ const submit = async (formEl: FormInstance | undefined) => {
             if (res.data.isLogin) {
                 localStorage.setItem(res.data.tokenName, 'Bearer ' + res.data.tokenValue);
                 ElMessage.success(t('registerSuccess'))
+                useAuth().checkLoginState();
 
                 router.push('/')
             }

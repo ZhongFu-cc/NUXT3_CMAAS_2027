@@ -1,6 +1,6 @@
 <template>
-    <Banner></Banner>
     <div class="common-section">
+        <Banner></Banner>
         <!-- <Title title="贊助廠商"></Title> -->
         <!-- <h1 class="title">感謝下列廠商熱情贊助!!</h1> -->
         <!-- <img src="../assets/img/sponsor_list.png" alt=""> -->
