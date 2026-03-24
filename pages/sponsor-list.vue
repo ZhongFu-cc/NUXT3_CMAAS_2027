@@ -2,7 +2,7 @@
     <Banner></Banner>
     <div class="common-section">
         <!-- <Title title="贊助廠商"></Title> -->
-        <h1 class="title">感謝下列廠商熱情贊助!!</h1>
+        <!-- <h1 class="title">感謝下列廠商熱情贊助!!</h1> -->
         <!-- <img src="../assets/img/sponsor_list.png" alt=""> -->
         <!-- <div class="image-section">
             <div v-for="(group, groupIndex) in groupedImages" :key="groupIndex" class="image-group">

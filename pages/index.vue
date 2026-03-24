@@ -28,6 +28,9 @@ import CountdownTimer from '@/components/CountdownTimer.vue';
 import News from '@/components/home/News.vue';
 import QuickLinks from '@/components/home/QuickLinks.vue';
 import KeyDate from '@/components/home/KeyDate.vue';
+import { useI18n } from 'vue-i18n';
+
+const { locale, setLocale, t } = useI18n();
 
 const eventDate = new Date('2026-11-14T00:00:00');
 
@@ -66,7 +69,7 @@ onMounted(() => {
         display: flex;
         flex-direction: column;
 
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 1024px) {
             flex-direction: column;
         }
 

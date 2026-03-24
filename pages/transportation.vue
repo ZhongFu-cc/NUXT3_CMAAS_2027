@@ -2,10 +2,9 @@
     <div>
         <main class="common-section">
             <Banner></Banner>
-            <Breadcrumbs first-route="交通資訊" secound-route=""></Breadcrumbs>
             <div class="title-section">
                 <p class="title">
-                    交通資訊
+                    Transportation
                 </p>
             </div>
             <div class="map-box">
@@ -15,11 +14,11 @@
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="map-info">
-                <p class="map-info-item">台北國際會議中心(TICC)</p>
-                <p class="map-info-item">11049, 台北市信義路五段1號</p>
-                <p class="map-info-item">電話: +886(2)2725-5200</p>
-                <p class="map-info-item">傳真: +886(2)2723-2589</p>
-                <p class="map-info-item">電子郵件: ticc@taitra.org.tw</p>
+                <p class="map-info-item">{{ $t('ticc') }}</p>
+                <p class="map-info-item">No.1 Hsin-Yi Road, Section 5,Taipei 11049,Taiwan</p>
+                <p class="map-info-item">Tel. +886(2)2725-5200</p>
+                <p class="map-info-item">Fax. +886(2)2723-2589</p>
+                <p class="map-info-item">Email: ticc@taitra.org.tw</p>
             </div>
             <div class="shadow-divider"></div>
             <div class="transportation-1">
@@ -31,49 +30,49 @@
                     <thead>
                         <tr>
                             <th class="left-top-corner"> </th>
-                            <th>路線/時刻表</th>
-                            <th>行程時間</th>
-                            <th class="right-top-corner">票價</th>
+                            <th>Line/Timetable</th>
+                            <th>Travel Time</th>
+                            <th class="right-top-corner">Fare</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="row-2">
                             <td>
-                                <p class="transportation">桃園機場捷運</p>
+                                <p class="transportation">Taoyuan Airport MRT</p>
                             </td>
                             <td>
-                                <div>第一航廈: <span>A12</span> <el-icon>
+                                <div>Terminal 1: <span>A12</span> <el-icon>
                                         <ElIconRight />
                                     </el-icon> <span>A1</span></div>
-                                <div>第二航廈: <span>A13</span> <el-icon>
+                                <div>Terminal 2: <span>A13</span> <el-icon>
                                         <ElIconRight />
                                     </el-icon> <span>A1</span></div>
                             </td>
-                            <td>50 分鐘</td>
+                            <td>50 mins</td>
                             <td>NTD $160</td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr class="row-3">
                             <td>
-                                <p class="transportation">台北松山機場捷運</p>
+                                <p class="transportation">Taipei Songshan Airport MRT</p>
                             </td>
                             <td>
-                                <p>松山機場: <span>BR13</span> <el-icon>
+                                <p>Songshan Airport: <span>BR13</span> <el-icon>
                                         <ElIconRight />
                                     </el-icon> <span>R03</span></p>
                             </td>
-                            <td>17 分鐘</td>
+                            <td>17 mins</td>
                             <td>NTD $25</td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr class="row-4">
                             <td>
-                                <p class="transportation">捷運</p>
+                                <p class="transportation">MRT</p>
                             </td>
                             <td>
-                                <p>台北車站</p>
+                                <p>Taipei Main Station</p>
                                 <div><span>BL12</span><span>R10</span><el-icon>
                                         <ElIconRight />
                                     </el-icon><span>BR09</span><span>R05</span><el-icon>
@@ -81,7 +80,7 @@
                                     </el-icon><span>R03</span>
                                 </div>
                             </td>
-                            <td>15 分鐘</td>
+                            <td>15 mins</td>
                             <td>NTD $25</td>
                         </tr>
                     </tbody>
@@ -89,27 +88,27 @@
                         <tr class="row-5">
                             <td>
                                 <p class="transportation">iBus(1960)</p>
-                                <span class="small-font transportation-hint">公車位置</span>
+                                <span class="small-font transportation-hint">Bus location</span>
                                 <div class="small-font transportation-hint">
-                                    <!-- <div>第一航廈:</div> -->
+                                    <div>Terminal 1:</div>
                                     <div>
-                                        <!-- <div>接駁公車</div> -->
-                                        <div>第一航廈: 地下1樓旅客候車區</div>
+                                        <div>Passenger bus</div>
+                                        <div>waiting area on Floor B1</div>
                                     </div>
                                 </div>
                                 <div class="small-font transportation-hint">
-                                    <!-- <div>第二航廈:</div> -->
+                                    <div>Terminal 2:</div>
                                     <div>
-                                        <!-- <div>接駁公車</div> -->
-                                        <div> 第二航廈: 1樓旅客候車區
-                                        </div>
+                                        <div>Passenger bus</div>
+                                        <div>waiting area on the 1st
+                                            floor</div>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                第一航廈/第二航廈 -> 台北君悅酒店
+                                Terminal 1/2 -> Grand Hyatt Taipei
                                 <div class="bus-timetable">
-                                    <span class="small-font">時刻表:</span>
+                                    <span class="small-font">TimeTable:</span>
                                     <span class="small-font">00:15、12:40、06:50、07:30、09:00、10:20、
                                     </span>
                                     <span class="small-font">11:20、12:40、
@@ -117,7 +116,7 @@
                                     <span class="small-font">19:10、21:10、22:40</span>
                                 </div>
                             </td>
-                            <td>90 分鐘</td>
+                            <td>90 mins</td>
                             <td>NTD $190</td>
 
                         </tr>
@@ -125,20 +124,20 @@
                     <tbody>
                         <tr class="row-6">
                             <td class="left-bottom-corner" :rowspan="2">
-                                <div class="transportation">計程車</div>
+                                <div class="transportation">Taxi</div>
                             </td>
-                            <td class="line">桃園機場 <el-icon>
+                            <td class="line">Taiyuan Airport <el-icon>
                                     <ElIconRight />
                                 </el-icon> TICC</td>
-                            <td>1-1.5 小時</td>
+                            <td>1-1.5 hr</td>
                             <td>NTD $1310</td>
 
                         </tr>
                         <tr>
-                            <td class="line">台北松山機場捷運 <el-icon>
+                            <td class="line">Taipei Songshan Airport MRT <el-icon>
                                     <ElIconRight />
                                 </el-icon> TICC</td>
-                            <td>10-30 分鐘</td>
+                            <td>10-30 mins</td>
                             <td class="right-bottom-corner">NTD $225</td>
                         </tr>
                     </tbody>
@@ -146,18 +145,18 @@
             </div>
 
             <div class="mobile-table-section">
-                <p class="transport-title">桃園機場捷運</p>
+                <p class="transport-title">Taoyuan Airport MRT</p>
                 <table class="transport-mobile-table">
                     <thead>
                         <tr>
                             <th>
-                                路線/時刻表
+                                Line/Timetable
                             </th>
                             <th>
-                                行程時間
+                                Travel Time
                             </th>
                             <th>
-                                票價
+                                Fare
                             </th>
                         </tr>
                     </thead>
@@ -165,14 +164,14 @@
                         <tr>
                             <td class="tayouan-airport-mrt-line">
                                 <span>
-                                    第一航廈: <span class="line-number">A12</span>
+                                    Terminal 1: <span class="line-number">A12</span>
                                     <el-icon>
                                         <ElIconRight />
                                     </el-icon>
                                     <span class="line-number">A1</span>
                                 </span>
                                 <span>
-                                    第二航廈:
+                                    Terminal 2:
                                     <span class="line-number">A13</span>
 
                                     <el-icon>
@@ -181,7 +180,7 @@
                                     <span class="line-number">A1</span>
                                 </span>
                             </td>
-                            <td>50 分鐘</td>
+                            <td>50 mins</td>
                             <td>NTD $160</td>
                         </tr>
                     </tbody>
@@ -195,18 +194,18 @@
                     </tbody>
                 </table>
                 <div class="shadow-divider"></div>
-                <p class="transport-title">台北松山機場捷運</p>
+                <p class="transport-title">Taipei Songshan Airport MRT</p>
                 <table class="transport-mobile-table">
                     <thead>
                         <tr>
                             <th>
-                                路線/時刻表
+                                Line/Timetable
                             </th>
                             <th>
-                                行程時間
+                                Travel Time
                             </th>
                             <th>
-                                票價
+                                Fare
                             </th>
                         </tr>
                     </thead>
@@ -214,7 +213,7 @@
                         <tr>
                             <td class="taipei-songshan-airport-mrt">
                                 <span>
-                                    松山機場:
+                                    Songshan Airport:
                                 </span>
                                 <span>
                                     <span class="line-number">BR13</span> <el-icon>
@@ -222,7 +221,7 @@
                                     </el-icon> <span class="line-number">R03</span>
                                 </span>
                             </td>
-                            <td>17 分鐘</td>
+                            <td>17 mins</td>
                             <td>NTD $25</td>
                         </tr>
                     </tbody>
@@ -232,25 +231,25 @@
                     </tr>
                 </table>
                 <div class="shadow-divider"></div>
-                <p class="transport-title">捷運</p>
+                <p class="transport-title">MRT</p>
                 <table class="transport-mobile-table">
                     <thead>
                         <tr>
                             <th>
-                                路線/時刻表
+                                Line/Timetable
                             </th>
                             <th>
-                                行程時間
+                                Travel Time
                             </th>
                             <th>
-                                票價
+                                Fare
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td class="mrt">
-                                <div>台北車站</div>
+                                <div>Taipei Main Station</div>
                                 <div class="line-section">
                                     <div class="line-box">
                                         <span class="line-number bl12">BL12</span>
@@ -271,7 +270,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>15 分鐘</td>
+                            <td>15 mins</td>
                             <td>NTD $25</td>
                         </tr>
                     </tbody>
@@ -279,40 +278,40 @@
                 <div class="shadow-divider"></div>
                 <p class="transport-title">iBus(1960)</p>
                 <div class="ibus-location">
-                    <p>公車位置:</p>
+                    <p>Bus location:</p>
                     <p>
-                        第一航廈: 地下1樓旅客候車區
+                        Terminal 1: Passenger bus waiting area on Floor B1
                     </p>
                     <p>
-                        第二航廈: 1樓旅客候車區
+                        Terminal 2: Passenger bus waiting area on the 1st floor
                     </p>
                 </div>
                 <table class="transport-mobile-table">
                     <thead>
                         <tr>
-                            <th>路線/時刻表</th>
-                            <th>行程時間</th>
-                            <th>票價</th>
+                            <th>Line/Timetable</th>
+                            <th>Travel Time</th>
+                            <th>Fare</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td class="ibus">
                                 <div class="line-name">
-                                    <span>第一航廈/第二航廈</span>
+                                    <span>Terminal 1/2</span>
                                     <el-icon class="arrow">
                                         <ElIconRight />
                                     </el-icon>
-                                    <span>台北君悅酒店</span>
+                                    <span>Grand Hyatt Taipei</span>
                                 </div>
                                 <div class="time-table">
-                                    <span class="title">時刻表:</span>
-                                    <span class="time">00:15、12:40、06:50、07:30、09:00、10:20、
+                                    <span class="title">Timetable:</span>
+                                    <span>00:15、12:40、06:50、07:30、09:00、10:20、
                                         11:20、12:40、14:00、15:00、15:40、17:40、
                                         19:10、21:10、22:40</span>
                                 </div>
                             </td>
-                            <td>90 分鐘</td>
+                            <td>90 mins</td>
                             <td>NTD $190</td>
                         </tr>
                     </tbody>
@@ -322,49 +321,32 @@
                 <table class="transport-mobile-table">
                     <thead>
                         <tr>
-                            <th>路線/時刻表</th>
-                            <th>行程時間</th>
-                            <th>票價</th>
+                            <th>Line/Timetable</th>
+                            <th>Travel Time</th>
+                            <th>Fare</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="taxi">
-                            <td class="no-radius">
-                                <div>桃園機場</div>
-                                <div class="taxi-arrow">-></div>
-                                <div>台北國際會議中心</div>
-                            </td>
-                            <td>
-                                <div>1-1.5</div>
-                                <div>小時</div>
-                            </td>
-                            <td class="no-radius">
-                                <div>NTD</div>
-                                <div>$1310</div>
-                            </td>
+                            <td class="no-radius">Taiyuan Airport -> TICC</td>
+                            <td>1-1.5 hr</td>
+                            <td class="no-radius">NTD $1310</td>
                         </tr>
-                        <tr class="taxi">
-                            <td>
-                                <div>台北松山機場捷運</div>
-                                <div class="taxi-arrow">-></div>
-                                <div>台北國際會議中心</div>
-                            </td>
-                            <td>
-                                <div>10-30</div>
-                                <div>分鐘</div>
-                            </td>
+                        <tr>
+                            <td>Taipei Songshan Airport MRT -> TICC</td>
+                            <td>10-30 mins</td>
                             <td>NTD $225</td>
                         </tr>
                     </tbody>
                 </table>
-                <!-- <p class="tips">*MRT (Taiwan Mass Rapid Transit)</p> -->
+                <p class="tips">*MRT (Taiwan Mass Rapid Transit)</p>
             </div>
 
-            <div class="paragraph">桃園機場捷運</div>
+            <div class="paragraph">Taoyuan Airport MRT</div>
             <div class="mrt-img-box">
                 <img src="../assets/img/mrt_en.jpg" alt="">
             </div>
-            <div class="paragraph">台北捷運</div>
+            <div class="paragraph">MRT(Taiwan High Speed Rall)</div>
             <div class="taipei-mrt-img-box">
                 <img src="../assets/img/metrotaipeimap.jpg" alt="">
             </div>
@@ -411,8 +393,17 @@ const backToTop = () => {
         }
     }
 
+    .banner-box {
+        margin-top: 1rem;
+
+        img {
+            width: 100%;
+            box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.5);
+        }
+    }
+
     .title-section {
-        margin: 1rem 0;
+        margin-top: 1rem;
         text-align: center;
         position: relative;
 
@@ -780,7 +771,7 @@ const backToTop = () => {
                 padding: 1rem 1rem 1rem 1rem;
                 font-size: 1.3rem;
                 border: 1px solid black;
-                // text-align: center;
+                text-align: center;
 
                 &:first-of-type {
                     border-bottom-left-radius: 15px;
@@ -796,12 +787,6 @@ const backToTop = () => {
                 }
             }
 
-            .time {
-                justify-content: flex-start;
-                display: inline-block;
-                margin-left: 0.5rem;
-            }
-
         }
 
     }
@@ -811,7 +796,7 @@ const backToTop = () => {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 2rem;
+        gap: 1rem;
 
         .line-number {
             background-color: #70448E;
@@ -941,14 +926,6 @@ const backToTop = () => {
     .taxi {
         .no-radius {
             border-radius: 0 !important;
-        }
-
-        .taxi-arrow {
-            @media screen and (max-width: 576px) {
-                display: inline-block;
-                transform: rotate(90deg);
-
-            }
         }
     }
 

@@ -2,26 +2,31 @@
     <div>
         <main class="common-section">
             <Banner></Banner>
-            <Breadcrumbs firstRoute="投稿資訊" secoundRoute="投稿獎項" />
-            <Title title="投稿獎項"></Title>
+            <Breadcrumbs firstRoute="Abstracts" secoundRoute="Award" />
+            <Title title="Award"></Title>
 
             <div class="content">
-                <p>TOPBS 2026 組織委員會將從投稿的摘要中，選出優秀作品並領發獎項。 「年輕研究者獎」1名、「最佳海報獎」1名、「最佳影片獎」1名，獎項結果將於10月8日 (四) 通知，獲獎人將於於11月14日
-                    (六) 上台進行口頭報告並頒獲獎項。 </p>
+                <p>The TOPBS 2026 Organizing Committee will select outstanding submissions from the
+                    abstracts received and present the following awards: Young Investigator Award (1 winner), Best
+                    Poster Award (1 winner), and Best Video Award (1 winner).
+                    The award results will be announced on Thursday, October 08, and the winners will give an oral
+                    presentation and receive their awards on Saturday, November 14. </p>
 
 
                 <ul class="main-list">
 
                     <li>
-                        <b>01.年輕研究者獎 (Young Investigator Award)
-                        </b>
+                        <b>01.Young Investigator Award</b>
                         <ul class="second-list">
-                            <li>【得獎名額】：1名 </li>
-                            <li>【獎勵內容】：新台幣10,000元及獎狀 </li>
-                            <li>【申請資格】：
+                            <li>Number of Winners: 1 </li>
+                            <li>Award: USD 800 and a Young Investigator Award certificate </li>
+                            <li>Eligibility:
                                 <ul style="list-style-type: circle;">
-                                    <li>必須是45歲（含）以下的研究人員。</li>
-                                    <li>完成線上報名並投稿摘要，摘要被接受後，必須提交電子海報。</li>
+                                    <li>Researchers aged 45 or younger. </li>
+                                    <li>Must complete online registration and submit an abstract. Upon acceptance, an
+                                        e-poster must be submitted.
+
+                                    </li>
                                 </ul>
 
                             </li>
@@ -29,13 +34,15 @@
                     </li>
 
                     <li>
-                        <b>02.最佳海報獎 (Best Poster Award)</b>
+                        <b>02.Best Poster Award</b>
                         <ul class="second-list">
-                            <li>【得獎名額】：1名 </li>
-                            <li>【獎勵內容】：新台幣10,000元及獎狀 </li>
-                            <li>【申請資格】：
+                            <li>Number of Winners: 1 </li>
+                            <li>Award: USD 800 and a Best Poster Award certificate </li>
+                            <li>Eligibility:
                                 <ul style="list-style-type: circle;">
-                                    <li>完成線上報名並投稿摘要，摘要被接受後，必須提交電子海報。 </li>
+                                    <li>Must complete online registration and submit an abstract. Upon acceptance, an
+                                        e-poster must be submitted.
+                                    </li>
                                 </ul>
 
                             </li>
@@ -43,13 +50,14 @@
                     </li>
 
                     <li>
-                        <b>03.最佳影片獎 (Best Video Award)</b>
+                        <b>03.Best Video Award </b>
                         <ul class="second-list">
-                            <li>【得獎名額】：1名 </li>
-                            <li>【獎勵內容】：新台幣10,000元及獎狀 </li>
-                            <li>【申請資格】：
+                            <li>Number of Winners: 1 </li>
+                            <li>Award: USD 800 and a Best Video Award certificate </li>
+                            <li>Eligibility:
                                 <ul style="list-style-type: circle;">
-                                    <li>完成線上報名並投稿摘要，摘要被接受後，必須提交影片檔。
+                                    <li>Must complete online registration and submit an abstract. Upon acceptance, a
+                                        video file must be submitted.
                                     </li>
                                 </ul>
 
@@ -60,10 +68,11 @@
 
 
                 <ul class="none-style-list">
-                    <li><b>請注意： </b>
+                    <li><b>Note:</b>
                         <ul class="disc-list">
-                            <li>獎金均為稅前金額 </li>
-                            <li>若投稿數量不足或其他相關因素，主辦單位保留獎項從缺之權利 </li>
+                            <li>All prize amounts are before tax.</li>
+                            <li>The organizer reserves the right to withhold awards if there is an insufficient number
+                                of submissions or due to other related reasons. </li>
                         </ul>
                     </li>
                 </ul>

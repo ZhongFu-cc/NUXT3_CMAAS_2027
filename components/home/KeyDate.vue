@@ -5,16 +5,17 @@
                 <div class="title-image-box">
                     <img class="home-banner-bak" src="../../assets/img/CalendarHeatMap.svg">
                 </div>
-                <h1 class="title">重要日期</h1>
+                <h1 class="title">{{ $t('keyDates') }}</h1>
             </div>
         </div>
 
         <ul class="key-date-item-box">
             <li class="key-date-item">
                 <div class="key-date-info">
-                    <p class="date-box"><span>17</span><span class="month">4月<span class="year">2026</span></span>
+                    <p class="date-box"><span>17</span><span class="month">{{ $t('april') }}<span
+                                class="year">2026</span></span>
                     </p>
-                    <p class="info">摘要投稿開放</p>
+                    <p class="info">Abstract Submission Opens</p>
                 </div>
                 <a class="key-date-link" href="" target="_blank">
                     <img class="home-banner-bak" src="../../assets/img/save date-01.svg">
@@ -23,8 +24,9 @@
 
             <li class="key-date-item">
                 <div class="key-date-info">
-                    <p class="date-box"><span>21</span><span class="month">8月<span class="year">2026</span></span></p>
-                    <p class="info">摘要提交截止</p>
+                    <p class="date-box"><span>21</span><span class="month">{{ $t('August') }}<span
+                                class="year">2026</span></span></p>
+                    <p class="info">Abstract Submission Deadline</p>
                 </div>
                 <a class="key-date-link" href="" target="_blank">
                     <img class="home-banner-bak" src="../../assets/img/save date-01.svg">
@@ -45,9 +47,10 @@
 
             <li class="key-date-item">
                 <div class="key-date-info">
-                    <p class="date-box"><span>07</span><span class="month">9月<span class="year">2026</span></span>
+                    <p class="date-box"><span>07</span><span class="month">{{ $t('september') }}<span
+                                class="year">2026</span></span>
                     </p>
-                    <p class="info">摘要入選通知</p>
+                    <p class="info">Notification of Acceptance</p>
                 </div>
                 <a class="key-date-link" href="" target="_blank">
                     <img class="home-banner-bak" src="../../assets/img/save date-01.svg">
@@ -66,7 +69,8 @@
             </li> -->
             <li class="key-date-item">
                 <div class="key-date-info">
-                    <p class="date-box"><span>14~15</span><span class="month">11月<span class="year">2026</span></span>
+                    <p class="date-box"><span>14~15</span><span class="month">{{ $t('november') }}<span
+                                class="year">2026</span></span>
                     </p>
                     <p class="info">TOPBS2026</p>
                 </div>
@@ -164,7 +168,7 @@
                         align-items: center;
                         text-align: center;
                         flex-wrap: none;
-                        width: 6rem;
+                        width: 5rem;
 
                         .year {
                             font-size: 0.6rem;

@@ -1,75 +1,84 @@
 <template>
-    <main class="common-section" v-loading="loading">
+    <main class="common-section">
         <Banner></Banner>
-        <Breadcrumbs firstRoute="Abstract" secoundRoute="Abstract Submission"></Breadcrumbs>
+        <Breadcrumbs firstRoute="Abstracts" secoundRoute="Abstract Submission"></Breadcrumbs>
         <Title title="Abstract Submission"></Title>
 
         <el-form class="form" ref="formRef" :model="data" :rules="formRules" labelPosition="top">
 
             <div class="main-form">
                 <div class="left-seciton">
-                    <el-form-item :label="$t('abstractType')" prop="absType">
-                        <el-select v-model="data.absType" placeholder="Type">
-                            <el-option :label="$t('posterPresentation')" value="Poster Presentation"></el-option>
-                            <el-option :label="$t('videoPresentation')" value="Video Presentation"></el-option>
-                            <el-option :label="$t('youngInvestigator')" value="Young Investigator"></el-option>
-                        </el-select>
+                    <el-form-item label="Type" prop="absType">
+                        <el-select disabled v-model="data.absType" placeholder="Type"></el-select>
                     </el-form-item>
-                    <el-form-item :label="$t('abstractTitle')" prop="absTitle">
-                        <el-input v-model="data.absTitle" :placeholder="$t('abstractTitle')"></el-input>
+                    <el-form-item label="Abstract Title" prop="absTitle">
+                        <el-input v-model="data.absTitle" placeholder="Titile"></el-input>
                     </el-form-item>
-                    <el-form-item :label="$t('firstAuthor')" prop="firstAuthor">
-                        <el-input v-model="data.firstAuthor" :placeholder="$t('firstAuthor')"></el-input>
+                    <el-form-item label="First Author" prop="firstAuthor">
+                        <el-input v-model="data.firstAuthor" placeholder="First Author"></el-input>
                     </el-form-item>
 
-                    <el-form-item v-if="data.absType === 'Young Investigator'" :label="$t('firstAuthorBirthday')"
+                    <el-form-item v-if="data.absType === 'Young Investigator'" label="First Author Birthday"
                         prop="firstAuthorBirthday">
-                        <el-date-picker v-model="data.firstAuthorBirthday" :placeholder="$t('firstAuthorBirthday')"
+                        <el-date-picker v-model="data.firstAuthorBirthday" placeholder="First Author Affiliation"
                             value-format="YYYY-MM-DD"></el-date-picker>
                     </el-form-item>
 
-                    <el-form-item :label="$t('speaker')" prop="speaker">
-                        <el-input v-model="data.speaker" :placeholder="$t('speaker')"></el-input>
+                    <el-form-item label="Speaker" prop="speaker">
+                        <el-input v-model="data.speaker" placeholder="Speaker"></el-input>
                     </el-form-item>
-                    <el-form-item :label="$t('speakerAffiliation')" prop="speakerAffiliation">
-                        <el-input v-model="data.speakerAffiliation" :placeholder="$t('speakerAffiliation')"></el-input>
+                    <el-form-item label="Speaker Affiliation" prop="speakerAffiliation">
+                        <el-input v-model="data.speakerAffiliation" placeholder="Speaker Affiliation"></el-input>
                     </el-form-item>
                 </div>
                 <div class="right-section">
-                    <el-form-item :label="$t('correspondingAuthor')" prop="correspondingAuthor">
-                        <el-input v-model="data.correspondingAuthor"
-                            :placeholder="$t('correspondingAuthor')"></el-input>
+                    <el-form-item label="Corresponding Author" prop="correspondingAuthor">
+                        <el-input v-model="data.correspondingAuthor" placeholder="Corresponding Author"></el-input>
                     </el-form-item>
-                    <el-form-item :label="$t('correspondingAuthorMail')" prop="correspondingAuthorEmail">
+                    <el-form-item label="Corresponding Author Mail" prop="correspondingAuthorEmail">
                         <el-input v-model="data.correspondingAuthorEmail"
-                            :placeholder="$t('correspondingAuthorMail')"></el-input>
+                            placeholder="Corresponding Author Email"></el-input>
                     </el-form-item>
-                    <el-form-item :label="$t('correspondingAuthorPhone')" prop="correspondingAuthorPhone">
+                    <el-form-item label="Corresponding Author Phone" prop="correspondingAuthorPhone">
                         <el-input v-model="data.correspondingAuthorPhone"
-                            :placeholder="$t('correspondingAuthorPhone')"></el-input>
+                            placeholder="Corresponding Author Phone"></el-input>
                     </el-form-item>
-                    <el-form-item class="allAuthors" :label="$t('allAuthors')" prop="allAuthor">
-                        <el-input type="textarea" v-model="data.allAuthor" :placeholder="$t('allAuthors')"></el-input>
+                    <el-form-item class="allAuthors" label="All Authors(Use semicolon to separate authors)"
+                        prop="allAuthor">
+                        <el-input type="textarea" v-model="data.allAuthor" placeholder="All Authors"></el-input>
                     </el-form-item>
-                    <el-form-item class="allAuthors" :label="$t('allAuthorsAffiliation')" prop="allAuthorAffiliation">
+                    <el-form-item class="allAuthors"
+                        label="All Authors Affiliation(Use semicolon to separate authors affilication)"
+                        prop="allAuthorAffiliation">
                         <el-input type="textarea" v-model="data.allAuthorAffiliation"
-                            :placeholder="$t('allAuthorsAffiliation')"></el-input>
+                            placeholder="All Authors Affiliation"></el-input>
                     </el-form-item>
                 </div>
             </div>
+
 
             <div class="file-upload">
                 <el-form-item label="Pdf File" prop="fileList">
                     <el-upload ref="uploadRef" class="upload-demo" :limit="1" :on-change="handlePdfUpload"
                         :auto-upload="false" :on-remove="handleRemove" :on-exceed="handleExceed">
-                        <el-button size="small" type="primary">{{ $t('upload') }}</el-button>
-                        <div slot="tip" class="el-upload__tip">{{ $t('uploadLimit') }}</div>
+                        <el-button size="small" type="primary">Upload</el-button>
+                        <div slot="tip" class="el-upload__tip">
+                            <span>Only upload pdf file with size less than 20mb</span>
+                            <span class="warning">Updating the paper requires re-uploading.</span>
+                        </div>
                     </el-upload>
                 </el-form-item>
+                <!-- <el-form-item label="File2" prop="file2">
+                    <el-upload ref="uploadRef1" class="upload-demo" :limit="1" :on-change="handleDocxUpload"
+                        :auto-upload="false" action="">
+                        <el-button size="small" type="primary">Upload</el-button>
+                        <div slot="tip" class="el-upload__tip">only upload word file with size less than 20mb</div>
+                    </el-upload>
+                </el-form-item> -->
             </div>
 
             <el-form-item label="" prop="submit">
-                <el-button class="submit-btn" type="primary" @click="submit(formRef)">{{ $t('submit') }}</el-button>
+                <el-button class="submit-btn" type="primary" @click="submit(formRef)">Submit</el-button>
             </el-form-item>
         </el-form>
     </main>
@@ -79,42 +88,45 @@
 import Banner from '@/components/layout/Banner.vue';
 import Title from '@/components/layout/Title.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
+
 import type { FormInstance, FormRules, UploadProps, UploadUserFile, UploadFile, UploadFiles, UploadInstance } from 'element-plus';
 
-const { t, locale, setLocale } = useLang();
-const { isLogin, checkLoginState, memberInfo } = useAuth();
-
-useSeoMeta({
-    title: 'Abstract Submission - TOPBS 2026 International Conference on Oncoplastic Breast Surgery',
-    description: 'Welcome to the abstract submission page for the 9th IOPBS (International Oncoplastic Breast Surgery Society) & TOPBS (Taiwan Oncoplastic Breast Surgery Society) Conference 2026. Submit your abstracts for poster, video, or young investigator presentations and be part of this prestigious event in Taipei.',
-    keywords: 'Abstract Submission, TOPBS 2026 '
-})
 
 const router = useRouter();
 
+const paperId = useRoute().params.paperId as string;
+console.log(paperId);
+
+
+/**-------------- Member info --------------- */
+const memberInfo = reactive<any>({});
+
+const getMemberInfo = async () => {
+    let res = await CSRrequest.get('/member/getMemberInfo');
+    console.log(res);
+    if (res.code === 10002 || res.code === 401) {
+        localStorage.removeItem("Authorization-member");
+        router.push("/login");
+    } else if (res.code === 200) {
+        Object.assign(memberInfo, res.data);
+        data.memberId = memberInfo.memberId;
+
+        let orderRes = await CSRrequest.get(`/orders/owner`);
+
+
+        console.log(orderRes);
+    }
+}
+
+/**------------------------------------------ */
 const checkFileSize = (size: number) => {
     return size < 1024 * 1024 * 20;
 }
 
-const formRef = ref<FormInstance>();
-const data = reactive<any>({
-    absType: 'Poster Presentation',
-    absTitle: '',
-    firstAuthor: '',
-    firstAuthorBirthday: '',
-    speaker: '',
-    speakerAffiliation: '',
-    correspondingAuthor: '',
-    correspondingAuthorEmail: '',
-    correspondingAuthorPhone: '',
-    allAuthor: '',
-    allAuthorAffiliation: '',
-    fileList: [],
-})
-
 const handleRemove = (file: UploadUserFile, fileList: UploadUserFile[]) => {
     console.log(data.fileList);
     data.fileList = [];
+
     if (formRef.value) {
         formRef.value.validateField('fileList');
     }
@@ -123,13 +135,14 @@ const handleRemove = (file: UploadUserFile, fileList: UploadUserFile[]) => {
 const handleExceed: UploadProps['onExceed'] = (files: UploadUserFile[], fileList: UploadUserFile[]) => {
     console.log(files);
     ElMessage.error(`You can only upload 1 file, please upload again`);
-    if (files.length > 0) {
+    if (files.length > 0 ) {
         fileList.splice(0, fileList.length);
+    
         data.fileList = [];
         console.log(data.fileList);
         console.log(fileList);
     }
-}
+}   
 
 const handlePdfUpload: UploadProps['onChange'] = (file: UploadUserFile, uploadFiles) => {
     console.log(file);
@@ -137,6 +150,7 @@ const handlePdfUpload: UploadProps['onChange'] = (file: UploadUserFile, uploadFi
         ElMessage.error('File is empty');
         return false;
     }
+
 
     if (file.status === 'ready' && file.size) {
         if (!checkFileSize(file.size)) {
@@ -150,10 +164,34 @@ const handlePdfUpload: UploadProps['onChange'] = (file: UploadUserFile, uploadFi
             return;
         }
         data.fileList.push(file);
+        console.log(data.fileList);
         if (formRef.value) {
             formRef.value.validateField('fileList');
         }
     }
+
+}
+const handleDocxUpload: UploadProps['onChange'] = (file: UploadUserFile, uploadFiles) => {
+    if (file.size == 0) {
+        ElMessage.error('File is empty');
+        return false;
+    }
+
+
+    if (file.status === 'ready' && file.size) {
+        if (!checkFileSize(file.size)) {
+            ElMessage.error('File size must be less than 20mb');
+            uploadFiles.pop();
+            return;
+        }
+        if (file.name.split('.').pop() !== 'docx') {
+            ElMessage.error('File must be docx');
+            uploadFiles.pop();
+            return;
+        }
+        data.fileList.push(file);
+    }
+
 }
 
 const checkAge = (rule: any, value: any, callback: any) => {
@@ -179,6 +217,37 @@ const transformDate = (date: string) => {
     return `${year}-${month}-${day}`;
 }
 
+
+const formRef = ref<FormInstance>();
+const data = reactive<any>({
+    absType: 'poster',
+    absTitle: '',
+    firstAuthor: '',
+    firstAuthorBirthday: '',
+    speaker: '',
+    speakerAffiliation: '',
+    correspondingAuthor: '',
+    correspondingAuthorEmail: '',
+    correspondingAuthorPhone: '',
+    allAuthor: '',
+    allAuthorAffiliation: '',
+    fileList: [],
+})
+
+const getPaperById = async () => {
+    let res = await CSRrequest.get(`/paper/owner/${paperId}`);
+    console.log(res)
+    const {status, publicationNumber, publicationGroup, reportLocation, reportTime, paperFileUpload, availablePaperReviewers, assignedPaperReviewers, tagList ,...resdata} = res.data;
+    console.log(resdata);   
+
+    if (res.code === 200) {
+        Object.assign(data, resdata);
+    } else {
+        router.push('/member-center');
+    }
+}
+
+
 const formRules = ref<FormRules>({
     absType: [{ required: true, message: 'Please select type', trigger: 'blur' }],
     absTitle: [{ required: true, message: 'Please input title', trigger: 'blur' }],
@@ -194,78 +263,48 @@ const formRules = ref<FormRules>({
     fileList: [{ required: true, message: 'Please upload file', trigger: 'change' }],
 })
 
-const loading = ref(false);
-const submitData = new FormData();
 
+
+
+const submitData = new FormData();
 const submit = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     console.log(data);
-    data.memberId = memberInfo.value.memberId;
     formEl.validate(async (valid) => {
         if (valid) {
-            loading.value = true;
-            // data.firstAuthorBirthday = transformDate(data.firstAuthorBirthday);
             const { fileList, ...restData } = data;
             submitData.append('data', JSON.stringify(restData));
             data.fileList.forEach((file: any) => {
-                submitData.append('files', file.raw);
+                console.log(file, "from data");
+                submitData.append('file', file.raw);
             })
-            let res = await CSRrequest.post('/paper', {
+            console.log(submitData.get('file'));
+            let res = await CSRrequest.put('/paper/owner', {
                 body: submitData
             });
+            console.log(res);
             if (res.code === 200) {
-                ElMessage.success('提交成功!');
-                loading.value = false;
-                router.push('/member-center');
-            } else if (res.code === 400) {
-                ElMessage.error(`提交失敗!${res.msg}`);
-            } else if (res.code === 500) {
-                ElMessage.error(`提交失敗!${res.msg}`);
+                ElMessage.success('Submit success!');
+                router.push('/abstract');
             } else {
-                ElMessage.error('未知錯誤!');
+                ElMessage.error('Submit failed!');
             }
-            loading.value = false;
+
         } else {
             console.log('error submit!!');
+            ElMessage.error('Please check the form');
             return false;
         }
     })
 }
 
-const setting = reactive<any>({});
 
-const findSetting = async () => {
-    try {
-        let res = await CSRrequest.get('/setting');
-        console.log(res);
-        Object.assign(setting, res.data);
-        checkAvailable(setting);
-    } catch (error) {
-        console.error('Error fetching setting:', error);
-    }
-}
-
-const checkAvailable = (paper: any) => {
-    // 獲取今日時間
-    const currentDate = new Date();
-    // 將截止時間字串轉換為 Date 物件
-    const endDate = new Date(setting.abstractSubmissionEndTime);
-
-    // if (currentDate >= endDate) {
-    //     router.push("/member-center");
-    //     ElMessage.error('Abstract submission is closed');
-    // }
-}
 
 onMounted(() => {
-    // checkLoginState();
-    findSetting();
-
-    if (!isLogin.value) {
-        router.push("/login");
-        ElMessage.error('Please log in first');
-    }
+    getMemberInfo();
+    getPaperById();
 })
+
 </script>
 
 <style lang="scss" scoped>
@@ -292,7 +331,9 @@ onMounted(() => {
         @media screen and (max-width: 768px) {
             flex-direction: column;
             gap: 2rem;
+
         }
+
 
         .left-seciton {
             flex: 1;
@@ -305,12 +346,15 @@ onMounted(() => {
             display: flex;
             flex-direction: column;
 
+
             .category {
+
                 :deep(.el-radio-group) {
                     flex-direction: column;
                     display: flex;
                     justify-content: flex-start;
                     align-items: flex-start;
+
                 }
 
                 :deep(.el-form-item__error) {
@@ -326,6 +370,7 @@ onMounted(() => {
                 :deep(.el-select) {
                     width: 150px;
                 }
+
             }
         }
     }
@@ -343,6 +388,15 @@ onMounted(() => {
                         transform: scale(1.05);
                         transition: all 0.3s ease-in-out;
                         cursor: pointer;
+                    }
+                }
+
+                .el-upload__tip {
+                    display: flex;
+                    flex-direction: column;
+                    .warning {
+                        color: red;
+                        font-size: 0.8rem;
                     }
                 }
             }

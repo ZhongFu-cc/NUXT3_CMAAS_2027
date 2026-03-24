@@ -1,8 +1,8 @@
 <template>
     <main class="common-section">
         <Banner />
-        <Breadcrumbs first-route="會員" secound-route="登入" />
-        <Title title="會員登入" />
+        <Breadcrumbs first-route="Member" secound-route="login" />
+        <Title title="Member Login" />
         <div class="main-section">
             <el-form class="login-form" ref="formRef" :model="loginInfo" :rules="formRule"
                 :label-position="formatLabelPosition">
@@ -150,7 +150,7 @@ onMounted(() => {
     font-family: $common-section-font-family;
 
     .main-section {
-        // background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
+        background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
         display: flex;
         justify-content: center;
         align-items: center;

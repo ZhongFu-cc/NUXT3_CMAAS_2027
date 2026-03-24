@@ -2,18 +2,17 @@
     <div>
         <main class="common-section">
             <Banner></Banner>
-            <Breadcrumbs firstRoute="投稿資訊" secoundRoute="投稿規範"></Breadcrumbs>
-            <Title title="投稿規範"></Title>
+            <Breadcrumbs firstRoute="Abstract" secoundRoute="Submission Guidelines"></Breadcrumbs>
+            <Title title="Submission Guidelines"></Title>
 
             <div class="content">
-                <!-- <h1 class="sub-title">Submission Guidelines</h1> -->
-                <h1 class="">重要日程</h1>
+                <h1 class="">Important Dates</h1>
 
                 <div class="important-date-info">
                     <ul class="disc-list">
-                        <li class="note-text">摘要提交截止日：2026年8月21日（星期五） </li>
-                        <li>摘要接受通知：2026年9月7日（星期一） </li>
-                        <li>電子海報及影片檔上傳截止日：2026年9月21日（星期一） </li>
+                        <li class="note-text">Abstract Submission Deadline: August 21, 2026 (Friday)</li>
+                        <li>Abstract Acceptance Notification: September 7, 2026 (Monday)</li>
+                        <li>Electronic Poster and Video Upload Deadline: September 21, 2026 (Monday)</li>
                     </ul>
                 </div>
 
@@ -21,146 +20,165 @@
                     <!-- <h1>Review Process</h1> -->
                     <br>
                     <table class="review-process-table">
-                        <tr>
-                            <td rowspan="2">初審 </td>
-                            <td>4/17 - 8/21 </td>
-                            <td>官網註冊會員後即可線上投稿 </td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td rowspan="2">Initial Review </td>
+                                <td>April 17 - August 21 </td>
+                                <td>Submit abstracts online after complete registration on the official website </td>
+                            </tr>
 
-                        <tr>
-                            <td>8/22 - 9/6 </td>
-                            <td>評審委員針對投稿之摘要進行審核 </td>
-                        </tr>
+                            <tr>
+                                <td>August 22 - September 6 </td>
+                                <td>Abstracts will be reviewed by the committee </td>
+                            </tr>
+                        </tbody>
 
-                        <tr>
-                            <td rowspan="4">
-                                決審 </td>
-                            <td>9/7 </td>
-                            <td>摘要入選通知 </td>
-                        </tr>
 
-                        <tr>
-                            <td>9/7 - 9/21</td>
-                            <td>電子海報及影片檔上傳官網 </td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td rowspan="4">
+                                    Final Review </td>
+                                <td>September 7 </td>
+                                <td>Notification of accepted abstracts</td>
+                            </tr>
 
-                        <tr>
-                            <td>9/22 - 10/6 </td>
-                            <td>評審委員針對入選之電子海報及影片進行審核並選出得獎論文 </td>
-                        </tr>
-                        <tr>
-                            <td>10/8 </td>
-                            <td>得獎名單公佈 </td>
-                        </tr>
-                        <tr>
-                            <td>口頭報告及頒獎 </td>
-                            <td>11/14 </td>
-                            <td>得獎人於活動當天進行口頭報告並進行頒獎</td>
-                        </tr>
-                        <tr>
-                            <td>入選論文展示 </td>
-                            <td>11/14 - 11/15 </td>
-                            <td>入選之電子海報及影片將於活動會場公開展示 </td>
-                        </tr>
+                            <tr>
+                                <td>September 7 - September 21</td>
+                                <td>E-poster & video upload to the official website. </td>
+                            </tr>
+
+                            <tr>
+                                <td>September 22 - October 6 </td>
+                                <td>Committee reviews accepted e-posters and videos to select award winners </td>
+                            </tr>
+                            <tr>
+                                <td>October 8 </td>
+                                <td>Announcement of award winners</td>
+                            </tr>
+
+                        </tbody>
+
+
+                        <tbody>
+                            <tr>
+                                <td>Oral Presentation and Award Ceremony </td>
+                                <td>November 14 </td>
+                                <td>Award winners will give oral presentations and receive awards on the event day</td>
+                            </tr>
+                            <tr>
+                                <td>Exhibition of Selected Abstract </td>
+                                <td>November 14 - November 15 </td>
+                                <td>All selected e-posters and videos will be displayed at the event venue. </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
 
 
                 <div class="abstract-submission-box">
-                    <h1 class="submission-title">[摘要提交]</h1>
+                    <h1 class="submission-title">[Abstract Submission]</h1>
 
                     <div class="submission-guidelines-box">
-                        <h2>01. 摘要提交流程 </h2>
+                        <h2>01. Abstract Submission Process </h2>
                         <ul class="secondstep-list">
-                            <li><b>步驟1：</b>註冊並 <nuxt-link class="link" to="/login"> 登入</nuxt-link>.
+                            <li><b>Step 1：</b>Register and <nuxt-link class="link" to="/login">Login</nuxt-link>.
                             </li>
 
-                            <li><b>步驟2：</b> 提交摘要前請先完成線上報名。
+                            <li><b>Step 2：</b> Complete online registration before submitting an abstract.
                             </li>
-                            <li><b>步驟3：</b> 點擊網站上的“投稿資訊” → “摘要提交”，填寫必要資訊並上傳您的摘要。 </li>
-                            <li><b>步驟4：</b> 確認電子郵件中的提交成功通知信。 </li>
+                            <li><b>Step 3：</b> Click on "Abstract" → "Abstract Submission" on the website, fill in the
+                                required information, and upload your abstract. </li>
+                            <li><b>Step 4：</b> Confirm the submission success notification via email. </li>
                         </ul>
                     </div>
 
                     <div class="submission-guidelines-box">
-                        <h2>02. 摘要格式 </h2>
-                        <p class="list-text">僅接受線上提交PDF檔（官方網站），不接受電子郵件、郵寄或傳真。 </p>
+                        <h2>02. Abstract Format </h2>
+                        <p class="list-text">Only PDF files submitted via the official website are accepted. Submissions
+                            via email, mail, or fax will not be accepted. </p>
 
                         <ul class="disc-list">
-                            <li>標題：Tahoma字體，14pt大小；僅首字、專有名詞及縮寫字大寫；不使用縮寫。
+                            <li>Title: Tahoma font, 14pt size; only the first word, proper nouns, and abbreviations are
+                                capitalized; do not use abbreviations.
                             </li>
-                            <li>正文：目的、方法、結果、結論；Tahoma字體，11pt大小；行距18pt；邊距1.5公分；不可附圖表、文獻或關鍵字。 </li>
-                            <li>作者上限30位；機構請先列出醫院，再列大學。 </li>
-                            <li>若作者同時隸屬於醫院及大學，請輸入其服務醫院名稱。 </li>
+                            <li>Body: Purpose, Methods, Results, Conclusion; Tahoma font, 11pt size; line spacing 18pt;
+                                margins 1.5 cm; no figures, tables, references, or keywords. </li>
+                            <li>Up to 30 authors; list institutions starting with hospitals, followed by universities.
+                            </li>
+                            <li>If an author is affiliated with both a hospital and a university, please enter the name
+                                of the hospital they serve. </li>
                         </ul>
                     </div>
 
                     <div class="submission-guidelines-box">
-                        <h2>03. 提交須知 </h2>
+                        <h2>03. Submission Notes </h2>
                         <ul class="disc-list">
-                            <li>發表者必須為第一作者，每篇摘要限一位發表者。 </li>
-                            <li>線上提交表單每個欄位皆須完整填寫。 </li>
-                            <li>摘要標題須反映研究主題，勿包含結果或結論。 </li>
-                            <li>商業名稱可於摘要正文中使用，但須標註®符號。 </li>
-                            <li>摘要標題及正文內如使用縮寫，需加以定義。 </li>
-                            <li>作者須選擇希望申請的獎項類別，但最終由TOPBS 2026委員會決定。 </li>
+                            <li>The presenter must be the first author, and each abstract is limited to one presenter.
+                            </li>
+                            <li>All fields in the online submission form must be completed. </li>
+                            <li>The abstract title should reflect the research topic and must not include results or
+                                conclusions. </li>
+                            <li>Commercial names may be used in the abstract body, but must include the ® symbol. </li>
+                            <li>If abbreviations are used in the abstract title or body, they must be defined. </li>
+                            <li>Authors must select the award category they wish to apply for, but the final decision
+                                will be made by the TOPBS 2026 committee. </li>
                         </ul>
                     </div>
 
                     <div class="submission-guidelines-box">
-                        <h2>04. 利益衝突揭露 </h2>
+                        <h2>04. Conflict of Interest Disclosure </h2>
                         <ul class="disc-list">
-                            <li>所有作者在提交摘要時，須揭露任何可能的利益衝突。
+                            <li>All authors must disclose any potential conflicts of interest at the time of submission
                             </li>
-                            <li>發表作者負責收集及提交所有共同作者的相關資訊。
-
+                            <li>The presenting author is responsible for collecting and submitting information for all
+                                co-authors
                             </li>
                         </ul>
                     </div>
 
                     <div class="submission-guidelines-box">
-                        <h2>05. 要接受通知將以電子郵件寄發，並於網站上個人會員頁面公告 </h2>
+                        <h2>05. Notifications of acceptance will be sent via email and announced on the website member
+                            page </h2>
                         <ul class="disc-list">
-                            <li>摘要接受通知將以電子郵件寄發。 </li>
-                            <li>所有摘要將依標準審查程序由組委會進行審核。 </li>
-                            <li>組委會對摘要接受與否擁有最終決定權。
+                            <li>Acceptance notifications will be sent via email. </li>
+                            <li>All abstracts will be reviewed by the committee according to the standard review
+                                process. </li>
+                            <li>The committee reserves the final decision on abstract acceptance
+                                .
                             </li>
                         </ul>
                     </div>
 
 
                     <div class="submission-guidelines-box">
-                        <h2>06. 摘要修改或撤回 </h2>
+                        <h2>06. Abstract Modification or Withdrawal </h2>
                         <ul class="disc-list">
-                            <li>若未完成報名手續，提交的摘要將被撤回。 </li>
-                            <li>可於截止日前在線上系統自行修改已提交的摘要。 </li>
-                            <li>若要修改已接受的摘要，請於接獲摘要接受通知後36小時內，以電子郵件聯繫TOPBS 2026秘書處。 </li>
+                            <li>Abstracts will be withdrawn if registration is not completed. </li>
+                            <li>Abstracts can be modified online before the submission deadline. </li>
+                            <li>To modify an accepted abstract, please contact the TOPBS 2026 Secretariat via email
+                                within 36 hours of receiving the acceptance notification. </li>
                         </ul>
                     </div>
 
                     <div class="submission-guidelines-box">
-                        <h2>07. 其他提交規定 </h2>
+                        <h2>07. Other Submission Policies </h2>
                         <ul class="disc-list">
-                            <li>送交至TOPBS 2026的摘要須保證未曾於任何同行審查的出版物發表，亦未曾於任何會議上發表。 </li>
-                            <li>S不接受舊作重投稿；若為續作摘要，須有新數據。 </li>
-                            <li>A違規或逾期提交之摘要將被拒絕並退件。
+                            <li>Abstracts submitted to TOPBS 2026 must not have been previously published in
+                                peer-reviewed journals or presented at other conferences.</li>
+                            <li>Submission of encore abstract is not allowed; for follow-up studies, new data must be
+                                included. </li>
+                            <li>Abstracts submitted in violation of the rules or after the deadline will be rejected and
+                                returned.
                             </li>
-                            <li>提交摘要即表示第一作者及共同作者同意授權、保證研究參與、數據正確性及承擔通訊責任。 </li>
+                            <li>Submission implies that the first and co-authors agree to grant usage rights, ensure
+                                data accuracy, and take responsibility for communication. </li>
 
                         </ul>
                     </div>
                 </div>
 
-                <p class="reminder note-text">TOPBS 2026保留修改活動規則及節目內容的權利。如有爭議，TOPBS 2026保有最終決定權。 </p>
-
-
-
-
-                <!-- <el-button>
-                    Online Submission
-                </el-button> -->
-
-
+                <p class="reminder note-text">TOPBS 2026 reserves the right to modify the event rules and program
+                    content. In case of any dispute, TOPBS 2026 holds the final decision. </p>
             </div>
         </main>
 
@@ -184,7 +202,7 @@ useSeoMeta({
     font-family: $common-section-font-family;
 
     .content {
-        width: 60%;
+        width: 65%;
         margin-inline: auto;
         font-size: 1.5rem;
         line-height: 2.5rem;

@@ -2,18 +2,23 @@
     <div class="common-section">
         <Banner />
         <div class="main-section">
-            <Breadcrumbs first-route="會議資訊" secound-route=""></Breadcrumbs>
+            <Breadcrumbs :first-route="$t('conferenceInformation')" secound-route=""></Breadcrumbs>
             <div class="meeting-info">
-                <Title title="研討會資訊"></Title>
+                <Title :title="$t('conferenceInformation')"></Title>
                 <div class="meeting-info-box">
-                    <div>
-                        <p><span class="title">會議時間:</span>2026年11月14日(六)，上午08:00 - 下午17:50
+                    <div class="info-item">
+                        <p class="info-title">{{ $t('conferenceDate') }}:
                         </p>
-                        <p class="time">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            2026年11月15日(日)，上午08:00 - 下午17:10</p>
+                        <p class="info-content">
+                            <span>2026-11-14（{{ $t('saturday') }}），{{ $t('a.m') }}08:00 - {{ $t('p.m') }}17:50</span>
+                            <br>
+                            <span>2026-11-15（{{ $t('sunday') }}），{{ $t('a.m') }}08:00 - {{ $t('p.m') }}17:10</span>
+                        </p>
                     </div>
-                    <p><span class="title">會議地點:</span>台北國際會議中心(TICC)</p>
+                    <div class="info-item">
+                        <p class="info-title">{{ $t('conferenceLocation') }}:</p>
+                        <p class="info-content">{{ $t('ticc') }}</p>
+                    </div>
                 </div>
             </div>
 
@@ -34,7 +39,7 @@
 
             <!-- <el-divider /> -->
             <div class="location">
-                <h1 class="title">會議地點: <span class="location-info">台北國際會議中心(TICC)</span>
+                <h1 class="title">{{ $t('conferenceLocation') }}: <span class="location-info">{{ $t('ticc') }}</span>
                 </h1>
                 <div class="location-info-box">
                     <iframe
@@ -72,19 +77,11 @@ import Breadcrumbs from '~/components/layout/Breadcrumbs.vue';
 
     .main-section {
         width: 60%;
-        margin: 0 auto;
+        margin-inline: auto;
 
         @media screen and (max-width: 1024px) {
             width: 80%;
         }
-    }
-
-
-    .title {
-        font-size: 2.5rem;
-        font-weight: bold;
-        margin: 0rem 0 1rem 0;
-        color: $main-color;
     }
 
     .meeting-info {
@@ -107,17 +104,31 @@ import Breadcrumbs from '~/components/layout/Breadcrumbs.vue';
             align-items: flex-start;
             font-size: 1.5rem;
             line-height: 2rem;
-            gap: 1rem;
+            gap: 2rem;
 
             @media screen and (max-width: 768px) {
                 font-size: 1.2rem;
             }
 
+            .info-item {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
 
-            .title {
+            .info-title {
                 font-weight: bold;
+                font-size: 2rem;
+
+                @media screen and (max-width: 768px) {
+                    font-size: 1.2rem;
+                }
+            }
+
+            .info-content {
+                font-weight: normal;
                 font-size: 1.5rem;
-                margin-right: 1rem;
+                gap: 1rem;
 
                 @media screen and (max-width: 768px) {
                     font-size: 1.2rem;

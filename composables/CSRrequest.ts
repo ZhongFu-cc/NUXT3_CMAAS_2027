@@ -35,7 +35,7 @@ export default {
                     const path = useRoute().path
 
                     if (path !== '/login') {
-                        ElMessage.error('請先登入')
+                        ElMessage.error('Please log in first')
                     }
                 }
 
