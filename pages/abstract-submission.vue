@@ -10,9 +10,8 @@
                 <div class="left-seciton">
                     <el-form-item :label="$t('abstractType')" prop="absType">
                         <el-select v-model="data.absType" placeholder="Type">
-                            <el-option :label="$t('posterPresentation')" value="Poster Presentation"></el-option>
-                            <el-option :label="$t('videoPresentation')" value="Video Presentation"></el-option>
-                            <el-option :label="$t('youngInvestigator')" value="Young Investigator"></el-option>
+                            <el-option v-for="item in abstractTypes" :key="item.value" :label="item.label"
+                                :value="item.value"></el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item :label="$t('abstractTitle')" prop="absTitle">
@@ -29,7 +28,7 @@
                     </el-form-item>
 
                     <el-form-item :label="$t('speaker')" prop="speaker">
-                        <el-input v-model="data.speaker" :placeholder="$t('speaker')"></el-input>
+                        <el-input v-model="data.speaker" disabled :placeholder="$t('speaker')"></el-input>
                     </el-form-item>
                     <el-form-item :label="$t('speakerAffiliation')" prop="speakerAffiliation">
                         <el-input v-model="data.speakerAffiliation" :placeholder="$t('speakerAffiliation')"></el-input>
@@ -79,9 +78,10 @@
 import Banner from '@/components/layout/Banner.vue';
 import Title from '@/components/layout/Title.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
-import type { FormInstance, FormRules, UploadProps, UploadUserFile, UploadFile, UploadFiles, UploadInstance } from 'element-plus';
+import type { FormInstance, FormRules, UploadProps, UploadUserFile } from 'element-plus';
+import type { UploadOptions } from '@/utils/upload';
 
-const { t, locale, setLocale } = useLang();
+const { t } = useI18n();
 const { isLogin, checkLoginState, memberInfo } = useAuth();
 
 useSeoMeta({
@@ -90,14 +90,32 @@ useSeoMeta({
     keywords: 'Abstract Submission, TOPBS 2026 '
 })
 
-const router = useRouter();
-
-const checkFileSize = (size: number) => {
-    return size < 1024 * 1024 * 20;
+interface AbstractInterface {
+    memberId?: number;
+    absType: string;
+    absTitle: string;
+    firstAuthor: string;
+    firstAuthorBirthday: string;
+    speaker: string;
+    speakerAffiliation: string;
+    correspondingAuthor: string;
+    correspondingAuthorEmail: string;
+    correspondingAuthorPhone: string;
+    allAuthor: string;
+    allAuthorAffiliation: string;
+    fileList: UploadUserFile[];
 }
 
+const router = useRouter();
+
+const abstractTypes = ref([
+    { label: t('posterPresentation'), value: 'Poster Presentation' },
+    { label: t('videoPresentation'), value: 'Video Presentation' },
+    { label: t('youngInvestigator'), value: 'Young Investigator' },
+])
+
 const formRef = ref<FormInstance>();
-const data = reactive<any>({
+const data = reactive<AbstractInterface>({
     absType: 'Poster Presentation',
     absTitle: '',
     firstAuthor: '',
@@ -112,49 +130,15 @@ const data = reactive<any>({
     fileList: [],
 })
 
-const handleRemove = (file: UploadUserFile, fileList: UploadUserFile[]) => {
-    console.log(data.fileList);
-    data.fileList = [];
-    if (formRef.value) {
-        formRef.value.validateField('fileList');
-    }
-}
+const uploadOptions = ref<UploadOptions>({
+    fileType: ['pdf'],
+    fileMaxSize: 1024 * 1024 * 20, // 20MB
+    fileLimit: 1
+})
 
-const handleExceed: UploadProps['onExceed'] = (files: UploadUserFile[], fileList: UploadUserFile[]) => {
-    console.log(files);
-    ElMessage.error(`You can only upload 1 file, please upload again`);
-    if (files.length > 0) {
-        fileList.splice(0, fileList.length);
-        data.fileList = [];
-        console.log(data.fileList);
-        console.log(fileList);
-    }
-}
-
-const handlePdfUpload: UploadProps['onChange'] = (file: UploadUserFile, uploadFiles) => {
-    console.log(file);
-    if (file.size == 0) {
-        ElMessage.error('File is empty');
-        return false;
-    }
-
-    if (file.status === 'ready' && file.size) {
-        if (!checkFileSize(file.size)) {
-            ElMessage.error('File size must be less than 20mb');
-            uploadFiles.pop();
-            return;
-        }
-        if (file.name.split('.').pop() !== 'pdf') {
-            ElMessage.error('File must be pdf');
-            uploadFiles.pop();
-            return;
-        }
-        data.fileList.push(file);
-        if (formRef.value) {
-            formRef.value.validateField('fileList');
-        }
-    }
-}
+const handleRemove = handleFileRemove(data.fileList);
+const handleExceed: UploadProps['onExceed'] = handleFileExceed(uploadOptions.value, data.fileList);
+const handlePdfUpload: UploadProps['onChange'] = handleFileUpload(uploadOptions.value, data.fileList);
 
 const checkAge = (rule: any, value: any, callback: any) => {
     if (value) {
@@ -186,11 +170,11 @@ const formRules = ref<FormRules>({
     firstAuthorBirthday: [{ required: true, validator: checkAge, trigger: 'blur' }],
     speaker: [{ required: true, message: 'Please input speaker', trigger: 'blur' }],
     speakerAffiliation: [{ required: true, message: 'Please input speaker affiliation', trigger: 'blur' }],
-    correspondingAuthor: [{ required: true, message: 'Please input corresponding author', trigger: 'blur' }],
-    correspondingAuthorEmail: [{ required: true, message: 'Please input corresponding author email', trigger: 'blur' }],
-    correspondingAuthorPhone: [{ required: true, message: 'Please input corresponding author phone', trigger: 'blur' }],
-    allAuthor: [{ required: true, message: 'Please input all authors', trigger: 'blur' }],
-    allAuthorAffiliation: [{ required: true, message: 'Please input all authors affiliation', trigger: 'blur' }],
+    correspondingAuthor: [{ required: false, message: 'Please input corresponding author', trigger: 'blur' }],
+    correspondingAuthorEmail: [{ required: false, message: 'Please input corresponding author email', trigger: 'blur' }],
+    correspondingAuthorPhone: [{ required: false, message: 'Please input corresponding author phone', trigger: 'blur' }],
+    allAuthor: [{ required: false, message: 'Please input all authors', trigger: 'blur' }],
+    allAuthorAffiliation: [{ required: false, message: 'Please input all authors affiliation', trigger: 'blur' }],
     fileList: [{ required: true, message: 'Please upload file', trigger: 'change' }],
 })
 
@@ -199,7 +183,6 @@ const submitData = new FormData();
 
 const submit = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
-    console.log(data);
     data.memberId = memberInfo.value.memberId;
     formEl.validate(async (valid) => {
         if (valid) {
@@ -232,34 +215,23 @@ const submit = async (formEl: FormInstance | undefined) => {
     })
 }
 
-const setting = reactive<any>({});
-
-const findSetting = async () => {
-    try {
-        let res = await CSRrequest.get('/setting');
-        console.log(res);
-        Object.assign(setting, res.data);
-        checkAvailable(setting);
-    } catch (error) {
-        console.error('Error fetching setting:', error);
+const validateDateTime = async () => {
+    if (!(await useSetting().validateDateTime('abstractSubmissionEndTime'))) {
+        router.push("/member-center");
+        ElMessage.error('Abstract submission is closed');
     }
 }
 
-const checkAvailable = (paper: any) => {
-    // 獲取今日時間
-    const currentDate = new Date();
-    // 將截止時間字串轉換為 Date 物件
-    const endDate = new Date(setting.abstractSubmissionEndTime);
 
-    // if (currentDate >= endDate) {
-    //     router.push("/member-center");
-    //     ElMessage.error('Abstract submission is closed');
-    // }
-}
 
 onMounted(() => {
-    // checkLoginState();
-    findSetting();
+    checkLoginState();
+    validateDateTime();
+
+    if (memberInfo.value) {
+        data.speaker = memberInfo.value.firstName + ' ' + memberInfo.value.lastName;
+        data.speakerAffiliation = memberInfo.value.affiliation;
+    }
 
     if (!isLogin.value) {
         router.push("/login");
