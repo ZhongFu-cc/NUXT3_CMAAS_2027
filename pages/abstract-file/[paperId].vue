@@ -18,7 +18,7 @@
                         <a class="preview-link" :href="envMinio + file.path" target="_blank">{{ $t('download') }}</a>
                         <el-button link @click="openUploadDialog(file.paperFileUploadId)">{{ $t('update') }}</el-button>
                         <el-button link @click="deleteFile(file.paperId, file.paperFileUploadId)">{{ $t('delete')
-                        }}</el-button>
+                            }}</el-button>
                     </td>
                 </tr>
             </tbody>

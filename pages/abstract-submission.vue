@@ -215,34 +215,19 @@ const submit = async (formEl: FormInstance | undefined) => {
     })
 }
 
-const setting = reactive<any>({});
-
-const findSetting = async () => {
-    try {
-        let res = await CSRrequest.get('/setting');
-        console.log(res);
-        Object.assign(setting, res.data);
-        checkAvailable(setting);
-    } catch (error) {
-        console.error('Error fetching setting:', error);
+const validateDateTime = async () => {
+    if (!(await useSetting().validateDateTime('abstractSubmissionEndTime'))) {
+        router.push("/member-center");
+        ElMessage.error('Abstract submission is closed');
     }
 }
 
-const checkAvailable = (paper: any) => {
-    // 獲取今日時間
-    const currentDate = new Date();
-    // 將截止時間字串轉換為 Date 物件
-    const endDate = new Date(setting.abstractSubmissionEndTime);
 
-    // if (currentDate >= endDate) {
-    //     router.push("/member-center");
-    //     ElMessage.error('Abstract submission is closed');
-    // }
-}
 
 onMounted(() => {
     checkLoginState();
-    findSetting();
+    validateDateTime();
+
     if (memberInfo.value) {
         data.speaker = memberInfo.value.firstName + ' ' + memberInfo.value.lastName;
         data.speakerAffiliation = memberInfo.value.affiliation;

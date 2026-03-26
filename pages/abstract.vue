@@ -30,7 +30,7 @@
                                 <el-button v-if="!isDisabled" link class="edit-btn" @click='headToEditPaper(paper)'>{{
                                     $t('edit') }}</el-button>
                                 <el-button link class="see-more-btn" @click='toggleSeeMore(paper)'>{{ $t('view')
-                                }}</el-button>
+                                    }}</el-button>
                                 <el-button v-if="!isDisabled" link class="see-more-btn" @click='deletePaper(paper)'>{{
                                     $t('delete') }}</el-button>
                                 <!-- <el-button v-if="isDisabled" link class="see-more-btn" @click='isClosed'>{{ $t('delete') }}</el-button> -->
@@ -153,10 +153,6 @@
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 import Title from '@/components/layout/Title.vue';
 import Banner from '@/components/layout/Banner.vue';
-
-import type { FormInstance, FormRules, UploadUserFile, UploadProps, UploadInstance } from 'element-plus';
-
-
 const router = useRouter();
 /**----------------------------------------- */
 const memberInfo = reactive<any>({});
@@ -174,7 +170,6 @@ const paperList = reactive<any>([]);
 const getPapperList = async () => {
     let res = await CSRrequest.get('/paper/owner');
     Object.assign(paperList, res.data);
-    console.log(res.data)
 }
 /**------------------------------------------ */
 
@@ -191,13 +186,10 @@ const isOpen = ref(false);
 const paperInfo = ref<any>({});
 const toggleSeeMore = (paper: any) => {
     isOpen.value = true;
-    console.log(paper);
-
     Object.assign(paperInfo.value, paper);
 }
 
 const envMinio = useRuntimeConfig().public.minio
-console.log(envMinio);
 
 const isEvenOrOdd = (index: number) => {
     return index % 2 === 0 ? 'even' : 'odd'
@@ -213,7 +205,6 @@ const setShowAll = () => {
         isShowAll.value = true; // 否則設置為 'left'
         dialogWidth.value = '65%'
     }
-    console.log(isShowAll.value)
 }
 
 const deletePaper = async (paper: any) => {
@@ -238,28 +229,6 @@ const deletePaper = async (paper: any) => {
 
 const isDisabled = ref(false);
 
-const setting = reactive<any>({});
-const findSetting = async () => {
-    try {
-        let res = await CSRrequest.get('/setting');
-        console.log(res);
-        Object.assign(setting, res.data);
-        checkAvailable(setting);
-    } catch (error) {
-        console.error('Error fetching setting:', error);
-    }
-}
-
-
-const checkAvailable = (paper: any) => {
-    const currentDate = new Date();
-    console.log(setting.abstractSubmissionEndTime);
-    const deadLine = new Date(setting.abstractSubmissionEndTime);
-    console.log(currentDate);
-    if (currentDate >= deadLine) {
-        isDisabled.value = true;
-    }
-}
 
 const isClosed = () => {
     ElMessage.error('The submission period has ended, can not be deleted');
@@ -285,13 +254,11 @@ const headToSubmit = () => {
 
 
 /**------------------------------------------ */
-onMounted(() => {
+onMounted(async () => {
     getMemberInfo();
     getPapperList();
-    findSetting();
+    isDisabled.value = !(await useSetting().validateDateTime('abstractSubmissionEndTime'));
     window.addEventListener('resize', setShowAll);
-
-
 })
 
 

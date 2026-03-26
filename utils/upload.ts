@@ -54,6 +54,7 @@ export const handleFileUpload = (options: UploadOptions = {}, fileList: UploadUs
             }
 
             fileList.push(file);
+            return file.raw;
         }
     }
 }
