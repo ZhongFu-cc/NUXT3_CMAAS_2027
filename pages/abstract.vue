@@ -30,7 +30,7 @@
                                 <el-button v-if="!isDisabled" link class="edit-btn" @click='headToEditPaper(paper)'>{{
                                     $t('edit') }}</el-button>
                                 <el-button link class="see-more-btn" @click='toggleSeeMore(paper)'>{{ $t('view')
-                                    }}</el-button>
+                                }}</el-button>
                                 <el-button v-if="!isDisabled" link class="see-more-btn" @click='deletePaper(paper)'>{{
                                     $t('delete') }}</el-button>
                                 <!-- <el-button v-if="isDisabled" link class="see-more-btn" @click='isClosed'>{{ $t('delete') }}</el-button> -->
@@ -245,7 +245,10 @@ const headToSubmit = () => {
 
 
 
+const validateDateTime = async () => {
+    isDisabled.value = !(await useSetting().validateDateTime('abstractSubmissionEndTime'));
 
+}
 
 
 
@@ -257,8 +260,11 @@ const headToSubmit = () => {
 onMounted(async () => {
     getMemberInfo();
     getPapperList();
-    isDisabled.value = !(await useSetting().validateDateTime('abstractSubmissionEndTime'));
     window.addEventListener('resize', setShowAll);
+
+    nextTick(() => {
+        validateDateTime();
+    })
 })
 
 

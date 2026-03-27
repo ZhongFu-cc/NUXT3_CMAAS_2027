@@ -6,10 +6,18 @@
         <div class="main-section">
             <el-form class="login-form" ref="formRef" :model="loginInfo" :rules="formRule"
                 :label-position="formatLabelPosition">
-                <el-form-item class="login-input" prop="email">
+                <!-- <el-form-item class="login-input" prop="email">
                     <el-input v-model="loginInfo.email" placeholder="Email">
                         <template #prefix>
                             <img src="../assets/img/email.svg" alt="">
+                        </template>
+</el-input>
+</el-form-item> -->
+
+                <el-form-item class="login-input" prop="idCard">
+                    <el-input v-model="loginInfo.idCard" placeholder="Passport Number">
+                        <template #prefix>
+                            <img src="../assets/img/passport.svg" alt="">
                         </template>
                     </el-input>
                 </el-form-item>
@@ -68,7 +76,8 @@ const getCaptcha = async () => {
 };
 
 const loginInfo = reactive<any>({
-    email: '',
+    // email: '',
+    idCard: '',
     password: '',
     verificationKey: '',
     verificationCode: ''
@@ -77,9 +86,8 @@ const loginInfo = reactive<any>({
 const formRef = ref<FormInstance>();
 
 const formRule = reactive<FormRules>({
-    email: [
-        { required: true, message: 'Please input email', trigger: 'blur' },
-        { type: 'email', message: 'Please input correct email', trigger: 'blur' }
+    idCard: [
+        { required: true, message: 'Please input ID card', trigger: 'blur' },
     ],
     password: [
         { required: true, message: 'Please input password', trigger: 'blur' },

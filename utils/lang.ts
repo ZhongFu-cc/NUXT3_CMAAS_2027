@@ -12,7 +12,7 @@ export const label = {
         confirmPassword: '確認密碼',
         affiliation: '所屬機構',
         jobTitle: '職稱',
-        idCard: '身分證字號',
+        idCard: '身分證字號(登入帳號)',
         country: '國家',
         remitAccountLast5: '匯款帳號末五碼',
         countryCode: '聯絡電話',
@@ -64,7 +64,10 @@ export const label = {
         videoPresentation: '影片發表',
         upload: '上傳',
         uploadLimit: '請上傳PDF檔，且檔案大小不可超過20MB',
-        alreadyLogin: '您已經登入了'
+        alreadyLogin: '您已經登入了',
+        registrationSuccess: '註冊成功',
+        pleaseEnterChineseName: '請輸入中文姓名',
+
     },
     en: {
         title: "Title",
@@ -77,7 +80,7 @@ export const label = {
         confirmPassword: 'Confirm Password',
         affiliation: 'Affiliation',
         jobTitle: 'Job Title',
-        idCard: 'ID Card Number',
+        idCard: 'Passport Number(Account)',
         country: 'Country',
         remitAccountLast5: 'Last 5 Digits of Remittance Account',
         countryCode: 'Country Code',
@@ -101,8 +104,8 @@ export const label = {
         confirmPasswordValidate2: 'The passwords do not match',
         affiliationValidate: 'Please enter your affiliation',
         jobTitleValidate: 'Please enter your job title',
-        idCardValidate: 'Please enter your ID card number',
-        idCardValidate2: 'Please enter a valid ID card number',
+        idCardValidate: 'Please enter your passport number',
+        idCardValidate2: 'Please enter a valid passport number',
         countryValidate: 'Please select your country',
         countryCodeValidate: 'Please enter your country code',
         phoneNumValidate: 'Please enter your phone number',
@@ -129,7 +132,9 @@ export const label = {
         videoPresentation: 'Video Presentation',
         upload: 'Upload',
         uploadLimit: 'only upload pdf file with size less than 20mb',
-        alreadyLogin: 'You are already logged in'
+        alreadyLogin: 'You are already logged in',
+        registrationSuccess: 'Registration successful',
+        pleaseEnterChineseName: 'Please enter your Chinese name',
     }
 } as const
 
