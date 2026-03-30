@@ -85,7 +85,7 @@ export const label = {
         remitAccountLast5: 'Last 5 Digits of Remittance Account',
         countryCode: 'Country Code',
         phoneNum: 'Phone Number',
-        receipt: 'Receipt Title',
+        receipt: 'Receipt',
         category: 'Category',
         food: 'Dietary Preference',
         foodTaboo: 'Dietary Restrictions',

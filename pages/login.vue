@@ -15,7 +15,7 @@
 </el-form-item> -->
 
                 <el-form-item class="login-input" prop="idCard">
-                    <el-input v-model="loginInfo.idCard" placeholder="Passport Number">
+                    <el-input v-model="loginInfo.idCard" placeholder="Passport Number / 身分證字號">
                         <template #prefix>
                             <img src="../assets/img/passport.svg" alt="">
                         </template>
