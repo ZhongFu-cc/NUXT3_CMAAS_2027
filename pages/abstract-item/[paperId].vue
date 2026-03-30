@@ -27,6 +27,9 @@
                     <el-form-item :label="$t('speaker')" prop="speaker">
                         <el-input v-model="data.speaker" placeholder="Speaker"></el-input>
                     </el-form-item>
+                    <el-form-item :label="$t('speakerEmail')" prop="speakerEmail">
+                        <el-input v-model="data.speakerEmail" placeholder="Speaker Email"></el-input>
+                    </el-form-item>
                     <el-form-item :label="$t('speakerAffiliation')" prop="speakerAffiliation">
                         <el-input v-model="data.speakerAffiliation" placeholder="Speaker Affiliation"></el-input>
                     </el-form-item>
@@ -222,6 +225,7 @@ const data = reactive<any>({
     firstAuthor: '',
     firstAuthorBirthday: '',
     speaker: '',
+    speakerEmail: '',
     speakerAffiliation: '',
     correspondingAuthor: '',
     correspondingAuthorEmail: '',
@@ -251,13 +255,14 @@ const formRules = ref<FormRules>({
     firstAuthor: [{ required: true, message: 'Please input first author', trigger: 'blur' }],
     firstAuthorBirthday: [{ required: true, validator: checkAge, trigger: 'blur' }],
     speaker: [{ required: true, message: 'Please input speaker', trigger: 'blur' }],
+    speakerEmail: [{ required: true, message: 'Please input speaker email', trigger: 'blur' }],
     speakerAffiliation: [{ required: true, message: 'Please input speaker affiliation', trigger: 'blur' }],
-    correspondingAuthor: [{ required: true, message: 'Please input corresponding author', trigger: 'blur' }],
-    correspondingAuthorEmail: [{ required: true, message: 'Please input corresponding author email', trigger: 'blur' }],
-    correspondingAuthorPhone: [{ required: true, message: 'Please input corresponding author phone', trigger: 'blur' }],
-    allAuthor: [{ required: true, message: 'Please input all authors', trigger: 'blur' }],
-    allAuthorAffiliation: [{ required: true, message: 'Please input all authors affiliation', trigger: 'blur' }],
-    fileList: [{ required: true, message: 'Please upload file', trigger: 'change' }],
+    correspondingAuthor: [{ required: false, message: 'Please input corresponding author', trigger: 'blur' }],
+    correspondingAuthorEmail: [{ required: false, message: 'Please input corresponding author email', trigger: 'blur' }],
+    correspondingAuthorPhone: [{ required: false, message: 'Please input corresponding author phone', trigger: 'blur' }],
+    allAuthor: [{ required: false, message: 'Please input all authors', trigger: 'blur' }],
+    allAuthorAffiliation: [{ required: false, message: 'Please input all authors affiliation', trigger: 'blur' }],
+    fileList: [{ required: false, message: 'Please upload file', trigger: 'change' }],
 })
 
 
