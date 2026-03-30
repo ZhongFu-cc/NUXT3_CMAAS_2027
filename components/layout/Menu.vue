@@ -135,7 +135,7 @@
                     </div>
                 </div>
                 <nuxt-link v-if="!isLogin" class="menu-item" to="/login" :class="activeClass('login')">{{ $t('login')
-                    }}</nuxt-link>
+                }}</nuxt-link>
 
             </div>
 
@@ -280,7 +280,7 @@ onUnmounted(() => {
                     .logo {
                         width: 100%;
                         height: 100%;
-                        object-fit: content;
+                        object-fit: contain;
                         object-position: center center;
                     }
 
