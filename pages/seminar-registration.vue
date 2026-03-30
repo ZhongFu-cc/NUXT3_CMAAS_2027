@@ -100,6 +100,10 @@
                                         :placeholder="t.remitAccountLast5"></el-input>
                                 </el-form-item>
 
+                                <el-form-item :label="t.receipt" prop="receipt">
+                                    <el-input v-model="formData.receipt" :placeholder="t.receipt"></el-input>
+                                </el-form-item>
+
 
                                 <div class="member-phone required">
                                     <el-form-item class="country-code" :label="t.phoneNum" prop="countryCode">
@@ -235,7 +239,7 @@ const codeMap: Record<string, number> = {
 
 const checkCkDigit = (rule: any, value: string, callback: any) => {
     if (!value) callback(new Error(t.value.idCardValidate))
-    if (value) {
+    if (value && formData.country === 'Taiwan') {
         console.log('checkCkDigit', value)
 
         if (!/^[A-Z][0-9]{9}$/.test(value)) {
