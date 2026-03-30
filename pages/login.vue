@@ -45,7 +45,7 @@
                 <div class="btn-section">
                     <nuxt-link :to="'retrieve-password'">Retrieve password</nuxt-link>
                     <span>&nbsp /</span>
-                    <nuxt-link :to="'registration-fee'">Sign up</nuxt-link>
+                    <nuxt-link :to="'seminar-registration'">Sign up</nuxt-link>
                 </div>
             </el-form>
         </div>
