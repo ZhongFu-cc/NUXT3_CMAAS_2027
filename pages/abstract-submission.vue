@@ -86,8 +86,9 @@ import Banner from '@/components/layout/Banner.vue';
 import Title from '@/components/layout/Title.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 import type { FormInstance, FormRules, UploadProps, UploadUserFile } from 'element-plus';
-import type { UploadOptions } from '@/utils/upload';
+import { handleFileExceed, handleFileRemove, handleFileUpload, type UploadOptions } from '@/utils/upload';
 import { formRulesEN } from '@/utils/formRules';
+import { useSetting } from '@/composables/useSetting';
 
 const { t } = useI18n();
 const { isLogin, checkLoginState, memberInfo } = useAuth();
