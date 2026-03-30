@@ -270,6 +270,8 @@ const checkCkDigit = (rule: any, value: string, callback: any) => {
         } else {
             callback();
         }
+    } else {
+        callback();
     }
 
 
