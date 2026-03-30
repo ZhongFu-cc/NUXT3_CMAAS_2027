@@ -112,7 +112,7 @@ const login = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     formEl.validate(async (valid) => {
         if (valid) {
-            let res = await CSRrequest.post('/member/login', {
+            let res = await CSRrequest.post('/member/login-idCard', {
                 body: loginInfo
             })
             if (res.code === 500) {
@@ -144,11 +144,23 @@ const getMemberInfo = async () => {
     }
 }
 
+const listenKeydown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+        login(formRef.value);
+    }
+}
+
 onMounted(() => {
     getMemberInfo();
     getCaptcha();
     setFormLabelPosotion();
+    window.addEventListener('keydown', listenKeydown);
     window.addEventListener('resize', setFormLabelPosotion);
+});
+
+onUnmounted(() => {
+    window.removeEventListener('keydown', listenKeydown);
+    window.removeEventListener('resize', setFormLabelPosotion);
 });
 
 

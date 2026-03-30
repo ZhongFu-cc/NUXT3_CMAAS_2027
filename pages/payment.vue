@@ -5,37 +5,37 @@
         <div class="table-section">
             <div class="table-box">
                 <span class="info">*The group registration fee must be paid by the main registration member.</span>
-                <table class="orders-table" :class="isTaiwan(memberInfo.country)">
+                <table class="orders-table" :class="'Taiwan'">
                     <thead>
                         <tr class="header-row">
                             <th>Item</th>
                             <th>Payment Amount</th>
                             <th>Payment Status</th>
-                            <th v-if="memberInfo.country === 'Taiwan'">Last 5 digits of account number</th>
+                            <th>Last 5 digits of account number</th>
                         </tr>
                     </thead>
                     <tbody v-for="(item, index) in orderList">
                         <tr :class="isEvenOrOdd(index)">
                             <td class="first-col">{{ item.itemsSummary }}</td>
                             <td>{{ item.totalAmount }}</td>
-                            <td :class="memberInfo.country === 'Taiwan' ? 'none' : 'last-col'">{{
+                            <td :class="'none'">{{
                                 enums.payMentStatus[item.status]
                                 }}</td>
-                            <td v-if="memberInfo.country === 'Taiwan'" class="last-col">
+                            <td class="last-col">
                                 {{ memberInfo.remitAccountLast5 }}
                             </td>
-                            <td v-if="memberInfo.country !== 'Taiwan'" class="temp-col"></td>
+                            <!-- <td v-if="memberInfo.country !== 'Taiwan'" class="temp-col"></td>
                             <td v-if="memberInfo.country !== 'Taiwan' && item.status === 0" class="not-pay"
                                 :class="(memberInfo.groupRole == 'slave' && item.itemsSummary == 'Group Registration Fee') ? 'disabled' : ''">
                                 <span
                                     @click="getOrders(item.ordersId, (memberInfo.groupRole != 'slave' || item.itemsSummary != 'Group Registration Fee'))">Pay
                                     now</span>
                             </td>
-                            <td v-if="memberInfo.country !== 'Taiwan' && item.status === 2" class="completed">
+                            <td class="completed">
                                 <span><el-icon>
                                         <ElIconCircleCheckFilled />
                                     </el-icon></span>
-                            </td>
+                            </td> -->
                         </tr>
                     </tbody>
                 </table>
