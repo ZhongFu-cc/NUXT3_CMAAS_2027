@@ -20,7 +20,7 @@
                             <td>{{ item.totalAmount }}</td>
                             <td :class="'none'">{{
                                 enums.payMentStatus[item.status]
-                                }}</td>
+                            }}</td>
                             <td class="last-col">
                                 {{ memberInfo.remitAccountLast5 }}
                             </td>
@@ -39,6 +39,10 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="payment-info">
+                <p>*戶名 : 台灣乳房腫瘤手術暨重建學會</p>
+                <p>*合作金庫銀行 : 長庚分行 帳號:3638871000153</p>
             </div>
         </div>
         <!-- Bearer 7bedca56-c711-4559-af47-afd6d4224da8 -->
@@ -161,6 +165,7 @@ onMounted(() => {
         margin-top: 1rem;
         padding: 2rem;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         // background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
@@ -328,6 +333,19 @@ onMounted(() => {
             }
         }
 
+
+    }
+
+    .payment-info {
+        font-size: 1.3rem;
+        font-weight: bold;
+        text-align: start;
+        border-radius: 15px;
+        width: 70vw;
+
+        @media screen and (max-width: 1048px) {
+            font-size: 1rem;
+        }
     }
 
 
