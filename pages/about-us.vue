@@ -91,21 +91,21 @@ import Breadcrumbs from '~/components/layout/Breadcrumbs.vue';
             color: $main-color;
             flex: 1;
             padding: 0 20px;
-            font-size: 1.5rem;
+            font-size: 1rem;
             display: flex;
             flex-direction: column;
             gap: 2rem;
 
-            @media screen and (max-width: 1920px) {
-                font-size: 1.5rem;
-            }
+            // @media screen and (max-width: 1920px) {
+            //     font-size: 0.8rem;
+            // }
 
-            @media screen and (max-width: 1440px) {
-                font-size: 1rem;
-            }
+            // @media screen and (max-width: 1440px) {
+            //     font-size: 0.8rem;
+            // }
 
             @media screen and (max-width: 768px) {
-                font-size: 1.5rem;
+                font-size: 0.6rem;
 
             }
         }

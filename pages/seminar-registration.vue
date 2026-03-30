@@ -165,16 +165,12 @@ import Title from '@/components/layout/Title.vue';
 
 import countries from '@/assets/data/countries.json'
 
-// const { t, locale } = useI18n()
-
 const { t, setLocale, locale } = useLang()
 
 
 const countryList = ref(countries);
 
 const router = useRouter()
-
-const attendeeType = '2';
 
 
 const { isLogin } = useAuth()
@@ -374,16 +370,8 @@ const vaildConfirmPassword = (rule: any, value: string, callback: any) => {
     }
 }
 
-// const validCategoryExtra = (rule: any, value: string, callback: any) => {
-//     if (formData.category === 1 && !value) {
-//         callback(new Error(t.value.categoryValidateExtra))
-//     } else {
-//         callback()
-//     }
-// }
 
 const checkEmail = (rule: any, value: string, callback: any) => {
-    console.log('checkEmail', value, formData.email)
     if (!value) {
         callback(new Error(t.value.confirmEmail))
     } else if (value !== formData.email) {
@@ -449,19 +437,28 @@ const submit = async (formEl: FormInstance | undefined) => {
     })
 }
 
+const listenKeydown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+        submit(form.value)
+    }
+}
 
 
 
 
 /**---------------------- */
 onMounted(() => {
-    // router.push('/demo-register')
     getCaptcha()
+    window.addEventListener('keydown', listenKeydown)
 
     if (isLogin.value) {
         ElMessage.info(t.value.alreadyLogin)
         router.push('/')
     }
+})
+
+onUnmounted(() => {
+    window.removeEventListener('keydown', listenKeydown)
 })
 </script>
 <style lang="scss" scoped>
