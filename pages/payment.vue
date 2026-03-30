@@ -20,7 +20,7 @@
                             <td>{{ item.totalAmount }}</td>
                             <td :class="'none'">{{
                                 enums.payMentStatus[item.status]
-                            }}</td>
+                                }}</td>
                             <td class="last-col">
                                 {{ memberInfo.remitAccountLast5 }}
                             </td>
@@ -40,11 +40,12 @@
                     </tbody>
                 </table>
             </div>
-            <div class="payment-info">
+            <div v-if="memberInfo.country === 'Taiwan'" class="payment-info">
                 <p>*戶名 : 台灣乳房腫瘤手術暨重建學會</p>
                 <p>*合作金庫銀行 : 長庚分行 帳號:3638871000153</p>
             </div>
         </div>
+
         <!-- Bearer 7bedca56-c711-4559-af47-afd6d4224da8 -->
 
 
