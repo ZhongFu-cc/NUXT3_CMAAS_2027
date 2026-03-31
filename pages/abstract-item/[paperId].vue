@@ -46,8 +46,8 @@
                         <el-input v-model="data.correspondingAuthorPhone"
                             placeholder="Corresponding Author Phone"></el-input>
                     </el-form-item>
-                    <el-form-item class="allAuthors" :label="$t('allAuthors')" prop="allAuthor">
-                        <el-input type="textarea" v-model="data.allAuthor" :placeholder="$t('allAuthors1')"></el-input>
+                    <el-form-item class="allAuthors" :label="$t('allAuthors1')" prop="allAuthor">
+                        <el-input type="textarea" v-model="data.allAuthor" :placeholder="$t('allAuthors')"></el-input>
                     </el-form-item>
                     <el-form-item class="allAuthors" :label="$t('allAuthorsAffiliation1')" prop="allAuthorAffiliation">
                         <el-input type="textarea" v-model="data.allAuthorAffiliation"
@@ -278,7 +278,7 @@ const submit = async (formEl: FormInstance | undefined) => {
             submitData.append('data', JSON.stringify(restData));
             data.fileList.forEach((file: any) => {
                 console.log(file, "from data");
-                submitData.append('file', file.raw);
+                submitData.append('files', file.raw);
             })
             console.log(submitData.get('file'));
             let res = await CSRrequest.put('/paper/owner', {
