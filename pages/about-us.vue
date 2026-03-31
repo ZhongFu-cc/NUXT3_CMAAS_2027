@@ -65,7 +65,8 @@ import Breadcrumbs from '~/components/layout/Breadcrumbs.vue';
 
     .welcome-box {
         display: flex;
-
+        // 2026/03/31 新增
+        flex-direction: column;
         gap: 2rem;
         margin: 3.5rem 0;
 
@@ -82,13 +83,15 @@ import Breadcrumbs from '~/components/layout/Breadcrumbs.vue';
                 border-radius: 10px;
                 overflow: hidden;
                 object-fit: cover;
-                width: 100%;
+                //width: 100%;
+                // 2026/03/31 修改
+                width: 50%;
             }
 
         }
 
         .welcome-content {
-            color: $main-color;
+            color: $main-text-color;
             flex: 1;
             padding: 0 20px;
             font-size: 1rem;
