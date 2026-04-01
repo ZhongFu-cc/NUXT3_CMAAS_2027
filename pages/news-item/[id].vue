@@ -13,7 +13,7 @@
                         target="_blank">
                         <!-- <i class="el-icon-document"></i> -->
                         <!-- <el-icon><ElIconDownload /></el-icon> -->
-                        {{ item.name + '.' + item.type }}
+                        {{ item.name + getFileExtension(item.path) }}
                     </a>
                 </div>
             </div>
@@ -30,6 +30,11 @@ const router = useRouter()
 const articleId = useRoute().params.id
 
 const isActive = ref(false)
+
+const  getFileExtension = (path:string) => {
+    let extension = path.split('.').pop();
+    return extension ? `.${extension}` : '';
+  }
 
 watch(() => articleId, (newVal) => {
     console.log(newVal)
