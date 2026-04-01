@@ -97,6 +97,7 @@ import Breadcrumbs from '~/components/layout/Breadcrumbs.vue';
         justify-content: center;
 
         .meeting-info-box {
+            
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -126,6 +127,7 @@ import Breadcrumbs from '~/components/layout/Breadcrumbs.vue';
             }
 
             .info-content {
+                color: $main-text-color;
                 font-weight: normal;
                 font-size: 1.5rem;
                 gap: 1rem;

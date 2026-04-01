@@ -2,11 +2,9 @@
     <div>
         <main class="common-section">
             <Banner></Banner>
-            <div class="title-section">
-                <p class="title">
-                    Transportation
-                </p>
-            </div>
+            <Breadcrumbs :first-route="$t('transportation')" secound-route=""></Breadcrumbs>
+            <Title :title="$t('transportation')"></Title>
+
             <div class="map-box">
                 <iframe class="google-map"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.0165568738184!2d121.55831637622504!3d25.033512177816732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abb61ab3d33f%3A0xab0d0f7ac395bff4!2z5Y-w5YyX5ZyL6Zqb5pyD6K2w5Lit5b-DKFRJQ0Mp!5e0!3m2!1szh-TW!2stw!4v1739263463546!5m2!1szh-TW!2stw"
@@ -351,6 +349,7 @@
 <script setup lang="ts">
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue'
 import Banner from '@/components/layout/Banner.vue';
+import Title from '@/components/layout/Title.vue';
 
 useSeoMeta({
     title: 'Transportation - 9th IOPBS & TOPBS 2025 International Conference on Oncoplastic Breast Surgery',
@@ -498,6 +497,7 @@ const backToTop = () => {
         height: 4rem;
 
         img {
+            cursor: pointer;
             width: 100%;
         }
     }

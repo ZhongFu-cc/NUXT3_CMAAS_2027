@@ -19,7 +19,7 @@
                         <b>01.Young Investigator Award</b>
                         <ul class="second-list">
                             <li>Number of Winners: 1 </li>
-                            <li>Award: USD 800 and a Young Investigator Award certificate </li>
+                            <li>Award: USD 500 and a Young Investigator Award certificate </li>
                             <li>Eligibility:
                                 <ul style="list-style-type: circle;">
                                     <li>Researchers aged 45 or younger. </li>
@@ -37,7 +37,7 @@
                         <b>02.Best Poster Award</b>
                         <ul class="second-list">
                             <li>Number of Winners: 1 </li>
-                            <li>Award: USD 800 and a Best Poster Award certificate </li>
+                            <li>Award: USD 500 and a Best Poster Award certificate </li>
                             <li>Eligibility:
                                 <ul style="list-style-type: circle;">
                                     <li>Must complete online registration and submit an abstract. Upon acceptance, an
@@ -53,7 +53,7 @@
                         <b>03.Best Video Award </b>
                         <ul class="second-list">
                             <li>Number of Winners: 1 </li>
-                            <li>Award: USD 800 and a Best Video Award certificate </li>
+                            <li>Award: USD 500 and a Best Video Award certificate </li>
                             <li>Eligibility:
                                 <ul style="list-style-type: circle;">
                                     <li>Must complete online registration and submit an abstract. Upon acceptance, a

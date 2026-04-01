@@ -17,7 +17,7 @@
                     </p>
                     <p class="info">Abstract Submission Opens</p>
                 </div>
-                <a class="key-date-link" href="" target="_blank">
+                <a class="key-date-link" href="https://evt.to/rr8dkv2td42c" target="_blank">
                     <img class="home-banner-bak" src="../../assets/img/save date-01.svg">
                 </a>
             </li>
@@ -28,7 +28,7 @@
                                 class="year">2026</span></span></p>
                     <p class="info">Abstract Submission Deadline</p>
                 </div>
-                <a class="key-date-link" href="" target="_blank">
+                <a class="key-date-link" href="https://evt.to/yyhgk2t4qvtm" target="_blank">
                     <img class="home-banner-bak" src="../../assets/img/save date-01.svg">
                 </a>
             </li>
@@ -52,7 +52,7 @@
                     </p>
                     <p class="info">Notification of Acceptance</p>
                 </div>
-                <a class="key-date-link" href="" target="_blank">
+                <a class="key-date-link" href="https://evt.to/21c76xtmlswn" target="_blank">
                     <img class="home-banner-bak" src="../../assets/img/save date-01.svg">
                 </a>
             </li>
@@ -72,9 +72,9 @@
                     <p class="date-box"><span>14~15</span><span class="month">{{ $t('november') }}<span
                                 class="year">2026</span></span>
                     </p>
-                    <p class="info">TOPBS2026</p>
+                    <p class="info">TOPBS 2026</p>
                 </div>
-                <a class="key-date-link" href="" target="_blank">
+                <a class="key-date-link" href="https://evt.to/z77j18jbb2pn" target="_blank">
                     <img class="home-banner-bak" src="../../assets/img/save date-01.svg">
                 </a>
             </li>

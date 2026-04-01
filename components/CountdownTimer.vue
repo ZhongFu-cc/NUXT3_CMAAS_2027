@@ -15,7 +15,9 @@
                         class="time-label">seconds</span></span>
             </div>
             <div class="add-calendar-img-box">
-                <img src="../assets/img/add-calendar.png" alt="Add to Calendar">
+                <a href="https://evt.to/z77j18jbb2pn" target="_blank">
+                    <img src="../assets/img/add-calendar.png" alt="Add to Calendar">
+                </a>
             </div>
         </div>
     </div>
