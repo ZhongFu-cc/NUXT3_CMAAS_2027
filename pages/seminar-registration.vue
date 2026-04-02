@@ -4,8 +4,7 @@
             <Banner />
             <div class="main-section">
                 <Title :title="$t('registration')"></Title>
-                <div class="title-section">
-                </div>
+                <RegistrationFee></RegistrationFee>
                 <el-form :model="formData" class="form" ref="form" :rules="formRules" labelPosition="top"
                     require-asterisk-position="right" :show-message="true" :scroll-to-error="true"
                     :validate-on-rule-change="false">
@@ -153,8 +152,10 @@ import { useLang } from '@/composables/useLang'
 
 import Banner from '@/components/layout/Banner.vue';
 import Title from '@/components/layout/Title.vue';
+import registrationFee from './registration-fee.vue';
 
 import countries from '@/assets/data/countries.json'
+import RegistrationFee from './registration-fee.vue';
 
 const { t, setLocale, locale } = useLang()
 
