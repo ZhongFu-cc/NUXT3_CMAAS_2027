@@ -6,16 +6,24 @@
         <div class="main-section">
             <el-form class="login-form" ref="formRef" :model="loginInfo" :rules="formRule"
                 :label-position="formatLabelPosition">
-                <!-- <el-form-item class="login-input" prop="email">
-                    <el-input v-model="loginInfo.email" placeholder="Email">
+                <div class="nationality-select">
+                    <el-button :class="{ active: attendeeType === 0 }" @click="attendeeType = 0">
+                        國內與會者 Domestic Attendee
+                    </el-button>
+                    <el-button :class="{ active: attendeeType === 1 }" @click="attendeeType = 1">Oversea
+                        Attendee</el-button>
+                </div>
+
+                <el-form-item v-if="attendeeType === 1" class="login-input" prop="account">
+                    <el-input v-model="loginInfo.account" placeholder="Email">
                         <template #prefix>
                             <img src="../assets/img/email.svg" alt="">
                         </template>
-</el-input>
-</el-form-item> -->
+                    </el-input>
+                </el-form-item>
 
-                <el-form-item class="login-input" prop="idCard">
-                    <el-input v-model="loginInfo.idCard" placeholder="Passport Number / 身分證字號">
+                <el-form-item v-if="attendeeType === 0" class="login-input" prop="account">
+                    <el-input v-model="loginInfo.account" placeholder="身分證字號">
                         <template #prefix>
                             <img src="../assets/img/passport.svg" alt="">
                         </template>
@@ -58,9 +66,9 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 import Title from '@/components/layout/Title.vue';
 
 useSeoMeta({
-    title: 'Member Login - 9th IOPBS & TOPBS 2025 International Conference on Oncoplastic Breast Surgery',
-    description: 'Member login page for the 9th IOPBS & TOPBS 2025 International Conference on Oncoplastic Breast Surgery. Sign in to access your account, retrieve your password, or register for the conference.',
-    keywords: 'Login, Sign In, 9th IOPBS, IOPBS 2025, TOPBS 2025, 2025 IOPBS, 2025 TOPBS '
+    title: 'Member Login - TOPBS 2026 International Conference on Oncoplastic Breast Surgery',
+    description: 'Member login page for the TOPBS 2026 International Conference on Oncoplastic Breast Surgery. Sign in to access your account, retrieve your password, or register for the conference.',
+    keywords: 'Login, Sign In, TOPBS 2026, 2026 TOPBS '
 })
 
 
@@ -69,6 +77,9 @@ const router = useRouter();
 const captcha = reactive<any>({
 
 });
+
+const attendeeType = ref(0);
+
 const getCaptcha = async () => {
     let res = await CSRrequest.get('/member/captcha');
     Object.assign(captcha, res.data);
@@ -77,7 +88,7 @@ const getCaptcha = async () => {
 
 const loginInfo = reactive<any>({
     // email: '',
-    idCard: '',
+    account: '',
     password: '',
     verificationKey: '',
     verificationCode: ''
@@ -86,8 +97,8 @@ const loginInfo = reactive<any>({
 const formRef = ref<FormInstance>();
 
 const formRule = reactive<FormRules>({
-    idCard: [
-        { required: true, message: 'Please input ID card', trigger: 'blur' },
+    account: [
+        { required: true, message: 'Please input account', trigger: 'blur' },
     ],
     password: [
         { required: true, message: 'Please input password', trigger: 'blur' },
@@ -112,7 +123,8 @@ const login = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     formEl.validate(async (valid) => {
         if (valid) {
-            let res = await CSRrequest.post('/member/login-idCard', {
+            const url = attendeeType.value === 1 ? '/member/login-foreign' : '/member/login-local';
+            let res = await CSRrequest.post(url, {
                 body: loginInfo
             })
             if (res.code === 500) {
@@ -189,6 +201,42 @@ onUnmounted(() => {
             :deep(.el-form-item) {
                 margin-bottom: 1rem;
                 border: none;
+            }
+
+            .nationality-select {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1rem;
+
+                @media screen and (max-width: 1024px) {
+                    flex-direction: column;
+                }
+
+                .el-button {
+                    border: 1px solid #D86C7C;
+                    background-color: #fff;
+                    color: #D86C7C;
+                    border-radius: 12px;
+                    width: 15rem;
+                    height: 2.75rem;
+                    font-weight: 600;
+                    transition: all 0.25s ease-in-out;
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: #fdf0f2;
+                        transform: translateY(-1px);
+                    }
+
+                    &.active {
+                        border-color: #D86C7C;
+                        background-color: #D86C7C;
+                        color: #fff;
+                        box-shadow: 0 4px 12px rgba(216, 108, 124, 0.25);
+                    }
+                }
             }
 
             .login-input {
