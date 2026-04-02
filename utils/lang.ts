@@ -80,7 +80,7 @@ export const label = {
         confirmPassword: 'Confirm Password',
         affiliation: 'Affiliation',
         jobTitle: 'Job Title',
-        idCard: 'Passport Number(Account)',
+        idCard: 'Passport Number',
         country: 'Country',
         remitAccountLast5: 'Last 5 Digits of Remittance Account',
         countryCode: 'Country Code',

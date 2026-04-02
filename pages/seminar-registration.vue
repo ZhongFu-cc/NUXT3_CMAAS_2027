@@ -3,32 +3,8 @@
         <main class="common-section">
             <Banner />
             <div class="main-section">
-                <!-- <div class="credit-box">
-                    <div class="credit-point-box">
-                        <ul>
-                            <h1 class="title">研討會申請之會議學分(申請中)</h1>
-                            <li>(1)台灣乳房醫學會 <span class="score">14分</span></li>
-                            <li>(2)台灣外科醫學會 <span class="score">3分</span></li>
-                            <li>(3)社團法人臨床藥學會 藥師<span class="score">13.4分</span></li>
-                            <li>(4)台灣專科護理師學會
-                                <p>(1)專科護理師 <span class="score">13.4分</span></p>
-                                <p>(2)護理師 <span class="score">13.4分</span></p>
-                            </li>
-                            <li>(5)中華民國癌症醫學會
-                                <p>(1)腫瘤內科 <span class="score">3分</span></p>
-                                <p>(2)腫瘤外科 <span class="score">3分</span></p>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="image-box">
-                        <img src="../assets/img/bubble_tea_no-problem.png" alt="">
-                    </div>
-                </div> -->
-
-                <!-- <el-divider></el-divider> -->
                 <Title :title="$t('registration')"></Title>
-                <div class="title-section">
-                </div>
+                <RegistrationFee></RegistrationFee>
                 <el-form :model="formData" class="form" ref="form" :rules="formRules" labelPosition="top"
                     require-asterisk-position="right" :show-message="true" :scroll-to-error="true"
                     :validate-on-rule-change="false">
@@ -42,11 +18,13 @@
                                             :value="country"></el-option>
                                     </el-select>
                                 </el-form-item>
-                                <el-form-item :label="t.chineseName" :prop="'chineseName'">
+
+                                <el-form-item :label="t.chineseName" :prop="'chineseName'"
+                                    :style="{ order: getOrder('chineseName') }">
                                     <el-input v-model="formData.chineseName"></el-input>
                                 </el-form-item>
 
-                                <div class="member-name">
+                                <div class="member-name" :style="{ order: getOrder('englishName') }">
                                     <el-form-item class="first-name" required :label="t.firstName" prop="firstName">
                                         <el-input v-model="formData.firstName" :placeholder="t.firstName"></el-input>
                                     </el-form-item>
@@ -57,27 +35,32 @@
                                 </div>
 
 
-                                <el-form-item :label="t.idCard" prop="idCard">
+                                <el-form-item v-if="formData.country === 'Taiwan'" :label="t.idCard" prop="idCard"
+                                    :style="{ order: getOrder('idCard') }">
                                     <el-input v-model="formData.idCard" :placeholder="t.idCard"></el-input>
                                 </el-form-item>
 
 
 
-                                <el-form-item :label="t.password" prop="password">
+                                <el-form-item :label="t.password" prop="password"
+                                    :style="{ order: getOrder('password') }">
                                     <el-input v-model="formData.password" type="password"
                                         :placeholder="t.password"></el-input>
                                 </el-form-item>
 
-                                <el-form-item :label="t.confirmPassword" prop="confirmPassword">
+                                <el-form-item :label="t.confirmPassword" prop="confirmPassword"
+                                    :style="{ order: getOrder('confirmPassword') }">
                                     <el-input v-model="formData.confirmPassword" type="password"
                                         :placeholder="t.confirmPassword"></el-input>
                                 </el-form-item>
-                                <el-form-item class="email required" :label="t.email" prop="email">
+                                <el-form-item class="email required" :label="t.email" prop="email"
+                                    :style="{ order: getOrder('email') }">
                                     <el-input v-model="formData.email" :placeholder="t.email2"
                                         :prefixIcon="Message"></el-input>
                                 </el-form-item>
 
-                                <el-form-item class="email required" :label="t.email2" required prop="confirmEmail">
+                                <el-form-item class="email required" :label="t.email2" required prop="confirmEmail"
+                                    :style="{ order: getOrder('confirmEmail') }">
                                     <el-input v-model="formData.confirmEmail" :placeholder="t.email2"
                                         :prefixIcon="Message"></el-input>
                                 </el-form-item>
@@ -85,7 +68,9 @@
 
                             </div>
                             <div class="right-section">
-
+                                <el-form-item v-if="formData.country !== 'Taiwan'" :label="t.idCard" prop="idCard">
+                                    <el-input v-model="formData.idCard" :placeholder="t.idCard"></el-input>
+                                </el-form-item>
 
                                 <el-form-item class="required" :label="t.affiliation" prop="affiliation">
                                     <el-input v-model="formData.affiliation" :placeholder="t.affiliation"></el-input>
@@ -95,12 +80,13 @@
                                 </el-form-item>
 
 
-                                <el-form-item :label="t.remitAccountLast5" prop="remitAccountLast5">
+                                <el-form-item v-if="formData.country === 'Taiwan'" :label="t.remitAccountLast5"
+                                    prop="remitAccountLast5">
                                     <el-input minlength="5" maxlength="5" v-model="formData.remitAccountLast5"
                                         :placeholder="t.remitAccountLast5"></el-input>
                                 </el-form-item>
 
-                                <el-form-item :label="t.receipt" prop="receipt">
+                                <el-form-item v-if="formData.country === 'Taiwan'" :label="t.receipt" prop="receipt">
                                     <el-input v-model="formData.receipt" :placeholder="t.receipt"></el-input>
                                 </el-form-item>
 
@@ -166,8 +152,10 @@ import { useLang } from '@/composables/useLang'
 
 import Banner from '@/components/layout/Banner.vue';
 import Title from '@/components/layout/Title.vue';
+import registrationFee from './registration-fee.vue';
 
 import countries from '@/assets/data/countries.json'
+import RegistrationFee from './registration-fee.vue';
 
 const { t, setLocale, locale } = useLang()
 
@@ -206,6 +194,36 @@ const validateChineseName = (rule: any, value: string, callback: any) => {
 
 const cleanRemitAccount = () => {
     formData.remitAccountLast5 = ''
+}
+
+const getOrder = (field: string): number => {
+    const country = formData.country;
+
+    const sequence: Record<'Taiwan' | 'Other', Record<string, number>> = {
+        'Taiwan': {
+            'chineseName': 1,
+            'englishName': 2,
+            'idCard': 3,
+            'password': 4,
+            'confirmPassword': 5,
+            'email': 6,
+            'confirmEmail': 7,
+        },
+        'Other': {
+            'englishName': 1,
+            'chineseName': 2,
+            'email': 3,
+            'confirmEmail': 4,
+            'password': 5,
+            'confirmPassword': 6,
+            'idCard': 7,
+        }
+    }
+
+    const countryKey: 'Taiwan' | 'Other' = country === 'Taiwan' ? 'Taiwan' : 'Other';
+    const contryConfig = sequence[countryKey];
+
+    return contryConfig[field] || 0;
 }
 
 const codeMap: Record<string, number> = {
@@ -354,6 +372,7 @@ const formData = reactive<formData>({
     verificationKey: ''
 })
 
+
 /**---------------------- */
 // const 
 watch(() => formData.country, (value) => {
@@ -399,12 +418,12 @@ const formRules = computed<FormRules>(() => ({
     confirmPassword: [{ required: true, validator: vaildConfirmPassword, trigger: 'blur' }],
     affiliation: [{ required: true, message: t.value.affiliationValidate, trigger: 'blur' }],
     jobTitle: [{ required: true, message: t.value.jobTitleValidate, trigger: 'blur' }],
-    idCard: [{ required: true, validator: checkCkDigit, trigger: 'blur' }],
+    idCard: [{ required: formData.country === 'Taiwan', validator: checkCkDigit, trigger: 'blur' }],
     country: [{ required: true, message: t.value.countryValidate, trigger: 'change' }],
     countryCode: [{ required: true, message: t.value.countryCodeValidate, trigger: 'blur' }],
     phoneNum: [{ required: true, message: t.value.phoneNumValidate, trigger: 'blur' }],
     category: [{ required: true, message: t.value.categoryValidate, trigger: 'change' }],
-    remitAccountLast5: [{ required: true, validator: validateRemitAccount, trigger: 'blur' }],
+    remitAccountLast5: [{ required: formData.country === 'Taiwan', validator: validateRemitAccount, trigger: 'blur' }],
     // categoryExtra: [{ validator: validCategoryExtra, trigger: 'change' }],
 }))
 
