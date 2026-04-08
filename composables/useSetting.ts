@@ -36,5 +36,25 @@ export const useSetting = () => {
         return currentTime < settingTime
     }
 
-    return { setting, fetchSetting, validateDateTime }
+    // 2026/04/07 新增新增：slide upload 時間區間判斷
+    const isWithinSlideUploadPeriod = async () => {
+        await fetchSetting()
+        const start = setting.value?.slideUploadStartTime
+        const end = setting.value?.slideUploadEndTime
+
+        if (!start || !end) return false
+
+        const now = Date.now()
+
+        const startTime = new Date(start).getTime()
+        const endTime = new Date(end).getTime()
+
+        console.log("開始日:",new Date(start))
+        console.log("結束日:",new Date(end))
+
+        console.log(now >= startTime && now <= endTime)
+        return now >= startTime && now <= endTime
+    }
+
+    return { setting, fetchSetting, validateDateTime, isWithinSlideUploadPeriod }
 }

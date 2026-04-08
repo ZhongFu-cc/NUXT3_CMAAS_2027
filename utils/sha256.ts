@@ -220,8 +220,8 @@ export async function slideUpload(
         percentage.value = 100;
         let baseUrl = useRuntimeConfig().public.minio;
         console.log("baseUrl", baseUrl);
-        let url = `${baseUrl}/topbs2025/${checkResult.data.path}`;
-        window.open(url, "_blank");
+        // let url = `${baseUrl}/topbs2025/${checkResult.data.path}`;
+        // window.open(url, "_blank");
     }
 }
 
@@ -282,8 +282,8 @@ export async function slideUpdateUpload(
         percentage.value = 100;
         let baseUrl = useRuntimeConfig().public.minio;
         console.log("baseUrl", baseUrl);
-        let url = `${baseUrl}/topbs2025/${checkResult.data.path}`;
-        window.open(url, "_blank");
+        // let url = `${baseUrl}/topbs2025/${checkResult.data.path}`;
+        // window.open(url, "_blank");
     }
 }
 
@@ -436,7 +436,7 @@ export async function slideTestUpload(
         percentage.value = 100;
         let baseUrl = useRuntimeConfig().public.minio;
         console.log("baseUrl", baseUrl);
-        let url = `${baseUrl}/topbs2025/${checkResult.data.path}`;
-        window.open(url, "_blank");
+        // let url = `${baseUrl}/topbs2025/${checkResult.data.path}`;
+        // window.open(url, "_blank");
     }
 }
