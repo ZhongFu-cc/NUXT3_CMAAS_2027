@@ -40,7 +40,7 @@
                     </div>
                 </el-card>
                 <el-card class="hotel-card">
-                    <img src="../assets/img/hotel-img/pacific-business.jpg"></img>
+                    <img src="@/assets/img/hotel-img/pacific-business.jpg"></img>
                     <div class="hotel-card-body">
                         <h3 class="title">PACIFIC BUSSINESS HOTEL</h3>
                         <div class="star-section">
