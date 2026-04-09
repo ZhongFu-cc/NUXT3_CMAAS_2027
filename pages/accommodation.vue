@@ -23,16 +23,16 @@
 
             <div class="hotel-cards">
                 <el-card class="hotel-card">
-                    <img src="../assets/img/hotel-img/grand-hyatt-taipei.jpg"></img>
+                    <img src="@/assets/img/hotel-img/grand-hyatt-taipei.jpg"></img>
                     <div class="hotel-card-body">
                         <h3 class="title">Grand HYATT TAIPEI</h3>
                         <div class="star-section">
-                            <img v-for="item in 5" class="star" src="../assets/img/Star12Filled.svg" alt="">
+                            <img v-for="item in 5" class="star" src="@/assets/img/Star12Filled.svg" alt="">
 
                         </div>
                         <div class="hotel-info">
-                            <p><img src="../assets/img/walk.svg" alt="">5 min by walk (350M)</p>
-                            <p><img src="../assets/img/money.svg" alt="">TWD $7800 up / Night</p>
+                            <p><img src="@/assets/img/walk.svg" alt="">5 min by walk (350M)</p>
+                            <p><img src="@/assets/img/money.svg" alt="">TWD $7800 up / Night</p>
 
                         </div>
                         <nuxt-link to="/hotel1" class="view-more-btn">View more</nuxt-link>
@@ -44,27 +44,27 @@
                     <div class="hotel-card-body">
                         <h3 class="title">PACIFIC BUSSINESS HOTEL</h3>
                         <div class="star-section">
-                            <img v-for="item in 4" class="star" src="../assets/img/Star12Filled.svg" alt="">
+                            <img v-for="item in 4" class="star" src="@/assets/img/Star12Filled.svg" alt="">
 
                         </div>
                         <div class="hotel-info">
-                            <p><img src="../assets/img/walk.svg" alt="">5 min by walk (350M)</p>
-                            <p><img src="../assets/img/money.svg" alt="">TWD $3800 up / Night</p>
+                            <p><img src="@/assets/img/walk.svg" alt="">5 min by walk (350M)</p>
+                            <p><img src="@/assets/img/money.svg" alt="">TWD $3800 up / Night</p>
                         </div>
                         <nuxt-link to="/hotel2" class="view-more-btn">View more</nuxt-link>
                     </div>
                 </el-card>
                 <el-card class="hotel-card">
-                    <img src="../assets/img/hotel-img/check-inn.jpg"></img>
+                    <img src="@/assets/img/hotel-img/check-inn.jpg"></img>
                     <div class="hotel-card-body">
                         <h3 class="title">CHECK INN</h3>
                         <div class="star-section">
-                            <img v-for="item in 3" class="star" src="../assets/img/Star12Filled.svg" alt="">
+                            <img v-for="item in 3" class="star" src="@/assets/img/Star12Filled.svg" alt="">
 
                         </div>
                         <div class="hotel-info">
-                            <p><img src="../assets/img/walk.svg" alt="">3 min by walk (160M)</p>
-                            <p><img src="../assets/img/money.svg" alt="">TWD $2300 up / Night</p>
+                            <p><img src="@/assets/img/walk.svg" alt="">3 min by walk (160M)</p>
+                            <p><img src="@/assets/img/money.svg" alt="">TWD $2300 up / Night</p>
 
                         </div>
                         <nuxt-link to="/hotel3" class="view-more-btn">View more</nuxt-link>
