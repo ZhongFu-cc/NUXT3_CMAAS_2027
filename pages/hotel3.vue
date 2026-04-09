@@ -37,13 +37,13 @@
                             <p>3F, No.468, Section 4, Xinyi Road, Taipei, 110, Taiwan</p>
                         </div>
                         <div class="info-item"><img src="@/assets/img/phone-round.svg" alt="">
-                            <p>+886 2 2345 9777</p>
+                            <p>+886 958 824 997</p>
                         </div>
                         <div class="info-item"><img src="@/assets/img/EmailOutlined.svg" alt="">
                             <p class="email">alice.yangwz@checkhotels.com</p>
                         </div>
                         <div class="info-item">
-                            <p class="remark">Remark" TOPBS 2026 ", there have dedicated service for you</p>
+                            <p class="remark">Remark" TOPBS 2026 年會", there have dedicated service for you</p>
                         </div>
                         <div class="info-item">
                             <img src="@/assets/img/LINE.svg" alt="">
@@ -59,7 +59,7 @@
                         <!-- <nuxt-link class="reservation-btn">Reservation</nuxt-link> -->
                     </div>
                     <p class="last-date">This booking offer is valid for reservations made until <span
-                            class="date">September 30, 2025</span>.</p>
+                            class="date">September 30, 2026</span>.</p>
 
 
                 </div>

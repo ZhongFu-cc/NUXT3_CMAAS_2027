@@ -53,8 +53,8 @@
                             class="reservation-btn">Reservation</a>
                     </div>
                     <ul>
-                        <p class="last-date">This booking offer is valid for reservations made until <span
-                                class="date">October 21, 2026</span>.</p>
+                        <!-- <p class="last-date">This booking offer is valid for reservations made until <span
+                                class="date">October 21, 2026</span>.</p> -->
                         <li class="reminder">
                             In our commitment to environmental sustainability, starting July 1, 2024, single-use
                             amenities will no longer be provided proactively in guestrooms.
