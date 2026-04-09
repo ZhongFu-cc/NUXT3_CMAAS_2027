@@ -14,9 +14,9 @@
             <div class="main-section">
                 <div class="img-box">
                     <div v-if="currentIndex" class="image-item" border>
-                        <img v-if="currentIndex === 1" src="@/assets/img/hotel-img/PACIFIC-BUSINESS.jpg" alt="">
-                        <img v-if="currentIndex === 2" src="@/assets/img/hotel-img/pacific-bussiness2.jpg" alt="">
-                        <img v-if="currentIndex === 3" src="@/assets/img/hotel-img/pacific-bussiness3.jpg" alt="">
+                        <img v-if="currentIndex === 1" src="@/assets/img/hotel-img/pacific-business.jpg" alt="">
+                        <img v-if="currentIndex === 2" src="@/assets/img/hotel-img/pacific-business2.jpg" alt="">
+                        <img v-if="currentIndex === 3" src="@/assets/img/hotel-img/pacific-business3.jpg" alt="">
                         <div class="carousel-indicator">
                             <div v-for="(index, item) in 3" class="indicator"
                                 :class="{ 'active': currentIndex === index }" :key="index" @click="toggleImage(index)"
