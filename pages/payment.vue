@@ -4,7 +4,7 @@
         <Breadcrumbs :first-route="'Member Center'" :secound-route="'Payment'" />
         <div class="table-section">
             <div class="table-box">
-                <span class="info">*The group registration fee must be paid by the main registration member.</span>
+                <!-- <span class="info">*The group registration fee must be paid by the main registration member.</span> -->
                 <table class="orders-table" :class="'Taiwan'">
                     <thead>
                         <tr class="header-row">
