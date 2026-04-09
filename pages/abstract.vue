@@ -30,11 +30,13 @@
                                 <el-button v-if="!isDisabled" link class="edit-btn" @click='headToEditPaper(paper)'>{{
                                     $t('edit') }}</el-button>
                                 <el-button link class="see-more-btn" @click='toggleSeeMore(paper)'>{{ $t('view')
-                                }}</el-button>
+                                    }}</el-button>
                                 <el-button v-if="!isDisabled" link class="see-more-btn" @click='deletePaper(paper)'>{{
                                     $t('delete') }}</el-button>
-                                <el-button v-if="paper.status === 1 && isUploadFileAvailable" link class="see-more-btn"
-                                    @click="headToUploadFile(paper)">{{ $t('upload') }}</el-button>
+                                <!-- <el-button v-if="isDisabled" link class="see-more-btn" @click='isClosed'>{{ $t('delete') }}</el-button> -->
+                                <el-button v-if="paper.status === 1" link class="see-more-btn"
+                                    :disabled="isUploadDisabled" @click="headToUploadFile(paper)">{{ $t('upload')
+                                    }}</el-button>
                             </td>
                         </tr>
                     </tbody>
@@ -57,6 +59,27 @@
                     <tr v-if="paperInfo.publicationNumber">
                         <td class="column-name">{{ $t('abstractNumber') }}</td>
                         <td>{{ paperInfo.publicationNumber }}</td>
+                    </tr>
+                </tbody>
+                <!-- 發表方式 -->
+                <tbody>
+                    <tr v-if="paperInfo.presentationType">
+                        <td class="column-name">Presentation Type</td>
+                        <td>{{ paperInfo.presentationType }}</td>
+                    </tr>
+                </tbody>
+                <!-- 發表時間 -->
+                <tbody>
+                    <tr v-if="paperInfo.reportTime">
+                        <td class="column-name">Report Time</td>
+                        <td>{{ paperInfo.reportTime }}</td>
+                    </tr>
+                </tbody>
+                <!-- 發表地點 -->
+                <tbody>
+                    <tr v-if="paperInfo.reportLocation">
+                        <td class="column-name">Report Location</td>
+                        <td>{{ paperInfo.reportLocation }}</td>
                     </tr>
                 </tbody>
                 <tbody>
@@ -241,25 +264,18 @@ const headToSubmit = () => {
     }
 }
 
-
-
-
 const validateDateTime = async () => {
     isDisabled.value = !(await useSetting().validateDateTime('abstractSubmissionEndTime'));
+
 }
 
-const isUploadFileAvailable = ref(false);
-watchEffect(async () => {
-    const isBefore = await useSetting().validateDateTime('slideUploadEndTime');
-    const isAfter = !(await useSetting().validateDateTime('slideUploadStartTime'));
+// 2026/04/07 新增
 
-    isUploadFileAvailable.value = isBefore && isAfter;
-});
-
-
-
-
-
+// 默認關閉二階段上傳按鈕，只有在審核通過且在上傳時間內才會開啟
+const isUploadDisabled = ref(true);
+const validateUploadDateTime = async () => {
+    isUploadDisabled.value = !(await useSetting().isWithinSlideUploadPeriod());
+}
 
 
 
@@ -271,6 +287,7 @@ onMounted(async () => {
 
     nextTick(() => {
         validateDateTime();
+        validateUploadDateTime();
     })
 })
 
