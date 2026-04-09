@@ -3,14 +3,21 @@
         <Banner />
         <div class="main-section">
             <Breadcrumbs first-route="About Us" secound-route=""></Breadcrumbs>
-            <h1 class="title">Welcome Message</h1>
+            <Title title="Welcome Message"></Title>
             <div class="welcome-box">
                 <div class="image-box">
                     <img src="@/assets/img/YeHsiangTang.jpg" alt="">
+
+                    <div class="people-infomation-box">
+                        <p class="name">Dr. Ye Hsiang Tang</p>
+                        <p class="title">President of TOPBS</p>
+                    </div>
                 </div>
                 <div class="welcome-content">
-                    <p>Dear members and distinguished colleagues,&nbsp;</p>
-                    <p>Welcome to the Annual Meeting of the Taiwan Oncoplastic Breast Surgery Society. The development
+                    <p class="title">Dear members and distinguished colleagues</p>
+                    <p> <span class="first-word">Welcome</span> to the Annual Meeting of the Taiwan Oncoplastic Breast
+                        Surgery Society. The
+                        development
                         of plastic breast surgery has always been committed to balancing tumor treatment safety and
                         postoperative appearance reconstruction, allowing patients to receive effective treatment while
                         maintaining confidence and quality of life throughout their cancer treatment journey. With the
@@ -18,7 +25,8 @@
                         collaboration, continuous academic exchange and clinical experience sharing have become
                         important forces in promoting the improvement of medical quality. &nbsp;
                     </p>
-                    <p>This year's annual meeting, with the theme "Escalation With Wellness; De-Escalation In
+                    <p> <span class="first-word">This</span> year's annual meeting, with the theme "Escalation
+                        With Wellness; De-Escalation In
                         Precision," symbolizes an important shift in contemporary breast cancer treatment strategies. In
                         areas requiring aggressive treatment, we strengthen patients' physical and mental health and
                         overall care quality through the integration of medical and reconstruction technology
@@ -26,15 +34,17 @@
                         we gradually develop more precise and appropriate treatment strategies to avoid overtreatment,
                         making medical decisions more aligned with individual patient needs .&nbsp;
                     </p>
-                    <p> This annual meeting will feature keynote lectures, clinical case discussions, and practical
+                    <p> <span class="first-word">This</span> annual meeting will feature keynote lectures, clinical case
+                        discussions, and practical
                         experience sharing, focusing on breast cancer treatment, oncoplastic surgical techniques,
                         reconstruction strategies, and multidisciplinary integrated care. We hope to provide a platform
                         for in-depth exchange and academic inspiration, promoting the continuous advancement and
                         development of breast surgery in Taiwan.
                     </p>
-                    <p> We sincerely look forward to gathering with all of you to exchange ideas and work together
+                    <p> <span class="first-word">We</span> sincerely look forward to gathering with all of you to
+                        exchange ideas and work together
                         toward improving the quality of care and future development of breast cancer treatment.</p>
-                    <p>Taiwan Oncoplastic Breast Surgery Society</p>
+                    <p class="association-name">Taiwan Oncoplastic Breast Surgery Society</p>
                 </div>
             </div>
         </div>
@@ -42,12 +52,13 @@
 </template>
 <script lang="ts" setup>
 import Banner from '@/components/layout/Banner.vue';
-import Breadcrumbs from '~/components/layout/Breadcrumbs.vue';
+import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
+import Title from '@/components/layout/Title.vue';
 </script>
 <style lang="scss" scoped>
 .about-us-section {
     .main-section {
-        width: 60%;
+        width: 100%;
         margin: 0 auto;
         color: $main-color;
 
@@ -56,59 +67,81 @@ import Breadcrumbs from '~/components/layout/Breadcrumbs.vue';
         }
     }
 
-    .title {
-        font-size: 2.5rem;
-        display: flex;
-        justify-content: center;
-        margin-top: 5rem;
-    }
 
     .welcome-box {
         display: flex;
-        // 2026/03/31 新增
-        flex-direction: column;
-        gap: 2rem;
+        gap: 1rem;
         margin: 3.5rem 0;
 
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 1024px) {
             flex-direction: column;
         }
 
         .image-box {
-            flex: 0.5;
-            height: 80%;
+            flex: 1;
+            flex-direction: column;
+            align-items: center;
             border-radius: 10px;
 
             img {
                 border-radius: 10px;
                 overflow: hidden;
-                object-fit: cover;
-                //width: 100%;
-                // 2026/03/31 修改
-                width: 50%;
+                object-fit: contain;
+                height: 80%;
+                width: 70%;
+            }
+
+            .people-infomation-box {
+                display: flex;
+                flex-direction: column;
+                text-align: start;
+                background-color: $main-color;
+                padding: 1rem;
+                border-radius: 10px;
+                gap: 1rem;
+                width: 65%;
+
+                .name {
+                    font-size: 1.2rem;
+                    color: white;
+                }
+
+                .title {
+                    font-size: 1rem;
+                    color: white;
+                }
             }
 
         }
 
         .welcome-content {
             color: $main-text-color;
-            flex: 1;
-            padding: 0 20px;
+            flex: 0.8;
+            padding: 0 1.5rem;
             font-size: 1rem;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1.5rem;
 
-            // @media screen and (max-width: 1920px) {
-            //     font-size: 0.8rem;
-            // }
+            .title {
+                font-size: 1.5rem;
+                color: $main-color;
+            }
 
-            // @media screen and (max-width: 1440px) {
-            //     font-size: 0.8rem;
-            // }
+            .first-word {
+                font-weight: bold;
+                font-size: 1.2rem;
+            }
 
-            @media screen and (max-width: 768px) {
-                font-size: 0.6rem;
+            .association-name {
+                font-size: 1.2rem;
+                color: $main-color;
+                font-weight: bold;
+            }
+
+
+            @media screen and (max-width: 1024px) {
+                font-size: 1rem;
 
             }
         }
