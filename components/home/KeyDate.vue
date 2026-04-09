@@ -3,7 +3,7 @@
         <div class="title-box">
             <div class="title-text-box">
                 <div class="title-image-box">
-                    <img class="home-banner-bak" src="../../assets/img/CalendarHeatMap.svg">
+                    <img class="home-banner-bak" src="@/assets/img/CalendarHeatMap.svg">
                 </div>
                 <h1 class="title">{{ $t('keyDates') }}</h1>
             </div>
@@ -18,7 +18,7 @@
                     <p class="info">Abstract Submission Opens</p>
                 </div>
                 <a class="key-date-link" href="https://evt.to/rr8dkv2td42c" target="_blank">
-                    <img class="home-banner-bak" src="../../assets/img/save date-01.svg">
+                    <img class="home-banner-bak" src="@/assets/img/save date-01.svg">
                 </a>
             </li>
 
@@ -29,7 +29,7 @@
                     <p class="info">Abstract Submission Deadline</p>
                 </div>
                 <a class="key-date-link" href="https://evt.to/yyhgk2t4qvtm" target="_blank">
-                    <img class="home-banner-bak" src="../../assets/img/save date-01.svg">
+                    <img class="home-banner-bak" src="@/assets/img/save date-01.svg">
                 </a>
             </li>
 
@@ -75,7 +75,7 @@
                     <p class="info">TOPBS 2026</p>
                 </div>
                 <a class="key-date-link" href="https://evt.to/z77j18jbb2pn" target="_blank">
-                    <img class="home-banner-bak" src="../../assets/img/save date-01.svg">
+                    <img class="home-banner-bak" src="@/assets/img/save date-01.svg">
                 </a>
             </li>
         </ul>

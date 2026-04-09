@@ -17,7 +17,7 @@
                 <el-form-item v-if="attendeeType === 1" class="login-input" prop="account">
                     <el-input v-model="loginInfo.account" placeholder="Email">
                         <template #prefix>
-                            <img src="../assets/img/email.svg" alt="">
+                            <img src="@/assets/img/email.svg" alt="">
                         </template>
                     </el-input>
                 </el-form-item>
@@ -25,14 +25,14 @@
                 <el-form-item v-if="attendeeType === 0" class="login-input" prop="account">
                     <el-input v-model="loginInfo.account" placeholder="身分證字號">
                         <template #prefix>
-                            <img src="../assets/img/passport.svg" alt="">
+                            <img src="@/assets/img/passport.svg" alt="">
                         </template>
                     </el-input>
                 </el-form-item>
                 <el-form-item class="login-input" prop="password">
                     <el-input v-model="loginInfo.password" type="password" placeholder="Password" :show-password="true">
                         <template #prefix>
-                            <img src="../assets/img/lock.svg" alt="">
+                            <img src="@/assets/img/lock.svg" alt="">
                         </template>
                     </el-input>
                 </el-form-item>
