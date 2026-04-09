@@ -10,16 +10,20 @@
                 <thead>
                     <tr class="personal-row-1">
                         <th class="category-col" :rowspan="2" :colspan="2">Category</th>
-                        <th :colspan="2">Only Physical</th>
+                        <th :colspan="3">Only Physical</th>
                     </tr>
                     <tr class="personal-row-2">
                         <th>
                             <p>Early-Bird</p>
-                            <p>(before Sep 30, 2025)</p>
+                            <p>(before Sep 30, 2026)</p>
+                        </th>
+                        <th>
+                            <p>Regular</p>
+                            <p>(Oct 1 - Nov 13, 2026)</p>
                         </th>
                         <th>
                             <p>Onsite</p>
-                            <p>(Oct 1- Nov 16, 2025)</p>
+                            <p>(Nov 14 - Nov 15, 2026)</p>
                         </th>
                     </tr>
                 </thead>
@@ -33,11 +37,13 @@
                         <td>Non-member</td>
                         <td>TWD 1000</td>
                         <td>TWD 1500</td>
+                        <td>TWD 2000</td>
                     </tr>
                     <tr class="personal-row-4">
                         <td>Member</td>
                         <td>TWD 700</td>
                         <td>TWD 1000</td>
+                        <td>TWD 1500</td>
                     </tr>
                     <tr class="personal-row-5">
                         <td :colspan="2">
@@ -45,6 +51,7 @@
                         </td>
                         <td>TWD 600</td>
                         <td>TWD 1200</td>
+                        <td>TWD 1800</td>
 
                     </tr>
                 </tbody>
@@ -182,8 +189,8 @@ useSeoMeta({
     }
 
     .personal-registration-table {
-        width: 70%;
-        margin: 1rem auto;
+        width: 90%;
+        margin: 3rem auto;
         font-size: 1.5rem;
         font-weight: 600;
         color: #383A51;
