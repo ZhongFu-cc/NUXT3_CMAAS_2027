@@ -4,38 +4,38 @@
         <Breadcrumbs :first-route="'Member Center'" :secound-route="'Payment'" />
         <div class="table-section">
             <div class="table-box">
-                <!-- <span class="info">*The group registration fee must be paid by the main registration member.</span> -->
-                <table class="orders-table" :class="'Taiwan'">
+                <span class="info" v-if="memberInfo.groupRole == 'slave'">*The group registration fee must be paid by
+                    the main registration member.</span>
+                <table class="orders-table" :class="isTaiwan(memberInfo.country)">
                     <thead>
                         <tr class="header-row">
                             <th>Item</th>
-                            <th>Payment Amount</th>
+                            <th>Payment Amount (TWD)</th>
                             <th>Payment Status</th>
-                            <th>Last 5 digits of account number</th>
+                            <th v-if="memberInfo.country === 'Taiwan'">Last 5 digits of account number</th>
                         </tr>
                     </thead>
-                    <tbody v-for="(item, index) in orderList">
-                        <tr :class="isEvenOrOdd(index)">
+                    <tbody>
+                        <tr v-for="(item, index) in orderList" :class="isEvenOrOdd(index)">
                             <td class="first-col">{{ item.itemsSummary }}</td>
                             <td>{{ item.totalAmount }}</td>
-                            <td :class="'none'">{{
+                            <td :class="memberInfo.country === 'Taiwan' ? 'none' : 'last-col'">{{
                                 enums.payMentStatus[item.status]
                                 }}</td>
-                            <td class="last-col">
+                            <td v-if="memberInfo.country === 'Taiwan'" class="last-col">
                                 {{ memberInfo.remitAccountLast5 }}
                             </td>
-                            <!-- <td v-if="memberInfo.country !== 'Taiwan'" class="temp-col"></td>
-                            <td v-if="memberInfo.country !== 'Taiwan' && item.status === 0" class="not-pay"
-                                :class="(memberInfo.groupRole == 'slave' && item.itemsSummary == 'Group Registration Fee') ? 'disabled' : ''">
-                                <span
-                                    @click="getOrders(item.ordersId, (memberInfo.groupRole != 'slave' || item.itemsSummary != 'Group Registration Fee'))">Pay
-                                    now</span>
+                            <td v-if="memberInfo.country !== 'Taiwan'" class="temp-col"></td>
+                            <td v-if="memberInfo.country !== 'Taiwan' && (item.status === 0 || item.status === 3)"
+                                class="not-pay" :class="isOverDeadline ? 'disabled' : ''"
+                                @click="getOrders(item.ordersId, true)">
+                                <span>Pay now</span>
                             </td>
-                            <td class="completed">
+                            <td v-if="memberInfo.country !== 'Taiwan' && item.status === 2" class="completed">
                                 <span><el-icon>
                                         <ElIconCircleCheckFilled />
                                     </el-icon></span>
-                            </td> -->
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -45,7 +45,6 @@
                 <p>*合作金庫銀行 : 長庚分行 帳號:3638871000153</p>
             </div>
         </div>
-
         <!-- Bearer 7bedca56-c711-4559-af47-afd6d4224da8 -->
 
 
@@ -63,18 +62,16 @@ const orderListRef = ref<any>();
 const router = useRouter();
 
 
-const memberInfo = reactive<any>({});
+const memberInfo = ref<any>({});
 const getMemberInfo = async () => {
-    let res = await CSRrequest.get('/member/getMemberInfo');
-    if (res.code === 200) {
-        // res.data.country = 'Taiwan1'
-        Object.assign(memberInfo, res.data)
-        console.log(memberInfo)
-    } else if (res.code === 401) {
-        ElMessage.error(res.msg);
-        localStorage.removeItem('Authorization-member');
+    await useAuth().checkLoginState()
+    if (!useAuth().isLogin) {
         router.push('/login')
+        return
     }
+    console.log(useAuth().memberInfo.value)
+    memberInfo.value = useAuth().memberInfo.value;
+    console.log(memberInfo.value)
 }
 
 
@@ -95,7 +92,7 @@ const getOrderListForOwner = async () => {
 
 const enums = {
     payMentStatus: {
-        0: 'Non-payment',
+        0: 'Unpaid',
         1: 'Comfirming',
         2: 'Payment completed',
         3: 'Payment failed',
@@ -115,23 +112,29 @@ const form = ref<any>()
 
 const getOrders = async (ordersId: number, isPayable: boolean) => {
     console.log(!isPayable)
+    // console.log('isOverDeadline:', isOverDeadline.value)
+    if (isOverDeadline.value) {
+        return;
+    }
+
+
     if (!isPayable) {
         // ElMessage.error('You are not allowed to pay for this item')
         return
     }
     let res = await CSRrequest.get(`/orders/owner/${ordersId}`)
-    console.log(res.data)
     res = await CSRrequest.get(`/orders/payment`, {
         params: {
             id: ordersId
         }
     })
+
     form.value = res.data
 
     await nextTick();
     if (formRef.value) {
         const formItem = formRef.value.querySelector("form")
-        console.log(formItem)
+        // console.log(formItem)
         formItem.submit()
     }
 
@@ -152,9 +155,29 @@ const isTaiwan = (country: string) => {
     return country === 'Taiwan' ? 'taiwan' : 'none'
 }
 
+const deadline = ref(new Date());
+const isOverDeadline = ref(false);
+const eventDays = ['2025-11-15', '2025-11-16', '2025-11-07'];
+
+const getLocalISODate = (date: Date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+};
+
+const todayString = getLocalISODate(new Date());
+
+const validateDeadline = async () => {
+    isOverDeadline.value = !(await useSetting().validateDateTime('lastRegistrationTime')) && !eventDays.includes(todayString);
+
+}
+
+
 onMounted(() => {
     getOrderListForOwner()
     getMemberInfo()
+    validateDeadline()
 })
 </script>
 
@@ -169,7 +192,7 @@ onMounted(() => {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        // background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
+        background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
 
         .table-box {
             // width: 80%;
@@ -324,28 +347,33 @@ onMounted(() => {
                     width: 13%;
                     cursor: pointer;
 
+                    &:hover {
+                        transform: scale(1.05);
+                        transition: all 0.3s ease-in-out;
+                    }
+
                     &.disabled {
                         background-color: #26AE07 !important;
                         opacity: 0.5;
                         cursor: not-allowed;
+
                     }
                 }
 
             }
+
         }
 
+        .payment-info {
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: start;
+            border-radius: 15px;
+            width: 70vw;
 
-    }
-
-    .payment-info {
-        font-size: 1.3rem;
-        font-weight: bold;
-        text-align: start;
-        border-radius: 15px;
-        width: 70vw;
-
-        @media screen and (max-width: 1048px) {
-            font-size: 1rem;
+            @media screen and (max-width: 1048px) {
+                font-size: 1rem;
+            }
         }
     }
 
