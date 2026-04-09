@@ -14,9 +14,9 @@
             <div class="main-section">
                 <div class="img-box">
                     <div v-if="currentIndex" class="image-item" border>
-                        <img v-if="currentIndex === 1" src="../assets/img/hotel-img/CHECK-INN.jpg" alt="">
-                        <img v-if="currentIndex === 2" src="../assets/img/hotel-img/check-inn2.jpg" alt="">
-                        <img v-if="currentIndex === 3" src="../assets/img/hotel-img/check-inn3.jpg" alt="">
+                        <img v-if="currentIndex === 1" src="@/assets/img/hotel-img/CHECK-INN.jpg" alt="">
+                        <img v-if="currentIndex === 2" src="@/assets/img/hotel-img/check-inn2.jpg" alt="">
+                        <img v-if="currentIndex === 3" src="@/assets/img/hotel-img/check-inn3.jpg" alt="">
                         <div class="carousel-indicator">
                             <div v-for="(index, item) in 3" class="indicator"
                                 :class="{ 'active': currentIndex === index }" :key="index" @click="toggleImage(index)"
@@ -27,32 +27,32 @@
                 <div class="info-box">
                     <p class="title"> CHECK INN</p>
                     <div class="star-section">
-                        <img v-for="item in 3" class="star" src="../assets/img/Star12Filled.svg" alt="">
+                        <img v-for="item in 3" class="star" src="@/assets/img/Star12Filled.svg" alt="">
                     </div>
                     <div class="info-section">
-                        <div class="info-item"><img src="../assets/img/walk.svg" alt="">
+                        <div class="info-item"><img src="@/assets/img/walk.svg" alt="">
                             <p>3 min by walk (160M)</p>
                         </div>
-                        <div class="info-item"><img src="../assets/img/PlaceRound.svg" alt="">
+                        <div class="info-item"><img src="@/assets/img/PlaceRound.svg" alt="">
                             <p>3F, No.468, Section 4, Xinyi Road, Taipei, 110, Taiwan</p>
                         </div>
-                        <div class="info-item"><img src="../assets/img/phone-round.svg" alt="">
+                        <div class="info-item"><img src="@/assets/img/phone-round.svg" alt="">
                             <p>+886 2 2345 9777</p>
                         </div>
-                        <div class="info-item"><img src="../assets/img/EmailOutlined.svg" alt="">
+                        <div class="info-item"><img src="@/assets/img/EmailOutlined.svg" alt="">
                             <p class="email">alice.yangwz@checkhotels.com</p>
                         </div>
                         <div class="info-item">
                             <p class="remark">Remark" TOPBS 2026 ", there have dedicated service for you</p>
                         </div>
                         <div class="info-item">
-                            <img src="../assets/img/LINE.svg" alt="">
+                            <img src="@/assets/img/LINE.svg" alt="">
                             <p class="line">@107fupja</p>
                         </div>
                     </div>
                     <div class="reserver-section">
                         <div class="price">
-                            <img src="../assets/img/money.svg" alt="">
+                            <img src="@/assets/img/money.svg" alt="">
                             <p>TWD $2300 up / Night</p>
                         </div>
                         <p class="reservation-remark">Please make a reservation by mail/line</p>

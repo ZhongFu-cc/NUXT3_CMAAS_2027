@@ -8,19 +8,19 @@
 
         <div class="select-section">
             <nuxt-link class="select-box" to="/abstract">
-                <img src="../assets/img/abstract-icon.png" alt="">
+                <img src="@/assets/img/abstract-icon.png" alt="">
                 <div class="label-box">
                     <span>{{ $t('abstract') }}</span>
                 </div>
             </nuxt-link>
             <nuxt-link class="select-box" :to="'/payment'">
-                <img src="../assets/img/payment-icon.png" alt="">
+                <img src="@/assets/img/payment-icon.png" alt="">
                 <div class="label-box">
                     <span>{{ $t('payment') }}</span>
                 </div>
             </nuxt-link>
             <nuxt-link class="select-box" :to="'/accommodation'">
-                <img src="../assets/img/accommodation-icon.png" alt="">
+                <img src="@/assets/img/accommodation-icon.png" alt="">
                 <div class="label-box">
                     <p>{{ $t('accommodation') }}</p>
                 </div>

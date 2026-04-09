@@ -20,7 +20,7 @@
             </div>
             <div class="shadow-divider"></div>
             <div class="transportation-1">
-                <img src="../assets/img/transport.png" alt="">
+                <img src="@/assets/img/transport.png" alt="">
             </div>
 
             <div class="transport-table">
@@ -330,15 +330,15 @@
 
             <div class="paragraph">Taoyuan Airport MRT</div>
             <div class="mrt-img-box">
-                <img src="../assets/img/mrt_en.jpg" alt="">
+                <img src="@/assets/img/mrt_en.jpg" alt="">
             </div>
             <div class="paragraph">MRT(Taiwan High Speed Rall)</div>
             <div class="taipei-mrt-img-box">
-                <img src="../assets/img/metrotaipeimap.jpg" alt="">
+                <img src="@/assets/img/metrotaipeimap.jpg" alt="">
             </div>
 
             <div class="back-to-top" @click="backToTop">
-                <img src="../assets/img/top.png" alt="">
+                <img src="@/assets/img/top.png" alt="">
             </div>
         </main>
 

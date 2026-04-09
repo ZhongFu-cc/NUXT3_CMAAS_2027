@@ -14,9 +14,9 @@
             <div class="main-section">
                 <div class="img-box">
                     <div v-if="currentIndex" class="image-item" border>
-                        <img v-if="currentIndex === 1" src="../assets/img/hotel-img/PACIFIC-BUSINESS.jpg" alt="">
-                        <img v-if="currentIndex === 2" src="../assets/img/hotel-img/pacific-bussiness2.jpg" alt="">
-                        <img v-if="currentIndex === 3" src="../assets/img/hotel-img/pacific-bussiness3.jpg" alt="">
+                        <img v-if="currentIndex === 1" src="@/assets/img/hotel-img/PACIFIC-BUSINESS.jpg" alt="">
+                        <img v-if="currentIndex === 2" src="@/assets/img/hotel-img/pacific-bussiness2.jpg" alt="">
+                        <img v-if="currentIndex === 3" src="@/assets/img/hotel-img/pacific-bussiness3.jpg" alt="">
                         <div class="carousel-indicator">
                             <div v-for="(index, item) in 3" class="indicator"
                                 :class="{ 'active': currentIndex === index }" :key="index" @click="toggleImage(index)"
@@ -27,25 +27,25 @@
                 <div class="info-box">
                     <p class="title"> PACIFIC BUSINESS HOTEL</p>
                     <div class="star-section">
-                        <img v-for="item in 4" class="star" src="../assets/img/Star12Filled.svg" alt="">
+                        <img v-for="item in 4" class="star" src="@/assets/img/Star12Filled.svg" alt="">
                     </div>
                     <div class="info-section">
-                        <div class="info-item"><img src="../assets/img/walk.svg" alt="">
+                        <div class="info-item"><img src="@/assets/img/walk.svg" alt="">
                             <p>5 min by walk (350M)</p>
                         </div>
-                        <div class="info-item"><img src="../assets/img/PlaceRound.svg" alt="">
+                        <div class="info-item"><img src="@/assets/img/PlaceRound.svg" alt="">
                             <p>11F, NO.495, Guangfu South Road, Taipei, 11074, Taiwan</p>
                         </div>
-                        <div class="info-item"><img src="../assets/img/phone-round.svg" alt="">
+                        <div class="info-item"><img src="@/assets/img/phone-round.svg" alt="">
                             <p>+886 2 8780 8000</p>
                         </div>
-                        <div class="info-item"><img src="../assets/img/EmailOutlined.svg" alt="">
+                        <div class="info-item"><img src="@/assets/img/EmailOutlined.svg" alt="">
                             <p class="email">pbc.corp@msa.hinet.net</p>
                         </div>
                     </div>
                     <div class="reserver-section">
                         <div class="price">
-                            <img src="../assets/img/money.svg" alt="">
+                            <img src="@/assets/img/money.svg" alt="">
                             <p>TWD $3800 up / Night</p>
                         </div>
                         <a v-if="isDisabled" class="reservation-btn" @click="warning">Reservation</a>
@@ -80,7 +80,7 @@
 
 
             <!-- <div class="demo-img">
-                <img src="../assets/img/demo-img/accommodation3.png" alt="" style="width: 100%;">
+                <img src="@/assets/img/demo-img/accommodation3.png" alt="" style="width: 100%;">
                 <div class="demo-link-section">
                     <nuxt-link @click="router.go(-1)"></nuxt-link>
                 </div>

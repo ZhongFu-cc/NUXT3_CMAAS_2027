@@ -1,7 +1,7 @@
 <template>
     <div class="main-box">
         <!-- <div class="test"></div> -->
-        <img class="background-image" src="../assets/img/countdown-bg.jpg" alt="Countdown Background" />
+        <img class="background-image" src="@/assets/img/countdown-bg.jpg" alt="Countdown Background" />
         <div class="countdown-timer">
             <div class="note">Coming soon</div>
             <div class="timeer">
@@ -16,7 +16,7 @@
             </div>
             <div class="add-calendar-img-box">
                 <a href="https://evt.to/z77j18jbb2pn" target="_blank">
-                    <img src="../assets/img/add-calendar.png" alt="Add to Calendar">
+                    <img src="@/assets/img/add-calendar.png" alt="Add to Calendar">
                 </a>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <template>
     <div class="banner-box">
-        <img src="../../assets/img/260317-home-banner.jpg" alt="">
+        <img src="@/assets/img/260317-home-banner.jpg" alt="">
     </div>
 </template>
 <style lang="scss" scoped>

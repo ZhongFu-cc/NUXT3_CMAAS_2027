@@ -6,7 +6,7 @@
             <h1 class="title">Welcome Message</h1>
             <div class="welcome-box">
                 <div class="image-box">
-                    <img src="../assets/img/YeHsiangTang.jpg" alt="">
+                    <img src="@/assets/img/YeHsiangTang.jpg" alt="">
                 </div>
                 <div class="welcome-content">
                     <p>Dear members and distinguished colleagues,&nbsp;</p>

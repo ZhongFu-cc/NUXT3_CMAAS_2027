@@ -8,7 +8,7 @@
         <div class="title-box">
             <div class="title-text-box">
                 <div class="title-image-box">
-                    <img class="home-banner-bak" src="../../assets/img/EmojiObjectsOutlined.svg">
+                    <img class="home-banner-bak" src="@/assets/img/EmojiObjectsOutlined.svg">
                 </div>
                 <h1 class="title">{{ $t('news') }}</h1>
             </div>
