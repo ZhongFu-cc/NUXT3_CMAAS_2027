@@ -14,7 +14,7 @@
             <div class="main-section">
                 <div class="img-box">
                     <div v-if="currentIndex" class="image-item" border>
-                        <img v-if="currentIndex === 1" src="@/assets/img/hotel-img/CHECK-INN.jpg" alt="">
+                        <img v-if="currentIndex === 1" src="@/assets/img/hotel-img/check-inn.jpg" alt="">
                         <img v-if="currentIndex === 2" src="@/assets/img/hotel-img/check-inn2.jpg" alt="">
                         <img v-if="currentIndex === 3" src="@/assets/img/hotel-img/check-inn3.jpg" alt="">
                         <div class="carousel-indicator">
