@@ -42,7 +42,7 @@
                 <el-card class="hotel-card">
                     <img src="@/assets/img/hotel-img/pacific-business.jpg"></img>
                     <div class="hotel-card-body">
-                        <h3 class="title">PACIFIC BUSSINESS HOTEL</h3>
+                        <h3 class="title">PACIFIC BUSINESS HOTEL</h3>
                         <div class="star-section">
                             <img v-for="item in 4" class="star" src="@/assets/img/Star12Filled.svg" alt="">
 
