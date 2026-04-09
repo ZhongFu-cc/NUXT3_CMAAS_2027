@@ -1,10 +1,10 @@
 <template>
     <div>
         <main class="common-section">
-            <Banner/>
-            <Breadcrumbs :first-route="'Accommodation'" :secound-route="'Recommended Hotels'"/>
-            <Title :title="'Recommended Hotels'"/>
-            <!-- <div class="banner-box">
+            <Banner />
+            <Breadcrumbs :first-route="'Accommodation'" :secound-route="'Recommended Hotels'" />
+            <Title :title="'Recommended Hotels'" />
+            <div class="banner-box">
                 <img src="../assets//img/banner.png" alt="">
             </div>
             <div class="title-section">
@@ -35,7 +35,7 @@
                         </div>
                         <div class="hotel-info">
                             <p><img src="../assets/img/walk.svg" alt="">5 min by walk (350M)</p>
-                            <p><img src="../assets/img/money.svg" alt="">TWD $7500 up / Night</p>
+                            <p><img src="../assets/img/money.svg" alt="">TWD $7800 up / Night</p>
 
                         </div>
                         <nuxt-link to="/hotel1" class="view-more-btn">View more</nuxt-link>
@@ -67,14 +67,14 @@
                         </div>
                         <div class="hotel-info">
                             <p><img src="../assets/img/walk.svg" alt="">3 min by walk (160M)</p>
-                            <p><img src="../assets/img/money.svg" alt="">TWD $2500 up / Night</p>
+                            <p><img src="../assets/img/money.svg" alt="">TWD $2300 up / Night</p>
 
                         </div>
                         <nuxt-link to="/hotel3" class="view-more-btn">View more</nuxt-link>
 
                     </div>
                 </el-card>
-            </div> -->
+            </div>
 
         </main>
 
@@ -90,10 +90,12 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs.vue'
     // width: $common-section-width;
     // margin: $common-section-margin;
     font-family: $common-section-font-family;
+    margin-top: 6rem;
+
 
     .banner-box {
         margin-top: 1rem;
-        
+
         img {
             width: 100%;
             box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.5);
@@ -130,7 +132,7 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs.vue'
         height: 4rem;
         text-wrap: nowrap;
 
-        
+
 
         .title {
             color: white;
@@ -145,25 +147,25 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs.vue'
             justify-content: center;
 
             &::after {
-            content: '';
-            position: absolute;
-            width: 63vw;
-            height: 2px;
-            background-color: #DD6777;
-            right: 0;
-            bottom: 0;
-        }
+                content: '';
+                position: absolute;
+                width: 63vw;
+                height: 2px;
+                background-color: #DD6777;
+                right: 0;
+                bottom: 0;
+            }
 
-        &::before {
-            content: '';
-            position: absolute;
-            width: 63vw;
-            height: 2px;
-            background-color: #DD6777;
-            left: 0;
-            bottom: 0;
-        }
-            
+            &::before {
+                content: '';
+                position: absolute;
+                width: 63vw;
+                height: 2px;
+                background-color: #DD6777;
+                left: 0;
+                bottom: 0;
+            }
+
         }
     }
 
@@ -197,6 +199,7 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs.vue'
             .hotel-card-body {
                 display: flex;
                 flex-direction: column;
+
                 .title {
                     font-size: 1.5rem;
                     font-weight: 600;
