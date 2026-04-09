@@ -4,9 +4,6 @@
             <Banner />
             <Breadcrumbs :first-route="'Accommodation'" :secound-route="'Recommended Hotels'" />
             <Title :title="'Recommended Hotels'" />
-            <div class="banner-box">
-                <img src="../assets//img/banner.png" alt="">
-            </div>
             <div class="title-section">
                 <p class="title">
                     Accommodation
