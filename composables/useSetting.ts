@@ -24,6 +24,11 @@ export const useSetting = () => {
 
     }
 
+    /**
+     * 驗證當前時間是否在設定的時間之前，主要用於控制某些功能的開放與否，例如摘要提交、幻燈片上傳等。
+     * @param settingKey 
+     * @returns 
+     */
     const validateDateTime = async (settingKey: string) => {
         await fetchSetting()
         const settingValue = setting.value?.[settingKey]

@@ -34,8 +34,9 @@
                                 <el-button v-if="!isDisabled" link class="see-more-btn" @click='deletePaper(paper)'>{{
                                     $t('delete') }}</el-button>
                                 <!-- <el-button v-if="isDisabled" link class="see-more-btn" @click='isClosed'>{{ $t('delete') }}</el-button> -->
-                                <el-button v-if="paper.status === 1 " link class="see-more-btn" :disabled="isUploadDisabled"
-                                    @click="headToUploadFile(paper)">{{ $t('upload') }}</el-button>
+                                <el-button v-if="paper.status === 1" link class="see-more-btn"
+                                    :disabled="isUploadDisabled" @click="headToUploadFile(paper)">{{ $t('upload')
+                                    }}</el-button>
                             </td>
                         </tr>
                     </tbody>
