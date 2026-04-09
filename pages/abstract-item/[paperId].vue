@@ -99,23 +99,10 @@ console.log(paperId);
 
 
 /**-------------- Member info --------------- */
-const memberInfo = reactive<any>({});
+const memberInfo = ref<any>({});
 
 const getMemberInfo = async () => {
-    let res = await CSRrequest.get('/member/getMemberInfo');
-    console.log(res);
-    if (res.code === 10002 || res.code === 401) {
-        localStorage.removeItem("Authorization-member");
-        router.push("/login");
-    } else if (res.code === 200) {
-        Object.assign(memberInfo, res.data);
-        data.memberId = memberInfo.memberId;
-
-        let orderRes = await CSRrequest.get(`/orders/owner`);
-
-
-        console.log(orderRes);
-    }
+    memberInfo.value = useAuth().memberInfo;
 }
 
 /**------------------------------------------ */
@@ -123,54 +110,19 @@ const checkFileSize = (size: number) => {
     return size < 1024 * 1024 * 20;
 }
 
-const handleRemove = (file: UploadUserFile, fileList: UploadUserFile[]) => {
-    console.log(data.fileList);
-    data.fileList = [];
-
-    if (formRef.value) {
-        formRef.value.validateField('fileList');
-    }
-}
-
-const handleExceed: UploadProps['onExceed'] = (files: UploadUserFile[], fileList: UploadUserFile[]) => {
-    console.log(files);
-    ElMessage.error(`You can only upload 1 file, please upload again`);
-    if (files.length > 0) {
-        fileList.splice(0, fileList.length);
-
-        data.fileList = [];
-        console.log(data.fileList);
-        console.log(fileList);
-    }
-}
-
-const handlePdfUpload: UploadProps['onChange'] = (file: UploadUserFile, uploadFiles) => {
-    console.log(file);
-    if (file.size == 0) {
-        ElMessage.error('File is empty');
-        return false;
-    }
 
 
-    if (file.status === 'ready' && file.size) {
-        if (!checkFileSize(file.size)) {
-            ElMessage.error('File size must be less than 20mb');
-            uploadFiles.pop();
-            return;
-        }
-        if (file.name.split('.').pop() !== 'pdf') {
-            ElMessage.error('File must be pdf');
-            uploadFiles.pop();
-            return;
-        }
-        data.fileList.push(file);
-        console.log(data.fileList);
-        if (formRef.value) {
-            formRef.value.validateField('fileList');
-        }
-    }
 
-}
+// (file: UploadUserFile, fileList: UploadUserFile[]) => {
+//     console.log(data.fileList);
+//     data.fileList = [];
+
+//     if (formRef.value) {
+//         formRef.value.validateField('fileList');
+//     }
+// }
+
+
 const handleDocxUpload: UploadProps['onChange'] = (file: UploadUserFile, uploadFiles) => {
     if (file.size == 0) {
         ElMessage.error('File is empty');
@@ -235,11 +187,21 @@ const data = reactive<any>({
     fileList: [],
 })
 
+const uploadFileOptions = ref<UploadOptions>({
+    fileLimit: 1,
+    fileMaxSize: 1024 * 1024 * 20,
+    fileType: ['pdf'],
+})
+
+
+const handleRemove = handleFileRemove(data.fileList);
+const handleExceed: UploadProps['onExceed'] = handleFileExceed(uploadFileOptions.value, data.fileList);
+const handlePdfUpload: UploadProps['onChange'] = handleFileUpload(uploadFileOptions.value, data.fileList);
+
+
 const getPaperById = async () => {
     let res = await CSRrequest.get(`/paper/owner/${paperId}`);
-    console.log(res)
     const { status, publicationNumber, publicationGroup, reportLocation, reportTime, paperFileUpload, availablePaperReviewers, assignedPaperReviewers, tagList, ...resdata } = res.data;
-    console.log(resdata);
 
     if (res.code === 200) {
         Object.assign(data, resdata);
@@ -299,7 +261,6 @@ const submit = async (formEl: FormInstance | undefined) => {
         }
     })
 }
-
 
 
 onMounted(() => {

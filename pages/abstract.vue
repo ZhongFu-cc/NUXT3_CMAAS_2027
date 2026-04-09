@@ -33,8 +33,7 @@
                                 }}</el-button>
                                 <el-button v-if="!isDisabled" link class="see-more-btn" @click='deletePaper(paper)'>{{
                                     $t('delete') }}</el-button>
-                                <!-- <el-button v-if="isDisabled" link class="see-more-btn" @click='isClosed'>{{ $t('delete') }}</el-button> -->
-                                <el-button v-if="paper.status === 1" link class="see-more-btn"
+                                <el-button v-if="paper.status === 1 && isUploadFileAvailable" link class="see-more-btn"
                                     @click="headToUploadFile(paper)">{{ $t('upload') }}</el-button>
                             </td>
                         </tr>
@@ -247,8 +246,16 @@ const headToSubmit = () => {
 
 const validateDateTime = async () => {
     isDisabled.value = !(await useSetting().validateDateTime('abstractSubmissionEndTime'));
-
 }
+
+const isUploadFileAvailable = ref(false);
+watchEffect(async () => {
+    const isBefore = await useSetting().validateDateTime('slideUploadEndTime');
+    const isAfter = !(await useSetting().validateDateTime('slideUploadStartTime'));
+
+    isUploadFileAvailable.value = isBefore && isAfter;
+});
+
 
 
 
