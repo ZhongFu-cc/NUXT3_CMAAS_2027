@@ -30,6 +30,12 @@ import QuickLinks from '@/components/home/QuickLinks.vue';
 import KeyDate from '@/components/home/KeyDate.vue';
 import { useI18n } from 'vue-i18n';
 
+useSeoMeta({
+    title: 'TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
+    description: 'Welcome to the TOPBS 2026 (Taiwan Oncoplastic Breast Surgery Society) Conference 2026, held in Taipei from November 14-15, 2026. Explore the latest advancements in sustainable perfect form and safety, bringing together global experts for exchange and collaboration.',
+    keywords: 'Home,TOPBS,TOPBS 2026,2026 TOPBS'
+})
+
 const { locale, setLocale, t } = useI18n();
 
 const eventDate = new Date('2026-11-14T00:00:00');

@@ -87,9 +87,9 @@ import Banner from '@/components/layout/Banner.vue';
 import Title from '@/components/layout/Title.vue';
 
 useSeoMeta({
-    title: 'Award - 9th IOPBS & TOPBS 2025 International Conference on Oncoplastic Breast Surgery',
-    description: 'Discover the award opportunities at the 9th IOPBS & TOPBS 2025 International Conference on Oncoplastic Breast Surgery. The organizing committee will present awards for Young Investigator, Best Poster, and Best Video. Winners will be announced on October 24 and recognized during the conference.',
-    keywords: 'Abstract Award, Award, 9th IOPBS, IOPBS 2025, TOPBS 2025, 2025 IOPBS, 2025 TOPBS '
+    title: 'Award - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
+    description: 'Discover the award opportunities at the TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society. The organizing committee will present awards for Young Investigator, Best Poster, and Best Video. Winners will be announced on October 24 and recognized during the conference.',
+    keywords: 'Abstract Award,Award,TOPBS,TOPBS 2026,2026 TOPBS'
 })
 
 </script>

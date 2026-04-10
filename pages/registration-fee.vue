@@ -158,9 +158,9 @@ import Banner from '@/components/layout/Banner.vue';
 import Title from '@/components/layout/Title.vue';
 
 useSeoMeta({
-    title: 'Registration Fee - 9th IOPBS & TOPBS 2025 International Conference on Oncoplastic Breast Surgery',
-    description: 'Explore the registration fee details for the 9th IOPBS & TOPBS 2025 International Conference on Oncoplastic Breast Surgery. Find information on personal and group registration fees, early-bird discounts, and payment methods.',
-    keywords: 'Registration Fee, 9th IOPBS, IOPBS 2025, TOPBS 2025, 2025 IOPBS, 2025 TOPBS '
+    title: 'Registration Fee - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
+    description: 'Explore the registration fee details for the TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society. Find information on personal and group registration fees, early-bird discounts, and payment methods.',
+    keywords: 'Registration Fee,TOPBS 2026,2026 TOPBS '
 })
 
 </script>

@@ -175,6 +175,10 @@
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 import Title from '@/components/layout/Title.vue';
 import Banner from '@/components/layout/Banner.vue';
+
+
+
+
 const router = useRouter();
 /**----------------------------------------- */
 const memberInfo = reactive<any>({});

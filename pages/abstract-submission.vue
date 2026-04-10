@@ -94,9 +94,9 @@ const { t } = useI18n();
 const { isLogin, checkLoginState, memberInfo } = useAuth();
 
 useSeoMeta({
-    title: 'Abstract Submission - TOPBS 2026 International Conference on Oncoplastic Breast Surgery',
+    title: 'Abstract Submission - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
     description: 'Welcome to the abstract submission page for the TOPBS (Taiwan Oncoplastic Breast Surgery Society) Conference 2026. Submit your abstracts for poster, video, or young investigator presentations and be part of this prestigious event in Taipei.',
-    keywords: 'Abstract Submission, TOPBS 2026 '
+    keywords: 'Abstract Submission,TOPBS,TOPBS 2026,2026 TOPBS'
 })
 
 interface AbstractInterface {

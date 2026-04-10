@@ -149,22 +149,21 @@
 import type { FormInstance, FormRules } from 'element-plus'
 import { Lock, Message } from '@element-plus/icons-vue'
 import { useLang } from '@/composables/useLang'
-
 import Banner from '@/components/layout/Banner.vue';
 import Title from '@/components/layout/Title.vue';
-import registrationFee from './registration-fee.vue';
-
 import countries from '@/assets/data/countries.json'
 import RegistrationFee from './registration-fee.vue';
 
+useSeoMeta({
+    title: 'Registration - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
+    description: 'Explore the registration details for the TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society. Find information on personal , early-bird discounts, and payment methods.',
+    keywords: 'Registration,TOPBS,TOPBS 2026,2026 TOPBS'
+})
+
+
 const { t, setLocale, locale } = useLang()
-
-
 const countryList = ref(countries);
-
 const router = useRouter()
-
-
 const { isLogin } = useAuth()
 
 /**-------------------------------匯款帳號末5碼校驗----------------------------- */

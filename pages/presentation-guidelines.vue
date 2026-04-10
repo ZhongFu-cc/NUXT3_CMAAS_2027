@@ -99,6 +99,13 @@
 import Title from '@/components/layout/Title.vue';
 import Banner from '@/components/layout/Banner.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
+
+useSeoMeta({
+    title: 'Presentation Guidelines - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
+    description: 'Learn about the presentation guidelines for the TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society. Understand the requirements for oral presentations, posters, and videos.',
+    keywords: 'Presentation Guidelines,TOPBS,TOPBS 2026,2026 TOPBS'
+})
+
 </script>
 <style lang="scss" scoped>
 .common-section {

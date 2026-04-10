@@ -54,6 +54,13 @@
 import Banner from '@/components/layout/Banner.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 import Title from '@/components/layout/Title.vue';
+
+useSeoMeta({
+    title: 'President\'s Message - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
+    description: 'Read the messages from the presidents of the Taiwan Oncoplastic Breast Surgery Society , welcoming attendees to the TOPBS 2026 conference.',
+    keywords: 'President\'s Message,TOPBS,TOPBS 2026,2026 TOPBS,'
+})
+
 </script>
 <style lang="scss" scoped>
 .about-us-section {
