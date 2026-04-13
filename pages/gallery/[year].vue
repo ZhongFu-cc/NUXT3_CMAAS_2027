@@ -13,14 +13,16 @@
 import Title from '@/components/layout/Title.vue';
 import Banner from '~/components/layout/Banner.vue';
 
+useSeoMeta({
+    title: 'Gallery - TOPBS Taiwan Oncoplastic Breast Surgery Society',
+    description: 'Browse the gallery of images from the TOPBS Taiwan Oncoplastic Breast Surgery Society. Explore memories from the conference.',
+    keywords: 'Gallery,TOPBS,TOPBS 2026,2026 TOPBS'
+})
 
 const route = useRoute();
 const year = route.params.year as string;
-
 const imageLength = 36;
-
 const imageUrl = ref(`/img/${year}-WEBP`);
-
 
 const images = computed(() => {
     return Array.from({ length: imageLength }, (_, i) => ({

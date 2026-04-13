@@ -352,9 +352,9 @@ import Banner from '@/components/layout/Banner.vue';
 import Title from '@/components/layout/Title.vue';
 
 useSeoMeta({
-    title: 'Transportation - 9th IOPBS & TOPBS 2025 International Conference on Oncoplastic Breast Surgery',
-    description: 'Explore the transportation options for the 9th IOPBS & TOPBS 2025 International Conference on Oncoplastic Breast Surgery. This page provides detailed information on how to reach the venue, including MRT, bus, and taxi services.',
-    keywords: 'Transportation , 9th IOPBS, IOPBS 2025, TOPBS 2025, 2025 IOPBS, 2025 TOPBS '
+    title: 'Transportation - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
+    description: 'Explore the transportation options for the TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society. This page provides detailed information on how to reach the venue, including MRT, bus, and taxi services.',
+    keywords: 'Transportation,TOPBS,TOPBS 2026,2026 TOPBS'
 })
 
 
