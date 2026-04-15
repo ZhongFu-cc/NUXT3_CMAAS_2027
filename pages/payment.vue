@@ -194,7 +194,6 @@ onMounted(() => {
         background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
 
         .table-box {
-            // width: 80%;
             display: flex;
             flex-direction: column;
             background-color: white;
@@ -205,7 +204,6 @@ onMounted(() => {
             .info {
                 font-size: 1rem;
                 color: red;
-                // margin-bottom: 1rem;
             }
 
             .taiwan {
@@ -312,7 +310,6 @@ onMounted(() => {
                 .pay-btn {
                     background-color: #26AE07;
                     color: white;
-                    // font-size: 1.3rem;
                     height: 100%;
                     cursor: pointer;
                     padding: 0.5rem 1rem;

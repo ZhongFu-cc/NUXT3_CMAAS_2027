@@ -171,19 +171,31 @@ const submit = async (formEl: FormInstance | undefined) => {
                 body: submitData
             });
             if (res.code === 200) {
-                ElMessage.success('提交成功!');
+                ElNotification.success({
+                    title: 'Submitted',
+                    message: 'Your abstract has been submitted successfully!',
+                    type: 'success',
+                    duration: 3000,
+                })
                 loading.value = false;
                 router.push('/member-center');
-            } else if (res.code === 400) {
-                ElMessage.error(`提交失敗!${res.msg}`);
-            } else if (res.code === 500) {
-                ElMessage.error(`提交失敗!${res.msg}`);
+            } else if (res.code === 400 || res.code === 500) {
+                ElNotification.error({
+                    title: 'Failed',
+                    message: `Your abstract submission failed! ${res.msg}`,
+                    type: 'error',
+                    duration: 3000,
+                })
             } else {
-                ElMessage.error('未知錯誤!');
+                ElNotification.error({
+                    title: 'Failed',
+                    message: 'Unknown error!',
+                    type: 'error',
+                    duration: 3000,
+                })
             }
             loading.value = false;
         } else {
-            console.log('error submit!!');
             return false;
         }
     })
@@ -193,7 +205,12 @@ const { setting } = useSetting();
 watch(() => setting.value, () => {
     if (setting.value && !setting.value.isAbstractSubmissionOpen) {
         router.push("/member-center");
-        ElMessage.error('Abstract submission is closed');
+        ElNotification.warning({
+            title: 'Closed',
+            message: 'Abstract submission is closed',
+            type: 'warning',
+            duration: 3000,
+        })
     }
 }, { immediate: true })
 

@@ -604,7 +604,6 @@ onMounted(() => {
 
             img {
                 width: 15vw;
-                // height: 40px;
             }
         }
 

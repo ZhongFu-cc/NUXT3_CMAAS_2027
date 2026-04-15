@@ -451,12 +451,23 @@ const submit = async (formEl: FormInstance | undefined) => {
             if (res.code === 500) {
                 getCaptcha()
                 formData.verificationCode = ''
-                ElMessage.error(res.msg)
+                ElNotification.error({
+                    title: 'Failed',
+                    message: res.msg,
+                    type: 'error',
+                    duration: 3000,
+                });
+
             }
 
             if (res.data.isLogin) {
                 localStorage.setItem(res.data.tokenName, 'Bearer ' + res.data.tokenValue);
-                ElMessage.success(t.value.registrationSuccess)
+                ElNotification.success({
+                    title: 'Success',
+                    message: t.value.registrationSuccess,
+                    type: 'success',
+                    duration: 3000,
+                });
                 useAuth().checkLoginState();
 
                 router.push('/')
@@ -498,7 +509,12 @@ onMounted(() => {
     window.addEventListener('keydown', listenKeydown)
 
     if (isLogin.value) {
-        ElMessage.info(t.value.alreadyLogin)
+        ElNotification.info({
+            title: 'Info',
+            message: t.value.alreadyLogin,
+            type: 'info',
+            duration: 3000,
+        });
         router.push('/')
     }
 })

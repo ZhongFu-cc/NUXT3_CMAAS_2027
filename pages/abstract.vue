@@ -27,12 +27,14 @@
                                 <span v-else-if="paper.status === 2" class="status-rejected">{{ $t('rejected') }}</span>
                             </td>
                             <td class="last-col">
-                                <el-button v-if="!isDisabled" link class="edit-btn" @click='headToEditPaper(paper)'>{{
-                                    $t('edit') }}</el-button>
+                                <el-button v-if="!isDisabled && paper.status !== 1" link class="edit-btn"
+                                    @click='headToEditPaper(paper)'>{{
+                                        $t('edit') }}</el-button>
                                 <el-button link class="see-more-btn" @click='toggleSeeMore(paper)'>{{
                                     $t('view') }}</el-button>
-                                <el-button v-if="!isDisabled" link class="see-more-btn" @click='deletePaper(paper)'>{{
-                                    $t('delete') }}</el-button>
+                                <el-button v-if="!isDisabled && paper.status !== 1" link class="see-more-btn"
+                                    @click='deletePaper(paper)'>{{
+                                        $t('delete') }}</el-button>
                                 <!-- <el-button v-if="isDisabled" link class="see-more-btn" @click='isClosed'>{{ $t('delete') }}</el-button> -->
                                 <el-button v-if="paper.status === 1" link class="see-more-btn"
                                     :disabled="isUploadDisabled" @click="headToUploadFile(paper)">{{ $t('upload')
@@ -257,12 +259,23 @@ const isDisabled = ref(false);
 
 
 const isClosed = () => {
-    ElMessage.error('The submission period has ended, can not be deleted');
+    ElNotification.warning({
+        title: 'Caution',
+        message: 'The submission period has ended, can not be deleted',
+        type: 'warning',
+        duration: 3000,
+    });
 }
 
 const headToSubmit = () => {
     if (isDisabled.value) {
         ElMessage.error('The submission period has ended, can not be submitted');
+        ElNotification.warning({
+            title: 'Caution',
+            message: 'The submission period has ended, can not be submitted',
+            type: 'warning',
+            duration: 3000,
+        });
     } else {
         router.push('/abstract-submission');
     }
