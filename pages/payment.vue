@@ -10,7 +10,7 @@
                     <thead>
                         <tr class="header-row">
                             <th>Item</th>
-                            <th>Payment Amount (TWD)</th>
+                            <th>Payment Amount {{ memberInfo.country === 'Taiwan' ? '(TWD)' : '(USD)' }}</th>
                             <th>Payment Status</th>
                             <th v-if="memberInfo.country === 'Taiwan'">Last 5 digits of account number</th>
                         </tr>
@@ -21,14 +21,15 @@
                             <td>{{ item.totalAmount }}</td>
                             <td :class="memberInfo.country === 'Taiwan' ? 'none' : 'last-col'">{{
                                 enums.payMentStatus[item.status]
-                                }}</td>
+                            }}</td>
                             <td v-if="memberInfo.country === 'Taiwan'" class="last-col">
                                 {{ memberInfo.remitAccountLast5 }}
                             </td>
                             <td v-if="memberInfo.country !== 'Taiwan'" class="temp-col"></td>
                             <td v-if="memberInfo.country !== 'Taiwan' && (item.status === 0 || item.status === 3)"
-                                class="not-pay" :class="isOverDeadline ? 'disabled' : ''"
-                                @click="getOrders(item.ordersId, true)">
+                                class="not-pay"
+                                :class="(memberInfo.groupRole == 'slave' && item.itemsSummary == 'Group Registration Fee') || isOverDeadline ? 'disabled' : ''"
+                                @click="getOrders(item.ordersId, (memberInfo.groupRole != 'slave' || item.itemsSummary != 'Group Registration Fee'))">
                                 <span>Pay now</span>
                             </td>
                             <td v-if="memberInfo.country !== 'Taiwan' && item.status === 2" class="completed">
@@ -68,9 +69,7 @@ const getMemberInfo = async () => {
         router.push('/login')
         return
     }
-    console.log(useAuth().memberInfo.value)
     memberInfo.value = useAuth().memberInfo.value;
-    console.log(memberInfo.value)
 }
 
 
@@ -167,16 +166,17 @@ const getLocalISODate = (date: Date) => {
 
 const todayString = getLocalISODate(new Date());
 
-const validateDeadline = async () => {
-    isOverDeadline.value = !(await useSetting().validateDateTime('lastRegistrationTime')) && !eventDays.includes(todayString);
-
-}
+const { setting } = useSetting();
+watch(() => setting.value, () => {
+    if (setting.value) {
+        isOverDeadline.value = !setting.value.isRegistrationOpen
+    }
+}, { immediate: true })
 
 
 onMounted(() => {
     getOrderListForOwner()
     getMemberInfo()
-    validateDeadline()
 })
 </script>
 

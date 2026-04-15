@@ -88,7 +88,6 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 import type { FormInstance, FormRules, UploadProps, UploadUserFile } from 'element-plus';
 import { handleFileExceed, handleFileRemove, handleFileUpload, type UploadOptions } from '@/utils/upload';
 import { formRulesEN } from '@/utils/formRules';
-import { useSetting } from '@/composables/useSetting';
 
 const { t } = useI18n();
 const { isLogin, checkLoginState, memberInfo } = useAuth();
@@ -190,12 +189,16 @@ const submit = async (formEl: FormInstance | undefined) => {
     })
 }
 
-const validateDateTime = async () => {
-    if (!(await useSetting().validateDateTime('abstractSubmissionEndTime'))) {
+const { setting } = useSetting();
+watch(() => setting.value, () => {
+    if (setting.value && !setting.value.isAbstractSubmissionOpen) {
         router.push("/member-center");
         ElMessage.error('Abstract submission is closed');
     }
-}
+}, { immediate: true })
+
+
+// console.log('setting', setting.value)
 
 const listenKeydown = (event: KeyboardEvent) => {
     if (event.key === 'Enter') {
@@ -214,7 +217,6 @@ const init = () => {
 
 
 onMounted(() => {
-    validateDateTime();
     init();
     if (!isLogin.value) {
         router.push("/login");

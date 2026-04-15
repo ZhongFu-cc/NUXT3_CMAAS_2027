@@ -43,7 +43,7 @@
                 <!-- <nuxt-link class="menu-item" to="/" @click="setActiveItem('invitedSpeaker')"
                     :class="activeClass('invitedSpeaker')">受邀講者</nuxt-link> -->
 
-                <nuxt-link class="menu-item" to="/seminar-registration" @click="setActiveItem('seminarRegistration')"
+                <nuxt-link class="menu-item" to="/registration-fee" @click="setActiveItem('seminarRegistration')"
                     :class="activeClass('seminarRegistration')">{{ $t('registration') }}</nuxt-link>
 
                 <div class="submenu-box menu-item" @click="openSubMenuFunc('abstract')">
@@ -135,7 +135,7 @@
                     </div>
                 </div>
                 <nuxt-link v-if="!isLogin" class="menu-item" to="/login" :class="activeClass('login')">{{ $t('login')
-                }}</nuxt-link>
+                    }}</nuxt-link>
 
             </div>
 

@@ -46,7 +46,7 @@ const menu = reactive([
     { title: t('home'), path: '/', isActive: false },
     { title: t('aboutUs'), path: '/about-us', isActive: false },
     { title: t('conferenceInformation'), path: '/conference-information', isActive: false },
-    { title: t('registration'), path: '/seminar-registration', isActive: false },
+    { title: t('registration'), path: '/registration-fee', isActive: false },
     {
         title: t('abstract'), path: '/', isActive: false, submenu: [
             { title: t('submissionGuidelines'), path: '/submission-guidelines' },

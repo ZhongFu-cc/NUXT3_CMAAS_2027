@@ -4,7 +4,7 @@
             <Banner />
             <div class="main-section">
                 <Title :title="$t('registration')"></Title>
-                <RegistrationFee></RegistrationFee>
+                <!-- <RegistrationFee></RegistrationFee> -->
                 <el-form :model="formData" class="form" ref="form" :rules="formRules" labelPosition="top"
                     require-asterisk-position="right" :show-message="true" :scroll-to-error="true"
                     :validate-on-rule-change="false">
@@ -35,8 +35,7 @@
                                 </div>
 
 
-                                <el-form-item v-if="formData.country === 'Taiwan'" :label="t.idCard" prop="idCard"
-                                    :style="{ order: getOrder('idCard') }">
+                                <el-form-item :label="t.idCard" prop="idCard" :style="{ order: getOrder('idCard') }">
                                     <el-input v-model="formData.idCard" :placeholder="t.idCard"></el-input>
                                 </el-form-item>
 
@@ -68,9 +67,9 @@
 
                             </div>
                             <div class="right-section">
-                                <el-form-item v-if="formData.country !== 'Taiwan'" :label="t.idCard" prop="idCard">
+                                <!-- <el-form-item v-if="formData.country !== 'Taiwan'" :label="t.idCard" prop="idCard">
                                     <el-input v-model="formData.idCard" :placeholder="t.idCard"></el-input>
-                                </el-form-item>
+                                </el-form-item> -->
 
                                 <el-form-item class="required" :label="t.affiliation" prop="affiliation">
                                     <el-input v-model="formData.affiliation" :placeholder="t.affiliation"></el-input>
@@ -119,6 +118,16 @@
                                         <el-option :label="t.category1" :value="1"></el-option>
                                         <el-option :label="t.category2" :value="2"></el-option>
                                         <el-option :label="t.category3" :value="3"></el-option>
+                                    </el-select>
+                                </el-form-item>
+
+                                <el-form-item v-if="formData.category === 1 && formData.country !== 'Taiwan'"
+                                    prop="categoryExtra" :label="t.categoryExtra">
+                                    <el-select v-model="formData.categoryExtra" class="category-select">
+                                        <el-option label="JBCS" value="JBCS"></el-option>
+                                        <el-option label="JOPBS" value="JOPBS"></el-option>
+                                        <el-option label="KBCS" value="KBCS"></el-option>
+                                        <el-option label="HKSBS " value="HKSBS "></el-option>
                                     </el-select>
                                 </el-form-item>
 
@@ -466,6 +475,19 @@ const listenKeydown = (event: KeyboardEvent) => {
         submit(form.value)
     }
 }
+
+const { setting } = useSetting();
+watch(() => setting.value, () => {
+    if (setting.value && !setting.value.isRegistrationOpen) {
+        router.push("/registration-fee");
+        ElNotification({
+            title: 'Notice',
+            message: 'Registration is closed',
+            type: 'warning',
+            duration: 5000
+        });
+    }
+}, { immediate: true })
 
 
 
