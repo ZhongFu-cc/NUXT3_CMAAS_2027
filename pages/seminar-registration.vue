@@ -8,6 +8,9 @@
                 <el-form :model="formData" class="form" ref="form" :rules="formRules" labelPosition="top"
                     require-asterisk-position="right" :show-message="true" :scroll-to-error="true"
                     :validate-on-rule-change="false">
+                    <div class="registration-notice">
+                        {{ t.registrationReminder }}
+                    </div>
 
                     <div class="main-form">
                         <ClientOnly>
@@ -555,6 +558,17 @@ onUnmounted(() => {
         width: 60%;
         margin: 1rem auto;
         font-weight: 600;
+
+        .registration-notice {
+            margin-bottom: 1.5rem;
+            padding: 0.9rem 1rem;
+            border: 1px solid #f1c4ca;
+            border-radius: 14px;
+            background: linear-gradient(180deg, #fff8f9 0%, #fff2f4 100%);
+            color: #9e5060;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
 
         :deep(.el-form-item__label) {
             font-size: 1.3rem;

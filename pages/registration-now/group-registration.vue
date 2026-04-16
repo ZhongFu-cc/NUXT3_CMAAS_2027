@@ -2,12 +2,16 @@
     <div>
         <main class="common-section">
             <Banner />
+            <Title title="Group Registration"></Title>
 
-            <div class="title-section">
-                <h1 class="title">Registration Now</h1>
-            </div>
+
             <el-form :model="returnData" class="form" ref="form" :rules="formRules" labelPosition="top"
                 require-asterisk-position="right" :show-message="true" :scroll-to-error="true">
+                <div class="registration-notice">
+                    Group registration data cannot be carried over to future annual meetings.
+                    <!-- {{ t.registrationReminder }} -->
+                </div>
+
                 <div class="member-list" v-for="(item, index) in returnData.groupMembers" :key="index">
                     <div class="top-section">
                         <h1>Member {{ Number(index) + 1 }} : <span v-if="index === 0" class="tips">*The first on the
@@ -69,8 +73,8 @@
                                 <el-input v-model="item.confirmPassword" placeholder="Password" :prefixIcon="Lock"
                                     show-password></el-input>
                             </el-form-item>
-                            <el-form-item label="Passport" prop="idCard">
-                                <el-input v-model="formData.idCard" placeholder="Passport"></el-input>
+                            <el-form-item label="Passport" :prop="'groupMembers.' + index + '.idCard'">
+                                <el-input v-model="item.idCard" placeholder="Passport"></el-input>
                             </el-form-item>
 
 
@@ -155,6 +159,7 @@ import { type FormInstance, type FormRules } from 'element-plus'
 import { Lock, Message } from '@element-plus/icons-vue'
 
 import Banner from '@/components/layout/Banner.vue';
+import Title from '@/components/layout/Title.vue';
 
 import countriesJson from '@/assets/data/countries.json'
 
@@ -417,6 +422,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .common-section {
     font-family: $common-section-font-family;
+    margin-top: 6rem;
 
     .banner-box {
         margin-top: 1rem;
@@ -438,6 +444,8 @@ onMounted(() => {
     }
 
 
+
+
     .content {
         margin: 1rem auto;
         text-align: center;
@@ -451,6 +459,17 @@ onMounted(() => {
         width: 80%;
         margin: 1rem auto;
         font-weight: 600;
+
+        .registration-notice {
+            margin-bottom: 1.5rem;
+            padding: 0.9rem 1rem;
+            border: 1px solid #f1c4ca;
+            border-radius: 14px;
+            background: linear-gradient(180deg, #fff8f9 0%, #fff2f4 100%);
+            color: #9e5060;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
 
         .option-btn {
             color: #DD6777;
