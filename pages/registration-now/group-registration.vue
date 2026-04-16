@@ -387,6 +387,12 @@ const submit = async (formEl: FormInstance | undefined) => {
 
             if (res.code === 200) {
                 router.push('/login')
+                ElNotification({
+                    title: 'Success',
+                    message: 'Group registration successful!',
+                    type: 'success',
+                    duration: 5000
+                })
             }
 
             formEl.resetFields()
