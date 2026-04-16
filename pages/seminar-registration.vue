@@ -473,7 +473,7 @@ const submit = async (formEl: FormInstance | undefined) => {
                 });
                 useAuth().checkLoginState();
 
-                router.push('/')
+                router.push('/member-center');
             }
 
             formEl.resetFields()
