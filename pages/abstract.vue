@@ -28,12 +28,12 @@
                             </td>
                             <td class="last-col">
                                 <div class="action-wrapper">
-                                    <el-button v-if="!isDisabled && paper.status !== 1" link class="edit-btn"
+                                    <el-button v-if="!isDisabled && paper.status === 0" link class="edit-btn"
                                         @click='headToEditPaper(paper)'>{{
                                             $t('edit') }}</el-button>
                                     <el-button link class="see-more-btn" @click='toggleSeeMore(paper)'>{{
                                         $t('view') }}</el-button>
-                                    <el-button v-if="!isDisabled && paper.status !== 1" link class="see-more-btn"
+                                    <el-button v-if="!isDisabled && paper.status === 0" link class="see-more-btn"
                                         @click='deletePaper(paper)'>{{
                                             $t('delete') }}</el-button>
                                     <el-button v-if="paper.status === 1 && !isUploadDisabled" link class="see-more-btn"
