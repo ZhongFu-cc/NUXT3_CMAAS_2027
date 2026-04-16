@@ -17,7 +17,7 @@
                 <el-form-item v-if="attendeeType === 1" class="login-input" prop="account">
                     <el-input v-model="loginInfo.account" placeholder="Email">
                         <template #prefix>
-                            <img src="../assets/img/email.svg" alt="">
+                            <img src="@/assets/img/email.svg" alt="">
                         </template>
                     </el-input>
                 </el-form-item>
@@ -25,14 +25,14 @@
                 <el-form-item v-if="attendeeType === 0" class="login-input" prop="account">
                     <el-input v-model="loginInfo.account" placeholder="身分證字號">
                         <template #prefix>
-                            <img src="../assets/img/passport.svg" alt="">
+                            <img src="@/assets/img/passport.svg" alt="">
                         </template>
                     </el-input>
                 </el-form-item>
                 <el-form-item class="login-input" prop="password">
                     <el-input v-model="loginInfo.password" type="password" placeholder="Password" :show-password="true">
                         <template #prefix>
-                            <img src="../assets/img/lock.svg" alt="">
+                            <img src="@/assets/img/lock.svg" alt="">
                         </template>
                     </el-input>
                 </el-form-item>
@@ -66,9 +66,9 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 import Title from '@/components/layout/Title.vue';
 
 useSeoMeta({
-    title: 'Member Login - TOPBS 2026 International Conference on Oncoplastic Breast Surgery',
-    description: 'Member login page for the TOPBS 2026 International Conference on Oncoplastic Breast Surgery. Sign in to access your account, retrieve your password, or register for the conference.',
-    keywords: 'Login, Sign In, TOPBS 2026, 2026 TOPBS '
+    title: 'Member Login - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
+    description: 'Member login page for the TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society. Sign in to access your account, retrieve your password, or register for the conference.',
+    keywords: 'Login,Sign In,TOPBS,TOPBS 2026,2026 TOPBS'
 })
 
 
@@ -128,7 +128,12 @@ const login = async (formEl: FormInstance | undefined) => {
                 body: loginInfo
             })
             if (res.code === 500) {
-                ElMessage.error(res.msg);
+                ElNotification.error({
+                    title: 'Failed',
+                    message: res.msg,
+                    type: 'error',
+                    duration: 3000,
+                });
                 getCaptcha();
             }
             if (res.data.isLogin) {
@@ -138,7 +143,12 @@ const login = async (formEl: FormInstance | undefined) => {
                 useAuth().checkLoginState();
             }
         } else {
-            ElMessage.error('Please input correct information');
+            ElNotification.error({
+                title: 'Failed',
+                message: 'Please input correct information',
+                type: 'error',
+                duration: 3000,
+            });
         }
     });
 
@@ -206,9 +216,13 @@ onUnmounted(() => {
             .nationality-select {
                 display: flex;
                 justify-content: center;
-                align-items: center;
+                align-items: stretch;
                 gap: 1rem;
                 margin-bottom: 1rem;
+
+                .el-button+.el-button {
+                    margin-left: 0;
+                }
 
                 @media screen and (max-width: 1024px) {
                     flex-direction: column;
@@ -219,10 +233,11 @@ onUnmounted(() => {
                     background-color: #fff;
                     color: #D86C7C;
                     border-radius: 12px;
-                    width: 15rem;
+                    flex: 1;
                     height: 2.75rem;
                     font-weight: 600;
                     transition: all 0.25s ease-in-out;
+
 
                     &:hover {
                         cursor: pointer;
