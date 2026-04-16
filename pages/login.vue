@@ -216,7 +216,6 @@ onUnmounted(() => {
             .nationality-select {
                 display: flex;
                 justify-content: center;
-                // align-items: center;
                 align-items: stretch;
                 gap: 1rem;
                 margin-bottom: 1rem;
@@ -234,11 +233,11 @@ onUnmounted(() => {
                     background-color: #fff;
                     color: #D86C7C;
                     border-radius: 12px;
-                    // width: 15rem;
                     flex: 1;
                     height: 2.75rem;
                     font-weight: 600;
                     transition: all 0.25s ease-in-out;
+
 
                     &:hover {
                         cursor: pointer;

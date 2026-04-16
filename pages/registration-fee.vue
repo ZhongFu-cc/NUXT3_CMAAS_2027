@@ -147,7 +147,7 @@
             </table>
 
             <p class="tips">*Please fill in the form completely</p>
-            <p class="tips">*The credit card transaction page will be given through email to the sender.</p>
+            <!-- <p class="tips">*The credit card transaction page will be given through email to the sender.</p> -->
             <p class="tips">*Payment for group registration must be paid at once by one person.</p>
             <div class="btn-section"> <nuxt-link class="group-register-btn"
                     to="/registration-now/group-registration">Group Registration

@@ -68,6 +68,7 @@ export const label = {
         alreadyLogin: '您已經登入了',
         registrationSuccess: '註冊成功',
         pleaseEnterChineseName: '請輸入中文姓名',
+        registrationReminder: '提醒：本次註冊後，網站會留存您的註冊資訊，供後續其他年度會議使用。',
 
     },
     en: {
@@ -137,6 +138,7 @@ export const label = {
         alreadyLogin: 'You are already logged in',
         registrationSuccess: 'Registration successful',
         pleaseEnterChineseName: 'Please enter your Chinese name',
+        registrationReminder: 'Reminder: Your registration information will be retained for use in future annual meetings.',
     }
 } as const
 
