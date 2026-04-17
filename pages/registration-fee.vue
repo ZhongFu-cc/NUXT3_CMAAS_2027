@@ -56,6 +56,7 @@
                     </tr>
                 </tbody>
             </table>
+            <p class="tips">*Members include those from the following societies: JBCS, JOPBS, KBCS, and HKSBS.</p>
             <p class="tips">*The prices are listed in USD. According to the financial regulations in Taiwan, the actual
                 credit card payment will be charged in TWD or your local currency. It may be a little different from the
                 price listed above. </p>
