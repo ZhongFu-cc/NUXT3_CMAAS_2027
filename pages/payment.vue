@@ -18,10 +18,11 @@
                     <tbody>
                         <tr v-for="(item, index) in orderList" :class="isEvenOrOdd(index)">
                             <td class="first-col">{{ item.itemsSummary }}</td>
-                            <td>{{ item.totalAmount }}</td>
+                            <td>{{ memberInfo.country === 'Taiwan' ? item.totalAmount : (item.totalAmount /
+                                RATE).toFixed(2) }}</td>
                             <td :class="memberInfo.country === 'Taiwan' ? 'none' : 'last-col'">{{
                                 enums.payMentStatus[item.status]
-                            }}</td>
+                                }}</td>
                             <td v-if="memberInfo.country === 'Taiwan'" class="last-col">
                                 {{ memberInfo.remitAccountLast5 }}
                             </td>
@@ -60,6 +61,8 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 
 const orderListRef = ref<any>();
 const router = useRouter();
+
+const RATE = 32;
 
 
 const memberInfo = ref<any>({});

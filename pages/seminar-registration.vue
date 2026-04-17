@@ -130,7 +130,7 @@
                                         <el-option label="JBCS" value="JBCS"></el-option>
                                         <el-option label="JOPBS" value="JOPBS"></el-option>
                                         <el-option label="KBCS" value="KBCS"></el-option>
-                                        <el-option label="HKSBS " value="HKSBS "></el-option>
+                                        <el-option label="HKSBS " value="HKSBS"></el-option>
                                     </el-select>
                                 </el-form-item>
 
