@@ -73,7 +73,7 @@ export const label = {
         isQualified: '已具備與會資格。',
         profileIncomplete: '請確認會員資料是否完整',
         memberInfo: '已具備與會資格',
-        editProfile: '前往編輯資料',
+        editProfile: '編輯資料',
         profileReminder: '目前仍有以下資料尚未完成，請先完成資料更新，以免影響後續投稿與與會流程。',
         resetForm: '還原資料'
 
