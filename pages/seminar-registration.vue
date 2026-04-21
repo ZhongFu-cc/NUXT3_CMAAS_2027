@@ -184,7 +184,7 @@ const { isLogin } = useAuth()
 
 const validateRemitAccount = (rule: any, value: string, callback: any) => {
     if (!value) {
-        callback(new Error(t.value.remitAccountLast5Validate))
+        callback()
     } else if (value.length !== 5) {
         callback(new Error(t.value.remitAccountLast5Validate2))
     } else if (!/^\d{5}$/.test(value)) {
