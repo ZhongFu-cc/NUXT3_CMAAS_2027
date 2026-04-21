@@ -72,7 +72,8 @@
                     <div class="form-grid one-columns readonly-grid">
 
                         <el-form-item :label="t.email" prop="email">
-                            <el-input v-model="formData.email" :placeholder="t.email" />
+                            <el-input v-model="formData.email" :disabled="formData.country !== 'Taiwan'"
+                                :placeholder="t.email" />
                         </el-form-item>
                     </div>
 
