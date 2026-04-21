@@ -268,6 +268,10 @@ const codeMap: Record<string, number> = {
 };
 
 const checkCkDigit = (rule: any, value: string, callback: any) => {
+    if (formData.country !== 'Taiwan') {
+        callback()
+        return
+    }
     if (!value) callback(new Error(t.value.idCardValidate))
     if (value && formData.country === 'Taiwan') {
         console.log('checkCkDigit', value)
