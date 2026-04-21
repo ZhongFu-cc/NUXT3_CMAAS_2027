@@ -71,10 +71,10 @@ export const label = {
         registrationReminder: '提醒：本次註冊後，網站會留存您的註冊資訊，供後續其他年度會議使用。',
         notPaid: '未付款',
         isQualified: '已具備與會資格。',
-        profileIncomplete: '請確認會員資料是否完整',
+        profileIncomplete: '尚未具備與會資格',
         memberInfo: '已具備與會資格',
         editProfile: '編輯資料',
-        profileReminder: '目前仍有以下資料尚未完成，請先完成資料更新，以免影響後續投稿與與會流程。',
+        profileReminder: '以下事項尚未完成，請儘速完成相關資料更新，以免影響後續稿件發表及與會權益。',
         resetForm: '還原資料'
 
     },
@@ -148,10 +148,10 @@ export const label = {
         registrationReminder: 'Reminder: Your registration information will be retained for use in future annual meetings.',
         notPaid: 'Not Paid',
         isQualified: 'Qualified to attend the conference.',
-        profileIncomplete: 'Please complete your profile information.',
+        profileIncomplete: 'Not yet qualified to attend the conference',
         memberInfo: 'Qualified',
         editProfile: 'Edit Profile',
-        profileReminder: 'Some of your profile information is incomplete. Please update your profile to ensure a smooth registration and conference experience.',
+        profileReminder: 'The following items are incomplete. Please update your profile information as soon as possible to avoid affecting your manuscript submission and conference participation rights.',
         resetForm: 'Reset'
     }
 } as const

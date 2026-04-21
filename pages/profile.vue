@@ -289,7 +289,7 @@ const validateChineseName = (_rule: any, value: string, callback: (error?: Error
 };
 
 const validateRemitAccount = (_rule: any, value: string, callback: (error?: Error) => void) => {
-    if (formData.country !== 'Taiwan') {
+    if (!value) {
         callback();
         return;
     }
@@ -312,7 +312,7 @@ const formRules = computed<FormRules>(() => ({
         { type: 'email', message: t.value.emailValidate2, trigger: 'blur' },
     ],
     country: [{ required: true, message: t.value.countryValidate, trigger: 'change' }],
-    // remitAccountLast5: [{ required: false, validator: validateRemitAccount, trigger: 'blur' }],
+    remitAccountLast5: [{ required: false, validator: validateRemitAccount, trigger: 'blur' }],
     countryCode: [{ required: true, message: t.value.countryCodeValidate, trigger: 'blur' }],
     phoneNum: [{ required: true, message: t.value.phoneNumValidate, trigger: 'blur' }],
     affiliation: [{ required: true, message: t.value.affiliationValidate, trigger: 'blur' }],
@@ -377,6 +377,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
             foodTaboo: formData.foodTaboo || '',
         };
 
+        console.log('Submitting profile update with payload:', payload);
         const res = await CSRrequest.put('/member/owner', {
             body: payload,
         });
@@ -397,7 +398,13 @@ const submitForm = async (formEl: FormInstance | undefined) => {
             ...payload,
         });
 
-        ElMessage.success(locale.value === 'zh' ? '個人資料已更新' : 'Profile updated successfully.');
+        ElNotification({
+            title: locale.value === 'zh' ? '資料更新成功' : 'Profile Updated',
+            message: locale.value === 'zh' ? '您的個人資料已成功更新。' : 'Your profile information has been successfully updated.',
+            type: 'success',
+        });
+
+        getMemberInfo();
     });
 };
 
