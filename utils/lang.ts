@@ -8,7 +8,7 @@ export const label = {
         chineseName: '中文姓名',
         email: '電子信箱',
         email2: '電子信箱確認',
-        password: '密碼',
+        password: '密碼(本次會議網站登入使用)',
         confirmPassword: '確認密碼',
         affiliation: '所屬機構',
         jobTitle: '職稱',
@@ -69,6 +69,13 @@ export const label = {
         registrationSuccess: '註冊成功',
         pleaseEnterChineseName: '請輸入中文姓名',
         registrationReminder: '提醒：本次註冊後，網站會留存您的註冊資訊，供後續其他年度會議使用。',
+        notPaid: '未付款',
+        isQualified: '已具備與會資格。',
+        profileIncomplete: '請確認會員資料是否完整',
+        memberInfo: '已具備與會資格',
+        editProfile: '前往編輯資料',
+        profileReminder: '目前仍有以下資料尚未完成，請先完成資料更新，以免影響後續投稿與與會流程。',
+        resetForm: '還原資料'
 
     },
     en: {
@@ -78,7 +85,7 @@ export const label = {
         chineseName: 'Chinese Name',
         email: 'Email',
         email2: 'Confirm Email',
-        password: 'Password',
+        password: 'Password (For this conference website login)',
         confirmPassword: 'Confirm Password',
         affiliation: 'Affiliation',
         jobTitle: 'Job Title',
@@ -139,6 +146,13 @@ export const label = {
         registrationSuccess: 'Registration successful',
         pleaseEnterChineseName: 'Please enter your Chinese name',
         registrationReminder: 'Reminder: Your registration information will be retained for use in future annual meetings.',
+        notPaid: 'Not Paid',
+        isQualified: 'Qualified to attend the conference.',
+        profileIncomplete: 'Please complete your profile information.',
+        memberInfo: 'Qualified',
+        editProfile: 'Edit Profile',
+        profileReminder: 'Some of your profile information is incomplete. Please update your profile to ensure a smooth registration and conference experience.',
+        resetForm: 'Reset'
     }
 } as const
 
