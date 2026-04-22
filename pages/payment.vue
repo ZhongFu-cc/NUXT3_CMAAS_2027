@@ -39,7 +39,7 @@
             <div v-if="memberInfo.country === 'Taiwan'" class="payment-info">
                 <p>*戶名 : 台灣乳房腫瘤手術暨重建學會</p>
                 <p>*合作金庫銀行 : 長庚分行 帳號:3638871000153</p>
-                <p>*經主辦單位確認後，會修改網站上付款狀態</p>
+                <p>*請於匯款後點擊下方付款按鈕，並輸入帳戶末五碼以利主辦單位核對。</p>
             </div>
             <div class="table-box">
                 <span class="info" v-if="memberInfo.groupRole == 'slave'">*The group registration fee must be paid by
@@ -75,7 +75,7 @@
                             <td v-if="memberInfo.country === 'Taiwan' && (item.status === 0 || item.status === 3)"
                                 class="not-pay" :class="isOverDeadline ? 'disabled' : ''"
                                 @click="openTaiwanPaymentDialog(item.ordersId)">
-                                <span>Pay now</span>
+                                <span>付款</span>
                             </td>
                             <td v-if="memberInfo.country !== 'Taiwan' && item.status === 2" class="completed">
                                 <span><el-icon>
