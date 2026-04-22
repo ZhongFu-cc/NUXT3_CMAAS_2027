@@ -14,9 +14,6 @@
                         <h2 v-if="!isComplete" class="reminder-title">{{ t.profileIncomplete }}</h2>
                         <h2 v-else class="reminder-title">{{ t.memberInfo }}</h2>
                     </div>
-                    <!-- <nuxt-link v-if="!isComplete" class="reminder-action" to="/profile">
-                        {{ t.editProfile }}
-                    </nuxt-link> -->
                 </div>
 
                 <p v-if="!isComplete" class="reminder-description">
@@ -27,8 +24,8 @@
                 </p>
 
                 <div class="missing-field-list">
-                    <span v-if="failedStatus.includes(memberInfo.status)" class="missing-field-chip">
-                        {{ t.notPaid }}
+                    <span v-if="inCompletedStatus.includes(memberInfo.status)" class="missing-field-chip">
+                        {{ getStatusLabel(memberInfo.status) }}
                     </span>
                 </div>
             </div>
@@ -75,14 +72,24 @@ import Accommodation from './accommodation.vue';
 const { t, setLocale } = useLang();
 
 const router = useRouter();
-const vueApp = useNuxtApp();
 
 const memberInfo = reactive<Record<string, any>>({});
 
-const failedStatus = [0, 3];
+const inCompletedStatus = [0, 1, 3];
 const isComplete = computed(() => {
-    return !failedStatus.includes(memberInfo.status);
+    return !inCompletedStatus.includes(memberInfo.status);
 });
+
+const getStatusLabel = (status: number) => {
+    switch (status) {
+        case 0:
+            return t.value.notPaid;
+        case 1:
+            return t.value.pendingReview;
+        case 3:
+            return t.value.paidFail;
+    }
+}
 
 const getMemberInfo = async () => {
     let res = await CSRrequest.get('/member/owner')
@@ -98,12 +105,6 @@ const getMemberInfo = async () => {
 
 onMounted(() => {
     getMemberInfo();
-    if (vueApp.$root) { // vueApp.$root 只存在於客戶端。
-        // const memberInfo = localStorage.getItem('Authorization-member');
-        // if (!memberInfo) {
-        //     router.push('/login');
-        // }
-    }
 });
 
 
