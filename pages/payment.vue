@@ -27,7 +27,7 @@
             </template>
         </el-dialog>
 
-        <div class="table-section" v-if="!remitDialogVisible">
+        <div class="table-section">
             <div class="table-box">
                 <span class="info" v-if="memberInfo.groupRole == 'slave'">*The group registration fee must be paid by
                     the main registration member.</span>
@@ -47,7 +47,7 @@
                                 RATE).toFixed(2) }}</td>
                             <td :class="memberInfo.country === 'Taiwan' ? 'none' : 'last-col'">{{
                                 enums.payMentStatus[item.status]
-                            }}</td>
+                                }}</td>
                             <td v-if="memberInfo.country === 'Taiwan'" class="last-col">
                                 {{ memberInfo.remitAccountLast5 }}
                             </td>
