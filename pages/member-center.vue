@@ -253,6 +253,10 @@ onMounted(() => {
         margin: 3rem auto;
         box-sizing: border-box;
 
+        @media screen and (min-width: 1441px) and (max-width: 1530px) {
+            gap: 1.25rem;
+        }
+
         @media screen and (max-width: 1440px) {
             flex-direction: column;
         }
@@ -274,8 +278,13 @@ onMounted(() => {
             flex: 1 1 32rem;
             width: auto;
 
-            @media screen and (min-width: 1441px) {
+            @media screen and (min-width: 1531px) {
                 justify-content: space-evenly;
+            }
+
+            @media screen and (min-width: 1441px) and (max-width: 1530px) {
+                justify-content: center;
+                gap: clamp(0.75rem, 1.6vw, 1.5rem);
             }
 
             @media screen and (max-width: 1440px) {
