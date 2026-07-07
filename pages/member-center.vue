@@ -6,375 +6,471 @@
             <h1 class="title">{{ $t('memberCenter') }}</h1>
         </div>
 
-        <section class="profile-reminder-section">
+        <section v-if="!loading" class="profile-reminder-section">
             <div class="profile-reminder-card" :class="{ 'is-complete': isComplete }">
                 <div class="reminder-header">
                     <div>
-                        <p class="reminder-eyebrow">{{ t('profile') }}</p>
-                        <h2 v-if="!isComplete" class="reminder-title">{{ t('profileIncomplete') }}</h2>
-                        <h2 v-else class="reminder-title">{{ t('memberInfo') }}</h2>
+                        <p class="reminder-eyebrow">
+                            {{ t('profile') }}
+                        </p>
+
+                        <h2 class="reminder-title">
+                            {{ reminderInfo.title }}
+                        </h2>
                     </div>
                 </div>
 
-                <p v-if="!isComplete" class="reminder-description">
-                    {{ t('profileReminder') }}
-                </p>
-                <p v-if="isComplete" class="reminder-description is-complete">
-                    {{ t('isQualified') }}
+                <p class="reminder-description" :class="{ 'is-complete': isComplete }">
+                    {{ reminderInfo.description }}
                 </p>
 
                 <div class="missing-field-list">
-                    <span v-if="inCompletedStatus.includes(memberInfo.status)" class="missing-field-chip">
-                        {{ getStatusLabel(memberInfo.status) }}
+                    <span v-if="isIncomplete" class="missing-field-chip">
+                        {{ statusLabel }}
                     </span>
                 </div>
             </div>
         </section>
 
-        <div class="select-section">
-            <div class="select-item-box">
-                <!-- <nuxt-link class="select-box" to="/abstract">
-                    <img src="@/assets/img/abstract-icon.png" alt="">
-                    <div class="label-box">
-                        <span>{{ $t('abstract') }}</span>
-                    </div>
-                </nuxt-link> -->
-                <nuxt-link class="select-box" :to="'/payment'">
-                    <img src="@/assets/img/payment-icon.png" alt="">
-                    <div class="label-box">
-                        <span>{{ $t('payment') }}</span>
-                    </div>
-                </nuxt-link>
-            </div>
-            <div class="select-item-box">
-                <!-- <nuxt-link class="select-box" :to="'/accommodation'">
-                    <img src="@/assets/img/accommodation-icon.png" alt="">
-                    <div class="label-box">
-                        <p>{{ $t('accommodation') }}</p>
-                    </div>
-                </nuxt-link> -->
-                <nuxt-link class="select-box" :to="'/profile'">
-                    <img src="@/assets/img/user-edit.svg" alt="">
-                    <div class="label-box">
-                        <p>{{ $t('profile') }}</p>
-                    </div>
-                </nuxt-link>
-            </div>
 
+        <div class="select-item-box">
+            <nuxt-link v-for="item in menuList" :key="item.path" :to="item.path" class="select-box">
+                <div class="label-box">
+                    <img :src="item.icon" alt="" class="select-box__icon" />
+                    <span>{{ item.label }}</span>
+                </div>
+            </nuxt-link>
         </div>
+
     </main>
 </template>
 <script lang="ts" setup>
 import Banner from '@/components/layout/Banner.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
+import paymentIcon from '@/assets/img/payment-icon.png';
+import profileIcon from '@/assets/img/user-edit.svg';
 
-// const { t, setLocale } = useLang();
 const { t } = useI18n();
-
 const router = useRouter();
 
-const memberInfo = reactive<Record<string, any>>({});
+interface MemberInfo {
+    status: number;
+    [key: string]: any;
+}
 
-const inCompletedStatus = [0, 1, 3];
-const isComplete = computed(() => {
-    return !inCompletedStatus.includes(memberInfo.status);
+enum MemberStatus {
+    NotPaid = 0,
+    PendingReview = 1,
+    Approved = 2,
+    PaidFail = 3
+}
+
+const memberInfo = reactive<MemberInfo>({
+    status: MemberStatus.NotPaid
 });
 
-const getStatusLabel = (status: number) => {
-    switch (status) {
-        case 0:
-            return t('notPaid');
-        case 1:
-            return t('pendingReview');
-        case 3:
-            return t('paidFail');
+const loading = ref(true);
+
+const incompleteStatuses = [
+    MemberStatus.NotPaid,
+    MemberStatus.PendingReview,
+    MemberStatus.PaidFail
+];
+
+const isIncomplete = computed(() =>
+    incompleteStatuses.includes(memberInfo.status)
+);
+
+const isComplete = computed(() => !isIncomplete.value);
+
+const statusLabelMap = computed<Record<number, string>>(() => ({
+    [MemberStatus.NotPaid]: t('notPaid'),
+    [MemberStatus.PendingReview]: t('pendingReview'),
+    [MemberStatus.PaidFail]: t('paidFail')
+}));
+
+const statusLabel = computed(
+    () => statusLabelMap.value[memberInfo.status] || ''
+);
+
+const reminderInfo = computed(() => ({
+    title: isComplete.value
+        ? t('memberInfo')
+        : t('profileIncomplete'),
+
+    description: isComplete.value
+        ? t('isQualified')
+        : t('profileReminder')
+}));
+
+const menuList = computed(() => [
+    {
+        path: '/payment',
+        icon: paymentIcon,
+        label: t('payment')
+    },
+    {
+        path: '/profile',
+        icon: profileIcon,
+        label: t('profile')
     }
-}
+]);
+
+const logoutAndRedirect = () => {
+    localStorage.removeItem('Authorization-member');
+    router.push('/login');
+};
 
 const getMemberInfo = async () => {
-    let res = await CSRrequest.get('/member/owner')
-    if (res.code !== 200) {
-        router.push('/login');
-        localStorage.removeItem('Authorization-member');
-        return;
-    }
-    Object.assign(memberInfo, res.data);
-}
+    try {
+        const res = await CSRrequest.get('/member/owner');
 
+        if (res.code !== 200) {
+            return logoutAndRedirect();
+        }
+
+        Object.assign(memberInfo, res.data);
+
+    } catch (error) {
+        console.error('Get Member Info Error:', error);
+        logoutAndRedirect();
+
+    } finally {
+        loading.value = false;
+    }
+};
 
 onMounted(() => {
     getMemberInfo();
 });
-
-
 </script>
+
 <style lang="scss" scoped>
+// ========================================
+// Variables
+// ========================================
+
+$primary-color: $main-color;
+$primary-hover: $main-color;
+
+$success-color: #477e5c;
+$success-hover: #35654c;
+
+$text-color: #3c2b31;
+$text-secondary: #5a4a50;
+$chip-color: #7a4452;
+
+$shadow-primary: 0 18px 40px rgba(110, 57, 70, 0.08);
+$shadow-success: 0 18px 40px rgba(53, 101, 76, 0.12);
+
+$desktop: 1440px;
+$tablet: 1024px;
+$mobile: 640px;
+
+
+// ========================================
+// Mixins
+// ========================================
+
+@mixin hover-card {
+    transition: all .3s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+    }
+}
+
+
+// ========================================
+// Main
+// ========================================
+
 .common-section {
     font-family: $common-section-font-family;
+}
 
-    .profile-reminder-section {
-        padding: 0 1rem;
+
+// ========================================
+// Title
+// ========================================
+
+.title-section {
+    margin-top: 1rem;
+    padding: 0 1rem;
+    text-align: center;
+
+    .title {
+        font-size: clamp(2rem, 4vw, 2.7rem);
+        font-weight: 600;
+    }
+}
+
+
+// ========================================
+// Reminder
+// ========================================
+
+.profile-reminder-section {
+    padding: 0 1rem;
+}
+
+.profile-reminder-card {
+    width: min(100%, 1120px);
+    margin: 2rem auto 0;
+    padding: clamp(1.25rem, 3vw, 2rem);
+
+    border-radius: 24px;
+    border: 1px solid rgba(160, 88, 106, 0.2);
+
+    background: linear-gradient(135deg,
+            rgba(255, 245, 247, 0.98),
+            rgba(255, 255, 255, 0.95));
+
+    box-shadow: $shadow-primary;
+    box-sizing: border-box;
+}
+
+.profile-reminder-card.is-complete {
+    border-color: rgba(71, 126, 92, 0.24);
+
+    background: linear-gradient(135deg,
+            rgba(231, 247, 236, 0.98),
+            rgba(245, 255, 248, 0.96));
+
+    box-shadow: $shadow-success;
+}
+
+.reminder-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    margin-bottom: 1rem;
+
+    @media (max-width: $tablet) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.reminder-eyebrow {
+    margin: 0 0 .35rem;
+
+    font-size: .9rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+
+    text-transform: uppercase;
+    color: $primary-color;
+}
+
+.is-complete .reminder-eyebrow {
+    color: $success-color;
+}
+
+.reminder-title {
+    margin: 0;
+
+    font-size: clamp(1.35rem, 2vw, 1.8rem);
+    color: $text-color;
+}
+
+.is-complete .reminder-title {
+    color: #234330;
+}
+
+.reminder-description {
+    margin: 0;
+    line-height: 1.7;
+    color: $text-secondary;
+}
+
+.reminder-description.is-complete {
+    color: $success-hover;
+    font-weight: 500;
+}
+
+.missing-field-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+
+    margin-top: 1.25rem;
+}
+
+.missing-field-chip {
+    display: inline-flex;
+    align-items: center;
+
+    min-height: 2.5rem;
+    padding: .5rem .9rem;
+
+    border-radius: 999px;
+
+    border: 1px solid rgba(160, 88, 106, .28);
+    background-color: #fff;
+
+    color: $chip-color;
+    font-weight: 600;
+}
+
+
+// ========================================
+// Menu Section
+// ========================================
+
+.select-section {
+    background: url('assets/img/login_background.png') repeat center center;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    gap: clamp(1.5rem, 4vw, 4rem);
+
+    padding: clamp(1.5rem, 4vw, 3rem);
+
+    max-width: 1800px;
+    margin: 3rem auto;
+
+    box-sizing: border-box;
+
+    @media (max-width: $desktop) {
+        flex-direction: column;
     }
 
-    .profile-reminder-card {
-        width: min(100%, 1120px);
-        margin: 2rem auto 0;
-        padding: clamp(1.25rem, 3vw, 2rem);
-        border: 1px solid rgba(160, 88, 106, 0.2);
-        border-radius: 24px;
-        background: linear-gradient(135deg, rgba(255, 245, 247, 0.98), rgba(255, 255, 255, 0.95));
-        box-shadow: 0 18px 40px rgba(110, 57, 70, 0.08);
-        box-sizing: border-box;
+    @media (max-width: $tablet) {
+        padding: 1rem;
+        gap: 1rem;
+    }
+}
 
-        &.is-complete {
-            border: 1px solid rgba(71, 126, 92, 0.24);
-            background: linear-gradient(135deg, rgba(231, 247, 236, 0.98), rgba(245, 255, 248, 0.96));
-            box-shadow: 0 18px 40px rgba(53, 101, 76, 0.12);
+.select-item-box {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    background: url('assets/img/login_background.png') no-repeat center center;
 
-            .reminder-eyebrow {
-                color: #477e5c;
-            }
+    gap: clamp(1rem, 3vw, 5rem);
 
-            .reminder-title {
-                color: #234330;
-            }
+    flex: 1 1 32rem;
+    margin: 1rem 0;
+    padding: 1rem 0;
 
-            .reminder-action {
-                background-color: #477e5c;
-
-                &:hover {
-                    background-color: #35654c;
-                }
-            }
-        }
-
-        .reminder-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-
-            @media screen and (max-width: 768px) {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-
-        .reminder-eyebrow {
-            margin: 0 0 0.35rem;
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: #a0586a;
-        }
-
-        .reminder-title {
-            margin: 0;
-            font-size: clamp(1.35rem, 2vw, 1.8rem);
-            color: #3c2b31;
-        }
-
-        .reminder-action {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 3rem;
-            padding: 0.75rem 1.25rem;
-            border-radius: 999px;
-            background-color: #a0586a;
-            color: #fff;
-            font-weight: 600;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
-
-            &:hover {
-                background-color: #874757;
-                transform: translateY(-1px);
-            }
-        }
-
-        .reminder-description {
-            margin: 0;
-            color: #5a4a50;
-            line-height: 1.7;
-
-            &.is-complete {
-                color: #35654c;
-                font-weight: 500;
-            }
-        }
-
-        .missing-field-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 1.25rem;
-        }
-
-        .missing-field-chip {
-            display: inline-flex;
-            align-items: center;
-            min-height: 2.5rem;
-            padding: 0.5rem 0.9rem;
-            border-radius: 999px;
-            background-color: #fff;
-            border: 1px solid rgba(160, 88, 106, 0.28);
-            color: #7a4452;
-            font-weight: 600;
-            box-sizing: border-box;
-        }
+    @media (max-width: $desktop) {
+        width: 100%;
+        flex: none;
     }
 
-    .title-section {
-        margin-top: 1rem;
-        padding: 0 1rem;
-        text-align: center;
-        position: relative;
-
-        .title {
-            font-size: clamp(2rem, 4vw, 2.7rem);
-            font-weight: 600;
-        }
-
-    }
-
-    .select-section {
-        background: url('assets/img/login_background.png') repeat center center;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+    @media (max-width: $mobile) {
+        width: 100%;
+        flex-direction: column;
         align-items: center;
-        padding: clamp(1.5rem, 4vw, 3rem);
-        gap: clamp(1.5rem, 4vw, 4rem);
-        max-width: 1800px;
-        margin: 3rem auto;
-        box-sizing: border-box;
+    }
+}
 
-        @media screen and (min-width: 1441px) and (max-width: 1530px) {
-            gap: 1.25rem;
+.select-box {
+    @include hover-card;
+
+    width: clamp(14rem, 20vw, 20rem);
+
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: clamp(1rem, 3vw, 1.5rem);
+
+    border: 2px solid #ccc;
+    border-radius: 15px;
+
+    background-color: #fff;
+
+    text-align: center;
+    font-weight: 600;
+
+    box-sizing: border-box;
+
+    &:hover {
+        border-color: $primary-hover;
+    }
+
+    @media (max-width: $mobile) {
+        width: min(100%, 22rem);
+        min-height: 12rem;
+        aspect-ratio: auto;
+
+        &:hover {
+            transform: none;
         }
+    }
+}
 
-        @media screen and (max-width: 1440px) {
-            flex-direction: column;
-        }
+.select-box__icon {
+    width: min(60%, 9rem);
+    max-width: 100%;
+    height: auto;
 
-        @media screen and (max-width: 1024px) {
-            gap: 1rem;
-            padding: 1rem;
-            flex-direction: column;
+    object-fit: contain;
 
-        }
+    margin-bottom: 5%;
+}
 
-        .select-item-box {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: stretch;
-            gap: clamp(1rem, 3vw, 5rem);
-            padding: 1rem 0;
-            flex: 1 1 32rem;
-            width: auto;
+.label-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-            @media screen and (min-width: 1531px) {
-                justify-content: space-evenly;
-            }
+    width: 100%;
+    gap: .25rem;
 
-            @media screen and (min-width: 1441px) and (max-width: 1530px) {
-                justify-content: center;
-                gap: clamp(0.75rem, 1.6vw, 1.5rem);
-            }
+    span,
+    p {
+        margin: 0;
+        line-height: 1.4;
 
-            @media screen and (max-width: 1440px) {
-                width: 100%;
-                flex: 0 0 auto;
-            }
+        overflow-wrap: anywhere;
+        word-break: break-word;
 
-            @media screen and (max-width: 920px) {
-                gap: 1rem;
-            }
-
-            @media screen and (max-width: 640px) {
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-            }
+        color: $main-color;
+    }
+}
 
 
-        }
+// ========================================
+// Skeleton Loading
+// ========================================
 
-        .select-box {
-            width: min(100%, 20rem);
-            flex: 0 0 auto;
-            min-width: 0;
-            aspect-ratio: 1/1;
-            border: 2px solid #ccc;
-            background-color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-radius: 15px;
-            font-weight: 600;
-            padding: clamp(1rem, 3vw, 1.5rem);
-            box-sizing: border-box;
-            text-align: center;
-            transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+.skeleton {
+    width: min(100%, 1120px);
+    height: 180px;
 
-            @media screen and (max-width: 1024px) {
-                font-size: 1rem;
-                width: 16rem;
-            }
+    margin: 2rem auto 0;
 
-            @media screen and (max-width: 768px) {
-                font-size: 1rem;
-                width: 14rem;
-            }
+    border-radius: 24px;
 
-            @media screen and (max-width: 640px) {
-                width: min(100%, 22rem);
-                aspect-ratio: auto;
-                min-height: 12rem;
-            }
+    background: linear-gradient(90deg,
+            #f2f2f2 25%,
+            #fafafa 50%,
+            #f2f2f2 75%);
 
-            &:hover {
-                border: #D8A6AF 2px solid;
-                transform: scale(1.05);
-            }
+    background-size: 400% 100%;
 
-            @media screen and (max-width: 640px) {
-                &:hover {
-                    transform: none;
-                }
-            }
+    animation: skeleton-loading 1.4s infinite;
+}
 
-            img {
-                margin-bottom: 5%;
-                width: min(60%, 9rem);
-                max-width: 100%;
-                height: auto;
-                object-fit: contain;
-            }
+@keyframes skeleton-loading {
+    0% {
+        background-position: 100% 0;
+    }
 
-            .label-box {
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                flex-direction: column;
-                width: 100%;
-                gap: 0.25rem;
-
-                span,
-                p {
-                    margin: 0;
-                    overflow-wrap: anywhere;
-                    word-break: break-word;
-                    line-height: 1.4;
-                }
-            }
-        }
+    100% {
+        background-position: -100% 0;
     }
 }
 </style>
