@@ -230,6 +230,9 @@ let currentPage = ref(1)
                     z-index: 10;
                     background-color: rgb(240, 100, 100);
                     color: white;
+
+                    animation: newsBounce 1.5s infinite ease-in-out;
+
                 }
             }
 
@@ -315,6 +318,27 @@ let currentPage = ref(1)
 
 
     }
+
+    @keyframes newsBounce {
+
+
+        0% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(240, 100, 100, 0.6);
+        }
+
+        70% {
+            transform: scale(1.08);
+            box-shadow: 0 0 0 10px rgba(240, 100, 100, 0);
+        }
+
+        100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(240, 100, 100, 0);
+        }
+
+    }
+
 
 }
 

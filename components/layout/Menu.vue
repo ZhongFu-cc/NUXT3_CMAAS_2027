@@ -40,8 +40,8 @@
                     @click="setActiveItem('conferenceInformation')" :class="activeClass('conferenceInformation')">{{
                         $t('conferenceInformation') }}</nuxt-link>
 
-                <!-- <nuxt-link class="menu-item" to="/" @click="setActiveItem('invitedSpeaker')"
-                    :class="activeClass('invitedSpeaker')">受邀講者</nuxt-link> -->
+                <nuxt-link class="menu-item" to="/news" @click="setActiveItem('news')"
+                    :class="activeClass('news')">最新消息</nuxt-link>
 
 
 
@@ -150,7 +150,7 @@
                     </div>
                 </div>
                 <nuxt-link v-if="!isLogin" class="menu-item" to="/login" :class="activeClass('login')">{{ $t('login')
-                }}</nuxt-link>
+                    }}</nuxt-link>
 
             </div>
 

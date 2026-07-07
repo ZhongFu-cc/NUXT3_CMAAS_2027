@@ -75,5 +75,16 @@
   "idCardValidate2": "身分證格式錯誤",
   "emailValidate": "請輸入信箱",
   "emailValidate2": "請輸入有效格式",
-  "memberCenter": "會員中心"
+  "memberCenter": "會員中心",
+  "profile": "個人資料",
+  "notPaid": "尚未付款",
+  "pendingReview": "審核中",
+  "paidFail": "付款失敗",
+  "memberInfo": "會員資料",
+  "profileIncomplete": "個人資料尚未完成",
+  "isQualified": "具備資格",
+  "profileReminder": "以下事項尚未完成，請儘速完成相關資料更新，以免影響後續稿件發表及與會權益。",
+  "payment": "付款",
+  "latestNews": "最新消息",
+  "logout": "登出"
 }

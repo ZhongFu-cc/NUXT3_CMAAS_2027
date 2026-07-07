@@ -126,5 +126,13 @@
   "location": " CHANG YUNG-FA FOUNDATION International Convention Center",
   "organizationNumber": "Member number",
   "professionalNumber": "Physician Certificate No.",
-  "organizationNumberValidate": "Please enter member number"
+  "organizationNumberValidate": "Please enter member number",
+  "notPaid": "Not Paid",
+  "pendingReview": "Pending Review",
+  "paidFail": "Paid Fail",
+  "memberInfo": "Member Infomation",
+  "profileIncomplete": "Profile Incomplete",
+  "isQualified": "Qualified",
+  "profileReminder": "The following items are incomplete. Please update your profile information as soon as possible to avoid affecting your manuscript submission and conference participation rights.",
+  "latestNews": "News"
 }
