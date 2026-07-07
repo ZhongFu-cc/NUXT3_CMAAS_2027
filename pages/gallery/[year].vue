@@ -21,7 +21,7 @@ useSeoMeta({
 
 const route = useRoute();
 const year = route.params.year as string;
-const imageLength = 36;
+const imageLength = 0;
 const imageUrl = ref(`/img/${year}-WEBP`);
 
 const images = computed(() => {

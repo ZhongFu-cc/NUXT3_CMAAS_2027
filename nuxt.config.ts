@@ -29,9 +29,9 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8', //預設,不設置也行
       viewport: 'width=device-width, initial-scale=1',  //預設,不設置也行
-      title: 'TOPBS 2026',
+      title: 'CMAAS 2027',
       meta: [
-        { name: 'keyword', content: "TOPBS" },
+        { name: 'keyword', content: "CMAAS" },
         { name: 'description', content: "" }
       ],
       //引入第三方外部css可能會用到
@@ -114,7 +114,7 @@ export default defineNuxtConfig({
       { code: 'zh', language: 'zh-TW', file: 'zh-TW.json' },
       { code: 'en', language: 'en-US', file: 'en-US.json' }
     ],
-    defaultLocale: 'en',
+    defaultLocale: 'zh',
     vueI18n: './i18n.config.ts'
   }
 

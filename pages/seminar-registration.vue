@@ -9,137 +9,144 @@
                     require-asterisk-position="right" :show-message="true" :scroll-to-error="true"
                     :validate-on-rule-change="false">
                     <div class="registration-notice">
-                        <p>{{ t.registrationReminder }}</p>
-                        <p v-if="formData.country === 'Taiwan'">若未填寫匯款帳號末五碼請於註冊完成後補填。</p>
+                        <p>{{ t('registrationReminder') }}</p>
+                        <!-- <p v-if="formData.country === 'Taiwan'">若未填寫匯款帳號末五碼請於註冊完成後補填。</p> -->
                     </div>
 
                     <div class="main-form">
                         <ClientOnly>
                             <div class="left-seciton">
-                                <el-form-item :label="t.country" prop="country">
+                                <el-form-item :label="t('country')" prop="country">
                                     <el-select v-model="formData.country" placeholder="Select Country" filterable>
                                         <el-option v-for="country in countryList" :key="country" :label="country"
                                             :value="country"></el-option>
                                     </el-select>
                                 </el-form-item>
 
-                                <el-form-item :label="t.chineseName" :prop="'chineseName'"
+                                <el-form-item :label="t('chineseName')" :prop="'chineseName'"
                                     :style="{ order: getOrder('chineseName') }">
                                     <el-input v-model="formData.chineseName"></el-input>
                                 </el-form-item>
 
                                 <div class="member-name" :style="{ order: getOrder('englishName') }">
-                                    <el-form-item class="first-name" required :label="t.firstName" prop="firstName">
-                                        <el-input v-model="formData.firstName" :placeholder="t.firstName"></el-input>
+                                    <el-form-item class="first-name" required :label="t('firstName')" prop="firstName">
+                                        <el-input v-model="formData.firstName" :placeholder="t('firstName')"></el-input>
                                     </el-form-item>
-                                    <el-form-item class="last-name" required :label="t.lastName" prop="lastName">
-                                        <el-input v-model="formData.lastName" :placeholder="t.lastName"></el-input>
+                                    <el-form-item class="last-name" required :label="t('lastName')" prop="lastName">
+                                        <el-input v-model="formData.lastName" :placeholder="t('lastName')"></el-input>
                                     </el-form-item>
 
                                 </div>
 
 
-                                <el-form-item :label="t.idCard" prop="idCard" :style="{ order: getOrder('idCard') }">
-                                    <el-input v-model="formData.idCard" :placeholder="t.idCard"></el-input>
+                                <el-form-item :label="t('idCard')" prop="idCard" :style="{ order: getOrder('idCard') }">
+                                    <el-input v-model="formData.idCard" :placeholder="t('idCard')"></el-input>
                                 </el-form-item>
 
 
 
-                                <el-form-item :label="t.password" prop="password"
+                                <el-form-item :label="t('password')" prop="password"
                                     :style="{ order: getOrder('password') }">
                                     <el-input v-model="formData.password" type="password"
-                                        :placeholder="t.password"></el-input>
+                                        :placeholder="t('password')"></el-input>
                                 </el-form-item>
 
-                                <el-form-item :label="t.confirmPassword" prop="confirmPassword"
+                                <el-form-item :label="t('confirmPassword')" prop="confirmPassword"
                                     :style="{ order: getOrder('confirmPassword') }">
                                     <el-input v-model="formData.confirmPassword" type="password"
-                                        :placeholder="t.confirmPassword"></el-input>
+                                        :placeholder="t('confirmPassword')"></el-input>
                                 </el-form-item>
-                                <el-form-item class="email required" :label="t.email" prop="email"
+                                <el-form-item class="email required" :label="t('email')" prop="email"
                                     :style="{ order: getOrder('email') }">
-                                    <el-input v-model="formData.email" :placeholder="t.email2"
+                                    <el-input v-model="formData.email" :placeholder="t('email2')"
                                         :prefixIcon="Message"></el-input>
                                 </el-form-item>
 
-                                <el-form-item class="email required" :label="t.email2" required prop="confirmEmail"
+                                <el-form-item class="email required" :label="t('email2')" required prop="confirmEmail"
                                     :style="{ order: getOrder('confirmEmail') }">
-                                    <el-input v-model="formData.confirmEmail" :placeholder="t.email2"
+                                    <el-input v-model="formData.confirmEmail" :placeholder="t('email2')"
                                         :prefixIcon="Message"></el-input>
                                 </el-form-item>
 
 
                             </div>
                             <div class="right-section">
-                                <!-- <el-form-item v-if="formData.country !== 'Taiwan'" :label="t.idCard" prop="idCard">
-                                    <el-input v-model="formData.idCard" :placeholder="t.idCard"></el-input>
+                                <!-- <el-form-item v-if="formData.country !== 'Taiwan'" :label="t('idCard')" prop="idCard">
+                                    <el-input v-model="formData.idCard" :placeholder="t('idCard')"></el-input>
                                 </el-form-item> -->
 
-                                <el-form-item class="required" :label="t.affiliation" prop="affiliation">
-                                    <el-input v-model="formData.affiliation" :placeholder="t.affiliation"></el-input>
+                                <el-form-item class="required" :label="t('affiliation')" prop="affiliation">
+                                    <el-input v-model="formData.affiliation" :placeholder="t('affiliation')"></el-input>
                                 </el-form-item>
-                                <el-form-item class="required" :label="t.jobTitle" prop="jobTitle">
-                                    <el-input v-model="formData.jobTitle" :placeholder="t.jobTitle"></el-input>
+                                <el-form-item class="required" :label="t('jobTitle')" prop="jobTitle">
+                                    <el-input v-model="formData.jobTitle" :placeholder="t('jobTitle')"></el-input>
                                 </el-form-item>
 
 
-                                <el-form-item v-if="formData.country === 'Taiwan'" :label="t.remitAccountLast5"
+                                <!-- <el-form-item v-if="formData.country === 'Taiwan'" :label="t('remitAccountLast5')"
                                     prop="remitAccountLast5">
                                     <el-input minlength="5" maxlength="5" v-model="formData.remitAccountLast5"
-                                        :placeholder="t.remitAccountLast5"></el-input>
-                                </el-form-item>
+                                        :placeholder="t('remitAccountLast5')"></el-input>
+                                </el-form-item> -->
 
-                                <el-form-item v-if="formData.country === 'Taiwan'" :label="t.receipt" prop="receipt">
-                                    <el-input v-model="formData.receipt" :placeholder="t.receipt"></el-input>
-                                </el-form-item>
+                                <!-- <el-form-item v-if="formData.country === 'Taiwan'" :label="t('receipt')" prop="receipt">
+                                    <el-input v-model="formData.receipt" :placeholder="t('receipt')"></el-input>
+                                </el-form-item> -->
 
 
                                 <div class="member-phone required">
-                                    <el-form-item class="country-code" :label="t.phoneNum" prop="countryCode">
+                                    <el-form-item class="country-code" :label="t('phoneNum')" prop="countryCode">
                                         <div class="country-code-inner">
                                             <el-input :disabled="formData.country === 'Taiwan'"
                                                 v-model="formData.countryCode" placeholder="Country Code"></el-input>
                                             <span>-</span>
                                         </div>
                                     </el-form-item>
-                                    <el-form-item :class="'oversea-phone-num'" :label="t.phoneNum" prop="phoneNum">
+                                    <el-form-item :class="'oversea-phone-num'" :label="t('phoneNum')" prop="phoneNum">
                                         <el-input v-model="formData.phoneNum"></el-input>
                                     </el-form-item>
                                 </div>
 
-                                <el-form-item :label="t.food" prop="food">
+                                <el-form-item :label="t('food')" prop="food">
                                     <el-radio-group v-model="formData.food">
-                                        <el-radio value="葷">{{ t.foodRadio1 }}</el-radio>
-                                        <el-radio value="素">{{ t.foodRadio2 }}</el-radio>
+                                        <el-radio value="葷">{{ t('foodRadio1') }}</el-radio>
+                                        <el-radio value="素">{{ t('foodRadio2') }}</el-radio>
                                     </el-radio-group>
                                 </el-form-item>
-                                <el-form-item :label="t.foodTaboo" prop="foodTaboo">
+                                <el-form-item :label="t('foodTaboo')" prop="foodTaboo">
                                     <el-input v-model="formData.foodTaboo"></el-input>
                                 </el-form-item>
 
-                                <el-form-item :label="t.category" prop="category">
+                                <el-form-item :label="t('category')" prop="category">
                                     <el-select v-model="formData.category">
-                                        <el-option :label="t.category1" :value="1"></el-option>
-                                        <el-option :label="t.category2" :value="2"></el-option>
-                                        <el-option :label="t.category3" :value="3"></el-option>
+                                        <el-option :label="t('category1')" :value="1"></el-option>
+                                        <el-option :label="t('category2')" :value="2"></el-option>
+                                        <!-- <el-option :label="t('category3')" :value="3"></el-option> -->
                                     </el-select>
+                                </el-form-item>
+                                <el-form-item v-if="formData.category === 1" prop="organizationNumber"
+                                    :label="t('organizationNumber')">
+                                    <el-input v-model="formData.organizationNumber" class="organization-number"
+                                        :placeholder="t('organizationNumber')">
+                                    </el-input>
+                                </el-form-item>
+                                <el-form-item prop="professionalNumber" :label="t('professionalNumber')">
+                                    <el-input v-model="formData.professionalNumber" class="professional-number"
+                                        :placeholder="t('professionalNumber')">
+                                    </el-input>
                                 </el-form-item>
 
-                                <el-form-item v-if="formData.category === 1 && formData.country !== 'Taiwan'"
-                                    prop="categoryExtra" :label="t.categoryExtra">
-                                    <el-select v-model="formData.categoryExtra" class="category-select">
-                                        <el-option label="JBCS" value="JBCS"></el-option>
-                                        <el-option label="JOPBS" value="JOPBS"></el-option>
-                                        <el-option label="KBCS" value="KBCS"></el-option>
-                                        <el-option label="HKSBS " value="HKSBS"></el-option>
-                                    </el-select>
-                                </el-form-item>
+                                <!-- <el-form-item v-if="formData.category === 1" prop="categoryExtra"
+                                    :label="t('categoryExtra')">
+                                    <el-input v-model="formData.categoryExtra" class="category-select">
+                                    </el-input>
+                                </el-form-item> -->
 
                             </div>
                         </ClientOnly>
                     </div>
                     <el-form-item class="captcha" prop="captcha">
-                        <el-input v-model="formData.verificationCode" :placeholder="t.captcha"></el-input>
+                        <el-input v-model="formData.verificationCode" :placeholder="t('captcha')"></el-input>
                         <div class="captcha-img">
                             <img :src="captchaData.image" alt="captcha">
                             <el-button class="refresh-btn" @click="getCaptcha"><el-icon>
@@ -148,7 +155,7 @@
                         </div>
                     </el-form-item>
                     <el-form-item class="submit-btn">
-                        <el-button type="primary" @click="submit(form)"> Submit </el-button>
+                        <el-button type="primary" @click="submit(form)">{{ t('submit') }}</el-button>
                     </el-form-item>
                 </el-form>
             </div>
@@ -174,7 +181,7 @@ useSeoMeta({
 })
 
 
-const { t, setLocale, locale } = useLang()
+const { t } = useI18n()
 const countryList = ref(countries);
 const router = useRouter()
 const { isLogin } = useAuth()
@@ -186,9 +193,9 @@ const validateRemitAccount = (rule: any, value: string, callback: any) => {
     if (!value) {
         callback()
     } else if (value.length !== 5) {
-        callback(new Error(t.value.remitAccountLast5Validate2))
+        callback(new Error(t('remitAccountLast5Validate2')))
     } else if (!/^\d{5}$/.test(value)) {
-        callback(new Error(t.value.remitAccountLast5Validate2))
+        callback(new Error(t('remitAccountLast5Validate2')))
     }
     else {
         callback()
@@ -197,7 +204,7 @@ const validateRemitAccount = (rule: any, value: string, callback: any) => {
 
 const validateChineseName = (rule: any, value: string, callback: any) => {
     if (formData.country === 'Taiwan' && !value) {
-        callback(new Error(t.value.pleaseEnterChineseName))
+        callback(new Error(t('pleaseEnterChineseName')))
     }
     else {
         callback()
@@ -272,17 +279,17 @@ const checkCkDigit = (rule: any, value: string, callback: any) => {
         callback()
         return
     }
-    if (!value) callback(new Error(t.value.idCardValidate))
+    if (!value) callback(new Error(t('idCardValidate')))
     if (value && formData.country === 'Taiwan') {
         console.log('checkCkDigit', value)
 
         if (!/^[A-Z][0-9]{9}$/.test(value)) {
-            callback({ valid: false, message: t.value.idCardValidate2 });
+            callback({ valid: false, message: t('idCardValidate2') });
         }
 
         const placeCode = codeMap[value[0]];
         if (!placeCode) {
-            callback({ valid: false, message: t.value.idCardValidate2 });
+            callback({ valid: false, message: t('idCardValidate2') });
         }
 
         const bodyCode = value.substring(1, 9);
@@ -300,7 +307,7 @@ const checkCkDigit = (rule: any, value: string, callback: any) => {
             calHead(placeCode) + calBody(bodyCode) + parseInt(lastCode) * 1;
         const isValid = idSum % 10 === 0;
         if (!isValid) {
-            callback({ valid: false, message: t.value.idCardValidate2 });
+            callback({ valid: false, message: t('idCardValidate2') });
         } else {
             callback();
         }
@@ -357,7 +364,10 @@ interface formData {
     foodTaboo: string,
     categoryExtra: string,
     verificationCode: string,
-    verificationKey: string
+    verificationKey: string,
+    professionalNumber: string,
+    organizationNumber: string,
+    workshopCodes: string[]
 }
 
 const form = ref<FormInstance>()
@@ -374,7 +384,7 @@ const formData = reactive<formData>({
     affiliation: '',
     jobTitle: '',
     idCard: '',
-    country: '',
+    country: 'Taiwan',
     remitAccountLast5: '',
     phone: '',
     countryCode: '886',
@@ -385,15 +395,14 @@ const formData = reactive<formData>({
     foodTaboo: '',
     categoryExtra: '',
     verificationCode: '',
-    verificationKey: ''
+    verificationKey: '',
+    professionalNumber: '',
+    organizationNumber: '',
+    workshopCodes: []
 })
 
 
 /**---------------------- */
-// const 
-watch(() => formData.country, (value) => {
-    value === 'Taiwan' ? setLocale('zh') : setLocale('en')
-}, { immediate: true })
 
 const cleanCategoryExtra = (item: any) => {
     item.categoryExtra = ''
@@ -403,9 +412,9 @@ const cleanCategoryExtra = (item: any) => {
 const vaildConfirmPassword = (rule: any, value: string, callback: any) => {
 
     if (!value) {
-        callback(new Error(t.value.confirmPasswordValidate))
+        callback(new Error(t('confirmPasswordValidate')))
     } else if (value !== formData.password) {
-        callback(new Error(t.value.confirmPasswordValidate2))
+        callback(new Error(t('confirmPasswordValidate2')))
     } else {
         callback()
     }
@@ -414,9 +423,9 @@ const vaildConfirmPassword = (rule: any, value: string, callback: any) => {
 
 const checkEmail = (rule: any, value: string, callback: any) => {
     if (!value) {
-        callback(new Error(t.value.confirmEmail))
+        callback(new Error(t('confirmEmail')))
     } else if (value !== formData.email) {
-        callback(new Error(t.value.confirmEmailValidate))
+        callback(new Error(t('confirmEmailValidate')))
     } else {
         callback()
     }
@@ -424,23 +433,23 @@ const checkEmail = (rule: any, value: string, callback: any) => {
 
 
 const formRules = computed<FormRules>(() => ({
-    title: [{ required: true, message: t.value.titleValidate, trigger: 'change' }],
-    firstName: [{ required: true, message: t.value.firstNameValidate, trigger: 'blur' }],
-    lastName: [{ required: true, message: t.value.lastNameValidate, trigger: 'blur' }],
-    email: [{ required: true, message: t.value.emailValidate, trigger: 'blur' }, { type: 'email', message: t.value.emailValidate2, trigger: 'blur' }],
+    title: [{ required: true, message: t('titleValidate'), trigger: 'change' }],
+    firstName: [{ required: true, message: t('firstNameValidate'), trigger: 'blur' }],
+    lastName: [{ required: true, message: t('lastNameValidate'), trigger: 'blur' }],
+    email: [{ required: true, message: t('emailValidate'), trigger: 'blur' }, { type: 'email', message: t('emailValidate2'), trigger: 'blur' }],
     confirmEmail: [{ validator: checkEmail, trigger: 'blur' }],
-    password: [{ required: true, message: t.value.passwordValidate, trigger: 'blur' }],
-    chineseName: [{ required: formData.country === 'Taiwan', message: t.value.chineseNameValidate, trigger: 'blur' }],
+    password: [{ required: true, message: t('passwordValidate'), trigger: 'blur' }],
+    chineseName: [{ required: formData.country === 'Taiwan', message: t('chineseNameValidate'), trigger: 'blur' }],
     confirmPassword: [{ required: true, validator: vaildConfirmPassword, trigger: 'blur' }],
-    affiliation: [{ required: true, message: t.value.affiliationValidate, trigger: 'blur' }],
-    jobTitle: [{ required: true, message: t.value.jobTitleValidate, trigger: 'blur' }],
+    affiliation: [{ required: true, message: t('affiliationValidate'), trigger: 'blur' }],
+    jobTitle: [{ required: true, message: t('jobTitleValidate'), trigger: 'blur' }],
     idCard: [{ required: formData.country === 'Taiwan', validator: checkCkDigit, trigger: 'blur' }],
-    country: [{ required: true, message: t.value.countryValidate, trigger: 'change' }],
-    countryCode: [{ required: true, message: t.value.countryCodeValidate, trigger: 'blur' }],
-    phoneNum: [{ required: true, message: t.value.phoneNumValidate, trigger: 'blur' }],
-    category: [{ required: true, message: t.value.categoryValidate, trigger: 'change' }],
+    country: [{ required: true, message: t('countryValidate'), trigger: 'change' }],
+    countryCode: [{ required: true, message: t('countryCodeValidate'), trigger: 'blur' }],
+    phoneNum: [{ required: true, message: t('phoneNumValidate'), trigger: 'blur' }],
+    category: [{ required: true, message: t('categoryValidate'), trigger: 'change' }],
     remitAccountLast5: [{ required: false, validator: validateRemitAccount, trigger: 'blur' }],
-    // categoryExtra: [{ validator: validCategoryExtra, trigger: 'change' }],
+    organizationNumber: [{ required: formData.category === 1, message: t('organizationNumberValidate'), trigger: 'blur' }],
 }))
 
 
@@ -472,7 +481,7 @@ const submit = async (formEl: FormInstance | undefined) => {
                 localStorage.setItem(res.data.tokenName, 'Bearer ' + res.data.tokenValue);
                 ElNotification.success({
                     title: 'Success',
-                    message: t.value.registrationSuccess,
+                    message: t('registrationSuccess'),
                     type: 'success',
                     duration: 3000,
                 });
@@ -501,7 +510,7 @@ watch(() => setting.value, () => {
         router.push("/registration-fee");
         ElNotification({
             title: 'Notice',
-            message: 'Registration is closed',
+            message: t('registrationClosed'),
             type: 'warning',
             duration: 5000
         });
@@ -519,7 +528,7 @@ onMounted(() => {
     if (isLogin.value) {
         ElNotification.info({
             title: 'Info',
-            message: t.value.alreadyLogin,
+            message: t('alreadyLogin'),
             type: 'info',
             duration: 3000,
         });
@@ -567,10 +576,10 @@ onUnmounted(() => {
         .registration-notice {
             margin-bottom: 1.5rem;
             padding: 0.9rem 1rem;
-            border: 1px solid #f1c4ca;
+            border: 1px solid $main-color;
             border-radius: 14px;
-            background: linear-gradient(180deg, #fff8f9 0%, #fff2f4 100%);
-            color: #9e5060;
+            background: linear-gradient(180deg, $main-color 0%, #a4cceb 100%);
+            color: white;
             font-size: 0.95rem;
             line-height: 1.6;
         }

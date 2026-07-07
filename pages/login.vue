@@ -196,7 +196,8 @@ onUnmounted(() => {
     font-family: $common-section-font-family;
 
     .main-section {
-        background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
+        background: url('assets/img/login_background.png') no-repeat center center;
+        margin-bottom: 1rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -233,9 +234,9 @@ onUnmounted(() => {
                 }
 
                 .el-button {
-                    border: 1px solid #D86C7C;
+                    border: 1px solid $main-color;
                     background-color: #fff;
-                    color: #D86C7C;
+                    color: $main-color;
                     border-radius: 12px;
                     flex: 1;
                     height: 2.75rem;
@@ -245,13 +246,14 @@ onUnmounted(() => {
 
                     &:hover {
                         cursor: pointer;
-                        background-color: #fdf0f2;
+                        background-color: $main-color;
+                        color: #fff;
                         transform: translateY(-1px);
                     }
 
                     &.active {
-                        border-color: #D86C7C;
-                        background-color: #D86C7C;
+                        border-color: $main-color;
+                        background-color: $main-color;
                         color: #fff;
                         box-shadow: 0 4px 12px rgba(216, 108, 124, 0.25);
                     }
@@ -262,12 +264,12 @@ onUnmounted(() => {
                 border: none;
 
                 :deep(.el-input__wrapper) {
-                    border: 1px solid #E8979E;
+                    border: 1px solid $main-color;
                     border-radius: 18px;
                     padding: 0.5rem;
 
                     &:focus {
-                        border: 1px solid #E8979E !important;
+                        border: 1px solid $main-color !important;
                         box-shadow: none !important;
                     }
                 }
@@ -288,12 +290,12 @@ onUnmounted(() => {
                     width: 100%;
 
                     a {
-                        color: #D86C7C;
+                        color: $main-color;
                         font-size: 0.875rem;
                         transition: color 0.3s ease-in-out;
 
                         &:hover {
-                            color: #D86C7C;
+                            color: $main-color;
                             filter: brightness(1.2);
                             transform: scale(1.05);
                             cursor: pointer;
@@ -322,7 +324,7 @@ onUnmounted(() => {
                     width: 20rem;
 
                     :deep(.el-input__wrapper) {
-                        border: 1px solid #E8979E;
+                        border: 1px solid $main-color;
                         border-radius: 10px;
                     }
                 }
@@ -336,11 +338,11 @@ onUnmounted(() => {
                         border: none;
                         background-color: white;
                         font-size: 1.5rem;
-                        color: #D86C7C;
+                        color: $main-color;
 
                         &:hover {
                             background-color: white;
-                            color: #D86C7C;
+                            color: $main-color;
                             cursor: pointer;
                             scale: 1.05;
                             transition: all 0.3s ease-in-out;
@@ -366,7 +368,7 @@ onUnmounted(() => {
                 }
 
                 .sign-btn {
-                    background-color: #D86C7C;
+                    background-color: $main-color;
                     color: white;
                     border: none;
                     border-radius: 10px;
@@ -388,7 +390,7 @@ onUnmounted(() => {
                 a {
                     filter: brightness(1);
                     transition: filter 0.3s ease-in-out;
-                    color: #D86C7C;
+                    color: $main-color;
 
                     &:hover {
                         cursor: pointer;

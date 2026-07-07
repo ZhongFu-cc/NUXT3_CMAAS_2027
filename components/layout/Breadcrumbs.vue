@@ -31,18 +31,18 @@ const props = defineProps<{
         font-size: 1rem;
         font-weight: normal;
         letter-spacing: 0.1rem;
-        color: #D5C1C5;
+        color: #127ebe;
         margin-left: 9.5%;
 
         :deep(.is-link) {
             &:hover {
-                color: #DFB4BD;
+                color: #127ebe;
             }
         }
 
         :deep(.el-breadcrumb__inner) {
 
-            color: #DFB4BD;
+            color: #127ebe;
         }
 
         img {

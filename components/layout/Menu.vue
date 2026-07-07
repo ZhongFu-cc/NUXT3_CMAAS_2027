@@ -55,13 +55,13 @@
                         <nuxt-link class="sub-menu-item" to="/registration-fee"
                             @click="setActiveItem('registrationFee')" :class="activeClass('registrationFee')">{{
                                 $t('registrationFee') }}</nuxt-link>
-                        <nuxt-link class="sub-menu-item" to="/login"
-                            @click="setActiveItem('seminarRegistration')" :class="activeClass('seminarRegistration')">{{
+                        <nuxt-link class="sub-menu-item" to="/login" @click="setActiveItem('seminarRegistration')"
+                            :class="activeClass('seminarRegistration')">{{
                                 $t('onlineRegistration') }}</nuxt-link>
                     </div>
                 </div>
 
-                <div class="submenu-box menu-item" @click="openSubMenuFunc('abstract')">
+                <!-- <div class="submenu-box menu-item" @click="openSubMenuFunc('abstract')">
                     {{ $t('abstract') }}
                     <el-icon>
                         <ElIconArrowDown />
@@ -80,7 +80,7 @@
                             @click="setActiveItem('abstractPresentation')"
                             :class="activeClass('abstractPresentation')">{{ $t('presentationGuidelines') }}</nuxt-link>
                     </div>
-                </div>
+                </div> -->
 
 
 
@@ -88,8 +88,8 @@
                 <div class="item-box">
                     <nuxt-link class="menu-item" to="/transportation" @click="setActiveItem('transportation')"
                         :class="activeClass('transportation')">{{ $t('transportation') }}</nuxt-link>
-                    <nuxt-link class="menu-item" to="/sponsor-list" @click="setActiveItem('sponsorList')"
-                        :class="activeClass('sponsorList')">{{ $t('sponsorList') }}</nuxt-link>
+                    <!-- <nuxt-link class="menu-item" to="/sponsor-list" @click="setActiveItem('sponsorList')"
+                        :class="activeClass('sponsorList')">{{ $t('sponsorList') }}</nuxt-link> -->
                     <div class="gallery-box menu-item" @click="openSubMenuFunc('gallery')">
                         Gallery
                         <el-icon>
@@ -114,8 +114,8 @@
                     <div class="sub-menu-item-box" v-if="isOpen">
                         <nuxt-link class="sub-menu-item" to="/transportation" @click="setActiveItem('transportation')"
                             :class="activeClass('transportation')">{{ $t('transportation') }}</nuxt-link>
-                        <nuxt-link class="sub-menu-item" to="/sponsor-list" @click="setActiveItem('sponsorList')"
-                            :class="activeClass('sponsorList')">{{ $t('sponsorList') }}</nuxt-link>
+                        <!-- <nuxt-link class="sub-menu-item" to="/sponsor-list" @click="setActiveItem('sponsorList')"
+                            :class="activeClass('sponsorList')">{{ $t('sponsorList') }}</nuxt-link> -->
                         <div class="gallery-box sub-menu-item" @click="openSubMenuFunc('gallery')"
                             :class="activeClass('gallery')">
                             Gallery
@@ -259,7 +259,7 @@ onUnmounted(() => {
         height: 6.5rem;
         padding: 0.5rem 0;
         // FIXME
-        border-bottom: 8px solid #e8d0dd;
+        border-bottom: 8px solid #96c0e1;
 
 
         @media screen and (max-width: 1920px) {
@@ -362,6 +362,7 @@ onUnmounted(() => {
                 color: #59413C;
                 height: 4.5rem;
                 padding: 1rem;
+                border-radius: 8px;
 
                 @media screen and (max-width: 1920px) {
                     height: 2.5rem;
@@ -416,7 +417,7 @@ onUnmounted(() => {
                     gap: 1rem;
                     top: 3rem;
                     right: -0.5rem;
-                    background-color: black;
+                    background-color: #0f6ba0;
                     width: 10rem;
                     padding: 1rem 1.5rem;
                     border-radius: 0.5rem;
@@ -449,7 +450,7 @@ onUnmounted(() => {
                     gap: 1rem;
                     top: 3rem;
                     right: -0.5rem;
-                    background-color: black;
+                    background-color: #0f6ba0;
                     width: 10rem;
                     padding: 1rem 1.5rem;
                     border-radius: 0.5rem;
@@ -463,7 +464,7 @@ onUnmounted(() => {
                         &:hover {
                             cursor: pointer;
                             color: white;
-                            background-color: black !important;
+                            background-color: #0f6ba0 !important;
                         }
 
                     }
@@ -509,7 +510,7 @@ onUnmounted(() => {
                     gap: 1rem;
                     top: 3rem;
                     right: -0.5rem;
-                    background-color: black;
+                    background-color: #0f6ba0;
                     width: 10rem;
                     padding: 1rem 1.5rem;
                     border-radius: 0.5rem;
@@ -552,7 +553,7 @@ onUnmounted(() => {
     }
 
     .menu-section-scroll {
-        background-color: black;
+        background-color: #0f6ba0;
         transition: background-color 0.3s ease-in-out;
 
 
@@ -573,7 +574,7 @@ onUnmounted(() => {
                 &:hover {
                     cursor: pointer;
                     color: $main-color;
-                    background-color: black
+                    background-color: #0f6ba0
                 }
             }
 

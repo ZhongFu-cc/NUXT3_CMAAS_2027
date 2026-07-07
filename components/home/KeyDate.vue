@@ -10,7 +10,7 @@
         </div>
 
         <ul class="key-date-item-box">
-            <li class="key-date-item">
+            <!-- <li class="key-date-item">
                 <div class="key-date-info">
                     <p class="date-box"><span>17</span><span class="month">{{ $t('april') }}<span
                                 class="year">2026</span></span>
@@ -31,7 +31,7 @@
                 <a class="key-date-link" href="https://evt.to/yyhgk2t4qvtm" target="_blank">
                     <img class="home-banner-bak" src="@/assets/img/save date-01.svg">
                 </a>
-            </li>
+            </li> -->
 
             <!-- <li class="key-date-item">
                 <div class="key-date-info">
@@ -45,7 +45,7 @@
 
 
 
-            <li class="key-date-item">
+            <!-- <li class="key-date-item">
                 <div class="key-date-info">
                     <p class="date-box"><span>07</span><span class="month">{{ $t('september') }}<span
                                 class="year">2026</span></span>
@@ -55,7 +55,7 @@
                 <a class="key-date-link" href="https://evt.to/21c76xtmlswn" target="_blank">
                     <img class="home-banner-bak" src="../../assets/img/save date-01.svg">
                 </a>
-            </li>
+            </li> -->
 
             <!-- <li class="key-date-item">
                 <div class="key-date-info">
@@ -69,10 +69,10 @@
             </li> -->
             <li class="key-date-item">
                 <div class="key-date-info">
-                    <p class="date-box"><span>14~15</span><span class="month">{{ $t('november') }}<span
-                                class="year">2026</span></span>
+                    <p class="date-box"><span>23~24</span><span class="month">{{ $t('january') }}<span
+                                class="year">2027</span></span>
                     </p>
-                    <p class="info">TOPBS 2026</p>
+                    <p class="info">CMAAS 2027</p>
                 </div>
                 <a class="key-date-link" href="https://evt.to/z77j18jbb2pn" target="_blank">
                     <img class="home-banner-bak" src="@/assets/img/save date-01.svg">
@@ -121,7 +121,7 @@
             .title {
                 font-size: 2rem;
                 font-weight: bold;
-                color: #B62D66;
+                color: #127ebe;
                 text-align: start;
             }
         }
@@ -143,7 +143,7 @@
 
             .key-date-info {
                 border-radius: 5px;
-                background-color: #F5C0CB;
+                background-color: #127ebe;
                 padding: 0.3rem 1rem;
                 display: flex;
                 justify-content: flex-start;
@@ -189,7 +189,7 @@
                 }
 
                 .info {
-                    color: #991D4F;
+                    color: white;
                     font-size: 1.3rem;
                     font-weight: bold;
                     min-width: 23rem;
@@ -210,7 +210,7 @@
             }
 
             .key-date-link {
-                background-color: #F5C0CB;
+                background-color: #127ebe;
                 color: white;
                 display: flex;
                 justify-content: center;

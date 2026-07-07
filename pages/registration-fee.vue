@@ -5,8 +5,9 @@
 
             <Breadcrumbs firstRoute="Registration" secoundRoute="Registration Fee"></Breadcrumbs>
 
-            <Title :title="'Registration Fee'"></Title>
-            <table class="personal-registration-table">
+            <Title :title="'Coming Soon'"></Title>
+
+            <!-- <table class="personal-registration-table">
                 <thead>
                     <tr class="personal-row-1">
                         <th class="category-col" :rowspan="2" :colspan="2">Category</th>
@@ -21,10 +22,6 @@
                             <p>Onsite</p>
                             <p>(Oct 1 - Nov 15, 2026)</p>
                         </th>
-                        <!-- <th>
-                            <p>Onsite</p>
-                            <p>(Nov 14 - Nov 15, 2026)</p>
-                        </th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -37,13 +34,11 @@
                         <td>Non-member</td>
                         <td>USD 400</td>
                         <td>USD 500</td>
-                        <!-- <td>USD 2000</td> -->
                     </tr>
                     <tr class="personal-row-4">
                         <td>Member</td>
                         <td>USD 300</td>
                         <td>USD 400</td>
-                        <!-- <td>USD 1500</td> -->
                     </tr>
                     <tr class="personal-row-5">
                         <td :colspan="2">
@@ -51,7 +46,6 @@
                         </td>
                         <td>USD 150</td>
                         <td>USD 200</td>
-                        <!-- <td>USD 1800</td> -->
 
                     </tr>
                 </tbody>
@@ -148,13 +142,12 @@
             </table>
 
             <p class="tips">*Please fill in the form completely</p>
-            <!-- <p class="tips">*The credit card transaction page will be given through email to the sender.</p> -->
             <p class="tips">*Payment for group registration must be paid at once by one person.</p>
             <div class="btn-section"> <nuxt-link class="group-register-btn"
                     to="/registration-now/group-registration">Group Registration
                     Form</nuxt-link>
 
-            </div>
+            </div> -->
         </main>
 
     </div>

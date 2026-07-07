@@ -10,17 +10,17 @@
             <div class="profile-reminder-card" :class="{ 'is-complete': isComplete }">
                 <div class="reminder-header">
                     <div>
-                        <p class="reminder-eyebrow">Profile</p>
-                        <h2 v-if="!isComplete" class="reminder-title">{{ t.profileIncomplete }}</h2>
-                        <h2 v-else class="reminder-title">{{ t.memberInfo }}</h2>
+                        <p class="reminder-eyebrow">{{ t('profile') }}</p>
+                        <h2 v-if="!isComplete" class="reminder-title">{{ t('profileIncomplete') }}</h2>
+                        <h2 v-else class="reminder-title">{{ t('memberInfo') }}</h2>
                     </div>
                 </div>
 
                 <p v-if="!isComplete" class="reminder-description">
-                    {{ t.profileReminder }}
+                    {{ t('profileReminder') }}
                 </p>
                 <p v-if="isComplete" class="reminder-description is-complete">
-                    {{ t.isQualified }}
+                    {{ t('isQualified') }}
                 </p>
 
                 <div class="missing-field-list">
@@ -33,12 +33,12 @@
 
         <div class="select-section">
             <div class="select-item-box">
-                <nuxt-link class="select-box" to="/abstract">
+                <!-- <nuxt-link class="select-box" to="/abstract">
                     <img src="@/assets/img/abstract-icon.png" alt="">
                     <div class="label-box">
                         <span>{{ $t('abstract') }}</span>
                     </div>
-                </nuxt-link>
+                </nuxt-link> -->
                 <nuxt-link class="select-box" :to="'/payment'">
                     <img src="@/assets/img/payment-icon.png" alt="">
                     <div class="label-box">
@@ -47,12 +47,12 @@
                 </nuxt-link>
             </div>
             <div class="select-item-box">
-                <nuxt-link class="select-box" :to="'/accommodation'">
+                <!-- <nuxt-link class="select-box" :to="'/accommodation'">
                     <img src="@/assets/img/accommodation-icon.png" alt="">
                     <div class="label-box">
                         <p>{{ $t('accommodation') }}</p>
                     </div>
-                </nuxt-link>
+                </nuxt-link> -->
                 <nuxt-link class="select-box" :to="'/profile'">
                     <img src="@/assets/img/user-edit.svg" alt="">
                     <div class="label-box">
@@ -67,9 +67,9 @@
 <script lang="ts" setup>
 import Banner from '@/components/layout/Banner.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
-import Accommodation from './accommodation.vue';
 
-const { t, setLocale } = useLang();
+// const { t, setLocale } = useLang();
+const { t } = useI18n();
 
 const router = useRouter();
 
@@ -83,11 +83,11 @@ const isComplete = computed(() => {
 const getStatusLabel = (status: number) => {
     switch (status) {
         case 0:
-            return t.value.notPaid;
+            return t('notPaid');
         case 1:
-            return t.value.pendingReview;
+            return t('pendingReview');
         case 3:
-            return t.value.paidFail;
+            return t('paidFail');
     }
 }
 
@@ -99,7 +99,6 @@ const getMemberInfo = async () => {
         return;
     }
     Object.assign(memberInfo, res.data);
-    memberInfo.country === 'Taiwan' ? setLocale('zh') : setLocale('en');
 }
 
 
@@ -243,7 +242,7 @@ onMounted(() => {
     }
 
     .select-section {
-        background: url('assets/img/topbs_background-image.jpg') repeat center center;
+        background: url('assets/img/login_background.png') repeat center center;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;

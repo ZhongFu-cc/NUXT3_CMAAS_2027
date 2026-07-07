@@ -10,14 +10,14 @@
                         <p class="info-title">{{ $t('conferenceDate') }}:
                         </p>
                         <p class="info-content">
-                            <span>2026-11-14（{{ $t('saturday') }}），{{ $t('a.m') }}08:00 - {{ $t('p.m') }}17:50</span>
+                            <span>2027-01-23（{{ $t('saturday') }}），{{ $t('a.m') }}08:00 - {{ $t('p.m') }}17:50</span>
                             <br>
-                            <span>2026-11-15（{{ $t('sunday') }}），{{ $t('a.m') }}08:00 - {{ $t('p.m') }}17:10</span>
+                            <span>2027-01-24（{{ $t('sunday') }}），{{ $t('a.m') }}08:00 - {{ $t('p.m') }}17:10</span>
                         </p>
                     </div>
                     <div class="info-item">
                         <p class="info-title">{{ $t('conferenceLocation') }}:</p>
-                        <p class="info-content">{{ $t('ticc') }}</p>
+                        <p class="info-content">{{ $t('location') }}</p>
                     </div>
                 </div>
             </div>
@@ -31,13 +31,14 @@
             </div>
             <el-divider />
             <div class="location">
-                <h1 class="title">{{ $t('conferenceLocation') }}: <span class="location-info">{{ $t('ticc') }}</span>
+                <h1 class="title">{{ $t('conferenceLocation') }}: <span class="location-info">{{ $t('location')
+                        }}</span>
                 </h1>
                 <div class="location-info-box">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.0165568738175!2d121.55831637537649!3d25.033512177816775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abb61ab3d33f%3A0xab0d0f7ac395bff4!2z5Y-w5YyX5ZyL6Zqb5pyD6K2w5Lit5b-DKFRJQ0Mp!5e0!3m2!1szh-TW!2stw!4v1773211259473!5m2!1szh-TW!2stw"
-                        width="600" height="450" style="border:0;" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.8658638292773!2d121.5187584!3d25.0386258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a975c13ae63d%3A0x99f529730969be7f!2z6LKh5ZyY5rOV5Lq65by15qau55m85Z-66YeR5pyD!5e0!3m2!1szh-TW!2stw!4v1783060399044!5m2!1szh-TW!2stw"
+                        width="600" height="450" style="border:0;" :allowfullscreen="true" loading="lazy"
+                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
             </div>
         </div>
@@ -51,9 +52,9 @@ import Banner from '@/components/layout/Banner.vue';
 import Breadcrumbs from '~/components/layout/Breadcrumbs.vue';
 
 useSeoMeta({
-    title: 'Conference Information - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
-    description: 'Explore the conference information for the TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society. This page is currently under construction, but stay tuned for updates on the event details, schedule, and more.',
-    keywords: 'Conference Information,TOPBS,TOPBS 2026,2026 TOPBS'
+    title: '會議資訊 - 中華針灸醫學會 2027 年會',
+    description: '探索中華針灸醫學會 2027 年會的會議資訊。本頁面目前正在建設中，敬請期待活動詳情、議程等更新。',
+    keywords: '會議資訊,中華針灸醫學會,中華針灸醫學會 2027,2027 中華針灸醫學會,CMAAS 2027,會議資訊 CMAAS 2027'
 })
 
 const envMinio = useRuntimeConfig().public.minio

@@ -5,46 +5,33 @@
             <Breadcrumbs first-route="About Us" secound-route=""></Breadcrumbs>
             <Title title="Welcome Message"></Title>
             <div class="welcome-box">
-                <div class="image-box">
+                <!-- <div class="image-box">
                     <img src="@/assets/img/YeHsiangTang.jpg" alt="">
 
                     <div class="people-infomation-box">
                         <p class="name">Dr. Ye Hsiang Tang</p>
                         <p class="title">President of TOPBS</p>
                     </div>
-                </div>
+                </div> -->
                 <div class="welcome-content">
-                    <p class="title">Dear members and distinguished colleagues</p>
-                    <p> <span class="first-word">Welcome</span> to the Annual Meeting of the Taiwan Oncoplastic Breast
-                        Surgery Society. The
-                        development
-                        of plastic breast surgery has always been committed to balancing tumor treatment safety and
-                        postoperative appearance reconstruction, allowing patients to receive effective treatment while
-                        maintaining confidence and quality of life throughout their cancer treatment journey. With the
-                        advancement of medical technology and the increasing maturity of interdisciplinary
-                        collaboration, continuous academic exchange and clinical experience sharing have become
-                        important forces in promoting the improvement of medical quality. &nbsp;
+                    <p class="title">理事長的話</p>
+                    <p> <span class="first-word"></span> 親愛的會員同道及各界朋友：
+                        &nbsp;
                     </p>
-                    <p> <span class="first-word">This</span> year's annual meeting, with the theme "Escalation
-                        With Wellness; De-Escalation In
-                        Precision," symbolizes an important shift in contemporary breast cancer treatment strategies. In
-                        areas requiring aggressive treatment, we strengthen patients' physical and mental health and
-                        overall care quality through the integration of medical and reconstruction technology
-                        advancements; at the same time, under the support of precision medicine and clinical evidence,
-                        we gradually develop more precise and appropriate treatment strategies to avoid overtreatment,
-                        making medical decisions more aligned with individual patient needs .&nbsp;
+                    <p> <span class="first-word"></span>
+                        欣逢中華針灸醫學會成立三十週年，謹代表學會向歷任團隊及全體會員，致上最誠摯的謝意。感謝大家三十年來的支持與奉獻，讓學會從草創走向穩健。
+                        &nbsp;
                     </p>
-                    <p> <span class="first-word">This</span> annual meeting will feature keynote lectures, clinical case
-                        discussions, and practical
-                        experience sharing, focusing on breast cancer treatment, oncoplastic surgical techniques,
-                        reconstruction strategies, and multidisciplinary integrated care. We hope to provide a platform
-                        for in-depth exchange and academic inspiration, promoting the continuous advancement and
-                        development of breast surgery in Taiwan.
+                    <p> <span class="first-word"></span>
+                        多年來，學會積極推動學術研討與教育訓練，創辦《中華針灸醫學會雜誌》傳承知識，並致力於國際學術交流。今年，我們更攜手全日本鍼灸學會（JSAM）與大韓針灸醫學會（KAMMS）共同成立「東亞針灸醫學國際論壇」，期盼建立長期穩定的交流平台，深化臨床、教育與研究合作。
                     </p>
-                    <p> <span class="first-word">We</span> sincerely look forward to gathering with all of you to
-                        exchange ideas and work together
-                        toward improving the quality of care and future development of breast cancer treatment.</p>
-                    <p class="association-name">Taiwan Oncoplastic Breast Surgery Society</p>
+                    <p> <span class="first-word"></span>
+                        三十年是感恩的里程碑，更是嶄新的開始。未來，本會將持續凝聚會員力量、深化學術研究、培育優秀人才並拓展國際合作，讓臺灣針灸醫學持續發光發熱，為人類健康貢獻力量。
+                    </p>
+                    <p>
+                        敬祝大家身體健康、萬事順心。
+                    </p>
+                    <p class="association-name">中華針灸醫學會 黃明正 理事長 敬上</p>
                 </div>
             </div>
         </div>
@@ -56,9 +43,9 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 import Title from '@/components/layout/Title.vue';
 
 useSeoMeta({
-    title: 'President\'s Message - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
-    description: 'Read the messages from the presidents of the Taiwan Oncoplastic Breast Surgery Society , welcoming attendees to the TOPBS 2026 conference.',
-    keywords: 'President\'s Message,TOPBS,TOPBS 2026,2026 TOPBS,'
+    title: 'President\'s Message - CMAAS2027',
+    description: 'Read the messages from the presidents of the Chinese Acupuncture Medical Association, welcoming attendees to the CMAAS conference.',
+    keywords: 'President\'s Message,CMAAS,CMAAS 2027,2027 CMAAS,'
 })
 
 </script>
@@ -77,6 +64,7 @@ useSeoMeta({
 
     .welcome-box {
         display: flex;
+        justify-content: center;
         gap: 1rem;
         margin: 3.5rem 0;
 

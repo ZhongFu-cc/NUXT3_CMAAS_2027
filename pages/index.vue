@@ -4,7 +4,7 @@
 
         <div class="main-section">
             <div class="content">
-                <CountdownTimer :target-date="eventDate"></CountdownTimer>
+                <!-- <CountdownTimer :target-date="eventDate"></CountdownTimer> -->
 
                 <div class="info-section">
                     <div class="link-section">
@@ -20,11 +20,11 @@
             </div>
         </div>
 
-        <div class="video-box">
+        <!-- <div class="video-box">
             <iframe v-for="video in videos" :src="envMinio + video.path" title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen></iframe>
-        </div>
+        </div> -->
     </main>
 </template>
 <script lang="ts" setup>
@@ -36,14 +36,14 @@ import KeyDate from '@/components/home/KeyDate.vue';
 import { useI18n } from 'vue-i18n';
 
 useSeoMeta({
-    title: 'TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
-    description: 'Welcome to the TOPBS 2026 (Taiwan Oncoplastic Breast Surgery Society) Conference 2026, held in Taipei from November 14-15, 2026. Explore the latest advancements in sustainable perfect form and safety, bringing together global experts for exchange and collaboration.',
-    keywords: 'Home,TOPBS,TOPBS 2026,2026 TOPBS'
+    title: '中華針灸醫學會 2027 年會 - CMAAS 2027',
+    description: '歡迎來到中華針灸醫學會 2027 年會官方網站，探索最新的針灸醫學研究、教育與國際交流資訊。',
+    keywords: 'Home,CMAAS,CMAAS 2027,2027 CMAAS'
 })
 
 const { locale, setLocale, t } = useI18n();
 
-const eventDate = new Date('2026-11-14T00:00:00');
+const eventDate = new Date('2027-11-14T00:00:00');
 
 const carousel = ref();
 

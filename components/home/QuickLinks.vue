@@ -47,7 +47,7 @@
         .title {
             font-size: 2rem;
             font-weight: bold;
-            color: #B62D66;
+            color: #127ebe;
             text-align: start;
         }
     }
@@ -96,15 +96,15 @@
         }
 
         .item1 {
-            background-color: #EA86B3;
+            background-color: #127ebe;
         }
 
         .item2 {
-            background-color: #C21062;
+            background-color: #0f6ba0;
         }
 
         .item3 {
-            background-color: #991D4F;
+            background-color: #0f6ba0;
         }
     }
 }

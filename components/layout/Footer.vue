@@ -1,8 +1,8 @@
 <template>
     <footer class="footer-section">
         <div class="footer-box">
-            <p>Taiwan Oncoplastic Breast Surgery Symposium</p>
-            <p>Contact us: topbs106@gmail.com</p>
+            <p>中華針灸醫學會</p>
+            <p>聯絡我們: cmedassacu@gmail.com</p>
         </div>
     </footer>
 </template>
@@ -11,7 +11,7 @@ import Title from './Title.vue';
 </script>
 <style lang="scss" scoped>
 .footer-section {
-    background-color: $main-color;
+    background-color: #0f6ba0;
     // background: url('../../assets/img/ticbcs_footer.jpg') no-repeat top center;
     background-size: cover;
     padding: 2rem 0;

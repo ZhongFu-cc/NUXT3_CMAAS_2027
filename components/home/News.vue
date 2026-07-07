@@ -171,7 +171,7 @@ let currentPage = ref(1)
             .title {
                 font-size: 2rem;
                 font-weight: bold;
-                color: #B62D66;
+                color: #127ebe;
                 text-align: start;
             }
         }
@@ -249,7 +249,7 @@ let currentPage = ref(1)
                     height: 100%;
                     left: 0;
                     top: 0;
-                    background-color: #F5C0CB;
+                    background-color: #127ebe;
                 }
 
                 &:hover {
@@ -278,7 +278,7 @@ let currentPage = ref(1)
                 /**消息的標題 */
                 .NewsItemTitle {
                     font-size: 1.3rem;
-                    color: #371307;
+                    color: #127ebe;
                     // width: 100%;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -318,4 +318,5 @@ let currentPage = ref(1)
 
 }
 
-// }</style>
+// }
+</style>
