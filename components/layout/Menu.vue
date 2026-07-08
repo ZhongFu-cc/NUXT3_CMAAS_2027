@@ -96,12 +96,12 @@
                             <ElIconArrowDown />
                         </el-icon>
                         <div class="gallery-sub-menu" v-if="openedSubMenu == 'gallery'">
-                            <nuxt-link class="sub-menu-item" to="/gallery/2023" @click="setActiveItem('gallery')"
+                            <!-- <nuxt-link class="sub-menu-item" to="/gallery/2023" @click="setActiveItem('gallery')"
                                 :class="activeClass('gallery')">Gallery 2023</nuxt-link>
                             <nuxt-link class="sub-menu-item" to="/gallery/2024" @click="setActiveItem('gallery2024')"
-                                :class="activeClass('gallery2024')">Gallery 2024</nuxt-link>
-                            <nuxt-link class="sub-menu-item" to="/gallery/2025" @click="setActiveItem('gallery2025')"
-                                :class="activeClass('gallery2025')">Gallery 2025</nuxt-link>
+                                :class="activeClass('gallery2024')">Gallery 2024</nuxt-link> -->
+                            <nuxt-link class="sub-menu-item" to="/gallery/2026" @click="setActiveItem('gallery2026')"
+                                :class="activeClass('gallery2026')">Gallery 2026</nuxt-link>
                         </div>
                     </div>
 
@@ -150,7 +150,7 @@
                     </div>
                 </div>
                 <nuxt-link v-if="!isLogin" class="menu-item" to="/login" :class="activeClass('login')">{{ $t('login')
-                }}</nuxt-link>
+                    }}</nuxt-link>
 
             </div>
 
