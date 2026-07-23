@@ -27,8 +27,11 @@
             <div class="logo-container" v-if="!isActive">
                 <nuxt-link class="logo-link" to="/" @click="setActiveItem('')">
                     <div class="logo-image-box">
-                        <img class="logo" src="/img/logo.png" alt="TOPBS Logo" />
+                        <img class="logo" src="/img/logo1.png" alt="CAMMS Logo" />
                     </div>
+                    <!-- <div class="logo-image-box">
+                        <img class="logo" src="/img/logo.png" alt="CAMMS Logo" />
+                    </div> -->
                 </nuxt-link>
             </div>
 
@@ -36,12 +39,14 @@
                 <nuxt-link class="menu-item" to="/about-us" @click="setActiveItem('aboutUs')"
                     :class="activeClass('aboutUs')">{{ $t('aboutUs') }}</nuxt-link>
 
-                <nuxt-link class="menu-item" to="/conference-information"
+                <nuxt-link class="menu-item" to="/news" @click="setActiveItem('news')" :class="activeClass('news')">{{ $t('news') }}</nuxt-link>
+               
+               <nuxt-link class="menu-item" to="/conference-information"
                     @click="setActiveItem('conferenceInformation')" :class="activeClass('conferenceInformation')">{{
                         $t('conferenceInformation') }}</nuxt-link>
 
-                <!-- <nuxt-link class="menu-item" to="/" @click="setActiveItem('invitedSpeaker')"
-                    :class="activeClass('invitedSpeaker')">受邀講者</nuxt-link> -->
+                <nuxt-link class="menu-item" to="/invited-speakers" @click="setActiveItem('invitedSpeaker')"
+                    :class="activeClass('invitedSpeaker')">特邀講者</nuxt-link>
 
 
 
@@ -90,9 +95,10 @@
                         :class="activeClass('transportation')">{{ $t('transportation') }}</nuxt-link>
                     <!-- <nuxt-link class="menu-item" to="/sponsor-list" @click="setActiveItem('sponsorList')"
                         :class="activeClass('sponsorList')">{{ $t('sponsorList') }}</nuxt-link> -->
-                    <div class="gallery-box menu-item" @click="openSubMenuFunc('gallery')">
+                    <!-- <nuxt-link class="menu-item" @click="openSubMenuFunc('gallery')"> -->
+                    <nuxt-link class="menu-item" to="/gallery/2026" @click="setActiveItem('gallery')" :class="activeClass('gallery')">
                         Gallery
-                        <el-icon>
+                        <!-- <el-icon>
                             <ElIconArrowDown />
                         </el-icon>
                         <div class="gallery-sub-menu" v-if="openedSubMenu == 'gallery'">
@@ -100,10 +106,10 @@
                                 :class="activeClass('gallery')">Gallery 2023</nuxt-link>
                             <nuxt-link class="sub-menu-item" to="/gallery/2024" @click="setActiveItem('gallery2024')"
                                 :class="activeClass('gallery2024')">Gallery 2024</nuxt-link>
-                            <nuxt-link class="sub-menu-item" to="/gallery/2025" @click="setActiveItem('gallery2025')"
-                                :class="activeClass('gallery2025')">Gallery 2025</nuxt-link>
-                        </div>
-                    </div>
+                            <nuxt-link class="sub-menu-item" to="/gallery/2026" @click="setActiveItem('gallery2026')"
+                                :class="activeClass('gallery2026')">Gallery 2026</nuxt-link>
+                        </div> -->
+                    </nuxt-link>
 
                 </div>
 
@@ -150,7 +156,7 @@
                     </div>
                 </div>
                 <nuxt-link v-if="!isLogin" class="menu-item" to="/login" :class="activeClass('login')">{{ $t('login')
-                }}</nuxt-link>
+                    }}</nuxt-link>
 
             </div>
 

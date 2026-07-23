@@ -2,7 +2,7 @@
     <div class="news-item-section">
         <Banner />
         <div v-if="isActive" class="main-box">
-            <Breadcrumbs :title="'News Item'" first-route="News" :secound-route="newsItem.title" />
+            <Breadcrumbs :title="'News Item'" :first-route="t('news')" :secound-route="newsItem.title" />
 
             <div class="news-item-box">
                 <h1 class="title">{{ newsItem.title }}</h1>
@@ -28,6 +28,8 @@ import 'ckeditor5/ckeditor5.css';
 
 const router = useRouter()
 const articleId = useRoute().params.id
+
+const { t } = useI18n()
 
 const isActive = ref(false)
 

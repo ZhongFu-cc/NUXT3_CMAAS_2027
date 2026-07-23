@@ -1,7 +1,7 @@
 <template>
     <main class="common-section">
         <Banner />
-        <Breadcrumbs :first-route="'Member Center'" :secound-route="'Payment'" />
+        <Breadcrumbs :first-route="'會員中心'" :secound-route="'付款'" />
 
         <el-dialog v-model="remitDialogVisible" width="min(92vw, 32rem)" :close-on-click-modal="false"
             :close-on-press-escape="false" :show-close="false" class="remit-dialog">
@@ -36,48 +36,47 @@
         </el-dialog>
 
         <div class="table-section">
-            <div v-if="memberInfo.country === 'Taiwan'" class="payment-info">
-                <p>*戶名 : 台灣乳房腫瘤手術暨重建學會</p>
-                <p>*合作金庫銀行 : 長庚分行 帳號:3638871000153</p>
-                <p>*請於匯款後點擊下方付款按鈕，並輸入帳戶末五碼以利主辦單位核對。</p>
-            </div>
+            <!-- <div v-if="memberInfo.country === 'Taiwan'" class="payment-info"> -->
+                <!-- <p>*戶名 : 台灣乳房腫瘤手術暨重建學會</p>
+                <p>*合作金庫銀行 : 長庚分行 帳號:3638871000153</p> -->
+                <!-- <p>*請於匯款後點擊下方付款按鈕，並輸入帳戶末五碼以利主辦單位核對。</p> -->
+            <!-- </div> -->
             <div class="table-box">
                 <span class="info" v-if="memberInfo.groupRole == 'slave'">*The group registration fee must be paid by
                     the main registration member.</span>
                 <table class="orders-table" :class="isTaiwan(memberInfo.country)">
                     <thead>
                         <tr class="header-row">
-                            <th>Item</th>
-                            <th>Payment Amount {{ memberInfo.country === 'Taiwan' ? '(TWD)' : '(USD)' }}</th>
-                            <th :colspan="2">Payment Status</th>
+                            <th>項目</th>
+                            <th>付款金額 {{ memberInfo.country === 'Taiwan' ? '(TWD)' : '(USD)' }}</th>
+                            <th :colspan="2">付款狀態</th>
                             <!-- <th></th> -->
-                            <!-- <th v-if="memberInfo.country === 'Taiwan'">Last 5 digits of account number</th> -->
+                            <!-- <th v-if="memberInfo.country === 'Taiwan'">帳號末五碼</th> -->
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="(item, index) in orderList" :class="isEvenOrOdd(index)">
                             <td class="first-col">{{ item.itemsSummary }}</td>
-                            <td>{{ memberInfo.country === 'Taiwan' ? item.totalAmount : (item.totalAmount /
-                                RATE).toFixed(2) }}</td>
+                            <td>{{  item.totalAmount }}</td>
                             <td class="last-col">{{
                                 enums.payMentStatus[item.status]
                                 }}</td>
                             <!-- <td v-if="memberInfo.country === 'Taiwan'" class="last-col">
                                 {{ memberInfo.remitAccountLast5 }}
                             </td> -->
-                            <td v-if="memberInfo.country !== 'Taiwan'" class="temp-col"></td>
-                            <td v-if="memberInfo.country !== 'Taiwan' && (item.status === 0 || item.status === 3)"
+                            <!-- <td v-if="memberInfo.country !== 'Taiwan'" class="temp-col"></td> -->
+                            <td v-if="(item.status === 0 || item.status === 3)"
                                 class="not-pay"
                                 :class="(memberInfo.groupRole == 'slave' && item.itemsSummary == 'Group Registration Fee') || isOverDeadline ? 'disabled' : ''"
                                 @click="getOrders(item.ordersId, (memberInfo.groupRole != 'slave' || item.itemsSummary != 'Group Registration Fee'))">
-                                <span>Pay now</span>
+                                <span>{{ t('payment') }}</span>
                             </td>
-                            <td v-if="memberInfo.country === 'Taiwan' && (item.status === 0 || item.status === 3)"
+                            <!-- <td v-if="memberInfo.country === 'Taiwan' && (item.status === 0 || item.status === 3)"
                                 class="not-pay" :class="isOverDeadline ? 'disabled' : ''"
                                 @click="openTaiwanPaymentDialog(item.ordersId)">
                                 <span>付款</span>
-                            </td>
-                            <td v-if="memberInfo.country !== 'Taiwan' && item.status === 2" class="completed">
+                            </td> -->
+                            <td v-if="item.status === 2" class="completed">
                                 <span><el-icon>
                                         <ElIconCircleCheckFilled />
                                     </el-icon></span>
@@ -99,7 +98,7 @@
 import Banner from '@/components/layout/Banner.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 
-
+const { t } = useI18n();
 const orderListRef = ref<any>();
 
 const RATE = 32;
@@ -160,10 +159,10 @@ const getOrderListForOwner = async () => {
 
 const enums = {
     payMentStatus: {
-        0: 'Unpaid',
-        1: 'Comfirming',
-        2: 'Payment completed',
-        3: 'Payment failed',
+        0: t('notPaid'),
+        1: t('pendingReview'),
+        2: t('paidComplete'),
+        3: t('paidFail'),
     } as any,
 
     paymentBtnColor: {
@@ -380,7 +379,7 @@ onMounted(() => {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
+        background: url('assets/img/login_background.png') no-repeat center center;
 
         .table-box {
             display: flex;

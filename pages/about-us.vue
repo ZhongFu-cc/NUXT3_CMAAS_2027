@@ -2,19 +2,18 @@
     <section class="about-us-section">
         <Banner />
         <div class="main-section">
-            <Breadcrumbs first-route="About Us" secound-route=""></Breadcrumbs>
-            <Title title="Welcome Message"></Title>
+            <Breadcrumbs :first-route="t('aboutUs')" :secound-route="t('welcomeMessage')"></Breadcrumbs>
+            <Title :title="t('welcomeMessage')"></Title>
             <div class="welcome-box">
-                <!-- <div class="image-box">
-                    <img src="@/assets/img/YeHsiangTang.jpg" alt="">
-
+                <div class="image-box">
+                    <img src="@/assets/img/president.jpg" alt="理事長">
                     <div class="people-infomation-box">
-                        <p class="name">Dr. Ye Hsiang Tang</p>
-                        <p class="title">President of TOPBS</p>
+                        <p class="name">黃明正</p>
+                        <p class="title">中華針灸醫學會 理事長</p>
                     </div>
-                </div> -->
+                </div>
                 <div class="welcome-content">
-                    <p class="title">理事長的話</p>
+                    <!-- <p class="title">理事長的話</p> -->
                     <p> <span class="first-word"></span> 親愛的會員同道及各界朋友：
                         &nbsp;
                     </p>
@@ -42,6 +41,8 @@ import Banner from '@/components/layout/Banner.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 import Title from '@/components/layout/Title.vue';
 
+const { t } = useI18n();
+
 useSeoMeta({
     title: 'President\'s Message - CMAAS2027',
     description: 'Read the messages from the presidents of the Chinese Acupuncture Medical Association, welcoming attendees to the CMAAS conference.',
@@ -53,147 +54,155 @@ useSeoMeta({
 .about-us-section {
     .main-section {
         width: 100%;
+        max-width: 1200px;
         margin: 0 auto;
         color: $main-color;
-
-        @media screen and (max-width: 1024px) {
-            width: 80%;
-        }
+        padding: 0 1.5rem;
     }
 
 
     .welcome-box {
         display: flex;
         justify-content: center;
-        gap: 1rem;
+        align-items: flex-start;
+        gap: 3rem;
         margin: 3.5rem 0;
 
         @media screen and (max-width: 1024px) {
             flex-direction: column;
+            align-items: center;
         }
 
         .image-box {
-            flex: 1;
+            flex: 0 0 380px;
+            display: flex;
             flex-direction: column;
             align-items: center;
-            border-radius: 10px;
+
+            @media screen and (max-width: 1024px) {
+                width: 100%;
+                flex: unset;
+            }
 
             img {
+                width: 100%;
+                max-width: 380px;
+                height: auto;
+                object-fit: cover;
                 border-radius: 10px;
-                overflow: hidden;
-                object-fit: contain;
-                height: 80%;
-                width: 70%;
+                display: block;
             }
 
             .people-infomation-box {
-                display: flex;
-                flex-direction: column;
-                text-align: start;
+                width: 100%;
+                max-width: 380px;
+                margin-top: 1rem;
                 background-color: $main-color;
-                padding: 1rem;
+                padding: 1rem 1.5rem;
                 border-radius: 10px;
-                gap: 1rem;
-                width: 65%;
 
                 .name {
-                    font-size: 1.2rem;
+                    font-size: 1.4rem;
                     color: white;
+                    font-weight: 600;
+                    margin-bottom: .5rem;
                 }
 
                 .title {
                     font-size: 1rem;
                     color: white;
+                    line-height: 1.6;
                 }
             }
-
         }
 
         .welcome-content {
+            flex: 1;
+            min-width: 0;
             color: $main-text-color;
-            flex: 0.8;
-            padding: 0 1.5rem;
-            font-size: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 2;
+            padding: 0;
 
             .title {
-                font-size: 1.5rem;
+                font-size: 2rem;
                 color: $main-color;
+                font-weight: 700;
+                margin-bottom: 1rem;
+            }
+
+            p {
+                margin: 0;
+                text-align: justify;
             }
 
             .first-word {
-                font-weight: bold;
-                font-size: 1.2rem;
+                display: inline-block;
+                width: 2em;
             }
 
             .association-name {
+                margin-top: 1.5rem;
+                text-align: right;
                 font-size: 1.2rem;
                 color: $main-color;
                 font-weight: bold;
             }
-
-
-            @media screen and (max-width: 1024px) {
-                font-size: 1rem;
-
-            }
         }
     }
 
-    .image-box {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
+    // .image-box {
+    //     display: flex;
+    //     justify-content: center;
+    //     gap: 2rem;
 
-        @media screen and (max-width: 426px) {
-            flex-direction: column;
-        }
+    //     @media screen and (max-width: 426px) {
+    //         flex-direction: column;
+    //     }
 
-        .logo-box {
-            width: calc(100%/3 - 2rem);
-            display: flex;
-            flex-direction: column;
+    //     .logo-box {
+    //         width: calc(100%/3 - 2rem);
+    //         display: flex;
+    //         flex-direction: column;
 
-            @media screen and (max-width: 426px) {
-                width: 100%;
-            }
+    //         @media screen and (max-width: 426px) {
+    //             width: 100%;
+    //         }
 
-            .logo-name {
-                color: $main-color;
-                font-size: 1rem;
-                text-align: center;
-            }
+    //         .logo-name {
+    //             color: $main-color;
+    //             font-size: 1rem;
+    //             text-align: center;
+    //         }
 
-            img {
-                width: 100%;
-                height: auto;
-            }
-        }
+    //         img {
+    //             width: 100%;
+    //             height: auto;
+    //         }
+    //     }
 
-        .logo-box2 {
-            display: flex;
-            flex-direction: column;
-            width: calc(100%/3 - 2rem);
+    //     .logo-box2 {
+    //         display: flex;
+    //         flex-direction: column;
+    //         width: calc(100%/3 - 2rem);
 
-            @media screen and (max-width: 426px) {
-                width: 100%;
-            }
+    //         @media screen and (max-width: 426px) {
+    //             width: 100%;
+    //         }
 
-            .logo-name {
-                color: $main-color;
-                font-size: 1.2rem;
-                text-align: center;
-            }
+    //         .logo-name {
+    //             color: $main-color;
+    //             font-size: 1.2rem;
+    //             text-align: center;
+    //         }
 
-            img {
-                width: 100%;
-                height: auto;
-            }
-        }
+    //         img {
+    //             width: 100%;
+    //             height: auto;
+    //         }
+    //     }
 
-    }
+    // }
 
 }
 </style>

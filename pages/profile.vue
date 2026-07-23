@@ -1,34 +1,34 @@
 <template>
     <main class="common-section">
         <Banner />
-        <Breadcrumbs :first-route="'Member'" :secound-route="$t('profile')" />
+        <Breadcrumbs :first-route="t('member')" :secound-route="t('profile')" />
 
         <section class="hero-section">
-            <Title title="Profile"></Title>
+            <Title :title="t('profile')"></Title>
         </section>
 
         <section class="profile-shell">
             <aside class="profile-summary-card">
-                <p class="card-eyebrow">Account Overview</p>
-                <h2 class="card-title">Member Info</h2>
+                <p class="card-eyebrow">{{ t('accountOverview') }}</p>
+                <h2 class="card-title">{{ t('memberInfo') }}</h2>
 
                 <div class="summary-list">
                     <div class="summary-item">
-                        <span class="summary-label">{{ t.idCard }}</span>
+                        <span class="summary-label">{{ t('idCard') }}</span>
                         <strong class="summary-value">{{ memberInfo.idCard || '--' }}</strong>
                     </div>
                     <div class="summary-item">
-                        <span class="summary-label">{{ t.email }}</span>
+                        <span class="summary-label">{{ t('email') }}</span>
                         <strong class="summary-value">{{ memberInfo.email || '--' }}</strong>
                     </div>
                     <div class="summary-item">
-                        <span class="summary-label">{{ t.country }}</span>
+                        <span class="summary-label">{{ t('country') }}</span>
                         <strong class="summary-value">{{ memberInfo.country || '--' }}</strong>
                     </div>
                 </div>
 
                 <div class="status-panel" :class="statusClass">
-                    <span class="status-label">Registration Status</span>
+                    <span class="status-label">{{ t('registrationStatus') }}</span>
                     <strong class="status-value">{{ statusText }}</strong>
                     <p class="status-description">{{ statusDescription }}</p>
                 </div>
@@ -37,15 +37,14 @@
             <section class="profile-form-card">
                 <div class="form-header">
                     <div>
-                        <p class="card-eyebrow">Editable Profile</p>
-                        <h2 class="card-title">Edit Info</h2>
+                        <p class="card-eyebrow">{{ t('editableProfile') }}</p>
+                        <h2 class="card-title">{{ t('editInfo') }}</h2>
                     </div>
-                    <p class="form-note">Account identification information is displayed on the left, and you can update
-                        personal and contact information here.</p>
+                    <!-- <p class="form-note">{{ t('formNote') }}</p> -->
                 </div>
 
                 <div v-if="isLoading" class="loading-state">
-                    Loading member data...
+                    {{ t('loadingMemberData') }}
                 </div>
 
                 <el-form v-else ref="profileFormRef" :model="formData" :rules="formRules" label-position="top"
@@ -53,69 +52,69 @@
 
 
                     <div class="form-grid two-columns">
-                        <el-form-item :label="t.firstName" prop="firstName">
-                            <el-input v-model="formData.firstName" :placeholder="t.firstName" />
+                        <el-form-item :label="t('firstName')" prop="firstName">
+                            <el-input v-model="formData.firstName" :placeholder="t('firstName')" />
                         </el-form-item>
 
-                        <el-form-item :label="t.lastName" prop="lastName">
-                            <el-input v-model="formData.lastName" :placeholder="t.lastName" />
+                        <el-form-item :label="t('lastName')" prop="lastName">
+                            <el-input v-model="formData.lastName" :placeholder="t('lastName')" />
                         </el-form-item>
                     </div>
 
                     <div class="form-grid one-columns">
 
-                        <el-form-item :label="t.chineseName" prop="chineseName">
-                            <el-input v-model="formData.chineseName" :placeholder="t.chineseName" />
+                        <el-form-item :label="t('chineseName')" prop="chineseName">
+                            <el-input v-model="formData.chineseName" :placeholder="t('chineseName')" />
                         </el-form-item>
                     </div>
 
                     <div class="form-grid one-columns readonly-grid">
 
-                        <el-form-item :label="t.email" prop="email">
-                            <el-input v-model="formData.email" disabled :placeholder="t.email" />
+                        <el-form-item :label="t('email')" prop="email">
+                            <el-input v-model="formData.email" disabled :placeholder="t('email')" />
                         </el-form-item>
                     </div>
 
                     <div class="form-grid two-columns">
-                        <el-form-item :label="t.country" prop="country">
-                            <el-select v-model="formData.country" filterable :placeholder="t.country">
+                        <el-form-item :label="t('country')" prop="country">
+                            <el-select v-model="formData.country" filterable :placeholder="t('country')">
                                 <el-option v-for="item in countries" :key="item" :label="item" :value="item" />
                             </el-select>
                         </el-form-item>
 
-                        <el-form-item v-if="formData.country === 'Taiwan'" :label="t.remitAccountLast5"
+                        <!-- <el-form-item v-if="formData.country === 'Taiwan'" :label="t('remitAccountLast5')"
                             prop="remitAccountLast5">
-                            <el-input v-model="formData.remitAccountLast5" :placeholder="t.remitAccountLast5"
+                            <el-input v-model="formData.remitAccountLast5" :placeholder="t('remitAccountLast5')"
                                 maxlength="5" />
-                        </el-form-item>
+                        </el-form-item> -->
                     </div>
 
                     <div class="form-grid phone-grid">
-                        <el-form-item :label="t.countryCode" prop="countryCode">
-                            <el-input v-model="formData.countryCode" :placeholder="t.countryCode" />
+                        <el-form-item :label="t('countryCode')" prop="countryCode">
+                            <el-input v-model="formData.countryCode" :placeholder="t('countryCode')" />
                         </el-form-item>
 
-                        <el-form-item :label="t.phoneNum" prop="phoneNum">
-                            <el-input v-model="formData.phoneNum" :placeholder="t.phoneNum" />
-                        </el-form-item>
-                    </div>
-
-                    <div class="form-grid two-columns">
-                        <el-form-item :label="t.affiliation" prop="affiliation">
-                            <el-input v-model="formData.affiliation" :placeholder="t.affiliation" />
-                        </el-form-item>
-
-                        <el-form-item :label="t.jobTitle" prop="jobTitle">
-                            <el-input v-model="formData.jobTitle" :placeholder="t.jobTitle" />
+                        <el-form-item :label="t('phoneNum')" prop="phoneNum">
+                            <el-input v-model="formData.phoneNum" :placeholder="t('phoneNum')" />
                         </el-form-item>
                     </div>
 
                     <div class="form-grid two-columns">
-                        <el-form-item :label="t.receipt" prop="receipt">
-                            <el-input v-model="formData.receipt" :placeholder="t.receipt" />
+                        <el-form-item :label="t('affiliation')" prop="affiliation">
+                            <el-input v-model="formData.affiliation" :placeholder="t('affiliation')" />
                         </el-form-item>
 
-                        <el-form-item :label="t.food" prop="food">
+                        <el-form-item :label="t('jobTitle')" prop="jobTitle">
+                            <el-input v-model="formData.jobTitle" :placeholder="t('jobTitle')" />
+                        </el-form-item>
+                    </div>
+
+                    <div class="form-grid two-columns">
+                        <el-form-item :label="t('receipt')" prop="receipt">
+                            <el-input v-model="formData.receipt" :placeholder="t('receipt')" />
+                        </el-form-item>
+
+                        <el-form-item :label="t('food')" prop="food">
                             <el-radio-group v-model="formData.food" class="food-group">
                                 <el-radio v-for="item in foodOptions" :key="item.value" :value="item.value">
                                     {{ item.label }}
@@ -124,13 +123,37 @@
                         </el-form-item>
                     </div>
 
-                    <el-form-item :label="t.foodTaboo" prop="foodTaboo">
-                        <el-input v-model="formData.foodTaboo" type="textarea" :rows="4" :placeholder="t.foodTaboo" />
+                    <el-form-item :label="t('foodTaboo')" prop="foodTaboo">
+                        <el-input v-model="formData.foodTaboo" type="textarea" :rows="4"
+                            :placeholder="t('foodTaboo')" />
                     </el-form-item>
+
+                    <div class="form-grid two-columns">
+                        <el-form-item :label="t('category')" prop="category">
+                            <el-select v-model="formData.category">
+                                <el-option :label="t('category1')" :value="1"></el-option>
+                                <el-option :label="t('category2')" :value="2"></el-option>
+                                <!-- <el-option :label="t('category3')" :value="3"></el-option> -->
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item v-if="formData.category === 1" prop="organizationNumber"
+                            :label="t('organizationNumber')">
+                            <el-input v-model="formData.organizationNumber" class="organization-number"
+                                :placeholder="t('organizationNumber')">
+                            </el-input>
+                        </el-form-item>
+                    </div>
+
+                    <el-form-item prop="professionalNumber" :label="t('professionalNumber')">
+                        <el-input v-model="formData.professionalNumber" class="professional-number"
+                            :placeholder="t('professionalNumber')">
+                        </el-input>
+                    </el-form-item>
+
 
                     <div class="form-actions">
                         <el-button type="primary" :loading="isSaving" @click="submitForm(profileFormRef)">
-                            {{ t.editProfile }}
+                            {{ t('editProfile') }}
                         </el-button>
                     </div>
                 </el-form>
@@ -163,9 +186,13 @@ interface ProfileFormData {
     receipt: string;
     food: string;
     foodTaboo: string;
+    category: number;
+    organizationNumber?: string;
+    professionalNumber?: string;
 }
 
-const { t, setLocale, locale } = useLang();
+// const { t, setLocale, locale } = useLang();
+const { t } = useI18n();
 const router = useRouter();
 
 const titles = ['Mr.', 'Ms.', 'Mrs.', 'Dr.', 'Prof.'];
@@ -193,11 +220,15 @@ const formData = reactive<ProfileFormData>({
     receipt: '',
     food: '',
     foodTaboo: '',
+    category: 2,
+    organizationNumber: '',
+    professionalNumber: '',
+
 });
 
 const foodOptions = computed(() => [
-    { label: t.value.foodRadio1, value: '葷' },
-    { label: t.value.foodRadio2, value: '素' },
+    { label: t('foodRadio1'), value: '葷' },
+    { label: t('foodRadio2'), value: '素' },
 ]);
 
 const splitPhone = (phone: string, country: string) => {
@@ -241,38 +272,36 @@ const fillForm = (data: Record<string, any>) => {
     formData.receipt = data.receipt || '';
     formData.food = data.food || '';
     formData.foodTaboo = data.foodTaboo || '';
+    formData.category = data.category || 1;
+    formData.organizationNumber = data.organizationNumber || '';
 
     initialSnapshot.value = JSON.stringify({ ...formData });
 };
 
 const statusText = computed(() => {
-    const statusMap = locale.value === 'zh'
-        ? {
-            0: '尚未完成付款',
-            1: '付款確認中',
-            2: '已完成報名資格',
-            3: '付款失敗',
-        }
-        : {
-            0: 'Payment Pending',
-            1: 'Confirming',
-            2: 'Qualified',
-            3: 'Payment Failed',
-        };
+    const statusMap =
+    {
+        0: t('notPaid'),
+        1: t('pendingReview'),
+        2: t('paidComplete'),
+        3: t('paidFail'),
+    }
 
     return statusMap[memberInfo.status as 0 | 1 | 2 | 3] || '--';
 });
 
 const statusDescription = computed(() => {
     if (memberInfo.status === 2) {
-        return locale.value === 'zh'
-            ? '目前帳號狀態正常，可繼續使用投稿、付款與會員功能。'
-            : 'Your account is active and ready for submissions, payment, and member services.';
+        return t('accountActive')
+        // locale.value === 'zh'
+        //     ? '目前帳號狀態正常，可繼續使用投稿、付款與會員功能。'
+        //     : 'Your account is active and ready for submissions, payment, and member services.';
     }
 
-    return locale.value === 'zh'
-        ? '若資料或付款尚未完成，建議先更新資訊並回到會員中心確認狀態。'
-        : 'If your profile or payment is incomplete, please update your information and review your member center status.';
+    return t('accountInactive')
+    // locale.value === 'zh'
+    //     ? '若資料或付款尚未完成，建議先更新資訊並回到會員中心確認狀態。'
+    //     : 'If your profile or payment is incomplete, please update your information and review your member center status.';
 });
 
 const statusClass = computed(() => {
@@ -281,7 +310,7 @@ const statusClass = computed(() => {
 
 const validateChineseName = (_rule: any, value: string, callback: (error?: Error) => void) => {
     if (formData.country === 'Taiwan' && !value.trim()) {
-        callback(new Error(t.value.pleaseEnterChineseName));
+        callback(new Error(t('chineseNameValidate')));
         return;
     }
 
@@ -295,7 +324,7 @@ const validateRemitAccount = (_rule: any, value: string, callback: (error?: Erro
     }
 
     if (!/^\d{5}$/.test(value)) {
-        callback(new Error(t.value.remitAccountLast5Validate2));
+        callback(new Error(t('remitAccountLast5Validate2')));
         return;
     }
 
@@ -303,21 +332,29 @@ const validateRemitAccount = (_rule: any, value: string, callback: (error?: Erro
 };
 
 const formRules = computed<FormRules>(() => ({
-    title: [{ required: true, message: t.value.titleValidate, trigger: 'change' }],
+    title: [{ required: true, message: t('titleValidate'), trigger: 'change' }],
     chineseName: [{ validator: validateChineseName, trigger: 'blur' }],
-    firstName: [{ required: true, message: t.value.firstNameValidate, trigger: 'blur' }],
-    lastName: [{ required: true, message: t.value.lastNameValidate, trigger: 'blur' }],
+    firstName: [{ required: true, message: t('firstNameValidate'), trigger: 'blur' }],
+    lastName: [{ required: true, message: t('lastNameValidate'), trigger: 'blur' }],
     email: [
-        { required: true, message: t.value.emailValidate, trigger: 'blur' },
-        { type: 'email', message: t.value.emailValidate2, trigger: 'blur' },
+        { required: true, message: t('emailValidate'), trigger: 'blur' },
+        { type: 'email', message: t('emailValidate2'), trigger: 'blur' },
     ],
-    country: [{ required: true, message: t.value.countryValidate, trigger: 'change' }],
+    country: [{ required: true, message: t('countryValidate'), trigger: 'change' }],
     remitAccountLast5: [{ required: false, validator: validateRemitAccount, trigger: 'blur' }],
-    countryCode: [{ required: true, message: t.value.countryCodeValidate, trigger: 'blur' }],
-    phoneNum: [{ required: true, message: t.value.phoneNumValidate, trigger: 'blur' }],
-    affiliation: [{ required: true, message: t.value.affiliationValidate, trigger: 'blur' }],
-    jobTitle: [{ required: true, message: t.value.jobTitleValidate, trigger: 'blur' }],
-    food: [{ required: true, message: t.value.food, trigger: 'change' }],
+    countryCode: [{ required: true, message: t('countryCodeValidate'), trigger: 'blur' }],
+    phoneNum: [{ required: true, message: t('phoneNumValidate'), trigger: 'blur' }],
+    affiliation: [{ required: true, message: t('affiliationValidate'), trigger: 'blur' }],
+    jobTitle: [{ required: true, message: t('jobTitleValidate'), trigger: 'blur' }],
+    food: [{ required: true, message: t('food'), trigger: 'change' }],
+    category: [{ required: true, message: t('categoryValidate'), trigger: 'change' }],
+    organizationNumber: [
+        {
+            required: formData.category === 1,
+            message: t('organizationNumberValidate'),
+            trigger: 'blur',
+        },
+    ],
 }));
 
 const getMemberInfo = async () => {
@@ -331,7 +368,7 @@ const getMemberInfo = async () => {
     }
 
     Object.assign(memberInfo, res.data);
-    setLocale(memberInfo.country === 'Taiwan' ? 'zh' : 'en');
+    console.log('Fetched member info:', memberInfo);
     fillForm(res.data);
     isLoading.value = false;
 };
@@ -353,7 +390,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 
     await formEl.validate(async (valid) => {
         if (!valid) {
-            ElMessage.error(locale.value === 'zh' ? '請先確認表單資料' : 'Please check the form fields.');
+            ElMessage.error(t('pleaseCheckFormFields'));
             return;
         }
 
@@ -385,7 +422,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         isSaving.value = false;
 
         if (res.code !== 200) {
-            ElMessage.error(res.msg || (locale.value === 'zh' ? '更新失敗，請稍後再試' : 'Failed to update profile.'));
+            ElMessage.error(res.msg || t('updateProfileFailed'));
             return;
         }
 
@@ -399,8 +436,8 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         });
 
         ElNotification({
-            title: locale.value === 'zh' ? '資料更新成功' : 'Profile Updated',
-            message: locale.value === 'zh' ? '您的個人資料已成功更新。' : 'Your profile information has been successfully updated.',
+            title: t('profileUpdatedTitle'),
+            message: t('profileUpdatedMessage'),
             type: 'success',
         });
 
