@@ -51,7 +51,7 @@
                         <p>{{ $t('profile') }}</p>
                     </div>
                 </nuxt-link>
-                <a class="select-box" href="">
+                <a class="select-box" href="https://zhongfupr-my.sharepoint.com/:f:/g/personal/joey_zhongfu-pr_com_tw/IgBSmPU-r-17RaIshoRK_oq8AfXK8KlnZNT8uIM7dLCdyU8">
                     <img src="@/assets/img/video.svg" alt="">
                     <div class="label-box">
                         <p>{{ $t('video') }}</p>
