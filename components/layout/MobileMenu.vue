@@ -46,30 +46,33 @@ const menu = reactive([
     { title: t('home'), path: '/', isActive: false },
     { title: t('aboutUs'), path: '/about-us', isActive: false },
     { title: t('conferenceInformation'), path: '/conference-information', isActive: false },
+    { title: t('news'), path: '/news', isActive: false },
+    { title: t('invitedSpeaker'), path: '/invited-speaker', isActive: false },
     {
         title: t('registration'), path: '/registration-fee', isActive: false, submenu: [
             { title: t('registrationFee'), path: '/registration-fee' },
             { title: t('onlineRegistration'), path: '/login' },
         ]
     },
-    {
-        title: t('abstract'), path: '/', isActive: false, submenu: [
-            { title: t('submissionGuidelines'), path: '/submission-guidelines' },
-            { title: t('abstractSubmission'), path: '/abstract-submission' },
-            { title: t('award'), path: '/award' },
-            { title: t('presentationGuidelines'), path: '/presentation-guidelines' },
-        ]
-    },
+    // {
+    //     title: t('abstract'), path: '/', isActive: false, submenu: [
+    //         { title: t('submissionGuidelines'), path: '/submission-guidelines' },
+    //         { title: t('abstractSubmission'), path: '/abstract-submission' },
+    //         { title: t('award'), path: '/award' },
+    //         { title: t('presentationGuidelines'), path: '/presentation-guidelines' },
+    //     ]
+    // },
     { title: t('transportation'), path: '/transportation', isActive: false },
     // { title: t('travel'), path: '/travel',isActive: false },
     { title: t('sponsorList'), path: '/sponsor-list', isActive: false },
     // { title: t('mascot'), path: '/mascot',isActive: false },
     {
-        title: 'Gallery', path: '/gallery', isActive: false, submenu: [
-            { title: '2023 Gallery', path: '/gallery/2023' },
-            { title: '2024 Gallery', path: '/gallery/2024' },
-            { title: '2025 Gallery', path: '/gallery/2025' },
-        ]
+        title: 'Gallery', path: '/gallery/2026', isActive: false, 
+        // submenu: [
+        //     // { title: '2023 Gallery', path: '/gallery/2023' },
+        //     // { title: '2024 Gallery', path: '/gallery/2024' },
+        //     { title: 'Gallery', path: '/gallery/2026' },
+        // ]
     }
 ])
 

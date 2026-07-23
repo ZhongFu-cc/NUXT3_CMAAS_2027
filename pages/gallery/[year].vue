@@ -1,7 +1,7 @@
 <template>
     <div class="common-section">
         <Banner></Banner>
-        <Title :title="`Gallery ${year}`"></Title>
+        <Title :title="`Gallery`"></Title>
 
 
         <div class="gallary-box">

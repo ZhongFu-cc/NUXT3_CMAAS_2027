@@ -1,155 +1,39 @@
 <template>
     <div>
-        <main class="common-section">
-            <Banner />
+        <ClientOnly>
+            <main class="common-section">
+                <Banner />
 
-            <Breadcrumbs firstRoute="Registration" secoundRoute="Registration Fee"></Breadcrumbs>
+                <Breadcrumbs :first-route="t('registration')" :secound-route="t('registrationFee')"></Breadcrumbs>
 
-            <Title :title="'Coming Soon'"></Title>
+                <Title :title="t('registrationFee')"></Title>
 
-            <!-- <table class="personal-registration-table">
-                <thead>
-                    <tr class="personal-row-1">
-                        <th class="category-col" :rowspan="2" :colspan="2">Category</th>
-                        <th :colspan="2">Only Physical</th>
-                    </tr>
-                    <tr class="personal-row-2">
-                        <th>
-                            <p>Early-Bird</p>
-                            <p>(before Sep 30, 2026)</p>
-                        </th>
-                        <th>
-                            <p>Onsite</p>
-                            <p>(Oct 1 - Nov 15, 2026)</p>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="personal-row-3">
-                        <td :rowspan="2">
-                            <p class="category-item">Professor/</p>
-                            <p class="category-item">Physician/</p>
-                            <p class="category-item">Company</p>
-                        </td>
-                        <td>Non-member</td>
-                        <td>USD 400</td>
-                        <td>USD 500</td>
-                    </tr>
-                    <tr class="personal-row-4">
-                        <td>Member</td>
-                        <td>USD 300</td>
-                        <td>USD 400</td>
-                    </tr>
-                    <tr class="personal-row-5">
-                        <td :colspan="2">
-                            <p class="category-item">Trainee/Nurse/Researcher</p>
-                        </td>
-                        <td>USD 150</td>
-                        <td>USD 200</td>
+                <table class="personal-registration-table">
+                    <thead>
+                        <tr>
+                            <th>場次</th>
+                            <th>報名費</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="category-col category-item">主會議</td>
+                            <td>NT$ 1,500</td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td class="category-col category-item">Workshop(場)</td>
+                            <td>NT$ 5,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <p class="tips">※ Workshop 一個時段限報名一場</p>
+                </div>
+            </main>
 
-                    </tr>
-                </tbody>
-            </table>
-            <p class="tips">*Members include those from the following societies: JBCS, JOPBS, KBCS, and HKSBS.</p>
-            <p class="tips">*The prices are listed in USD. According to the financial regulations in Taiwan, the actual
-                credit card payment will be charged in TWD or your local currency. It may be a little different from the
-                price listed above. </p>
-            <p class="tips">*Online registration and payment are available until 11/7.
-            </p>
-            <p class="tips">*Late registration will only be accepted on-site on 11/14 and 11/15.</p>
-            <div class="btn-section"> <nuxt-link class="register-btn" to="/login">Register Now
-                </nuxt-link>
-            </div>
-            <div class="shadow-divider"></div>
-
-            <Title :title="'Group Registration'"></Title>
-
-            <table class="group-registration-table">
-                <thead>
-                    <tr class="group-row-1">
-                        <th>
-                            <p>Minimum Number of Persons</p>
-                            <p>Required for Group Registration</p>
-                            <p>(Foreigners ONLY: Professor, Physician and Company)</p>
-                        </th>
-                        <th>
-                            <p>Benefit</p>
-                        </th>
-                        <th>
-                            <p>Payment</p>
-                            <p>Method</p>
-                        </th>
-                        <th>
-                            <p>Deadline</p>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <p>5 persons</p>
-                        </td>
-                        <td>
-                            <p>10% Discount</p>
-                        </td>
-                        <td>
-                            <p>Credit card</p>
-                        </td>
-                        <td>
-                            <p>9/30</p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="mobile-group-registration-table">
-                <tbody>
-                    <tr>
-                        <td>
-                            <p>Minimum Number of Persons</p>
-                            <p>Required for Group Registration</p>
-                            <p>(Foreigners ONLY: Professor, Physician and Company)</p>
-                        </td>
-                        <td>
-                            <p>5 persons</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>Benefit</p>
-                        </td>
-                        <td>
-                            <p>10% Discount</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>Payment</p>
-                            <p>Method</p>
-                        </td>
-                        <td>
-                            <p>Credit card</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>Deadline</p>
-                        </td>
-                        <td>
-                            <p>9/30</p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <p class="tips">*Please fill in the form completely</p>
-            <p class="tips">*Payment for group registration must be paid at once by one person.</p>
-            <div class="btn-section"> <nuxt-link class="group-register-btn"
-                    to="/registration-now/group-registration">Group Registration
-                    Form</nuxt-link>
-
-            </div> -->
-        </main>
-
+        </ClientOnly>
     </div>
 </template>
 <script setup lang="ts">
@@ -157,10 +41,12 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs.vue'
 import Banner from '@/components/layout/Banner.vue';
 import Title from '@/components/layout/Title.vue';
 
+const { t } = useI18n();
+
 useSeoMeta({
-    title: 'Registration Fee - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
-    description: 'Explore the registration fee details for the TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society. Find information on personal and group registration fees, early-bird discounts, and payment methods.',
-    keywords: 'Registration Fee,TOPBS 2026,2026 TOPBS '
+    title: 'Registration Fee - CMAAS2027',
+    description: 'Explore the registration fee details for the CMAAS 2027 conference. Find information on personal and group registration fees, early-bird discounts, and payment methods.',
+    keywords: 'Registration Fee,CMAAS 2027,2027 CMAAS,Registration,CMAAS,'
 })
 
 </script>
@@ -206,26 +92,25 @@ useSeoMeta({
 
         th {
             color: white;
-            background-color: #DE6A75;
-            border: 1px solid #EEE2DC;
+            background-color: #0f6ba0;
+            border: 1px solid #fff;
             padding: 1rem;
         }
 
         td {
-            background-color: #FEECE8;
+            background-color: #3599d3;
             padding: 1rem;
-            border: 1px solid #EEE2DC;
+            border: 1px solid #fff;
+            color: #fff;
 
-            .category-item {
-                color: #7A2D67;
-            }
+
         }
 
         .personal-row-1 {
             .category-col {
                 padding: 2rem 0.5rem;
                 text-align: start;
-                border: #F29EA6 1px solid;
+                border: #0f6ba0 1px solid;
                 width: 50%;
             }
         }
@@ -245,7 +130,7 @@ useSeoMeta({
 
         .register-btn {
             min-width: 13rem;
-            background-color: #DE6A75;
+            background-color: #0f6ba0;
             color: white;
             padding: 1rem 2rem;
             font-weight: 600;
@@ -254,7 +139,7 @@ useSeoMeta({
 
             &:hover {
                 cursor: pointer;
-                background-color: #fb7c88;
+                background-color: #0f6ba0;
             }
         }
 
@@ -296,10 +181,10 @@ useSeoMeta({
         }
 
         td {
-            background-color: #FEECE8;
+            background-color: #3599d3;
             padding: 1rem;
-            border: 1px solid #EEE2DC;
-            color: #7A2D67;
+            border: 1px solid #fff;
+            color: #fff;
 
             &:not(:first-child) {
                 text-align: center;

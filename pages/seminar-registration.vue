@@ -69,15 +69,16 @@
                                 </el-form-item>
 
 
+                                <el-form-item class="required" :label="t('affiliation')" prop="affiliation"
+                                    :style="{ order: getOrder('affiliation') }">
+                                    <el-input v-model="formData.affiliation" :placeholder="t('affiliation')"></el-input>
+                                </el-form-item>
                             </div>
                             <div class="right-section">
                                 <!-- <el-form-item v-if="formData.country !== 'Taiwan'" :label="t('idCard')" prop="idCard">
                                     <el-input v-model="formData.idCard" :placeholder="t('idCard')"></el-input>
                                 </el-form-item> -->
 
-                                <el-form-item class="required" :label="t('affiliation')" prop="affiliation">
-                                    <el-input v-model="formData.affiliation" :placeholder="t('affiliation')"></el-input>
-                                </el-form-item>
                                 <el-form-item class="required" :label="t('jobTitle')" prop="jobTitle">
                                     <el-input v-model="formData.jobTitle" :placeholder="t('jobTitle')"></el-input>
                                 </el-form-item>
@@ -136,11 +137,25 @@
                                     </el-input>
                                 </el-form-item>
 
-                                <!-- <el-form-item v-if="formData.category === 1" prop="categoryExtra"
-                                    :label="t('categoryExtra')">
-                                    <el-input v-model="formData.categoryExtra" class="category-select">
-                                    </el-input>
-                                </el-form-item> -->
+                                <el-form-item prop="value1" label="1/23 上午場 Workshop" required>
+                                    <el-radio-group v-model="formData.value1">
+                                        <el-radio label="場次A" value="WSA001"></el-radio>
+                                        <el-radio label="場次B" value="WSB001"></el-radio>
+                                        <el-radio label="不參加" value="NONE"></el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                                <el-form-item prop="value2" label="1/23 下午場 Workshop" required>
+                                    <el-radio-group v-model="formData.value2">
+                                        <el-radio label="場次A" value="WSA002"></el-radio>
+                                        <el-radio label="場次B" value="WSB002"></el-radio>
+                                        <el-radio label="不參加" value="NONE"></el-radio>
+                                    </el-radio-group> </el-form-item>
+                                <el-form-item prop="value3" label="1/24 主會議" required>
+                                    <el-radio-group v-model="formData.value3">
+                                        <el-radio label="參加" value="MAIN"></el-radio>
+                                        <el-radio label="不參加" value="NONE"></el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
 
                             </div>
                         </ClientOnly>
@@ -227,6 +242,7 @@ const getOrder = (field: string): number => {
             'confirmPassword': 5,
             'email': 6,
             'confirmEmail': 7,
+            'affiliation': 8,
         },
         'Other': {
             'englishName': 1,
@@ -236,6 +252,7 @@ const getOrder = (field: string): number => {
             'password': 5,
             'confirmPassword': 6,
             'idCard': 7,
+            'affiliation': 8,
         }
     }
 
@@ -273,6 +290,11 @@ const codeMap: Record<string, number> = {
     Y: 31,
     Z: 33,
 };
+
+const value1 = ref()
+const value2 = ref()
+const value3 = ref()
+const workshopCodes = ref<string[]>([])
 
 const checkCkDigit = (rule: any, value: string, callback: any) => {
     if (formData.country !== 'Taiwan') {
@@ -367,7 +389,10 @@ interface formData {
     verificationKey: string,
     professionalNumber: string,
     organizationNumber: string,
-    workshopCodes: string[]
+    workshopCodes: string[],
+    value1?: string,
+    value2?: string,
+    value3?: string
 }
 
 const form = ref<FormInstance>()
@@ -398,7 +423,10 @@ const formData = reactive<formData>({
     verificationKey: '',
     professionalNumber: '',
     organizationNumber: '',
-    workshopCodes: []
+    workshopCodes: [],
+    value1: undefined,
+    value2: undefined,
+    value3: undefined
 })
 
 
@@ -450,8 +478,27 @@ const formRules = computed<FormRules>(() => ({
     category: [{ required: true, message: t('categoryValidate'), trigger: 'change' }],
     remitAccountLast5: [{ required: false, validator: validateRemitAccount, trigger: 'blur' }],
     organizationNumber: [{ required: formData.category === 1, message: t('organizationNumberValidate'), trigger: 'blur' }],
+    value1: [{ required: true, message: t('workshopValidate'), trigger: 'change' }],
+    value2: [{ required: true, message: t('workshopValidate'), trigger: 'change' }],
+    value3: [{ required: true, message: t('workshopValidate'), trigger: 'change' }],
 }))
 
+const getWorkshopName = (code?: string) => {
+    switch (code) {
+        case 'WSA001':
+            return '場次A'
+        case 'WSB001':
+            return '場次B'
+        case 'WSA002':
+            return '場次A'
+        case 'WSB002':
+            return '場次B'
+        case 'MAIN':
+            return '主會議'
+        default:
+            return '不參加'
+    }
+}
 
 
 const submit = async (formEl: FormInstance | undefined) => {
@@ -459,38 +506,75 @@ const submit = async (formEl: FormInstance | undefined) => {
     // console.log(valid)
     formEl.validate(async (valid) => {
         if (valid) {
-            formData.phone = formData.countryCode + '-' + formData.phoneNum
-            let res = await CSRrequest.post('/member', {
-                body: formData
-            })
 
-            console.log(res)
-            if (res.code === 500) {
-                getCaptcha()
-                formData.verificationCode = ''
-                ElNotification.error({
-                    title: 'Failed',
-                    message: res.msg,
-                    type: 'error',
+            const confirmContent = `
+            1 / 23 上午 Workshop：${getWorkshopName(formData.value1)} <br>
+                1 / 23 下午 Workshop：${getWorkshopName(formData.value2)} <br>
+                    1 / 24 主會議：${getWorkshopName(formData.value3)} <br><br>
+                        請確認以上場次是否正確，送出後將無法自行修改。
+            `
+            ElMessageBox.confirm(
+                confirmContent,
+                t('confirm'),
+                {
+                    dangerouslyUseHTMLString: true,
+                    confirmButtonText: t('confirm'),
+                    cancelButtonText: t('cancel'),
+                    type: 'warning',
+                }
+            ).then(async () => {
+                formData.phone = formData.countryCode + '-' + formData.phoneNum;
+                if (formData.value1 && formData.value1 !== 'NONE') {
+                    formData.workshopCodes.push(formData.value1)
+                }
+                if (formData.value2 && formData.value2 !== 'NONE') {
+                    formData.workshopCodes.push(formData.value2)
+                }
+                if (formData.value3 && formData.value3 !== 'NONE') {
+                    formData.workshopCodes.push(formData.value3)
+                }
+                console.log('submit!', formData)
+                let res = await CSRrequest.post('/member', {
+                    body: formData
+                })
+
+                console.log(res)
+                if (res.code === 500) {
+                    getCaptcha()
+                    formData.verificationCode = ''
+                    ElNotification.error({
+                        title: 'Failed',
+                        message: res.msg,
+                        type: 'error',
+                        duration: 3000,
+                    });
+
+                }
+
+                if (res.data.isLogin) {
+                    localStorage.setItem(res.data.tokenName, 'Bearer ' + res.data.tokenValue);
+                    ElNotification.success({
+                        title: 'Success',
+                        message: t('registrationSuccess'),
+                        type: 'success',
+                        duration: 3000,
+                    });
+                    useAuth().checkLoginState();
+
+                    router.push('/member-center');
+                }
+
+                formEl.resetFields()
+            }).catch(() => {
+                ElNotification.info({
+                    title: 'Info',
+                    message: t('cancelSubmit'),
+                    type: 'info',
                     duration: 3000,
                 });
+            });
 
-            }
 
-            if (res.data.isLogin) {
-                localStorage.setItem(res.data.tokenName, 'Bearer ' + res.data.tokenValue);
-                ElNotification.success({
-                    title: 'Success',
-                    message: t('registrationSuccess'),
-                    type: 'success',
-                    duration: 3000,
-                });
-                useAuth().checkLoginState();
-
-                router.push('/member-center');
-            }
-
-            formEl.resetFields()
         } else {
             console.log('error submit!!')
             return false;
@@ -668,7 +752,7 @@ onUnmounted(() => {
 
                             &::after {
                                 position: absolute;
-                                content: 'Country Code+number';
+                                content: '國碼+電話號碼';
                                 color: red;
                                 font-size: 0.7rem;
                                 right: 0;

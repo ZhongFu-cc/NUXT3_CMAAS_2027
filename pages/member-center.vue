@@ -1,7 +1,7 @@
 <template>
     <main class="common-section">
         <Banner />
-        <Breadcrumbs :first-route="'Member'" :secound-route="$t('memberCenter')" />
+        <Breadcrumbs :first-route="'會員'" :secound-route="$t('memberCenter')" />
         <div class="title-section">
             <h1 class="title">{{ $t('memberCenter') }}</h1>
         </div>
@@ -16,9 +16,9 @@
                     </div>
                 </div>
 
-                <p v-if="!isComplete" class="reminder-description">
+                <!-- <p v-if="!isComplete" class="reminder-description">
                     {{ t('profileReminder') }}
-                </p>
+                </p> -->
                 <p v-if="isComplete" class="reminder-description is-complete">
                     {{ t('isQualified') }}
                 </p>
@@ -45,6 +45,18 @@
                         <span>{{ $t('payment') }}</span>
                     </div>
                 </nuxt-link>
+                <nuxt-link class="select-box" :to="'/profile'">
+                    <img src="@/assets/img/user-edit.svg" alt="">
+                    <div class="label-box">
+                        <p>{{ $t('profile') }}</p>
+                    </div>
+                </nuxt-link>
+                <a class="select-box" href="">
+                    <img src="@/assets/img/video.svg" alt="">
+                    <div class="label-box">
+                        <p>{{ $t('video') }}</p>
+                    </div>
+                </a>
             </div>
             <div class="select-item-box">
                 <!-- <nuxt-link class="select-box" :to="'/accommodation'">
@@ -53,13 +65,10 @@
                         <p>{{ $t('accommodation') }}</p>
                     </div>
                 </nuxt-link> -->
-                <nuxt-link class="select-box" :to="'/profile'">
-                    <img src="@/assets/img/user-edit.svg" alt="">
-                    <div class="label-box">
-                        <p>{{ $t('profile') }}</p>
-                    </div>
-                </nuxt-link>
             </div>
+            <el-button class="certificate-download">
+                與會證書下載
+            </el-button>
 
         </div>
     </main>
@@ -248,8 +257,8 @@ onMounted(() => {
         justify-content: center;
         align-items: center;
         padding: clamp(1.5rem, 4vw, 3rem);
-        gap: clamp(1.5rem, 4vw, 4rem);
-        max-width: 1800px;
+        // gap: clamp(1.5rem, 4vw, 4rem);
+        // max-width: 1800px;
         margin: 3rem auto;
         box-sizing: border-box;
 
@@ -272,10 +281,10 @@ onMounted(() => {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            align-items: stretch;
-            gap: clamp(1rem, 3vw, 5rem);
+            // align-items: stretch;
+            // gap: clamp(1rem, 3vw, 5rem);
             padding: 1rem 0;
-            flex: 1 1 32rem;
+            // flex: 1 1 32rem;
             width: auto;
 
             @media screen and (min-width: 1531px) {
@@ -373,6 +382,28 @@ onMounted(() => {
                     word-break: break-word;
                     line-height: 1.4;
                 }
+            }
+
+
+        }
+
+        .certificate-download {
+            display: block;
+            margin: 0 auto;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            width: min(100%, 20rem);
+            height: 3rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            background-color: #0f6ba0;
+            border-radius: 999px;
+            text-align: center;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #874757;
             }
         }
     }

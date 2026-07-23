@@ -126,5 +126,8 @@
   "location": " CHANG YUNG-FA FOUNDATION International Convention Center",
   "organizationNumber": "Member number",
   "professionalNumber": "Physician Certificate No.",
-  "organizationNumberValidate": "Please enter member number"
+  "organizationNumberValidate": "Please enter member number",
+  "welcomeMessage": "Welcome Message",
+  "comingSoon": "Coming Soon",
+  "invitedSpeaker": "Invited Speaker"
 }

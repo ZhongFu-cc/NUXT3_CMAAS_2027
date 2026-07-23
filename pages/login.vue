@@ -7,11 +7,11 @@
             <el-form class="login-form" ref="formRef" :model="loginInfo" :rules="formRule"
                 :label-position="formatLabelPosition">
                 <div class="nationality-select">
-                    <el-button :class="{ active: attendeeType === 0 }" @click="attendeeType = 0">
+                    <!-- <el-button :class="{ active: attendeeType === 0 }" @click="attendeeType = 0">
                         國內與會者 Domestic Attendee
                     </el-button>
                     <el-button :class="{ active: attendeeType === 1 }" @click="attendeeType = 1">Oversea
-                        Attendee</el-button>
+                        Attendee</el-button> -->
                 </div>
 
                 <el-form-item v-if="attendeeType === 1" class="login-input" prop="account">
@@ -234,9 +234,9 @@ onUnmounted(() => {
                 }
 
                 .el-button {
-                    border: 1px solid $main-color;
+                    border: 1px solid #0f6ba0;
                     background-color: #fff;
-                    color: $main-color;
+                    color: #0f6ba0;
                     border-radius: 12px;
                     flex: 1;
                     height: 2.75rem;
@@ -246,14 +246,14 @@ onUnmounted(() => {
 
                     &:hover {
                         cursor: pointer;
-                        background-color: $main-color;
+                        background-color: #0f6ba0;
                         color: #fff;
                         transform: translateY(-1px);
                     }
 
                     &.active {
-                        border-color: $main-color;
-                        background-color: $main-color;
+                        border-color: #0f6ba0;
+                        background-color: #0f6ba0;
                         color: #fff;
                         box-shadow: 0 4px 12px rgba(216, 108, 124, 0.25);
                     }
@@ -264,12 +264,12 @@ onUnmounted(() => {
                 border: none;
 
                 :deep(.el-input__wrapper) {
-                    border: 1px solid $main-color;
+                    border: 1px solid #0f6ba0;
                     border-radius: 18px;
                     padding: 0.5rem;
 
                     &:focus {
-                        border: 1px solid $main-color !important;
+                        border: 1px solid #0f6ba0 !important;
                         box-shadow: none !important;
                     }
                 }
@@ -290,12 +290,12 @@ onUnmounted(() => {
                     width: 100%;
 
                     a {
-                        color: $main-color;
+                        color: #0f6ba0;
                         font-size: 0.875rem;
                         transition: color 0.3s ease-in-out;
 
                         &:hover {
-                            color: $main-color;
+                            color: #0f6ba0;
                             filter: brightness(1.2);
                             transform: scale(1.05);
                             cursor: pointer;
@@ -324,7 +324,7 @@ onUnmounted(() => {
                     width: 20rem;
 
                     :deep(.el-input__wrapper) {
-                        border: 1px solid $main-color;
+                        border: 1px solid #0f6ba0;
                         border-radius: 10px;
                     }
                 }
@@ -338,11 +338,11 @@ onUnmounted(() => {
                         border: none;
                         background-color: white;
                         font-size: 1.5rem;
-                        color: $main-color;
+                        color: #0f6ba0;
 
                         &:hover {
                             background-color: white;
-                            color: $main-color;
+                            color: #0f6ba0;
                             cursor: pointer;
                             scale: 1.05;
                             transition: all 0.3s ease-in-out;
@@ -368,11 +368,12 @@ onUnmounted(() => {
                 }
 
                 .sign-btn {
-                    background-color: $main-color;
+                    background-color: #0f6ba0;
                     color: white;
                     border: none;
                     border-radius: 10px;
                     width: 40%;
+                    
 
                     &:hover {
                         cursor: pointer;
@@ -385,12 +386,13 @@ onUnmounted(() => {
             .btn-section {
                 display: flex;
                 justify-content: center;
+                align-items: center;
                 margin-top: 1rem;
 
                 a {
                     filter: brightness(1);
                     transition: filter 0.3s ease-in-out;
-                    color: $main-color;
+                    color: #0f6ba0;
 
                     &:hover {
                         cursor: pointer;
@@ -400,6 +402,18 @@ onUnmounted(() => {
                 }
             }
 
+            .sign-text {
+                color: #0f6ba0;
+                font-weight: bold;
+                font-size: 1.3rem;
+                transition: filter 0.3s ease-in-out;
+
+                &:hover {
+                    cursor: pointer;
+                    filter: brightness(1.8);
+                    transform: scale(1.1);
+                }
+            }
         }
     }
 }
