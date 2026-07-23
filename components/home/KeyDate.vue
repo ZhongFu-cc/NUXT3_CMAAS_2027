@@ -74,7 +74,7 @@
                     </p>
                     <p class="info">CMAAS 2027</p>
                 </div>
-                <a class="key-date-link" href="" target="_blank">
+                <a class="key-date-link" href="https://evt.to/k3l7dwms3r9l" target="_blank">
                     <img class="home-banner-bak" src="@/assets/img/save date-01.svg">
                 </a>
             </li>
