@@ -29,9 +29,9 @@
                     <div class="logo-image-box">
                         <img class="logo" src="/img/logo1.png" alt="CAMMS Logo" />
                     </div>
-                    <div class="logo-image-box">
+                    <!-- <div class="logo-image-box">
                         <img class="logo" src="/img/logo.png" alt="CAMMS Logo" />
-                    </div>
+                    </div> -->
                 </nuxt-link>
             </div>
 
