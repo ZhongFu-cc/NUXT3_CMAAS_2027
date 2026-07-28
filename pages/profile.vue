@@ -110,9 +110,9 @@
                     </div>
 
                     <div class="form-grid two-columns">
-                        <el-form-item :label="t('receipt')" prop="receipt">
+                        <!-- <el-form-item :label="t('receipt')" prop="receipt">
                             <el-input v-model="formData.receipt" :placeholder="t('receipt')" />
-                        </el-form-item>
+                        </el-form-item> -->
 
                         <el-form-item :label="t('food')" prop="food">
                             <el-radio-group v-model="formData.food" class="food-group">
@@ -130,7 +130,7 @@
 
                     <div class="form-grid two-columns">
                         <el-form-item :label="t('category')" prop="category">
-                            <el-select v-model="formData.category">
+                            <el-select v-model="formData.category" disabled>
                                 <el-option :label="t('category1')" :value="1"></el-option>
                                 <el-option :label="t('category2')" :value="2"></el-option>
                                 <!-- <el-option :label="t('category3')" :value="3"></el-option> -->
@@ -274,6 +274,7 @@ const fillForm = (data: Record<string, any>) => {
     formData.foodTaboo = data.foodTaboo || '';
     formData.category = data.category || 1;
     formData.organizationNumber = data.organizationNumber || '';
+    formData.professionalNumber = data.professionalNumber || '';
 
     initialSnapshot.value = JSON.stringify({ ...formData });
 };
@@ -412,6 +413,9 @@ const submitForm = async (formEl: FormInstance | undefined) => {
             receipt: formData.receipt || null,
             food: formData.food,
             foodTaboo: formData.foodTaboo || '',
+            professionalNumber: formData.professionalNumber || null,
+            organizationNumber: formData.organizationNumber || null,
+            category: formData.category,
         };
 
         console.log('Submitting profile update with payload:', payload);

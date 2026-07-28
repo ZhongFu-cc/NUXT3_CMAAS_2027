@@ -108,14 +108,14 @@ onMounted(() => {
     }
 
     .speaker {
-      width: calc(100% / 4 - 2rem);
+      width: calc(100% / 3 - 2rem);
 
       @media screen and (max-width: 1200px) {
-        width: calc(100% / 3 - 2rem);
+        width: calc(100% / 2 - 2rem);
       }
 
       @media screen and (max-width: 870px) {
-        width: calc(100% / 2 - 2rem);
+        width: calc(100% / 1 - 2rem);
       }
 
       @media screen and (max-width: 500px) {

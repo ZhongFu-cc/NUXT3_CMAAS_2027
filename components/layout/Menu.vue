@@ -26,12 +26,12 @@
 
             <div class="logo-container" v-if="!isActive">
                 <nuxt-link class="logo-link" to="/" @click="setActiveItem('')">
-                    <div class="logo-image-box">
-                        <img class="logo" src="/img/logo1.png" alt="CAMMS Logo" />
-                    </div>
                     <!-- <div class="logo-image-box">
-                        <img class="logo" src="/img/logo.png" alt="CAMMS Logo" />
+                        <img class="logo" src="/img/logo1.png" alt="CAMMS Logo" />
                     </div> -->
+                    <div class="logo-image-box">
+                        <img class="logo" src="/img/logo.png" alt="CAMMS Logo" />
+                    </div>
                 </nuxt-link>
             </div>
 
@@ -208,7 +208,6 @@ const setActiveItem = (item: string) => {
 }
 
 const activeClass = (item: string) => {
-
     return activeItem.value === item ? 'active' : ''
 }
 

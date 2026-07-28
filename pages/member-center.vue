@@ -51,25 +51,27 @@
                         <p>{{ $t('profile') }}</p>
                     </div>
                 </nuxt-link>
-                <a class="select-box" href="https://zhongfupr-my.sharepoint.com/:f:/g/personal/joey_zhongfu-pr_com_tw/IgBSmPU-r-17RaIshoRK_oq8AfXK8KlnZNT8uIM7dLCdyU8">
+                <nuxt-link class="select-box" :to="'/video-guide'">
                     <img src="@/assets/img/video.svg" alt="">
                     <div class="label-box">
                         <p>{{ $t('video') }}</p>
                     </div>
-                </a>
-            </div>
-            <div class="select-item-box">
-                <!-- <nuxt-link class="select-box" :to="'/accommodation'">
-                    <img src="@/assets/img/accommodation-icon.png" alt="">
+                </nuxt-link>
+                <!-- <a class="select-box" href="https://zhongfupr-my.sharepoint.com/:f:/g/personal/joey_zhongfu-pr_com_tw/IgBSmPU-r-17RaIshoRK_oq8AfXK8KlnZNT8uIM7dLCdyU8">
+                    <img src="@/assets/img/video.svg" alt="">
                     <div class="label-box">
-                        <p>{{ $t('accommodation') }}</p>
+                        <p>{{ $t('video') }}</p>
                     </div>
-                </nuxt-link> -->
+                </a> -->
             </div>
-            <el-button class="certificate-download">
-                與會證書下載
-            </el-button>
-
+            <div class="download-section">
+                <el-button class="certificate-download">
+                    與會證書下載
+                </el-button>
+                <el-button class="certificate-download">
+                    收據證明下載
+                </el-button>
+            </div>
         </div>
     </main>
 </template>
@@ -385,6 +387,19 @@ onMounted(() => {
             }
 
 
+        }
+
+        .download-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+
+            @media screen and (max-width: 640px) {
+                width: 100%;
+                padding: 0 1rem;
+            }
         }
 
         .certificate-download {
