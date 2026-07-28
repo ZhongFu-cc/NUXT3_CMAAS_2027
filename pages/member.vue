@@ -14,14 +14,14 @@
                     </svg>
                 </div>
 
-                <h1>Success !</h1>
+                <h1>付款成功 !</h1>
                 <p class="subtitle">
-                    Thank you for your payment.<br />
+                    感謝您的付款。<br />
                 </p>
 
                 <div class="actions">
                     <NuxtLink to="/payment" class="btn btn-primary">
-                        Back to payment page
+                        返回付款頁
                     </NuxtLink>
 
                     <!-- 如果你有其他常見操作，也可以加在這裡 -->
