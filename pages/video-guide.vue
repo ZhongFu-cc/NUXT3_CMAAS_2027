@@ -28,7 +28,7 @@
 
             <el-steps :active="5" align-center>
                 <el-step title="登入會員專區" />
-                <el-step title="點選影片上傳" />
+                <el-step title="點選影片募集" />
                 <el-step title="閱讀活動說明" />
                 <el-step title="點選上傳影片" />
                 <el-step title="選擇影片並送出" />
@@ -104,7 +104,7 @@
             <p>請點擊下方按鈕前往影片上傳頁面。</p>
 
             <el-button type="primary" size="large" @click="goToUpload">
-                前往上傳影片
+                影片上傳
             </el-button>
         </section>
 
