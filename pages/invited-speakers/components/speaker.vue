@@ -10,6 +10,8 @@
         <div class="profile-info">
             <h2 class="speaker-name">{{ props.speaker.name }}</h2>
             <p class="speaker-country">{{ props.speaker.country }}</p>
+            <p class="speaker-affiliation">{{ props.speaker.affiliation }}</p> 
+            <p class="speaker-job-title">{{ props.speaker.jobTitle }}</p>
         </div>
     </div>
 </template>
