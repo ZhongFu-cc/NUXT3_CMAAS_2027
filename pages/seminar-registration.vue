@@ -125,15 +125,15 @@
                                         <el-option :label="t('category3')" :value="3"></el-option>
                                     </el-select>
                                 </el-form-item>
-                                <el-form-item :label="t('membershipDues')">
+                                <el-form-item v-if="formData.category === 1" :label="t('membershipDues')">
                                     <el-radio-group v-model="formData.membershipDuesStatus">
                                         <el-radio value="本次報名繳交">{{ t('membershipDuesRadio1') }}</el-radio>
                                         <el-radio value="已繳交116年會費">{{ t('membershipDuesRadio2') }}</el-radio>
                                     </el-radio-group>
                                 </el-form-item>
 
-                                <el-form-item v-if="formData.category === 1" prop="organizationNumber"
-                                    :label="t('organizationNumber')">
+                                <el-form-item v-if="formData.category === 1 || formData.category === 2"
+                                    prop="organizationNumber" :label="t('organizationNumber')">
                                     <el-input v-model="formData.organizationNumber" class="organization-number"
                                         :placeholder="t('organizationNumber')">
                                     </el-input>
@@ -160,7 +160,7 @@
                                     </el-radio-group>
                                 </el-form-item>
 
-                                <el-form-item prop="applyForCME" required v-if="formData.value3 === 'MAIN'" label="是否申請中醫學分" >
+                                <el-form-item prop="applyForCME" required v-if="formData.value3 === 'MAIN'" label="是否申請中醫學分(需額外加付 NTD 800元)" >
                                     <el-radio-group v-model="formData.applyForCME">
                                         <el-radio label="是" :value="1"></el-radio>
                                         <el-radio label="否" :value="0"></el-radio>
@@ -457,6 +457,19 @@ const cleanCategoryExtra = (item: any) => {
 }
 
 
+// 會員編號僅一般會員、永久會員需填寫；116年長年會費僅一般會員需選擇
+watch(() => formData.category, (category) => {
+    if (category !== 1 && category !== 2) {
+        formData.organizationNumber = ''
+    }
+    if (category !== 1) {
+        formData.membershipDuesStatus = ''
+    } else if (!formData.membershipDuesStatus) {
+        formData.membershipDuesStatus = '本次報名繳交'
+    }
+})
+
+
 const vaildConfirmPassword = (rule: any, value: string, callback: any) => {
 
     if (!value) {
@@ -497,7 +510,7 @@ const formRules = computed<FormRules>(() => ({
     phoneNum: [{ required: true, message: t('phoneNumValidate'), trigger: 'blur' }],
     category: [{ required: true, message: t('categoryValidate'), trigger: 'change' }],
     remitAccountLast5: [{ required: false, validator: validateRemitAccount, trigger: 'blur' }],
-    organizationNumber: [{ required: formData.category === 1, message: t('organizationNumberValidate'), trigger: 'blur' }],
+    organizationNumber: [{ required: formData.category === 1 || formData.category === 2, message: t('organizationNumberValidate'), trigger: 'blur' }],
     value1: [{ required: true, message: t('workshopValidate'), trigger: 'change' }],
     value2: [{ required: true, message: t('workshopValidate'), trigger: 'change' }],
     value3: [{ required: true, message: t('workshopValidate'), trigger: 'change' }],
@@ -546,15 +559,9 @@ const submit = async (formEl: FormInstance | undefined) => {
                 }
             ).then(async () => {
                 formData.phone = formData.countryCode + '-' + formData.phoneNum;
-                if (formData.value1 && formData.value1 !== 'NONE') {
-                    formData.workshopCodes.push(formData.value1)
-                }
-                if (formData.value2 && formData.value2 !== 'NONE') {
-                    formData.workshopCodes.push(formData.value2)
-                }
-                if (formData.value3 && formData.value3 !== 'NONE') {
-                    formData.workshopCodes.push(formData.value3)
-                }
+                // 每次送出都重新組場次代碼，避免送出失敗後重送造成重覆累加
+                formData.workshopCodes = [formData.value1, formData.value2, formData.value3]
+                    .filter((code): code is string => !!code && code !== 'NONE')
                 console.log('submit!', formData)
                 let res = await CSRrequest.post('/member', {
                     body: formData
@@ -570,10 +577,10 @@ const submit = async (formEl: FormInstance | undefined) => {
                         type: 'error',
                         duration: 3000,
                     });
-
+                    return
                 }
 
-                if (res.data.isLogin) {
+                if (res.data?.isLogin) {
                     localStorage.setItem(res.data.tokenName, 'Bearer ' + res.data.tokenValue);
                     ElNotification.success({
                         title: 'Success',

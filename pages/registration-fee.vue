@@ -12,24 +12,26 @@
                     <thead>
                         <tr>
                             <th>場次</th>
-                            <th>報名費</th>
+                            <th>一般會員</th>
+                            <th>永久會員</th>
+                            <th>非會員</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td class="category-col category-item">主會議</td>
-                            <td>NT$ 1,500</td>
+                            <td>NT$ 2,500</td>
+                            <td>NT$ 2,000</td>
+                            <td>NT$ 3,000</td>
                         </tr>
-                    </tbody>
-                    <tbody>
                         <tr>
                             <td class="category-col category-item">Workshop(場)</td>
-                            <td>NT$ 5,000</td>
+                            <td colspan="3">NT$ 5,000</td>
                         </tr>
                     </tbody>
                 </table>
                 <div>
-                    <p class="tips">※ Workshop 一個時段限報名一場</p>
+                    <p class="tips">※ Workshop 費用不分會員身分，一個時段限報名一場</p>
                 </div>
             </main>
 
@@ -102,8 +104,12 @@ useSeoMeta({
             padding: 1rem;
             border: 1px solid #fff;
             color: #fff;
+            text-align: center;
+        }
 
-
+        .category-col {
+            width: 28%;
+            text-align: start;
         }
 
         .personal-row-1 {
