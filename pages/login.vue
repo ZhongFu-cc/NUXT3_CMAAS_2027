@@ -70,9 +70,9 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 import Title from '@/components/layout/Title.vue';
 
 useSeoMeta({
-    title: 'Member Login - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
-    description: 'Member login page for the TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society. Sign in to access your account, retrieve your password, or register for the conference.',
-    keywords: 'Login,Sign In,TOPBS,TOPBS 2026,2026 TOPBS'
+    title: 'Member Login - CMASS 2027  ',
+    description: 'Member login page for the CMASS 2027  . Sign in to access your account, retrieve your password, or register for the conference.',
+    keywords: 'Login,Sign In,CMASS,CMASS 2027,2027 CMASS'
 })
 
 

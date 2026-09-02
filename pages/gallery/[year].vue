@@ -19,9 +19,9 @@ import Title from '@/components/layout/Title.vue';
 import Banner from '~/components/layout/Banner.vue';
 
 useSeoMeta({
-    title: 'Gallery - TOPBS Taiwan Oncoplastic Breast Surgery Society',
-    description: 'Browse the gallery of images from the TOPBS Taiwan Oncoplastic Breast Surgery Society. Explore memories from the conference.',
-    keywords: 'Gallery,TOPBS,TOPBS 2026,2026 TOPBS'
+    title: 'Gallery - CMAAS  ',
+    description: 'Browse the gallery of images from the CMAAS  . Explore memories from the conference.',
+    keywords: 'Gallery,CMAAS,CMAAS 2027,2027 CMAAS'
 })
 
 const route = useRoute();

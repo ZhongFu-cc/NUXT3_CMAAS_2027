@@ -121,7 +121,7 @@
                             <li>Commercial names may be used in the abstract body, but must include the ® symbol. </li>
                             <li>If abbreviations are used in the abstract title or body, they must be defined. </li>
                             <li>Authors must select the award category they wish to apply for, but the final decision
-                                will be made by the TOPBS 2026 committee. </li>
+                                will be made by the CMAAS 2026 committee. </li>
                         </ul>
                     </div>
 
@@ -155,7 +155,7 @@
                         <ul class="disc-list">
                             <li>Abstracts will be withdrawn if registration is not completed. </li>
                             <li>Abstracts can be modified online before the submission deadline. </li>
-                            <li>To modify an accepted abstract, please contact the TOPBS 2026 Secretariat via email
+                            <li>To modify an accepted abstract, please contact the CMAAS 2026 Secretariat via email
                                 within 36 hours of receiving the acceptance notification. </li>
                         </ul>
                     </div>
@@ -163,7 +163,7 @@
                     <div class="submission-guidelines-box">
                         <h2>07. Other Submission Policies </h2>
                         <ul class="disc-list">
-                            <li>Abstracts submitted to TOPBS 2026 must not have been previously published in
+                            <li>Abstracts submitted to CMAAS 2026 must not have been previously published in
                                 peer-reviewed journals or presented at other conferences.</li>
                             <li>Submission of encore abstract is not allowed; for follow-up studies, new data must be
                                 included. </li>
@@ -177,8 +177,8 @@
                     </div>
                 </div>
 
-                <p class="reminder note-text">TOPBS 2026 reserves the right to modify the event rules and program
-                    content. In case of any dispute, TOPBS 2026 holds the final decision. </p>
+                <p class="reminder note-text">CMAAS 2026 reserves the right to modify the event rules and program
+                    content. In case of any dispute, CMAAS 2026 holds the final decision. </p>
             </div>
         </main>
 
@@ -190,9 +190,9 @@ import Title from '@/components/layout/Title.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue'
 
 useSeoMeta({
-    title: 'Submission Guidelines - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
-    description: 'Explore the submission guidelines for the TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society. This page provides detailed information on abstract submission, important dates, review process, and more.',
-    keywords: 'Submission Guideline,TOPBS,TOPBS 2026,2026 TOPBS'
+    title: 'Submission Guidelines - CMAAS 2026  ',
+    description: 'Explore the submission guidelines for the CMAAS 2026  . This page provides detailed information on abstract submission, important dates, review process, and more.',
+    keywords: 'Submission Guideline,CMAAS,CMAAS 2026,2026 CMAAS'
 })
 
 </script>

@@ -22,9 +22,9 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 import Banner from '@/components/layout/Banner.vue';
 
 useSeoMeta({
-    title: 'Sponsors - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
-    description: 'Explore the list of sponsors for the TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society. This page is currently under construction, but stay tuned for updates showcasing the esteemed sponsors who support and contribute to the success of the conference.',
-    keywords: 'Sponsors,TOPBS Sponsors,TOPBS,TOPBS 2026,2026 TOPBS '
+    title: 'Sponsors - CMAAS 2027  ',
+    description: 'Explore the list of sponsors for the CMAAS 2027  . This page is currently under construction, but stay tuned for updates showcasing the esteemed sponsors who support and contribute to the success of the conference.',
+    keywords: 'Sponsors,CMAAS Sponsors,CMAAS,CMAAS 2027,2027 CMAAS '
 })
 
 const modules = import.meta.glob('../assets/img/ticbcs_sponsor_logo/*.{png,jpg,jpeg,svg}', { eager: true, as: 'url' });
