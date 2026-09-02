@@ -19,8 +19,8 @@
   "foodTaboo": "飲食禁忌",
   "foodRadio1": "葷食",
   "foodRadio2": "素食",
-  "category1": "永久會員",
-  "category2": "一般會員",
+  "category1": "一般會員",
+  "category2": "永久會員",
   "category3": "非會員",
   "captcha": "驗證碼",
   "aboutUs": "關於我們",
@@ -107,7 +107,7 @@
   "updateProfileFailed": "更新失敗",
   "profileUpdatedMessage": "更新個人資料成功",
   "profileUpdatedTitle": "更新成功",
-  "membershipDues": "116年會費",
-  "membershipDuesRadio1": "於本次報名繳交",
-  "membershipDuesRadio2": "已繳交"
+  "membershipDues": "116年長年會費(TWD 1000元)",
+  "membershipDuesRadio1": "本次報名繳交",
+  "membershipDuesRadio2": "已繳交116年會費"
 }
