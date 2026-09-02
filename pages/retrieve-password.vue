@@ -83,7 +83,7 @@ const submit = async (formEl: FormInstance | undefined) => {
     font-family: $common-section-font-family;
 
     .main-section {
-        // background: url('assets/img/topbs_background-image.jpg') no-repeat center center;
+        // background: url('assets/img/CMAAS_background-image.jpg') no-repeat center center;
         padding: 1rem 0;
         display: flex;
         justify-content: center;

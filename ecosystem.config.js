@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'TOPBS',
+      name: 'CMAAS',
       port: '3000',
       exec_mode: 'cluster',
       instances: '1',

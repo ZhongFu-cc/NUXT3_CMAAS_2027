@@ -130,9 +130,9 @@
 <script lang="ts" setup>
 import Banner from '@/components/layout/Banner.vue';
 useSeoMeta({
-    title: '交通資訊 | 台中國際乳癌研討會 2026',
+    title: '交通資訊 | 台中國際乳癌研討會 2027',
     description: '了解如何輕鬆前往我們的會議場地。探索各種交通選擇，包括公共交通、停車資訊等，確保您順利抵達活動現場。',
-    keywords: '交通資訊, TICBCS, ticbcs, TICBCS2026, ticbcs2026, 臺中國際會展中心, 台中國際乳癌研討會 , 乳癌研討會, 乳癌, 乳癌教育, 乳癌防治, 中華民國乳癌教育暨防治學會, 中國醫藥大學附設醫院, 中國醫藥大學, 台灣乳房醫學會, 中華民國外科醫學會, 公共交通, 停車資訊',
+    keywords: '交通資訊, TICBCS, ticbcs, TICBCS2027, ticbcs2027, 臺中國際會展中心, 台中國際乳癌研討會 , 乳癌研討會, 乳癌, 乳癌教育, 乳癌防治, 中華民國乳癌教育暨防治學會, 中國醫藥大學附設醫院, 中國醫藥大學, 台灣乳房醫學會, 中華民國外科醫學會, 公共交通, 停車資訊',
 });
 
 const { t } = useI18n()
