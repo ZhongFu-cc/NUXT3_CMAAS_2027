@@ -55,7 +55,7 @@
   "seeMore": "查看更多",
   "member": "會員",
   "login": "登入",
-  "organizationNumber": "會員編號",
+  "organizationNumber": "會員編號(如不確定編號.請填寫9999)",
   "professionalNumber": "中醫師證號",
   "organizationNumberValidate": "請輸入會員編號",
   "chineseNameValidate": "請輸入中文名稱",

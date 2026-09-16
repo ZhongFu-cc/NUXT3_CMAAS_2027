@@ -161,7 +161,7 @@
                                 </el-form-item>
 
                                 <el-form-item prop="applyForCME" required v-if="formData.value3 === 'MAIN'"
-                                    label="是否申請中醫學分(需額外加付 NTD 800元)">
+                                    label="是否申請中醫師全聯會點數8點(需額外加付 NTD 800元)">
                                     <el-radio-group v-model="formData.applyForCME">
                                         <el-radio label="是" :value="1"></el-radio>
                                         <el-radio label="否" :value="0"></el-radio>
