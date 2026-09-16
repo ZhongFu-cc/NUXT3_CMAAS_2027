@@ -138,7 +138,7 @@
                                         :placeholder="t('organizationNumber')">
                                     </el-input>
                                 </el-form-item>
-                                
+
 
                                 <el-form-item prop="value1" label="1/23 上午場 Workshop" required>
                                     <el-radio-group v-model="formData.value1">
@@ -160,14 +160,16 @@
                                     </el-radio-group>
                                 </el-form-item>
 
-                                <el-form-item prop="applyForCME" required v-if="formData.value3 === 'MAIN'" label="是否申請中醫學分(需額外加付 NTD 800元)" >
+                                <el-form-item prop="applyForCME" required v-if="formData.value3 === 'MAIN'"
+                                    label="是否申請中醫學分(需額外加付 NTD 800元)">
                                     <el-radio-group v-model="formData.applyForCME">
                                         <el-radio label="是" :value="1"></el-radio>
                                         <el-radio label="否" :value="0"></el-radio>
                                     </el-radio-group>
                                 </el-form-item>
 
-                                <el-form-item v-if="formData.applyForCME === 1" required prop="professionalNumber" :label="t('professionalNumber')">
+                                <el-form-item v-if="formData.applyForCME === 1" required prop="professionalNumber"
+                                    :label="t('professionalNumber')">
                                     <el-input v-model="formData.professionalNumber" class="professional-number"
                                         :placeholder="t('professionalNumber')">
                                     </el-input>
@@ -572,12 +574,15 @@ const submit = async (formEl: FormInstance | undefined) => {
                 .join('<br>')
 
             const confirmContent = `
+            <p style="font-weight:600;margin:0 0 6px;">報名場次</p>
             1 / 23 上午 Workshop：${getWorkshopName(formData.value1)} <br>
-                1 / 23 下午 Workshop：${getWorkshopName(formData.value2)} <br>
-                    1 / 24 主會議：${getWorkshopName(formData.value3)} <br><br>
-                        ${feeRows} <br>
-                        總金額：NT$ ${feePreviewRes.data.totalAmount.toLocaleString()} <br><br>
-                        請確認以上場次與費用是否正確，送出後將無法自行修改。
+            1 / 23 下午 Workshop：${getWorkshopName(formData.value2)} <br>
+            1 / 24 主會議：${getWorkshopName(formData.value3)}
+            <hr style="margin:12px 0;border:none;border-top:1px solid #dcdcdc;">
+            <p style="font-weight:600;margin:0 0 6px;">金額確認</p>
+            ${feeRows} <br>
+            <p style="text-align:right;font-weight:700;margin:6px 0 0;">總金額：NT$ ${feePreviewRes.data.totalAmount.toLocaleString()}</p>
+            <p style="margin-top:12px;">請確認以上場次與費用是否正確，送出後將無法自行修改。</p>
             `
             ElMessageBox.confirm(
                 confirmContent,
