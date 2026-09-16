@@ -542,11 +542,42 @@ const submit = async (formEl: FormInstance | undefined) => {
     formEl.validate(async (valid: any) => {
         if (valid) {
 
+            // 每次送出都重新組場次代碼，避免送出失敗後重送造成重覆累加
+            formData.workshopCodes = [formData.value1, formData.value2, formData.value3]
+                .filter((code): code is string => !!code && code !== 'NONE')
+
+            const feePreviewRes = await CSRrequest.post('/member/fee-preview', {
+                body: {
+                    country: formData.country,
+                    category: formData.category,
+                    workshopCodes: formData.workshopCodes,
+                    membershipDuesStatus: formData.membershipDuesStatus,
+                    applyForCME: formData.applyForCME,
+                    professionalNumber: formData.professionalNumber,
+                }
+            })
+
+            if (feePreviewRes.code !== 200) {
+                ElNotification.error({
+                    title: 'Failed',
+                    message: feePreviewRes.msg || '費用試算失敗，請稍後再試',
+                    type: 'error',
+                    duration: 3000,
+                });
+                return
+            }
+
+            const feeRows = feePreviewRes.data.items
+                .map((item: any) => `${item.name}：NT$ ${item.amount.toLocaleString()}`)
+                .join('<br>')
+
             const confirmContent = `
             1 / 23 上午 Workshop：${getWorkshopName(formData.value1)} <br>
                 1 / 23 下午 Workshop：${getWorkshopName(formData.value2)} <br>
                     1 / 24 主會議：${getWorkshopName(formData.value3)} <br><br>
-                        請確認以上場次是否正確，送出後將無法自行修改。
+                        ${feeRows} <br>
+                        總金額：NT$ ${feePreviewRes.data.totalAmount.toLocaleString()} <br><br>
+                        請確認以上場次與費用是否正確，送出後將無法自行修改。
             `
             ElMessageBox.confirm(
                 confirmContent,
@@ -559,9 +590,6 @@ const submit = async (formEl: FormInstance | undefined) => {
                 }
             ).then(async () => {
                 formData.phone = formData.countryCode + '-' + formData.phoneNum;
-                // 每次送出都重新組場次代碼，避免送出失敗後重送造成重覆累加
-                formData.workshopCodes = [formData.value1, formData.value2, formData.value3]
-                    .filter((code): code is string => !!code && code !== 'NONE')
                 console.log('submit!', formData)
                 let res = await CSRrequest.post('/member', {
                     body: formData
