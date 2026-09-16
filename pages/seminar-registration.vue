@@ -162,6 +162,12 @@
 
                                 <el-form-item prop="applyForCME" required v-if="formData.value3 === 'MAIN'"
                                     label="是否申請中醫師全聯會點數8點(需額外加付 TWD 800元)">
+                                    <!-- <template #label>
+                                        <div class="cmeLabel">
+                                            <span>是否申請中醫師全聯會點數8點</span>
+                                            <span>(需額外加付 TWD 800元)</span>
+                                        </div>
+                                    </template> -->
                                     <el-radio-group v-model="formData.applyForCME">
                                         <el-radio label="是" :value="1"></el-radio>
                                         <el-radio label="否" :value="0"></el-radio>
@@ -733,7 +739,14 @@ onUnmounted(() => {
         :deep(.el-form-item__label) {
             font-size: 1.3rem;
             font-weight: 600;
+            text-wrap: wrap;
             // color: #1C4587;
+        }
+
+        :deep(.cmeLabel) {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
         .member-title {
