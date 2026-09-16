@@ -539,7 +539,7 @@ const getWorkshopName = (code?: string) => {
 const submit = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     // console.log(valid)
-    formEl.validate(async (valid) => {
+    formEl.validate(async (valid: any) => {
         if (valid) {
 
             const confirmContent = `
