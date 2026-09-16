@@ -144,7 +144,7 @@
                         </el-form-item>
                     </div>
 
-                    <el-form-item prop="professionalNumber" :label="t('professionalNumber')">
+                    <el-form-item v-if="isApplyCME" prop="professionalNumber" :label="t('professionalNumber')">
                         <el-input v-model="formData.professionalNumber" class="professional-number"
                             :placeholder="t('professionalNumber')">
                         </el-input>
@@ -358,6 +358,7 @@ const formRules = computed<FormRules>(() => ({
     ],
 }));
 
+const isApplyCME = ref<boolean>(false);
 const getMemberInfo = async () => {
     isLoading.value = true;
 
@@ -369,8 +370,8 @@ const getMemberInfo = async () => {
     }
 
     Object.assign(memberInfo, res.data);
-    console.log('Fetched member info:', memberInfo);
     fillForm(res.data);
+    isApplyCME.value = res.data.isApplyCME === 1;
     isLoading.value = false;
 };
 
@@ -516,9 +517,9 @@ onMounted(() => {
     .profile-form-card {
         border-radius: 28px;
         box-sizing: border-box;
-        border: 1px solid rgba(160, 88, 106, 0.14);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(251, 245, 246, 0.94));
-        box-shadow: 0 18px 40px rgba(95, 61, 71, 0.08);
+        border: 1px solid rgba(15, 107, 160, 0.16);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(240, 248, 252, 0.94));
+        box-shadow: 0 18px 40px rgba(15, 71, 107, 0.08);
     }
 
     .profile-summary-card {
@@ -538,7 +539,7 @@ onMounted(() => {
 
     .card-eyebrow {
         margin: 0 0 0.5rem;
-        color: #a0586a;
+        color: #0f6ba0;
         text-transform: uppercase;
         letter-spacing: 0.08em;
         font-size: 0.9rem;
@@ -548,7 +549,7 @@ onMounted(() => {
     .card-title {
         margin: 0;
         font-size: clamp(1.45rem, 2.5vw, 1.9rem);
-        color: #31272b;
+        color: $main-text-color;
     }
 
     .summary-list {
@@ -561,19 +562,19 @@ onMounted(() => {
         padding: 0.9rem 1rem;
         border-radius: 18px;
         background-color: rgba(255, 255, 255, 0.78);
-        border: 1px solid rgba(160, 88, 106, 0.1);
+        border: 1px solid rgba(15, 107, 160, 0.12);
     }
 
     .summary-label {
         display: block;
         margin-bottom: 0.35rem;
-        color: #8d6b75;
+        color: $main-content-color;
         font-size: 0.9rem;
     }
 
     .summary-value {
         display: block;
-        color: #2e2327;
+        color: $main-text-color;
         overflow-wrap: anywhere;
     }
 
@@ -606,7 +607,7 @@ onMounted(() => {
         font-size: 0.85rem;
         letter-spacing: 0.05em;
         text-transform: uppercase;
-        color: #7c676e;
+        color: $main-content-color;
     }
 
     .status-value {
@@ -617,7 +618,7 @@ onMounted(() => {
 
     .status-description {
         margin: 0.6rem 0 0;
-        color: #5b4d52;
+        color: $main-content-color;
         line-height: 1.7;
     }
 
@@ -684,7 +685,7 @@ onMounted(() => {
 
     .readonly-grid {
         :deep(.el-input.is-disabled .el-input__wrapper) {
-            background-color: #f5f0f2;
+            background-color: #eef5f9;
         }
     }
 
@@ -701,6 +702,22 @@ onMounted(() => {
         justify-content: flex-end;
         gap: 0.75rem;
         margin-top: 1rem;
+
+        :deep(.el-button--primary) {
+            background-color: #0f6ba0;
+            border-color: #0f6ba0;
+
+            &:hover,
+            &:focus {
+                background-color: #0c5680;
+                border-color: #0c5680;
+            }
+
+            &.is-loading {
+                background-color: #0f6ba0;
+                border-color: #0f6ba0;
+            }
+        }
 
         @media screen and (max-width: 640px) {
             flex-direction: column;

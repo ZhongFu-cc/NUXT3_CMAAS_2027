@@ -107,7 +107,9 @@
   "updateProfileFailed": "更新失敗",
   "profileUpdatedMessage": "更新個人資料成功",
   "profileUpdatedTitle": "更新成功",
-  "membershipDues": "116年長年會費(TWD 1000元)",
+  "membershipDues": "116年常年會費(TWD 1000元)",
   "membershipDuesRadio1": "本次報名繳交",
-  "membershipDuesRadio2": "已繳交116年會費"
+  "membershipDuesRadio2": "已繳交116年會費",
+  "registrationSuccess": "註冊成功!",
+  "cancelSubmit": "取消註冊"
 }
