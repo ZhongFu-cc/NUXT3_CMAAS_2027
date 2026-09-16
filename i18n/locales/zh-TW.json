@@ -19,9 +19,9 @@
   "foodTaboo": "飲食禁忌",
   "foodRadio1": "葷食",
   "foodRadio2": "素食",
-  "category1": "會員",
-  "category2": "非會員",
-  "category3": "非會員醫師(非本會會員醫師、廠商)",
+  "category1": "一般會員",
+  "category2": "永久會員",
+  "category3": "非會員",
   "captcha": "驗證碼",
   "aboutUs": "關於我們",
   "conferenceInformation": "會議資訊",
@@ -55,7 +55,7 @@
   "seeMore": "查看更多",
   "member": "會員",
   "login": "登入",
-  "organizationNumber": "會員編號",
+  "organizationNumber": "會員編號(如不確定編號.請填寫9999)",
   "professionalNumber": "中醫師證號",
   "organizationNumberValidate": "請輸入會員編號",
   "chineseNameValidate": "請輸入中文名稱",
@@ -106,5 +106,10 @@
   "editableProfile": "編輯資料",
   "updateProfileFailed": "更新失敗",
   "profileUpdatedMessage": "更新個人資料成功",
-  "profileUpdatedTitle": "更新成功"
+  "profileUpdatedTitle": "更新成功",
+  "membershipDues": "116年常年會費(TWD 1000元)",
+  "membershipDuesRadio1": "本次報名繳交",
+  "membershipDuesRadio2": "已繳交116年會費",
+  "registrationSuccess": "註冊成功!",
+  "cancelSubmit": "取消註冊"
 }

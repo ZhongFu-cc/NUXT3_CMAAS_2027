@@ -122,20 +122,23 @@
                                     <el-select v-model="formData.category">
                                         <el-option :label="t('category1')" :value="1"></el-option>
                                         <el-option :label="t('category2')" :value="2"></el-option>
-                                        <!-- <el-option :label="t('category3')" :value="3"></el-option> -->
+                                        <el-option :label="t('category3')" :value="3"></el-option>
                                     </el-select>
                                 </el-form-item>
-                                <el-form-item v-if="formData.category === 1" prop="organizationNumber"
-                                    :label="t('organizationNumber')">
+                                <el-form-item v-if="formData.category === 1" :label="t('membershipDues')">
+                                    <el-radio-group v-model="formData.membershipDuesStatus">
+                                        <el-radio value="本次報名繳交">{{ t('membershipDuesRadio1') }}</el-radio>
+                                        <el-radio value="已繳交116年會費">{{ t('membershipDuesRadio2') }}</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+
+                                <el-form-item v-if="formData.category === 1 || formData.category === 2"
+                                    prop="organizationNumber" :label="t('organizationNumber')">
                                     <el-input v-model="formData.organizationNumber" class="organization-number"
                                         :placeholder="t('organizationNumber')">
                                     </el-input>
                                 </el-form-item>
-                                <el-form-item prop="professionalNumber" :label="t('professionalNumber')">
-                                    <el-input v-model="formData.professionalNumber" class="professional-number"
-                                        :placeholder="t('professionalNumber')">
-                                    </el-input>
-                                </el-form-item>
+
 
                                 <el-form-item prop="value1" label="1/23 上午場 Workshop" required>
                                     <el-radio-group v-model="formData.value1">
@@ -155,6 +158,21 @@
                                         <el-radio label="參加" value="MAIN"></el-radio>
                                         <el-radio label="不參加" value="NONE"></el-radio>
                                     </el-radio-group>
+                                </el-form-item>
+
+                                <el-form-item prop="applyForCME" required v-if="formData.value3 === 'MAIN'"
+                                    label="是否申請中醫師全聯會點數8點(需額外加付 TWD 800元)">
+                                    <el-radio-group v-model="formData.applyForCME">
+                                        <el-radio label="是" :value="1"></el-radio>
+                                        <el-radio label="否" :value="0"></el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+
+                                <el-form-item v-if="formData.applyForCME === 1" required prop="professionalNumber"
+                                    :label="t('professionalNumber')">
+                                    <el-input v-model="formData.professionalNumber" class="professional-number"
+                                        :placeholder="t('professionalNumber')">
+                                    </el-input>
                                 </el-form-item>
 
                             </div>
@@ -190,9 +208,9 @@ import countries from '@/assets/data/countries.json'
 import RegistrationFee from './registration-fee.vue';
 
 useSeoMeta({
-    title: 'Registration - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
-    description: 'Explore the registration details for the TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society. Find information on personal , early-bird discounts, and payment methods.',
-    keywords: 'Registration,TOPBS,TOPBS 2026,2026 TOPBS'
+    title: 'Registration - CMAAS 2027  ',
+    description: 'Explore the registration details for the CMAAS 2027  . Find information on personal , early-bird discounts, and payment methods.',
+    keywords: 'Registration,CMAAS,CMAAS 2027,2027 CMAAS'
 })
 
 
@@ -392,7 +410,9 @@ interface formData {
     workshopCodes: string[],
     value1?: string,
     value2?: string,
-    value3?: string
+    value3?: string,
+    membershipDuesStatus: string,
+    applyForCME: number,
 }
 
 const form = ref<FormInstance>()
@@ -426,7 +446,9 @@ const formData = reactive<formData>({
     workshopCodes: [],
     value1: undefined,
     value2: undefined,
-    value3: undefined
+    value3: undefined,
+    membershipDuesStatus: '本次報名繳交',
+    applyForCME: 0
 })
 
 
@@ -435,6 +457,19 @@ const formData = reactive<formData>({
 const cleanCategoryExtra = (item: any) => {
     item.categoryExtra = ''
 }
+
+
+// 會員編號僅一般會員、永久會員需填寫；116年長年會費僅一般會員需選擇
+watch(() => formData.category, (category) => {
+    if (category !== 1 && category !== 2) {
+        formData.organizationNumber = ''
+    }
+    if (category !== 1) {
+        formData.membershipDuesStatus = ''
+    } else if (!formData.membershipDuesStatus) {
+        formData.membershipDuesStatus = '本次報名繳交'
+    }
+})
 
 
 const vaildConfirmPassword = (rule: any, value: string, callback: any) => {
@@ -477,10 +512,12 @@ const formRules = computed<FormRules>(() => ({
     phoneNum: [{ required: true, message: t('phoneNumValidate'), trigger: 'blur' }],
     category: [{ required: true, message: t('categoryValidate'), trigger: 'change' }],
     remitAccountLast5: [{ required: false, validator: validateRemitAccount, trigger: 'blur' }],
-    organizationNumber: [{ required: formData.category === 1, message: t('organizationNumberValidate'), trigger: 'blur' }],
+    organizationNumber: [{ required: formData.category === 1 || formData.category === 2, message: t('organizationNumberValidate'), trigger: 'blur' }],
     value1: [{ required: true, message: t('workshopValidate'), trigger: 'change' }],
     value2: [{ required: true, message: t('workshopValidate'), trigger: 'change' }],
     value3: [{ required: true, message: t('workshopValidate'), trigger: 'change' }],
+    applyForCME: [{ required: formData.value3 === 'MAIN', message: '請選擇是否申請中醫學分', trigger: 'change' }],
+    professionalNumber: [{ required: formData.applyForCME === 1, message: '未填寫中醫師證號', trigger: 'blur' }]
 }))
 
 const getWorkshopName = (code?: string) => {
@@ -494,7 +531,7 @@ const getWorkshopName = (code?: string) => {
         case 'WSB002':
             return '場次B'
         case 'MAIN':
-            return '主會議'
+            return '參加'
         default:
             return '不參加'
     }
@@ -504,14 +541,48 @@ const getWorkshopName = (code?: string) => {
 const submit = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     // console.log(valid)
-    formEl.validate(async (valid) => {
+    formEl.validate(async (valid: any) => {
         if (valid) {
 
+            // 每次送出都重新組場次代碼，避免送出失敗後重送造成重覆累加
+            formData.workshopCodes = [formData.value1, formData.value2, formData.value3]
+                .filter((code): code is string => !!code && code !== 'NONE')
+
+            const feePreviewRes = await CSRrequest.post('/member/fee-preview', {
+                body: {
+                    country: formData.country,
+                    category: formData.category,
+                    workshopCodes: formData.workshopCodes,
+                    membershipDuesStatus: formData.membershipDuesStatus,
+                    applyForCME: formData.applyForCME,
+                    professionalNumber: formData.professionalNumber,
+                }
+            })
+
+            if (feePreviewRes.code !== 200) {
+                ElNotification.error({
+                    title: 'Failed',
+                    message: feePreviewRes.msg || '費用試算失敗，請稍後再試',
+                    type: 'error',
+                    duration: 3000,
+                });
+                return
+            }
+
+            const feeRows = feePreviewRes.data.items
+                .map((item: any) => `${item.name}：TWD ${item.amount.toLocaleString()}`)
+                .join('<br>')
+
             const confirmContent = `
+            <p style="font-weight:600;margin:0 0 6px;">報名場次</p>
             1 / 23 上午 Workshop：${getWorkshopName(formData.value1)} <br>
-                1 / 23 下午 Workshop：${getWorkshopName(formData.value2)} <br>
-                    1 / 24 主會議：${getWorkshopName(formData.value3)} <br><br>
-                        請確認以上場次是否正確，送出後將無法自行修改。
+            1 / 23 下午 Workshop：${getWorkshopName(formData.value2)} <br>
+            1 / 24 主會議：${getWorkshopName(formData.value3)}
+            <hr style="margin:12px 0;border:none;border-top:1px solid #dcdcdc;">
+            <p style="font-weight:600;margin:0 0 6px;">金額確認</p>
+            ${feeRows} <br>
+            <p style="text-align:right;font-weight:700;margin:6px 0 0;">總金額：TWD ${feePreviewRes.data.totalAmount.toLocaleString()}</p>
+            <p style="margin-top:12px;">請確認以上場次與費用是否正確，送出後將無法自行修改。</p>
             `
             ElMessageBox.confirm(
                 confirmContent,
@@ -524,15 +595,6 @@ const submit = async (formEl: FormInstance | undefined) => {
                 }
             ).then(async () => {
                 formData.phone = formData.countryCode + '-' + formData.phoneNum;
-                if (formData.value1 && formData.value1 !== 'NONE') {
-                    formData.workshopCodes.push(formData.value1)
-                }
-                if (formData.value2 && formData.value2 !== 'NONE') {
-                    formData.workshopCodes.push(formData.value2)
-                }
-                if (formData.value3 && formData.value3 !== 'NONE') {
-                    formData.workshopCodes.push(formData.value3)
-                }
                 console.log('submit!', formData)
                 let res = await CSRrequest.post('/member', {
                     body: formData
@@ -548,10 +610,10 @@ const submit = async (formEl: FormInstance | undefined) => {
                         type: 'error',
                         duration: 3000,
                     });
-
+                    return
                 }
 
-                if (res.data.isLogin) {
+                if (res.data?.isLogin) {
                     localStorage.setItem(res.data.tokenName, 'Bearer ' + res.data.tokenValue);
                     ElNotification.success({
                         title: 'Success',

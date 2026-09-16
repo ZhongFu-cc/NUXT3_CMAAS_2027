@@ -73,8 +73,8 @@
   "phoneNumValidate": "Please enter your phone number",
   "categoryValidate": "Please select a category",
   "remitAccountLast5Validate": "Please enter the last 5 digits of your remittance account",
-  "category1": "Member",
-  "category2": "Other ",
+  "category1": "Regular Member",
+  "category2": "Lifetime Member",
   "category3": "Non-Member",
   "captcha": "Captcha",
   "remitAccountLast5Validate2": "The last 5 digits of the remittance account must be numeric and exactly 5 digits long",
@@ -129,5 +129,8 @@
   "organizationNumberValidate": "Please enter member number",
   "welcomeMessage": "Welcome Message",
   "comingSoon": "Coming Soon",
-  "invitedSpeaker": "Invited Speaker"
+  "invitedSpeaker": "Invited Speaker",
+  "membershipDues": "2027 Membership Due",
+  "membershipDuesRadio1": "Pay on registration",
+  "membershipDuesRadio2": "Alreay paid"
 }
