@@ -161,7 +161,7 @@
                                 </el-form-item>
 
                                 <el-form-item prop="applyForCME" required v-if="formData.value3 === 'MAIN'"
-                                    label="是否申請中醫學分(需額外加付 NTD 800元)">
+                                    label="是否申請中醫師全聯會點數8點(需額外加付 TWD 800元)">
                                     <el-radio-group v-model="formData.applyForCME">
                                         <el-radio label="是" :value="1"></el-radio>
                                         <el-radio label="否" :value="0"></el-radio>
@@ -531,7 +531,7 @@ const getWorkshopName = (code?: string) => {
         case 'WSB002':
             return '場次B'
         case 'MAIN':
-            return '主會議'
+            return '參加'
         default:
             return '不參加'
     }
@@ -570,7 +570,7 @@ const submit = async (formEl: FormInstance | undefined) => {
             }
 
             const feeRows = feePreviewRes.data.items
-                .map((item: any) => `${item.name}：NT$ ${item.amount.toLocaleString()}`)
+                .map((item: any) => `${item.name}：TWD ${item.amount.toLocaleString()}`)
                 .join('<br>')
 
             const confirmContent = `
@@ -581,7 +581,7 @@ const submit = async (formEl: FormInstance | undefined) => {
             <hr style="margin:12px 0;border:none;border-top:1px solid #dcdcdc;">
             <p style="font-weight:600;margin:0 0 6px;">金額確認</p>
             ${feeRows} <br>
-            <p style="text-align:right;font-weight:700;margin:6px 0 0;">總金額：NT$ ${feePreviewRes.data.totalAmount.toLocaleString()}</p>
+            <p style="text-align:right;font-weight:700;margin:6px 0 0;">總金額：TWD ${feePreviewRes.data.totalAmount.toLocaleString()}</p>
             <p style="margin-top:12px;">請確認以上場次與費用是否正確，送出後將無法自行修改。</p>
             `
             ElMessageBox.confirm(
