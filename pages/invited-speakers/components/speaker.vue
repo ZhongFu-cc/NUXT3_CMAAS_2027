@@ -1,33 +1,21 @@
 <template>
-    <div class="speaker-info" role="button" tabindex="0" @click="dialogVisible = true"
-        @keydown.enter.prevent="dialogVisible = true" @keydown.space.prevent="dialogVisible = true">
-        <div class="profile-image-box">
-            <img v-if="props.speaker.photoUrl" class="profile-image" :src="envMinio + props.speaker.photoUrl"
-                alt="Speaker Image" />
-            <el-icon v-else class="avatar-uploader-icon">
-                <!-- <Avatar /> -->
-            </el-icon>
-        </div>
-        <div class="profile-info">
-            <h2 class="speaker-name">{{ props.speaker.name }}</h2>
-            <p class="speaker-country">{{ props.speaker.country }}</p>
-        </div>
-
-        <el-dialog v-model="dialogVisible" width="min(92vw, 32rem)" append-to-body class="speaker-dialog">
-            <div class="dialog-content">
-                <div class="dialog-image-box">
-                    <img v-if="props.speaker.photoUrl" class="dialog-image" :src="envMinio + props.speaker.photoUrl"
-                        alt="Speaker Image" />
-                </div>
-                <h2 class="dialog-name">{{ props.speaker.name }}</h2>
-                <p class="dialog-country">{{ props.speaker.country }}</p>
-                <p v-if="props.speaker.jobTitle" class="dialog-job-title">{{ props.speaker.jobTitle }}</p>
-                <div v-if="props.speaker.affiliation" class="dialog-topic">
-                    <span class="dialog-topic-label">{{ t('speakerTopic') }}</span>
-                    <p>{{ props.speaker.affiliation }}</p>
+    <div class="speaker-container">
+        <article class="speaker-row">
+            <div class="photo-ring">
+                <img v-if="props.speaker.photoUrl" class="photo-image" :src="envMinio + props.speaker.photoUrl"
+                    :alt="props.speaker.name" />
+            </div>
+            <div class="speaker-detail">
+                <h2 class="name">{{ props.speaker.name }}</h2>
+                <p class="country">{{ props.speaker.country }}</p>
+                <span class="accent-line"></span>
+                <p v-if="props.speaker.jobTitle" class="job-title">{{ props.speaker.jobTitle }}</p>
+                <div v-if="props.speaker.affiliation" class="topic">
+                    <span class="topic-tag">{{ t('speakerTopic') }}</span>
+                    <p class="topic-text">{{ props.speaker.affiliation }}</p>
                 </div>
             </div>
-        </el-dialog>
+        </article>
     </div>
 </template>
 <script lang="ts" setup>
@@ -38,123 +26,161 @@ const props = defineProps({
     }
 })
 
-
-watch(() => props, (newVal) => {
-    console.log(newVal);
-})
 const envMinio = useRuntimeConfig().public.minio
 const { t } = useI18n()
-const dialogVisible = ref(false)
 </script>
 <style lang="scss" scoped>
-.speaker-info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 2rem 0;
-    gap: 1rem;
-    cursor: pointer;
+$accent: #2f6f9f;
 
-    .profile-image-box {
-        width: 13rem;
-        height: 13rem;
-        border-radius: 50%;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #f0f0f0;
-
-        &:hover {
-            transform: scale(1.05);
-            transition: transform 0.3s ease-in-out;
-            cursor: pointer;
-        }
-    }
-
-    .profile-image {
-        width: 100%;
-        height: auto;
-    }
-
-    .profile-info {
-        // margin-left: 2rem;
-
-        text-align: center;
-        width: 13rem;
-
-        .speaker-name {
-            font-size: 1.5rem;
-            font-weight: bold;
-            font-style: italic;
-            text-wrap: nowrap;
-            color: #371307;
-        }
-
-        .speaker-country {
-            font-style: italic;
-            font-size: 1rem;
-            color: #371307;
-        }
-
-    }
+// 版面依「欄寬」而非螢幕寬度調整：一列放兩位時欄位較窄，會自動使用較緊湊的排法
+.speaker-container {
+    container: speaker / inline-size;
 }
 
-.dialog-content {
+.speaker-row {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0 1rem 1.5rem;
-    text-align: center;
+    // 照片固定對齊列頂端，避免講題過長把照片推離原本位置
+    align-items: flex-start;
+    gap: 4rem;
     color: #371307;
 
-    .dialog-image-box {
-        width: 10rem;
-        height: 10rem;
+    .photo-ring {
+        flex: 0 0 15rem;
+        width: 15rem;
+        aspect-ratio: 1;
         border-radius: 50%;
         overflow: hidden;
-        background-color: #f0f0f0;
+        background-color: #e8f1f8;
+        // 圓框外再加一圈留白的細環
+        box-shadow: 0 0 0 6px #fff, 0 0 0 9px $main-color;
 
-        .dialog-image {
+        .photo-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
     }
 
-    .dialog-name {
-        font-size: 1.5rem;
-        font-weight: bold;
-        font-style: italic;
-    }
+    .speaker-detail {
+        flex: 1;
+        min-width: 0;
 
-    .dialog-country {
-        font-size: 1.1rem;
-        font-style: italic;
-    }
-
-    .dialog-job-title {
-        font-size: 1rem;
-    }
-
-    .dialog-topic {
-        width: 100%;
-        margin-top: 0.5rem;
-        padding-top: 1rem;
-        border-top: 1px solid #e5e5e5;
-
-        .dialog-topic-label {
-            display: block;
-            margin-bottom: 0.25rem;
-            font-size: 0.875rem;
+        .name {
+            font-size: 2.4rem;
             font-weight: bold;
-            opacity: 0.7;
+            line-height: 1.2;
+            overflow-wrap: anywhere;
         }
 
-        p {
-            line-height: 1.6;
+        .country {
+            margin-top: 0.5rem;
+            font-size: 1.6rem;
+            letter-spacing: 0.15em;
+            color: $accent;
+        }
+
+        .accent-line {
+            display: block;
+            width: 3.5rem;
+            height: 4px;
+            margin: 1.25rem 0;
+            border-radius: 2px;
+            background-color: $main-color;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            line-height: 1.7;
+        }
+
+        .topic {
+            margin-top: 1.5rem;
+            padding-left: 1.25rem;
+            border-left: 4px solid $main-color;
+
+            .topic-tag {
+                display: inline-block;
+                margin-bottom: 0.5rem;
+                padding: 0.1rem 0.75rem;
+                border-radius: 999px;
+                background-color: $accent;
+                color: #fff;
+                font-size: 0.95rem;
+                font-weight: bold;
+                letter-spacing: 0.1em;
+            }
+
+            .topic-text {
+                font-size: 1.35rem;
+                font-weight: 500;
+                line-height: 1.7;
+            }
+        }
+    }
+}
+
+// 緊湊：照片仍在左，尺寸與字級縮小（一列兩位時使用）
+@container speaker (max-width: 640px) {
+    .speaker-row {
+        gap: 2rem;
+
+        .photo-ring {
+            flex-basis: 10rem;
+            width: 10rem;
+        }
+
+        .speaker-detail {
+            .name {
+                font-size: 1.8rem;
+            }
+
+            .country {
+                font-size: 1.3rem;
+            }
+
+            .accent-line {
+                margin: 1rem 0;
+            }
+
+            .job-title {
+                font-size: 1.1rem;
+            }
+
+            .topic {
+                margin-top: 1.25rem;
+
+                .topic-text {
+                    font-size: 1.15rem;
+                }
+            }
+        }
+    }
+}
+
+// 窄欄（手機）：照片在上、文字在下並置中
+@container speaker (max-width: 400px) {
+    .speaker-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 2.5rem;
+        text-align: center;
+
+        .photo-ring {
+            flex-basis: auto;
+            width: min(70%, 14rem);
+        }
+
+        .speaker-detail {
+            width: 100%;
+
+            .accent-line {
+                margin: 1rem auto;
+            }
+
+            .topic {
+                padding-left: 0;
+                border-left: none;
+            }
         }
     }
 }
