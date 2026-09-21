@@ -6,11 +6,7 @@
       <Breadcrumbs firstRoute="" :secoundRoute="t('invitedSpeaker')"></Breadcrumbs>
       <Title :title="t('invitedSpeaker')"></Title>
       <div class="content">
-        <speaker class="speaker" v-for="item in internationalSpeakers" :speaker="item"></speaker>
-      </div>
-      <el-divider v-if="taiwaneseSpeakers.length > 0"></el-divider>
-      <div class="content">
-        <speaker class="speaker" v-for="item in taiwaneseSpeakers" :speaker="item"></speaker>
+        <speaker class="speaker" v-for="item in speakers" :speaker="item"></speaker>
       </div>
     </main>
     <!-- <p style="text-align: center; color: #e5716b"><b>Speakers are currently being invited</b></p> -->
@@ -25,8 +21,6 @@ import Title from '@/components/layout/Title.vue';
 
 
 const speakers = reactive<any>([]);
-const taiwaneseSpeakers = reactive<any>([]);
-const internationalSpeakers = reactive<any>([]);
 
 const { t } = useI18n();
 
@@ -38,39 +32,15 @@ const getSpeakers = async () => {
     },
   })
   if (res.code === 200) {
-    Object.assign(speakers, res.data.records);
-
-    // const taiwaneseSpeakers =;
-
-    Object.assign(taiwaneseSpeakers, res.data.records.filter((speaker: any) => speaker.country === 'Taiwan'))
-
-    taiwaneseSpeakers.sort((a: any, b: any) => {
+    // country 欄位現在存放中文名，不再用來分組，統一依英文名(name)的姓氏排序
+    const sorted = [...res.data.records].sort((a: any, b: any) => {
       const aLast = a.name.trim().split(/\s+/).pop()!;
       const bLast = b.name.trim().split(/\s+/).pop()!;
       const lastCompare = aLast.localeCompare(bLast, 'en', { sensitivity: 'base' });
       if (lastCompare !== 0) return lastCompare;
-
-      const firstA = a.name.replace(aLast, '').trim();
-      const firstB = b.name.replace(bLast, '').trim();
-      const firstCompare = firstA.localeCompare(firstB, 'en', { sensitivity: 'base' });
-      if (firstCompare !== 0) return firstCompare;
-
       return a.name.localeCompare(b.name, 'en', { sensitivity: 'base' });
-    })
-
-
-    // const internationalSpeakers =;
-
-    Object.assign(internationalSpeakers, res.data.records.filter((speaker: any) => speaker.country !== 'Taiwan'));
-
-    internationalSpeakers.sort((a: any, b: any) => {
-      const countryCompare = a.country.localeCompare(b.country);
-      if (countryCompare !== 0) return countryCompare;
-      const nameCompare = a.name.split(' ').pop().localeCompare(b.name.split(' ').pop());
-      if (nameCompare !== 0) return nameCompare;
-      return a.name.localeCompare(b.name);
     });
-    speakers.splice(0, speakers.length, ...internationalSpeakers, ...taiwaneseSpeakers);
+    speakers.splice(0, speakers.length, ...sorted);
   }
 };
 

@@ -12,8 +12,8 @@
                     <thead>
                         <tr>
                             <th>場次</th>
-                            <th>一般會員</th>
                             <th>永久會員</th>
+                            <th>一般會員</th>
                             <th>非會員</th>
                         </tr>
                     </thead>
