@@ -12,21 +12,21 @@
                     <thead>
                         <tr>
                             <th>場次</th>
-                            <th>一般會員</th>
                             <th>永久會員</th>
+                            <th>一般會員</th>
                             <th>非會員</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td class="category-col category-item">主會議</td>
-                            <td>NT$ 2,500</td>
-                            <td>NT$ 2,000</td>
-                            <td>NT$ 3,000</td>
+                            <td>TWD 2,000</td>
+                            <td>TWD 2,500</td>
+                            <td>TWD 3,000</td>
                         </tr>
                         <tr>
                             <td class="category-col category-item">Workshop(場)</td>
-                            <td colspan="3">NT$ 5,000</td>
+                            <td colspan="3">TWD 5,000</td>
                         </tr>
                     </tbody>
                 </table>
