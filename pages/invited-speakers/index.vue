@@ -5,7 +5,7 @@
       <Breadcrumbs firstRoute="" :secoundRoute="t('invitedSpeaker')"></Breadcrumbs>
       <Title :title="t('invitedSpeaker')"></Title>
       <div class="content">
-        <SpeakerV3 class="speaker-item" v-for="item in speakers" :key="item.invitedSpeakerId" :speaker="item"></SpeakerV3>
+        <Speaker class="speaker-item" v-for="item in speakers" :key="item.invitedSpeakerId" :speaker="item"></Speaker>
       </div>
     </main>
   </div>
@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue'
 import Banner from '@/components/layout/Banner.vue';
-import SpeakerV3 from './components/SpeakerV3.vue';
+import Speaker from './components/Speaker.vue';
 import Title from '@/components/layout/Title.vue';
 
 const speakers = reactive<any>([]);
