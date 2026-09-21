@@ -7,12 +7,12 @@
                 <div class="title-image-box">
                     <img class="home-banner-bak" src="../assets/img/EmojiObjectsOutlined.svg">
                 </div>
-                <h1 class="title">News</h1>
+                <h1 class="title">最新消息</h1>
             </div>
 
             <div class="header-box">
-                <h5>Title</h5>
-                <h5>Date</h5>
+                <h5>標題</h5>
+                <h5>日期</h5>
             </div>
             <ul class="news-list">
                 <li class="news-item" v-for="(item, index) in newsList.records" :key="index"
@@ -38,9 +38,9 @@
 import Banner from '@/components/layout/Banner.vue';
 
 useSeoMeta({
-    title: 'News - 9th IOPBS & CMAAS 2025 International Conference on Oncoplastic Breast Surgery',
-    description: 'Stay updated with the latest news and announcements for the 9th IOPBS & CMAAS 2025 International Conference on Oncoplastic Breast Surgery. This page provides the latest articles and updates related to the conference.',
-    keywords: 'News, Latest News, 9th IOPBS, IOPBS 2025, CMAAS 2025, 2025 IOPBS, 2025 CMAAS '
+    title: 'News - 9th CMAAS 2027',
+    description: 'This page provides the latest articles and updates related to the conference.',
+    keywords: 'News, Latest News, 9th CMAAS, CMAAS 2027, 2027 CMAAS '
 })
 
 const router = useRouter()
