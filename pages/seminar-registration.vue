@@ -725,6 +725,10 @@ onUnmounted(() => {
         margin: 1rem auto;
         font-weight: 600;
 
+        @media screen and (max-width: 768px) {
+            width: 90%;
+        }
+
         .registration-notice {
             margin-bottom: 1.5rem;
             padding: 0.9rem 1rem;
@@ -803,16 +807,30 @@ onUnmounted(() => {
                     display: flex;
                     gap: 2rem;
 
+                    @media screen and (max-width: 768px) {
+                        gap: 0.5rem;
+                    }
+
                     .country-code {
                         flex: 1;
+
+                        @media screen and (max-width: 768px) {
+                            flex: 0 0 8rem;
+                            min-width: 8rem;
+                        }
 
                         .country-code-inner {
                             display: flex;
                             align-items: center;
                             gap: 2rem;
 
+                            @media screen and (max-width: 768px) {
+                                gap: 0.5rem;
+                            }
+
                             :deep(.el-input) {
                                 flex: 2;
+                                min-width: 0;
                             }
                         }
 
