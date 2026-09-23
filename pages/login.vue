@@ -36,12 +36,12 @@
                         </template>
                     </el-input>
                     <div class="forgot-password">
-                        <nuxt-link to="/retrieve-password">Forgot password?</nuxt-link>
+                        <nuxt-link to="/retrieve-password">忘記密碼?</nuxt-link>
                     </div>
                 </el-form-item>
                 <div class="captcha-section">
-                    <el-form-item class="captcha" label="Verification Code" prop="verificationCode">
-                        <el-input v-model="loginInfo.verificationCode" placeholder="Captcha"></el-input>
+                    <el-form-item class="captcha" label="驗證碼" prop="verificationCode">
+                        <el-input v-model="loginInfo.verificationCode" placeholder="驗證碼"></el-input>
                     </el-form-item>
                     <div class="captcha-img-section">
                         <img :src="captcha.image" alt="">
@@ -51,13 +51,13 @@
                     </div>
                 </div>
                 <el-form-item class="sign-btn-section">
-                    <el-button class="sign-btn" @click="login(formRef)">Sign in</el-button>
+                    <el-button class="sign-btn" @click="login(formRef)">登入</el-button>
                 </el-form-item>
                 <div class="btn-section">
                     <!-- <nuxt-link :to="'retrieve-password'">Retrieve password</nuxt-link>
                     <span>&nbsp /</span> -->
-                    <p>Don't have an account? &nbsp</p>
-                    <nuxt-link class="sign-text" to="/seminar-registration">Sign up</nuxt-link>
+                    <p>尚未註冊? &nbsp</p>
+                    <nuxt-link class="sign-text" to="/seminar-registration">註冊</nuxt-link>
                 </div>
             </el-form>
         </div>
