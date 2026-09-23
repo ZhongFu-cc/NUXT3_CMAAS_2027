@@ -35,6 +35,7 @@ export default {
                     const path = useRoute().path
 
                     if (path !== '/login') {
+                        console.log(123)
                         ElNotification.error({
                             title: 'Unauthorized',
                             message: 'Please log in first',
