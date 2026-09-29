@@ -153,7 +153,7 @@
                                         <el-radio label="場次B" value="WSB002"></el-radio>
                                         <el-radio label="不參加" value="NONE"></el-radio>
                                     </el-radio-group> </el-form-item>
-                                <el-form-item prop="value3" label="1/24 主會議" required>
+                                <el-form-item prop="value3" label="1/24 主會議(※ 壁報投稿者請報名參加 1/24 主會議)" required>
                                     <el-radio-group v-model="formData.value3">
                                         <el-radio label="參加" value="MAIN"></el-radio>
                                         <el-radio label="不參加" value="NONE"></el-radio>
