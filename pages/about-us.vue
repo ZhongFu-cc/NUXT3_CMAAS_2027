@@ -14,22 +14,11 @@
                 </div>
                 <div class="welcome-content">
                     <!-- <p class="title">理事長的話</p> -->
-                    <p> <span class="first-word"></span> 親愛的會員同道及各界朋友：
-                        &nbsp;
-                    </p>
-                    <p> <span class="first-word"></span>
-                        欣逢中華針灸醫學會成立三十週年，謹代表學會向歷任團隊及全體會員，致上最誠摯的謝意。感謝大家三十年來的支持與奉獻，讓學會從草創走向穩健。
-                        &nbsp;
-                    </p>
-                    <p> <span class="first-word"></span>
-                        多年來，學會積極推動學術研討與教育訓練，創辦《中華針灸醫學會雜誌》傳承知識，並致力於國際學術交流。今年，我們更攜手全日本鍼灸學會（JSAM）與大韓針灸醫學會（KAMMS）共同成立「東亞針灸醫學國際論壇」，期盼建立長期穩定的交流平台，深化臨床、教育與研究合作。
-                    </p>
-                    <p> <span class="first-word"></span>
-                        三十年是感恩的里程碑，更是嶄新的開始。未來，本會將持續凝聚會員力量、深化學術研究、培育優秀人才並拓展國際合作，讓臺灣針灸醫學持續發光發熱，為人類健康貢獻力量。
-                    </p>
-                    <p>
-                        敬祝大家身體健康、萬事順心。
-                    </p>
+                    <p class="greeting">親愛的會員同道及各界朋友：</p>
+                    <p>欣逢中華針灸醫學會成立三十週年，謹代表學會向歷任團隊及全體會員，致上最誠摯的謝意。感謝大家三十年來的支持與奉獻，讓學會從草創走向穩健。</p>
+                    <p>多年來，學會積極推動學術研討與教育訓練，創辦《中華針灸醫學會雜誌》傳承知識，並致力於國際學術交流。今年，我們更攜手全日本鍼灸學會（JSAM）與大韓針灸醫學會（KAMMS）共同成立「東亞針灸醫學國際論壇」，期盼建立長期穩定的交流平台，深化臨床、教育與研究合作。</p>
+                    <p>三十年是感恩的里程碑，更是嶄新的開始。未來，本會將持續凝聚會員力量、深化學術研究、培育優秀人才並拓展國際合作，讓臺灣針灸醫學持續發光發熱，為人類健康貢獻力量。</p>
+                    <p>敬祝大家身體健康、萬事順心。</p>
                     <p class="association-name">中華針灸醫學會 黃明正 理事長 敬上</p>
                 </div>
             </div>
@@ -74,7 +63,7 @@ useSeoMeta({
         }
 
         .image-box {
-            flex: 0 0 380px;
+            flex: 0 0 280px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -86,7 +75,7 @@ useSeoMeta({
 
             img {
                 width: 100%;
-                max-width: 380px;
+                max-width: 280px;
                 height: auto;
                 object-fit: cover;
                 border-radius: 10px;
@@ -95,7 +84,7 @@ useSeoMeta({
 
             .people-infomation-box {
                 width: 100%;
-                max-width: 380px;
+                max-width: 280px;
                 margin-top: 1rem;
                 background-color: $main-color;
                 padding: 1rem 1.5rem;
@@ -120,7 +109,7 @@ useSeoMeta({
             flex: 1;
             min-width: 0;
             color: $main-text-color;
-            font-size: 1.05rem;
+            font-size: 1.25rem;
             line-height: 2;
             padding: 0;
 
@@ -132,19 +121,21 @@ useSeoMeta({
             }
 
             p {
-                margin: 0;
+                margin: 0 0 1rem;
                 text-align: justify;
+                padding-left: 2em;
             }
 
-            .first-word {
-                display: inline-block;
-                width: 2em;
+            .greeting {
+                padding-left: 0;
+                font-weight: 600;
             }
 
             .association-name {
                 margin-top: 1.5rem;
                 text-align: right;
-                font-size: 1.2rem;
+                padding-left: 0;
+                font-size: 1.35rem;
                 color: $main-color;
                 font-weight: bold;
             }
