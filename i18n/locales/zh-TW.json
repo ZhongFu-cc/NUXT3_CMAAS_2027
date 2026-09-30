@@ -112,5 +112,7 @@
   "membershipDuesRadio1": "本次報名繳交",
   "membershipDuesRadio2": "已繳交116年會費",
   "registrationSuccess": "註冊成功!",
-  "cancelSubmit": "取消註冊"
+  "cancelSubmit": "取消註冊",
+  "registrationClosed": "非開放報名期間",
+  "alreadyLogin": "已登入"
 }
