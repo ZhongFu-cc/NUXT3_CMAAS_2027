@@ -20,11 +20,11 @@
             </div>
         </div>
 
-        <!-- <div class="video-box">
+        <div class="video-box">
             <iframe v-for="video in videos" :src="envMinio + video.path" title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen></iframe>
-        </div> -->
+        </div>
     </main>
 </template>
 <script lang="ts" setup>
