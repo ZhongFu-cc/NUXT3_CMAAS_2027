@@ -64,14 +64,14 @@
                     </div>
                 </a> -->
             </div>
-            <div class="download-section">
+            <!-- <div class="download-section">
                 <el-button class="certificate-download">
                     與會證書下載
                 </el-button>
                 <el-button class="certificate-download">
                     收據證明下載
                 </el-button>
-            </div>
+            </div> -->
         </div>
     </main>
 </template>
