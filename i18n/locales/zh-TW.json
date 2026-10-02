@@ -37,8 +37,7 @@
   "August": "八月",
   "september": "九月",
   "november": "11月",
-  "january": "1月",
-  "conferenceDate": "會議日期",
+  "january": "1月",  "conferenceDate": "會議日期",
   "saturday": "六",
   "sunday": "日",
   "a": {
@@ -112,5 +111,7 @@
   "membershipDuesRadio1": "本次報名繳交",
   "membershipDuesRadio2": "已繳交116年會費",
   "registrationSuccess": "註冊成功!",
-  "cancelSubmit": "取消註冊"
+  "cancelSubmit": "取消註冊",
+  "registrationClosed": "非開放報名期間",
+  "alreadyLogin": "已登入"
 }
