@@ -69,9 +69,7 @@
             </li> -->
             <li class="key-date-item">
                 <div class="key-date-info">
-                    <p class="date-box"><span>23~24</span><span class="month">{{ $t('january') }}<span
-                                class="year">2027</span></span>
-                    </p>
+                    <p class="date-box">2027/01/23~2027/01/24</p>
                     <p class="info">CMAAS 2027</p>
                 </div>
                 <a class="key-date-link" href="https://evt.to/k3l7dwms3r9l" target="_blank">
@@ -144,67 +142,33 @@
             .key-date-info {
                 border-radius: 5px;
                 background-color: #127ebe;
-                padding: 0.3rem 1rem;
+                padding: 0.5rem 1rem;
                 display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                gap: 0.3rem;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 0.1rem;
                 flex: 2;
-                width: 90%;
-                // min-width: 90%;
+                min-width: 0;
 
                 .date-box {
                     color: white;
-                    display: flex;
-                    flex-direction: column;
-                    font-size: 1.3rem;
-                    font-weight: bold;
-                    position: relative;
-                    padding: 0 0.3rem;
-
-                    .month {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        text-align: center;
-                        flex-wrap: none;
-                        width: 5rem;
-
-                        .year {
-                            font-size: 0.6rem;
-                            font-weight: normal;
-                        }
-                    }
-
-                    &::after {
-                        position: absolute;
-                        content: '';
-                        display: block;
-                        width: 1px;
-                        height: 90%;
-                        bottom: 0;
-                        right: 0;
-                        background-color: white;
-                    }
+                    font-size: 0.95rem;
+                    letter-spacing: 0.03em;
+                    opacity: 0.9;
+                    white-space: nowrap;
+                    margin: 0;
                 }
 
                 .info {
                     color: white;
                     font-size: 1.3rem;
                     font-weight: bold;
-                    min-width: 23rem;
-                    padding: 0 1rem 0 0;
+                    margin: 0;
                     text-wrap: wrap;
 
                     @media screen and (max-width: 1024px) {
                         font-size: 1rem;
-                        min-width: 13rem;
-
-                    }
-
-                    @media screen and (max-width: 768px) {
-                        font-size: 1rem;
-                        min-width: 80%;
                     }
                 }
             }
