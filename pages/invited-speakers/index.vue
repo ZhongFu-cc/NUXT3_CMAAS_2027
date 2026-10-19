@@ -16,6 +16,11 @@ import Banner from '@/components/layout/Banner.vue';
 import Speaker from './components/Speaker.vue';
 import Title from '@/components/layout/Title.vue';
 
+const SPEAKER_ORDER = [
+  '林昭庚', '鈴木雅雄', '南東佑', '孫茂峰', '于家山', '高宗桂',
+  '陳志成', '胡文龍', '周立偉', '黃敬軒', '陳淑媛', '陳韋任',
+];
+
 const speakers = reactive<any>([]);
 
 const { t } = useI18n();
@@ -28,8 +33,13 @@ const getSpeakers = async () => {
     },
   })
   if (res.code === 200) {
-    // country 欄位存放中文名，統一依英文名(name)的姓氏排序
+    const orderOf = (item: any) => {
+      const index = SPEAKER_ORDER.indexOf(item.name?.trim());
+      return index === -1 ? SPEAKER_ORDER.length : index;
+    };
     const sorted = [...res.data.records].sort((a: any, b: any) => {
+      const orderCompare = orderOf(a) - orderOf(b);
+      if (orderCompare !== 0) return orderCompare;
       const aLast = a.name.trim().split(/\s+/).pop()!;
       const bLast = b.name.trim().split(/\s+/).pop()!;
       const lastCompare = aLast.localeCompare(bLast, 'en', { sensitivity: 'base' });
