@@ -47,6 +47,7 @@ useSeoMeta({
         margin: 0 auto;
         color: $main-color;
         padding: 0 1.5rem;
+        box-sizing: border-box;
     }
 
 
@@ -89,6 +90,7 @@ useSeoMeta({
                 background-color: $main-color;
                 padding: 1rem 1.5rem;
                 border-radius: 10px;
+                box-sizing: border-box;
 
                 .name {
                     font-size: 1.4rem;
