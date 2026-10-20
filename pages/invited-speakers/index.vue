@@ -34,17 +34,17 @@ const getSpeakers = async () => {
   })
   if (res.code === 200) {
     const orderOf = (item: any) => {
-      const index = SPEAKER_ORDER.indexOf(item.name?.trim());
+      const index = SPEAKER_ORDER.indexOf(item.country?.trim());
       return index === -1 ? SPEAKER_ORDER.length : index;
     };
     const sorted = [...res.data.records].sort((a: any, b: any) => {
       const orderCompare = orderOf(a) - orderOf(b);
       if (orderCompare !== 0) return orderCompare;
-      const aLast = a.name.trim().split(/\s+/).pop()!;
-      const bLast = b.name.trim().split(/\s+/).pop()!;
+      const aLast = a.country.trim().split(/\s+/).pop()!;
+      const bLast = b.country.trim().split(/\s+/).pop()!;
       const lastCompare = aLast.localeCompare(bLast, 'en', { sensitivity: 'base' });
       if (lastCompare !== 0) return lastCompare;
-      return a.name.localeCompare(b.name, 'en', { sensitivity: 'base' });
+      return a.country.localeCompare(b.country, 'en', { sensitivity: 'base' });
     });
     speakers.splice(0, speakers.length, ...sorted);
   }
