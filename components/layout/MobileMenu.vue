@@ -22,8 +22,9 @@
                 <div class="auth-box">
                     <nuxt-link v-if="!isLogin" class="menu-item" @click="mobileLogin()" :class="activeClass('login')">{{
                         $t('login') }}</nuxt-link>
-                    <nuxt-link v-if="isLogin" class="menu-item" @click="mobileLogout()"
-                        :class="activeClass('registrationFee')">{{ $t('logout') }}</nuxt-link>
+                    <nuxt-link v-if="isLogin" class="menu-item" @click="handleClick('/member-center')"
+                        :class="activeClass('/member-center')">{{ $t('memberCenter') }}</nuxt-link>
+                    <nuxt-link v-if="isLogin" class="menu-item" @click="mobileLogout()">{{ $t('logout') }}</nuxt-link>
                 </div>
             </ol>
         </div>
@@ -45,9 +46,9 @@ const closeMenu = () => {
 const menu = reactive([
     { title: t('home'), path: '/', isActive: false },
     { title: t('aboutUs'), path: '/about-us', isActive: false },
-    { title: t('conferenceInformation'), path: '/conference-information', isActive: false },
     { title: t('news'), path: '/news', isActive: false },
-    { title: t('invitedSpeaker'), path: '/invited-speaker', isActive: false },
+    { title: t('conferenceInformation'), path: '/conference-information', isActive: false },
+    { title: t('invitedSpeaker'), path: '/invited-speakers', isActive: false },
     {
         title: t('registration'), path: '/registration-fee', isActive: false, submenu: [
             { title: t('registrationFee'), path: '/registration-fee' },
@@ -64,7 +65,7 @@ const menu = reactive([
     // },
     { title: t('transportation'), path: '/transportation', isActive: false },
     // { title: t('travel'), path: '/travel',isActive: false },
-    { title: t('sponsorList'), path: '/sponsor-list', isActive: false },
+    // { title: t('sponsorList'), path: '/sponsor-list', isActive: false },
     // { title: t('mascot'), path: '/mascot',isActive: false },
     {
         title: 'Gallery', path: '/gallery/2026', isActive: false, 
