@@ -34,7 +34,9 @@ const getSpeakers = async () => {
   })
   if (res.code === 200) {
     const orderOf = (item: any) => {
-      const index = SPEAKER_ORDER.indexOf(item.country?.trim());
+      // country 現為「姓名 職銜」（如「林昭庚 教授」），只取空白前的姓名比對
+      const name = item.country?.trim().split(/\s+/)[0] ?? '';
+      const index = SPEAKER_ORDER.indexOf(name);
       return index === -1 ? SPEAKER_ORDER.length : index;
     };
     const sorted = [...res.data.records].sort((a: any, b: any) => {
