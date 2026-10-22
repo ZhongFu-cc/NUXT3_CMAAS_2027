@@ -9,6 +9,7 @@
                 <p class="date">{{ newsItem.announcementDate }}</p>
                 <div v-html="newsItem.content" class="content-box ck-content"></div>
                 <div class="file-download-box">
+                    <h3 v-if="articleFileList.length" class="file-title">{{ t('fileDownload') }}</h3>
                     <a v-for="item in articleFileList" class="download-link" :href="envMinio + item.path"
                         target="_blank">
                         <!-- <i class="el-icon-document"></i> -->
@@ -116,7 +117,12 @@ onMounted(() => {
 
     }
 
+    .file-title {
+        margin: 0 1rem;
+    }
+
     .download-link {
+        color: #3496e3;
         display: flex;
         align-items: center;
         justify-content: flex-start;
