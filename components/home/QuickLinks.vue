@@ -19,6 +19,12 @@
                 </div>
                 <div class="link-item-text">{{ $t('registration') }}</div>
             </nuxt-link>
+            <nuxt-link to="/news-item/2113153049983815682" class="link-item item1">
+                <div class="item-image-box">
+                    <img class="link-item" src="@/assets/img/Online submission-01.svg">
+                </div>
+                <div class="link-item-text">{{ $t('submissionMethod') }}</div>
+            </nuxt-link>
         </div>
     </div>
 </template>
