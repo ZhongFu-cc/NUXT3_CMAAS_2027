@@ -41,12 +41,37 @@
 
                 <nuxt-link class="menu-item" to="/news" @click="setActiveItem('news')" :class="activeClass('news')">{{ $t('news') }}</nuxt-link>
                
-               <nuxt-link class="menu-item" to="/conference-information"
-                    @click="setActiveItem('conferenceInformation')" :class="activeClass('conferenceInformation')">{{
-                        $t('conferenceInformation') }}</nuxt-link>
+                <div class="submenu-box menu-item" @click="openSubMenuFunc('conferenceInformation')">
+                    {{ $t('conferenceInformation') }}
+                    <el-icon>
+                        <ElIconArrowDown />
+                    </el-icon>
+                    <div class="gallery-sub-menu" :class="openedSubMenu == 'conferenceInformation' ? 'is-open' : ''"
+                        v-if="openedSubMenu == 'conferenceInformation'">
+                        <nuxt-link class="sub-menu-item" to="/conference-information"
+                            @click="setActiveItem('conferenceInformation')"
+                            :class="activeClass('conferenceInformation')">{{
+                                $t('conferenceInformation') }}</nuxt-link>
+                        <nuxt-link class="sub-menu-item" to="/workshop" @click="setActiveItem('workshopInformation')"
+                            :class="activeClass('workshopInformation')">{{
+                                $t('workshopInformation') }}</nuxt-link>
+                    </div>
+                </div>
 
-                <nuxt-link class="menu-item" to="/invited-speakers" @click="setActiveItem('invitedSpeaker')"
-                    :class="activeClass('invitedSpeaker')">特邀講者</nuxt-link>
+                <div class="submenu-box menu-item" @click="openSubMenuFunc('invitedSpeaker')">
+                    {{ $t('invitedSpeaker') }}
+                    <el-icon>
+                        <ElIconArrowDown />
+                    </el-icon>
+                    <div class="gallery-sub-menu" :class="openedSubMenu == 'invitedSpeaker' ? 'is-open' : ''"
+                        v-if="openedSubMenu == 'invitedSpeaker'">
+                        <nuxt-link class="sub-menu-item" to="/invited-speakers" @click="setActiveItem('invitedSpeaker')"
+                            :class="activeClass('invitedSpeaker')">{{ $t('invitedSpeaker') }}</nuxt-link>
+                        <nuxt-link class="sub-menu-item" to="/workshop/speakers"
+                            @click="setActiveItem('workshopSpeaker')" :class="activeClass('workshopSpeaker')">{{
+                                $t('workshopSpeaker') }}</nuxt-link>
+                    </div>
+                </div>
 
 
 
