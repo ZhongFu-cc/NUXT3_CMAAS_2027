@@ -47,8 +47,18 @@ const menu = reactive([
     { title: t('home'), path: '/', isActive: false },
     { title: t('aboutUs'), path: '/about-us', isActive: false },
     { title: t('news'), path: '/news', isActive: false },
-    { title: t('conferenceInformation'), path: '/conference-information', isActive: false },
-    { title: t('invitedSpeaker'), path: '/invited-speakers', isActive: false },
+    {
+        title: t('conferenceInformation'), path: '/conference-information', isActive: false, submenu: [
+            { title: t('conferenceInformation'), path: '/conference-information' },
+            { title: t('workshopInformation'), path: '/workshop' },
+        ]
+    },
+    {
+        title: t('invitedSpeaker'), path: '/invited-speakers', isActive: false, submenu: [
+            { title: t('invitedSpeaker'), path: '/invited-speakers' },
+            { title: t('workshopSpeaker'), path: '/workshop/speakers' },
+        ]
+    },
     {
         title: t('registration'), path: '/registration-fee', isActive: false, submenu: [
             { title: t('registrationFee'), path: '/registration-fee' },
