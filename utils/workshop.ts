@@ -45,12 +45,12 @@ export const WORKSHOP_SPEAKERS: WorkshopSpeaker[] = [
     },
     {
         id: 'michael-weber',
-        nameZh: 'Michael Weber 醫師',
-        unitZh: '歐洲雷射學院 負責人',
-        nameEn: 'Dr. Michael Weber',
-        unitEn: 'Head of the European Laser Academy',
+        nameZh: 'Weber 院長',
+        unitZh: '歐洲雷射學院',
+        nameEn: 'President Michael Weber',
+        unitEn: 'European Laser Academy',
         photo: '/img/workshop/michael-weber.jpg',
-        photoPosition: '50% 30%',
+        photoPosition: '50% 20%',
     },
 ]
 
@@ -136,8 +136,11 @@ export const WORKSHOP_COURSES: WorkshopCourse[] = [
         period: 'afternoon',
         track: 'B',
         time: '13:00-16:00',
-        // Michael Weber 醫師之講題及課程重點尚待補充
-        topic: [],
+        // 課程重點尚待講師提供
+        topic: [
+            '雷射針灸與光醫學在阿茲海默症失智症之應用',
+            'Laser-acupuncture and Photo-Medicine in Alzheimer demencia',
+        ],
         speakerId: 'michael-weber',
         highlights: [],
     },
