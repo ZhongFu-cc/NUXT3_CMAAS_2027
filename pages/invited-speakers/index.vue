@@ -18,7 +18,7 @@ import Title from '@/components/layout/Title.vue';
 
 const SPEAKER_ORDER = [
   '林昭庚', '鈴木雅雄', '南東佑', '孫茂峰', '于家山', '高宗桂',
-  '陳志成', '胡文龍', '周立偉', '黃敬軒', '陳淑媛', '陳韋任',
+  '陳志成', '胡文龍', '周立偉', '黃敬軒', '陳淑媛', '陳韋任','馬培德', '龔彥綸','高佩玉'
 ];
 
 const speakers = reactive<any>([]);
