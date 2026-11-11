@@ -142,15 +142,15 @@
 
                                 <el-form-item prop="value1" label="1/23 上午場 Workshop" required>
                                     <el-radio-group v-model="formData.value1">
-                                        <el-radio label="場次A" value="WSA001"></el-radio>
-                                        <el-radio label="場次B" value="WSB001"></el-radio>
+                                        <el-radio label="場次A (頰針)" value="WSA001"></el-radio>
+                                        <el-radio label="場次B (小兒雷射真灸)" value="WSB001"></el-radio>
                                         <el-radio label="不參加" value="NONE"></el-radio>
                                     </el-radio-group>
                                 </el-form-item>
                                 <el-form-item prop="value2" label="1/23 下午場 Workshop" required>
                                     <el-radio-group v-model="formData.value2">
-                                        <el-radio label="場次A" value="WSA002"></el-radio>
-                                        <el-radio label="場次B" value="WSB002"></el-radio>
+                                        <el-radio label="場次A (古典針灸)" value="WSA002"></el-radio>
+                                        <el-radio label="場次B (失智症雷射真灸)" value="WSB002"></el-radio>
                                         <el-radio label="不參加" value="NONE"></el-radio>
                                     </el-radio-group> </el-form-item>
                                 <el-form-item prop="value3" label="1/24 主會議(※ 壁報投稿者請報名參加 1/24 主會議)" required>
@@ -529,13 +529,13 @@ const formRules = computed<FormRules>(() => ({
 const getWorkshopName = (code?: string) => {
     switch (code) {
         case 'WSA001':
-            return '場次A'
+            return '場次A (頰針)'
         case 'WSB001':
-            return '場次B'
+            return '場次B (小兒雷射真灸)'
         case 'WSA002':
-            return '場次A'
+            return '場次A (古典針灸)'
         case 'WSB002':
-            return '場次B'
+            return '場次B (失智症雷射真灸)'
         case 'MAIN':
             return '參加'
         default:
