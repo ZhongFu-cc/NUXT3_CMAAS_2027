@@ -2,7 +2,8 @@
 
 export interface WorkshopSpeaker {
     id: string
-    // 英文：姓名（含職稱）、單位
+    // 英文：職稱、姓名、單位（職稱與姓名分開，斷行只會發生在兩者之間）
+    titleEn: string
     nameEn: string
     unitEn: string
     // 中文：姓名 職銜、單位
@@ -20,7 +21,8 @@ export const WORKSHOP_SPEAKERS: WorkshopSpeaker[] = [
         id: 'tseng-kuo-lieh',
         nameZh: '曾國烈 顧問',
         unitZh: '中華針灸醫學會',
-        nameEn: 'Dr. Tseng, Kuo-Lieh',
+        titleEn: 'Dr.',
+        nameEn: 'Tseng, Kuo-Lieh',
         unitEn: 'Adviser, Chinese Medical Association of Acupuncture',
         photo: '/img/workshop/tseng-kuo-lieh.jpg',
         photoPosition: '50% 30%',
@@ -29,7 +31,8 @@ export const WORKSHOP_SPEAKERS: WorkshopSpeaker[] = [
         id: 'chou-yen-jung',
         nameZh: '周彥瑢 院長',
         unitZh: '瀚威中醫診所 總院長',
-        nameEn: 'Director Chou, Yen-Jung',
+        titleEn: 'Director',
+        nameEn: 'Chou, Yen-Jung',
         unitEn: 'HANWELL Chinese Medicine Clinic',
         photo: '/img/workshop/chou-yen-jung.jpg',
         photoPosition: '50% 30%',
@@ -38,7 +41,8 @@ export const WORKSHOP_SPEAKERS: WorkshopSpeaker[] = [
         id: 'shiue-hong-sheng',
         nameZh: '薛宏昇 副主委',
         unitZh: '世針聯傳承委員會',
-        nameEn: 'Vice Chairman Shiue, Hong-Sheng',
+        titleEn: 'Vice Chairman',
+        nameEn: 'Shiue, Hong-Sheng',
         unitEn: 'World Federation of Acupuncture and Moxibustion Heritage Committee',
         photo: '/img/workshop/shiue-hong-sheng.jpg',
         photoPosition: '50% 35%',
@@ -47,7 +51,8 @@ export const WORKSHOP_SPEAKERS: WorkshopSpeaker[] = [
         id: 'michael-weber',
         nameZh: 'Weber 院長',
         unitZh: '歐洲雷射學院',
-        nameEn: 'President Michael Weber',
+        titleEn: 'President',
+        nameEn: 'Michael Weber',
         unitEn: 'European Laser Academy',
         photo: '/img/workshop/michael-weber.jpg',
         photoPosition: '50% 20%',
