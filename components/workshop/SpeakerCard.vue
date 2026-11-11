@@ -6,8 +6,12 @@
                     :style="{ objectPosition: props.speaker.photoPosition }" />
             </div>
             <div class="speaker-detail">
-                <!-- 英文：姓名（含職稱）、單位 -->
-                <h2 class="name">{{ props.speaker.nameEn }}</h2>
+                <!-- 英文：職稱+姓名、單位 -->
+                <!-- 姓名不斷行，過長時只在職稱與姓名之間換行 -->
+                <h2 class="name">
+                    <span v-if="props.speaker.titleEn" class="title">{{ props.speaker.titleEn }}</span>
+                    {{ ' ' }}<span class="person">{{ props.speaker.nameEn }}</span>
+                </h2>
                 <p v-if="props.speaker.unitEn" class="unit">{{ props.speaker.unitEn }}</p>
                 <span class="accent-line"></span>
                 <!-- 中文：姓名+職稱、單位 -->
@@ -67,6 +71,9 @@ $accent: #2f6f9f;
             font-weight: bold;
             line-height: 1.25;
 
+            .person {
+                white-space: nowrap;
+            }
         }
 
         // 英文單位可能很長，允許任意處斷行避免撐破欄寬
