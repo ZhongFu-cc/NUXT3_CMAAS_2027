@@ -52,11 +52,13 @@
                                 <dt>{{ $t('workshopHighlights') }}</dt>
                                 <dd class="highlights">
                                     <template v-if="course.highlights.length">
-                                        <div v-for="(item, index) in course.highlights" :key="index"
-                                            class="highlight">
-                                            <p v-if="item.title" class="highlight-title">{{ item.title }}</p>
-                                            <p>{{ item.text }}</p>
-                                        </div>
+                                        <template v-for="(item, index) in course.highlights" :key="index">
+                                            <hr v-if="item.divider" class="highlight-divider" />
+                                            <div v-else class="highlight">
+                                                <p v-if="item.title" class="highlight-title">{{ item.title }}</p>
+                                                <p v-if="item.text">{{ item.text }}</p>
+                                            </div>
+                                        </template>
                                     </template>
                                     <p v-else class="tbd">{{ $t('workshopTbd') }}</p>
                                 </dd>
@@ -301,6 +303,13 @@ $border: #d6e6f2;
                 .highlight-title {
                     color: $main-color;
                     font-weight: bold;
+                }
+
+                .highlight-divider {
+                    width: 100%;
+                    margin: 0.2rem 0;
+                    border: none;
+                    border-top: 1px solid rgba(0, 0, 0, 0.15);
                 }
             }
         }

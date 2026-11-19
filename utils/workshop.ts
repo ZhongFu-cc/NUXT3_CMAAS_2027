@@ -59,10 +59,11 @@ export const WORKSHOP_SPEAKERS: WorkshopSpeaker[] = [
     },
 ]
 
-// 課程重點：有模組標題的段落帶 title，其餘為一般段落
+// 課程重點：有模組標題的段落帶 title，其餘為一般段落；divider 為分隔線（如中英文大綱之間）
 export interface WorkshopHighlight {
     title?: string
-    text: string
+    text?: string
+    divider?: boolean
 }
 
 export interface WorkshopCourse {
@@ -141,12 +142,21 @@ export const WORKSHOP_COURSES: WorkshopCourse[] = [
         period: 'afternoon',
         track: 'B',
         time: '13:00-16:00',
-        // 課程重點尚待講師提供
         topic: [
             '雷射針灸與光醫學在阿茲海默症失智症之應用',
             'Laser-acupuncture and Photo-Medicine in Alzheimer demencia',
         ],
         speakerId: 'michael-weber',
-        highlights: [],
+        highlights: [
+            { text: '1. 雷射針灸與光醫學的臨床應用原理。' },
+            { text: '2. 設備選擇與治療參數設定（波長、功率、照射時間及劑量）。' },
+            { text: '3. 失智症的穴位選擇與臨床技術。' },
+            { text: '4. 在認知功能障礙的臨床研究及應用實例。' },
+            { divider: true },
+            { text: '1. Clinical Principles and Applications of Laser Acupuncture and Photomedicine.' },
+            { text: '2. Equipment Selection and Treatment Parameter Settings (Wavelength, Power, Irradiation Time, and Dose).' },
+            { text: '3. Acupuncture Point Selection and Clinical Techniques for Dementia.' },
+            { text: '4. Clinical Research and Practical Applications in Cognitive Impairment.' },
+        ],
     },
 ]
