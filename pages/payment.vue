@@ -44,27 +44,26 @@
             <div class="table-box">
                 <span class="info" v-if="memberInfo.groupRole == 'slave'">*The group registration fee must be paid by
                     the main registration member.</span>
-                <table class="orders-table" :class="isTaiwan(memberInfo.country)">
+                <table class="orders-table none">
                     <thead>
                         <tr class="header-row">
                             <th>項目</th>
                             <th>付款金額 {{ memberInfo.country === 'Taiwan' ? '(TWD)' : '(USD)' }}</th>
                             <th :colspan="2">付款狀態</th>
-                            <!-- <th></th> -->
-                            <!-- <th v-if="memberInfo.country === 'Taiwan'">帳號末五碼</th> -->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(item, index) in orderList" :class="isEvenOrOdd(index)">
-                            <td class="first-col">{{ item.itemsSummary }}</td>
-                            <td>{{  item.totalAmount }}</td>
-                            <td class="last-col">{{
-                                enums.payMentStatus[item.status]
-                                }}</td>
-                            <!-- <td v-if="memberInfo.country === 'Taiwan'" class="last-col">
-                                {{ memberInfo.remitAccountLast5 }}
-                            </td> -->
-                            <!-- <td v-if="memberInfo.country !== 'Taiwan'" class="temp-col"></td> -->
+                        <tr v-for="(item, index) in orderList" :key="item.ordersId" :class="isEvenOrOdd(index)">
+                            <td class="first-col" data-label="項目">
+                                <div v-if="item.ordersItemList?.length">
+                                    <p v-for="(product, pIndex) in item.ordersItemList" :key="product.ordersItemId">
+                                        {{ pIndex + 1 }}. {{ product.productName }} — {{ product.subtotal }}
+                                    </p>
+                                </div>
+                                <template v-else>{{ item.itemsSummary }}</template>
+                            </td>
+                            <td data-label="付款金額">{{ item.totalAmount }}</td>
+                            <td class="last-col" data-label="付款狀態">{{ enums.payMentStatus[item.status] }}</td>
                             <td v-if="(item.status === 0 || item.status === 3)"
                                 class="not-pay"
                                 :class="(memberInfo.groupRole == 'slave' && item.itemsSummary == 'Group Registration Fee') || isOverDeadline ? 'disabled' : ''"
@@ -143,11 +142,18 @@ const getMemberInfo = async () => {
 
 
 
+interface OrdersItem {
+    ordersItemId: string;
+    productName: string;
+    subtotal: number;
+}
+
 interface Order {
     itemsSummary: string;
     totalAmount: number;
     status: number;
     ordersId: string;
+    ordersItemList?: OrdersItem[];
 }
 
 let orderList = reactive<Order[]>([])
@@ -379,18 +385,12 @@ onMounted(() => {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background: url('assets/img/login_background.png') no-repeat center center;
 
         .table-box {
-            display: flex;
-            flex-direction: column;
-            background-color: white;
-            border-radius: 15px;
-            padding: 1rem;
-            justify-content: center;
-            width: min(100%, 1120px);
-            box-sizing: border-box;
-            overflow-x: auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, .06);
 
             @media screen and (max-width: 640px) {
                 overflow-x: visible;
@@ -405,11 +405,11 @@ onMounted(() => {
                 margin: 0 0 0.85rem;
                 padding: 0.55rem 0.8rem;
                 border-radius: 10px;
-                border: 1px solid #f2c9cf;
-                background-color: #fff5f6;
+                border: 1px solid $main-color;
+                background-color: #eef6fc;
                 font-size: 0.95rem;
                 font-weight: 600;
-                color: #b94858;
+                color: #0f6ba0;
                 line-height: 1.45;
 
                 &::before {
@@ -420,7 +420,7 @@ onMounted(() => {
                     width: 1.1rem;
                     height: 1.1rem;
                     border-radius: 999px;
-                    background-color: #b94858;
+                    background-color: #0f6ba0;
                     color: #fff;
                     font-size: 0.75rem;
                     font-weight: 700;
@@ -455,143 +455,161 @@ onMounted(() => {
             }
 
             .orders-table {
-                overflow: hidden;
-                background-color: white;
-                font-size: clamp(1rem, 1.4vw, 1.2rem);
-                border-collapse: separate;
-                border-spacing: 0 0.4rem;
                 width: 100%;
                 min-width: 760px;
-
-                @media screen and (max-width: 1048px) {
-                    font-size: 1rem;
-                }
+                border-collapse: separate;
+                border-spacing: 0 0.75rem;
+                font-size: clamp(1rem, 1.4vw, 1.1rem);
+                background: transparent;
 
                 @media screen and (max-width: 768px) {
                     min-width: 640px;
                 }
 
                 th {
-                    padding: 0.95rem 1rem;
-                    border-radius: 12px;
-                    text-align: start;
+                    padding: 1rem;
+                    background: linear-gradient(135deg, #0f6ba0 0%, #3599d3 100%);
+                    color: #fff;
+                    font-size: 0.95rem;
                     font-weight: 700;
-                    color: #6b4b53;
-                    background-color: #fff5f7;
+                    letter-spacing: 0.03em;
+                    text-transform: uppercase;
                     white-space: nowrap;
-                    border-bottom: 1px solid #d6cdd1;
+                    text-align: left;
+                    border: none;
+
+                    &:first-child {
+                        border-top-left-radius: 12px;
+                        border-bottom-left-radius: 12px;
+                    }
+
+                    &:last-child {
+                        border-top-right-radius: 12px;
+                        border-bottom-right-radius: 12px;
+                    }
                 }
 
-                td {
-                    padding: 0.8rem 1rem;
-                    vertical-align: middle;
+                tbody {
+                    tr {
+                        transition: all 0.25s ease;
+
+                        &:hover {
+                            transform: translateY(-2px);
+
+                            td {
+                                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+                            }
+                        }
+
+                        td {
+                            padding: 1rem;
+                            font-weight: 600;
+                            vertical-align: middle;
+                            transition: all 0.25s ease;
+                        }
+
+                        &.even {
+                            td {
+                                background: $main-color;
+                                color: #0b3d5c;
+                            }
+                        }
+
+                        &.odd {
+                            td {
+                                background: #fff;
+                                color: #0f6ba0;
+                            }
+                        }
+                    }
                 }
 
                 .first-col {
-                    border-top-left-radius: 5px;
-                    border-bottom-left-radius: 5px;
-                    min-width: 18ch;
+                    border-top-left-radius: 12px;
+                    border-bottom-left-radius: 12px;
                 }
 
                 .last-col {
-                    border-top-right-radius: 5px;
-                    border-bottom-right-radius: 5px;
-                    border: none !important;
                     white-space: nowrap;
                 }
 
-
-
-                .even {
-                    td {
-                        background-color: #E8979E;
-                        color: white;
-                        font-weight: bold;
-                    }
-                }
-
-                .odd {
-                    td {
-                        background-color: white;
-                        color: #E8979E;
-                        font-weight: bold;
-                    }
-
-
-                }
-
-                .btn-col {
-                    background-color: white;
-                    padding: 0.5rem 0.5rem;
-                    border-radius: 5px;
-                }
-
-
-                .pay-btn {
-                    background-color: #26AE07;
-                    color: white;
-                    height: 100%;
-                    cursor: pointer;
-                    padding: 0.5rem 1rem;
-                    margin-left: 0.3rem;
-                    border-radius: 5px;
-                    width: 40%;
-                }
-
-
-                .completed {
-                    background-color: #D77102 !important;
-                    color: white;
-                    text-align: center;
-                    border-radius: 5px;
-                    cursor: default;
-                    min-width: 8.5rem;
-
+                td:last-child {
+                    border-top-right-radius: 12px;
+                    border-bottom-right-radius: 12px;
                 }
 
                 .temp-col {
-                    background-color: white !important;
-                    width: 0.1rem;
+                    width: 8px;
                     padding: 0;
-                    border: none !important;
+                    background: transparent !important;
+                    box-shadow: none !important;
+                }
+
+                .completed {
+                    background: linear-gradient(135deg, #32c315, #26ae07) !important;
+                    color: #fff !important;
+                    text-align: center;
+                    cursor: default;
+                    min-width: 140px;
+                    font-weight: 700;
+                    white-space: nowrap;
+
+                    .el-icon {
+                        font-size: 1.1rem;
+                    }
+
+                    .receipt-btn {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.35rem;
+                        margin-left: 0.75rem;
+                        padding: 0.4rem 0.9rem;
+                        border: 1px solid rgba(255, 255, 255, 0.8);
+                        border-radius: 999px;
+                        background: rgba(255, 255, 255, 0.18);
+                        color: #fff;
+                        font-family: inherit;
+                        font-size: 0.9rem;
+                        font-weight: 700;
+                        cursor: pointer;
+                        transition: background 0.25s ease;
+
+                        &:hover:not(:disabled) {
+                            background: rgba(255, 255, 255, 0.32);
+                        }
+
+                        &:disabled {
+                            opacity: 0.6;
+                            cursor: not-allowed;
+                        }
+                    }
                 }
 
                 .not-pay {
+                    background: linear-gradient(135deg, #f2a14a, #d77102) !important;
+                    color: #fff !important;
                     text-align: center;
-                    background-color: #26AE07 !important;
-                    color: white !important;
-                    border-radius: 5px;
-                    min-width: 8.5rem;
-                    cursor: pointer;
+                    min-width: 140px;
                     font-weight: 700;
+                    cursor: pointer;
                     white-space: nowrap;
-                    transition: background-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
 
                     &:hover {
-                        background-color: #229a06 !important;
-                        box-shadow: 0 6px 14px rgba(38, 174, 7, 0.25);
+                        transform: translateY(-2px);
+                        box-shadow: 0 10px 24px rgba(218, 159, 97, 0.3);
+                    }
+
+                    &:active {
+                        transform: translateY(0);
                     }
 
                     &.disabled {
-                        background-color: #26AE07 !important;
                         opacity: 0.5;
                         cursor: not-allowed;
                         pointer-events: none;
-
                     }
                 }
 
-                @media screen and (max-width: 768px) {
-                    th {
-                        padding: 0.75rem 0.8rem;
-                    }
-
-                    td {
-                        padding: 0.65rem 0.8rem;
-                    }
-                }
-
-                // Mobile card layout
                 @media screen and (max-width: 640px) {
                     display: block;
                     min-width: unset;
@@ -605,91 +623,57 @@ onMounted(() => {
                     tbody {
                         display: flex;
                         flex-direction: column;
-                        gap: 0.75rem;
+                        gap: 1rem;
                     }
 
                     tr {
                         display: block;
-                        border-radius: 12px;
                         overflow: hidden;
-                        border: 1px solid rgba(232, 151, 158, 0.3);
+                        border-radius: 16px;
+                        border: 1px solid rgba(150, 192, 225, 0.5);
+                        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
 
-                        // even row: value bg = soft pink, label bg = deeper pink
                         &.even {
-                            background-color: #f9eced;
+                            background: $main-color;
 
                             td {
-                                background-color: transparent;
-                                text-align: center;
-                                color: rgb(85, 82, 82);
-                                font-weight: 600;
-                                border-bottom: 1px solid rgba(232, 151, 158, 0.25);
-
-                                &::before {
-                                    background-color: #E8979E;
-                                    color: #fff;
-                                }
+                                border-bottom-color: rgba(255, 255, 255, 0.25);
                             }
                         }
 
-                        // odd row: value bg = white, label bg = light pink
                         &.odd {
-                            background-color: #fff;
+                            background: #fff;
 
-                            td {
-                                background-color: transparent;
-                                color: #7a3d48;
-                                font-weight: 600;
-                                border-bottom: 1px solid rgba(232, 151, 158, 0.18);
-
-                                &::before {
-                                    background-color: #f2d6da;
-                                    color: #7a3d48;
-                                }
+                            td:not(.not-pay):not(.completed) {
+                                color: #0f6ba0 !important;
                             }
+                        }
+
+                        td {
+                            display: flex !important;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            justify-content: center;
+                            gap: 0.25rem;
+                            padding: 0.75rem 1rem;
+                            background: transparent !important;
+                            border-bottom: 1px solid rgba(150, 192, 225, 0.35);
+                            box-shadow: none !important;
+
+                            &::before {
+                                content: attr(data-label);
+                                font-size: 0.78rem;
+                                font-weight: 700;
+                                letter-spacing: 0.05em;
+                                opacity: 0.75;
+                            }
+
+                            line-height: 1.5;
+                            word-break: break-word;
                         }
 
                         td:last-child {
                             border-bottom: none;
-                        }
-                    }
-
-                    td {
-                        display: flex !important;
-                        align-items: center;
-                        justify-content: flex-start;
-                        border-radius: 0 !important;
-                        padding: 0;
-                        gap: 0;
-                        min-height: 3rem;
-
-                        &::before {
-                            display: flex;
-                            align-items: center;
-                            align-self: stretch;
-                            min-width: 6rem;
-                            padding: 0.65rem 0.8rem;
-                            font-size: 0.82rem;
-                            font-weight: 700;
-                            letter-spacing: 0.03em;
-                            white-space: nowrap;
-                            flex-shrink: 0;
-                            margin-right: 1rem;
-                        }
-
-                        padding-right: 0.8rem;
-                        line-height: 1.4;
-
-                        &:nth-child(1)::before {
-                            content: 'Item';
-                        }
-
-                        &:nth-child(2)::before {
-                            content: 'Amount';
-                        }
-
-                        &:nth-child(3)::before {
-                            content: 'Status';
                         }
                     }
 
@@ -699,31 +683,20 @@ onMounted(() => {
 
                     .not-pay,
                     .completed {
+                        flex-direction: row;
+                        align-items: center;
                         justify-content: center;
-                        border-radius: 0 !important;
                         min-width: unset;
-                        padding: 0.75rem 0.9rem;
-                        border-bottom: none !important;
+                        width: 100%;
+                        border-radius: 0 !important;
+                        padding: 1rem;
 
                         &::before {
-                            content: none !important;
-                            min-width: 0;
-                            padding: 0;
-                        }
-                    }
-
-                    &.taiwan {
-                        td {
-                            border-right: none !important;
-                        }
-
-                        .odd td::after {
                             display: none !important;
                         }
                     }
                 }
             }
-
         }
 
         .payment-info {
