@@ -13,6 +13,17 @@
                         <!-- <p v-if="formData.country === 'Taiwan'">若未填寫匯款帳號末五碼請於註冊完成後補填。</p> -->
                     </div>
 
+                    <div class="registration-instructions">
+                        <p class="instructions-title">報名說明</p>
+                        <ol>
+                            <li>本次大會採線上報名及線上刷卡繳費，完成報名資料填寫後，請依系統指示進行信用卡付款。本次不提供郵局劃撥及銀行轉帳繳費。完成線上報名及付款後，始完成大會報名程序。</li>
+                            <li>預先報名至 2027/1/8 (星期五) 截止。</li>
+                            <li>現場報名者：加收行政手續費 500 元。手冊及餐盒因數量有限，大會當天恕不提供。</li>
+                            <li>報名本次學術大會之會員，已繳清 116 年度年費者及永久會員，可獲贈精美紀念品一份。(限大會當日本人領取，大會後恕不補發，另持委託書無法代領大會紀念品)</li>
+                        </ol>
+                        <!-- <p>中華針灸醫學會 聯絡方式：04-22367990　cmedassacu@gmail.com</p> -->
+                    </div>
+
                     <div class="main-form">
                         <ClientOnly>
                             <div class="left-seciton">
@@ -738,6 +749,25 @@ onUnmounted(() => {
             color: white;
             font-size: 0.95rem;
             line-height: 1.6;
+        }
+
+        .registration-instructions {
+            margin-bottom: 1.5rem;
+            padding: 0.9rem 1rem;
+            border: 1px solid $main-color;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+
+            .instructions-title {
+                font-size: 1.1rem;
+                margin-bottom: 0.4rem;
+            }
+
+            ol {
+                padding-left: 1.4rem;
+                margin: 0 0 0.5rem;
+            }
         }
 
         :deep(.el-form-item__label) {
