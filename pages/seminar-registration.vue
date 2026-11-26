@@ -8,10 +8,10 @@
                 <el-form :model="formData" class="form" ref="form" :rules="formRules" labelPosition="top"
                     require-asterisk-position="right" :show-message="true" :scroll-to-error="true"
                     :validate-on-rule-change="false">
-                    <div class="registration-notice">
-                        <p>{{ t('registrationReminder') }}</p>
+                    <!-- <div class="registration-notice">
+                        <p>{{ t('registrationReminder') }}</p> -->
                         <!-- <p v-if="formData.country === 'Taiwan'">若未填寫匯款帳號末五碼請於註冊完成後補填。</p> -->
-                    </div>
+                    <!-- </div> -->
 
                     <div class="registration-instructions">
                         <p class="instructions-title">報名說明</p>
