@@ -24,23 +24,17 @@ export default {
             onResponseError({ response }: { response: any }) {  // 加上型別
                 console.error(response)
 
-                // 401為沒token時的錯誤
+                // 401：沒有 token、token 過期或無效
                 if (response.status !== 401) {
-                    ElMessage.error(response._data.msg)
+                    ElMessage.error(response._data?.msg)
                 } else {
+                    // 此回呼在非同步階段執行，已失去 Nuxt context，
+                    // 呼叫 useAuth/useRouter/useRoute 會丟出例外而導致登入狀態沒被清掉，
+                    // 因此直接清除憑證並以整頁導向登入頁，讓全域登入狀態一併重置
                     localStorage.removeItem('Authorization-member')
-                    useAuth().isLogin.value = false
-                    useRouter().push('/login')
 
-                    const path = useRoute().path
-
-                    if (path !== '/login') {
-                        ElNotification.error({
-                            title: 'Unauthorized',
-                            message: 'Please log in first',
-                            type: 'error',
-                            duration: 3000,
-                        })
+                    if (typeof window !== 'undefined' && !window.location.pathname.includes('/login')) {
+                        window.location.href = '/login'
                     }
                 }
 
