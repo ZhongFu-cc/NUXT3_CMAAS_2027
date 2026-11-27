@@ -31,19 +31,28 @@
                     </tbody>
                 </table>
                 <div>
-                    <p class="tips">※ Workshop 費用不分會員身分，一個時段限報名一場</p>
-                    <p class="tips">※ 報名及繳費方式
-                    <ul>
-                        <li>本次大會採線上報名及線上刷卡繳費，完成報名資料填寫後，請依系統指示進行信用卡付款。
-                        </li>
-                        <li>
-                            本次不提供郵局劃撥及銀行轉帳繳費。
-                        </li>
-                        <li>
-                            完成線上報名及付款後，始完成大會報名程序。
-                        </li>
-                    </ul>
-                    </p>
+                    <div class="tips">
+                        <p class="tips-title">費用說明</p>
+                        <p class="tips-group">1/24 國際學術大會</p>
+                        <ul>
+                            <li>永久會員、一般會員：包含大會手冊、當日餐點、本會點數 10 學分。</li>
+                            <li>非會員：包含大會手冊、當日餐點。</li>
+                            <li>中醫師可於報名 1/24 國際學術大會時，選擇是否申請中醫師全聯會繼續教育積分 8 點，另收點數費 800 元。</li>
+                            <li>一般會員須繳清 116 年度年費，才能適用會員優惠價格。</li>
+                        </ul>
+                        <p class="tips-group">1/23 臨床技能工作坊</p>
+                        <ul>
+                            <li>Workshop 費用不分會員身分。</li>
+                            <li>Workshop 上午、下午各有 A、B 兩場，一個時段 (上午/下午) 限報名一場。每一場課程限額 45 人。</li>
+                            <li>Workshop 課程費用包含課後 60 天線上影音複習。</li>
+                            <li>同日報名上午及下午兩場 Workshop 者，提供午餐一份；僅參加單一場次者，不提供午餐。</li>
+                        </ul>
+                        <p class="tips-group">退費及費用保留</p>
+                        <ul>
+                            <li>已完成報名繳費者，若因故無法參加，請於 2027 年 1 月 8 日 (五) 前 (含當日) 以電子郵件通知本會申請退費，每場課程收取行政手續費 500 元。</li>
+                            <li>2027 年 1 月 9 日起至原報名課程開始前，如因故無法參加，可來信申請保留已繳費用，扣除行政手續費 500 元後，得於 2028 年 1 月 31 日前抵用本會自辦課程報名費。逾期未使用者不再保留；未於原報名課程開始前提出申請者，亦不予保留。報名資格不得轉讓他人。</li>
+                        </ul>
+                    </div>
                 </div>
             </main>
 
@@ -140,6 +149,22 @@ useSeoMeta({
         text-align: start;
         font-size: 1rem;
         font-weight: 600;
+
+        .tips-title {
+            font-size: 1.2rem;
+        }
+
+        .tips-group {
+            margin-top: 0.8rem;
+            color: #0f6ba0;
+        }
+
+        ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            font-weight: 500;
+            line-height: 1.7;
+        }
     }
 
     .btn-section {
