@@ -269,6 +269,11 @@ onMounted(() => {
     checkLoginState();
 })
 
+// 換頁時重新驗證 token，避免長時間停留後 token 已過期卻仍顯示已登入
+watch(() => useRoute().fullPath, () => {
+    checkLoginState();
+})
+
 onUnmounted(() => {
     window.removeEventListener('scroll', handleScroll)
 })
